@@ -1,8 +1,0 @@
-__pycache__/
-*.pyc
-/vendor/
-/node_modules/
-.DS_Store
-/build/
-.phpunit.result.cache
-composer.lock
