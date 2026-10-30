@@ -4,7 +4,7 @@ Tags: chart, bar chart, graph, elementor, bricks
 Requires at least: 6.2
 Tested up to: 7.1
 Stable tag: 1.0.0
-Requires PHP: 7.4
+Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,10 @@ Seven chart types, all from the same simple rows:
 = Can I change the colours and the font? =
 
 Yes, for every chart separately: in the chart builder, in the block's colour and typography panels, and in the Elementor and Bricks style controls. Single bars can have their own colours too.
+
+= Which versions are required? =
+
+WordPress 6.2+ and PHP 8.0+. The Elementor widget needs Elementor 3.5+, the Bricks element Bricks 2.0+. With an older builder the shortcode and the block keep working, and administrators see a notice.
 
 = Can I use it without a page builder? =
 

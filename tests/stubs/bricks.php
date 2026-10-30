@@ -6,6 +6,8 @@
  */
 
 namespace {
+	define( 'BRICKS_VERSION', '2.0.0' );
+
 	function bricks_is_builder(): bool {
 		return false;
 	}

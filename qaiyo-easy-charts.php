@@ -5,7 +5,7 @@
  * Description:       Simple, beautiful, animated and accessible charts. Build them in the admin and place them with a shortcode, a Gutenberg block, Elementor or Bricks Builder.
  * Version:           1.0.0
  * Requires at least: 6.2
- * Requires PHP:      7.4
+ * Requires PHP:      8.0
  * Author:            Qaiyo
  * Author URI:        https://qaiyo-plugins.com
  * License:           GPL-2.0-or-later
@@ -23,7 +23,7 @@ define( 'QAIYO_EC_PLUGIN_FILE', __FILE__ );
 define( 'QAIYO_EC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'QAIYO_EC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'QAIYO_EC_BASENAME', plugin_basename( __FILE__ ) );
-define( 'QAIYO_EC_MIN_PHP', '7.4' );
+define( 'QAIYO_EC_MIN_PHP', '8.0' );
 define( 'QAIYO_EC_MIN_WP', '6.2' );
 
 /*

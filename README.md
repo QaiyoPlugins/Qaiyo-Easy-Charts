@@ -3,7 +3,7 @@
 > Simple, beautiful, animated and accessible charts for WordPress. Build them in the admin with a live preview, then place them with a shortcode, a Gutenberg block, Elementor or Bricks Builder.
 
 [![WordPress 6.2+](https://img.shields.io/badge/WordPress-6.2%2B-21759b.svg)](https://wordpress.org/)
-[![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4.svg)](https://www.php.net/)
+[![PHP 8.0+](https://img.shields.io/badge/PHP-8.0%2B-777bb4.svg)](https://www.php.net/)
 [![License: GPL v2+](https://img.shields.io/badge/License-GPLv2%2B-blue.svg)](https://www.gnu.org/licenses/gpl-2.0)
 [![Free](https://img.shields.io/badge/free-1.0.0-6c5ce7.svg)](#features)
 [![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2%20AA-2e7d32.svg)](#accessibility)
@@ -113,12 +113,21 @@ composer build      # release zip in build/ (development files from .distignore 
 
 | Tool | Configuration | Status |
 |---|---|---|
-| PHP_CodeSniffer + WordPress Coding Standards 3 + PHPCompatibilityWP (PHP 7.4+) | `phpcs.xml.dist` | 0 errors, 0 warnings |
+| PHP_CodeSniffer + WordPress Coding Standards 3 + PHPCompatibilityWP (PHP 8.0+) | `phpcs.xml.dist` | 0 errors, 0 warnings |
 | PHPStan 2 + `szepeviktor/phpstan-wordpress`, **level max** | `phpstan.neon.dist` | 0 errors |
 | PHPUnit 9 + Brain Monkey (unit tests without WordPress) | `phpunit.xml.dist`, `tests/` | passing |
 | Plugin Check (WordPress.org), `--mode=new`, static + runtime, experimental and low-severity checks | release build | no errors, no warnings |
 
 Elementor and Bricks are analysed against minimal stubs in `tests/stubs/`.
+
+## Requirements
+
+| | Minimum |
+|---|---|
+| WordPress | 6.2 |
+| PHP | 8.0 |
+| Elementor (for the widget) | 3.5 |
+| Bricks Builder (for the element) | 2.0 — older versions get an admin notice instead of the element |
 
 ## License
 

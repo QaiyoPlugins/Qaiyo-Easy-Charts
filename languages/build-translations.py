@@ -53,7 +53,7 @@ def extract():
     """msgid (or ctx\\x04msgid) -> list of 'file:line' references, in source order."""
     found = OrderedDict()
     for base, dirs, files in os.walk(ROOT):
-        dirs[:] = sorted(d for d in dirs if d not in (".git", "node_modules", "vendor", "languages"))
+        dirs[:] = sorted(d for d in dirs if d not in (".git", "node_modules", "vendor", "languages", "build", "tests"))
         for name in sorted(files):
             if not name.endswith(".php"):
                 continue
