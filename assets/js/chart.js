@@ -4,7 +4,7 @@
  * Charts render fully in HTML/CSS. This script only adds what needs a browser:
  * lazy mounting near the viewport, the entrance animation (optionally replayed),
  * counting values up, thinning out colliding axis ticks, dismissing tooltips
- * with Escape and the PNG / SVG export. Without it, charts
+ * with Escape, the PNG / SVG export and reporting anonymous chart views. Without it, charts
  * are shown static (lazy charts through their <noscript> copy).
  */
 ( function () {
@@ -192,6 +192,7 @@
 
 	function activate( chart ) {
 		fitTicks( chart );
+		trackView( chart );
 		if ( resizeObserver ) {
 			resizeObserver.observe( chart );
 		}
@@ -466,6 +467,60 @@
 			exportChart( chart, button.getAttribute( 'data-qec-export' ) ).catch( function () {} );
 		}
 	} );
+
+	/* Views ------------------------------------------------------------------
+	 * A saved chart reports one anonymous view when at least half of it has been
+	 * on screen, once per browser session (sessionStorage, no cookies). */
+
+	var viewObserver = null;
+
+	function alreadySeen( id ) {
+		try {
+			if ( window.sessionStorage.getItem( 'qec-view-' + id ) ) {
+				return true;
+			}
+			window.sessionStorage.setItem( 'qec-view-' + id, '1' );
+		} catch ( error ) {
+			// Storage blocked: the server-side throttle still prevents double counting.
+		}
+		return false;
+	}
+
+	function reportView( id ) {
+		var endpoint = window.qaiyoEcViews && window.qaiyoEcViews.url;
+		if ( ! endpoint || alreadySeen( id ) ) {
+			return;
+		}
+		var body = new window.FormData();
+		body.append( 'id', id );
+		if ( navigator.sendBeacon && navigator.sendBeacon( endpoint, body ) ) {
+			return;
+		}
+		if ( window.fetch ) {
+			window.fetch( endpoint, { method: 'POST', body: body, keepalive: true, credentials: 'omit' } ).catch( function () {} );
+		}
+	}
+
+	function trackView( chart ) {
+		var id = chart.getAttribute( 'data-qec-view' );
+		if ( ! id || ! supportsObserver() ) {
+			return;
+		}
+		if ( ! viewObserver ) {
+			viewObserver = new IntersectionObserver(
+				function ( entries ) {
+					entries.forEach( function ( entry ) {
+						if ( entry.isIntersecting ) {
+							viewObserver.unobserve( entry.target );
+							reportView( entry.target.getAttribute( 'data-qec-view' ) );
+						}
+					} );
+				},
+				{ threshold: 0.5 }
+			);
+		}
+		viewObserver.observe( chart );
+	}
 
 	/* Lazy loading ---------------------------------------------------------- */
 

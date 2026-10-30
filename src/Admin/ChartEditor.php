@@ -12,6 +12,7 @@ use Qaiyo\EasyCharts\Chart\Renderer;
 use Qaiyo\EasyCharts\Chart\Repository;
 use Qaiyo\EasyCharts\Frontend\Assets;
 use Qaiyo\EasyCharts\Schema;
+use Qaiyo\EasyCharts\Stats\Views;
 use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
@@ -52,7 +53,7 @@ final class ChartEditor {
 	 * @param mixed $classes Body classes.
 	 * @return mixed
 	 */
-	public function body_class( $classes ) {
+	public function body_class( mixed $classes ): mixed {
 		return self::is_chart_screen() && is_string( $classes ) ? $classes . ' qec-admin-screen' : $classes;
 	}
 
@@ -62,6 +63,7 @@ final class ChartEditor {
 	public function meta_boxes(): void {
 		add_meta_box( 'qec-chart-builder', __( 'Chart builder', 'qaiyo-easy-charts' ), array( $this, 'render_builder' ), Schema::POST_TYPE, 'normal', 'high' );
 		add_meta_box( 'qec-chart-embed', __( 'Embed', 'qaiyo-easy-charts' ), array( $this, 'render_embed' ), Schema::POST_TYPE, 'side', 'default' );
+		add_meta_box( 'qec-chart-views', __( 'Views', 'qaiyo-easy-charts' ), array( $this, 'render_views' ), Schema::POST_TYPE, 'side', 'default' );
 	}
 
 	/**
@@ -69,7 +71,7 @@ final class ChartEditor {
 	 *
 	 * @param mixed $post Post being edited.
 	 */
-	public function intro( $post ): void {
+	public function intro( mixed $post ): void {
 		if ( ! $post instanceof \WP_Post || Schema::POST_TYPE !== $post->post_type ) {
 			return;
 		}
@@ -81,7 +83,7 @@ final class ChartEditor {
 	 *
 	 * @param mixed $post Post being edited.
 	 */
-	public function render_builder( $post ): void {
+	public function render_builder( mixed $post ): void {
 		if ( ! $post instanceof \WP_Post ) {
 			return;
 		}
@@ -109,7 +111,7 @@ final class ChartEditor {
 	 *
 	 * @param mixed $post Post being edited.
 	 */
-	public function render_embed( $post ): void {
+	public function render_embed( mixed $post ): void {
 		if ( ! $post instanceof \WP_Post ) {
 			return;
 		}
@@ -123,11 +125,32 @@ final class ChartEditor {
 	}
 
 	/**
+	 * Render the views meta box.
+	 *
+	 * @param mixed $post Post being edited.
+	 */
+	public function render_views( mixed $post ): void {
+		if ( ! $post instanceof \WP_Post ) {
+			return;
+		}
+		View::output(
+			'chart-views',
+			array(
+				'qaiyo_ec_stats'     => Views::stats( $post->ID ),
+				'qaiyo_ec_enabled'   => Views::enabled(),
+				'qaiyo_ec_reset_url' => Views::reset_url( $post->ID ),
+				'qaiyo_ec_was_reset' => isset( $_GET['qaiyo_ec_views_reset'] ), // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Display flag only.
+				'qaiyo_ec_settings'  => admin_url( 'admin.php?page=' . Schema::SETTINGS_PAGE ),
+			)
+		);
+	}
+
+	/**
 	 * Save the chart configuration.
 	 *
 	 * @param mixed $post_id Post ID.
 	 */
-	public function save( $post_id ): void {
+	public function save( mixed $post_id ): void {
 		$post_id = Cast::int( $post_id );
 
 		if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_revision( $post_id ) ) {
@@ -172,9 +195,10 @@ final class ChartEditor {
 		if ( '' === $config['title'] ) {
 			$config['title'] = get_the_title( $post );
 		}
-		// The preview is drawn at once and plays its animation only on request.
-		$config['animate'] = false;
-		$config['lazy']    = false;
+		// The preview is drawn at once, plays its animation only on request and is never counted as a view.
+		$config['animate']  = false;
+		$config['lazy']     = false;
+		$config['chart_id'] = 0;
 		return $config;
 	}
 
@@ -198,9 +222,10 @@ final class ChartEditor {
 			$config['title'] = isset( $_POST['post_title'] ) && is_string( $_POST['post_title'] ) ? sanitize_text_field( wp_unslash( $_POST['post_title'] ) ) : get_the_title( $post );
 		}
 		// Animation plays only when the "Play animation" button asked for it; never lazy.
-		$config['animate'] = $config['animate'] && ! empty( $_POST['play'] );
-		$config['replay']  = false;
-		$config['lazy']    = false;
+		$config['animate']  = $config['animate'] && ! empty( $_POST['play'] );
+		$config['replay']   = false;
+		$config['lazy']     = false;
+		$config['chart_id'] = 0;
 
 		wp_send_json_success( array( 'html' => Renderer::render( $config, array(), false ) ) );
 	}
@@ -234,7 +259,7 @@ final class ChartEditor {
 	 *
 	 * @param mixed $hook_suffix Current admin page.
 	 */
-	public function enqueue( $hook_suffix ): void {
+	public function enqueue( mixed $hook_suffix ): void {
 		if ( ! self::is_chart_screen() ) {
 			return;
 		}
@@ -255,7 +280,7 @@ final class ChartEditor {
 			array( 'in_footer' => true )
 		);
 
-		$post = get_post();
+		$post_id = get_post()->ID ?? 0;
 		wp_add_inline_script(
 			Schema::HANDLE_EDITOR,
 			'window.qaiyoEcEditor = ' . wp_json_encode(
@@ -263,10 +288,10 @@ final class ChartEditor {
 					'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 					'action'  => Schema::AJAX_PREVIEW,
 					'nonce'   => wp_create_nonce( Schema::NONCE_PREVIEW ),
-					'postId'  => $post instanceof \WP_Post ? $post->ID : 0,
+					'postId'  => $post_id,
 					'field'   => self::FIELD,
 					'types'   => ChartConfig::type_labels(),
-					'styles'  => self::other_styles( $post instanceof \WP_Post ? $post->ID : 0 ),
+					'styles'  => self::other_styles( $post_id ),
 					'i18n'    => array(
 						/* translators: %d: number of imported rows. */
 						'imported'    => __( 'Rows imported: %d.', 'qaiyo-easy-charts' ),
@@ -279,6 +304,7 @@ final class ChartEditor {
 						'previewFail' => __( 'The preview could not be refreshed.', 'qaiyo-easy-charts' ),
 						'noAnimation' => __( 'Animation is switched off for this chart.', 'qaiyo-easy-charts' ),
 						'typeChanged' => __( 'Chart type changed. The row fields follow the new type.', 'qaiyo-easy-charts' ),
+						'resetViews'  => __( 'Reset the view counter of this chart? This cannot be undone.', 'qaiyo-easy-charts' ),
 					),
 				)
 			) . ';',

@@ -22,6 +22,6 @@ final class SettingsTest extends TestCase {
 	}
 
 	public function test_settings_hold_no_visual_options(): void {
-		$this->assertSame( array( 'animate', 'lazy', 'hover_focus', 'data_table', 'delete_on_uninstall' ), array_keys( Settings::defaults() ) );
+		$this->assertSame( array( 'animate', 'lazy', 'hover_focus', 'data_table', 'count_views', 'count_editors', 'delete_on_uninstall' ), array_keys( Settings::defaults() ) );
 	}
 }

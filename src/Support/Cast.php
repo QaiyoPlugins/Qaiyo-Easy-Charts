@@ -19,7 +19,7 @@ final class Cast {
 	 *
 	 * @param mixed $value Any value.
 	 */
-	public static function string( $value ): string {
+	public static function string( mixed $value ): string {
 		if ( is_string( $value ) ) {
 			return $value;
 		}
@@ -31,7 +31,7 @@ final class Cast {
 	 *
 	 * @param mixed $value Any value.
 	 */
-	public static function int( $value ): int {
+	public static function int( mixed $value ): int {
 		return is_scalar( $value ) ? (int) $value : 0;
 	}
 
@@ -40,7 +40,7 @@ final class Cast {
 	 *
 	 * @param mixed $value Any value.
 	 */
-	public static function bool( $value ): bool {
+	public static function bool( mixed $value ): bool {
 		if ( is_bool( $value ) ) {
 			return $value;
 		}
@@ -56,7 +56,7 @@ final class Cast {
 	 * @param mixed $value Any value.
 	 * @return array<mixed>
 	 */
-	public static function arr( $value ): array {
+	public static function arr( mixed $value ): array {
 		return is_array( $value ) ? $value : array();
 	}
 
@@ -65,7 +65,7 @@ final class Cast {
 	 *
 	 * @param mixed $value Any value.
 	 */
-	public static function number( $value ): ?float {
+	public static function number( mixed $value ): ?float {
 		if ( is_int( $value ) || is_float( $value ) ) {
 			return is_finite( (float) $value ) ? (float) $value : null;
 		}
@@ -83,7 +83,7 @@ final class Cast {
 	 * @param string[] $allowed  Allowed values.
 	 * @param string   $fallback Fallback.
 	 */
-	public static function choice( $value, array $allowed, string $fallback ): string {
+	public static function choice( mixed $value, array $allowed, string $fallback ): string {
 		$value = self::string( $value );
 		return in_array( $value, $allowed, true ) ? $value : $fallback;
 	}

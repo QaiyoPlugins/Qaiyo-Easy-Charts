@@ -37,6 +37,8 @@ final class Settings {
 			'lazy'                => true,
 			'hover_focus'         => true,
 			'data_table'          => true,
+			'count_views'         => true,
+			'count_editors'       => false,
 			'delete_on_uninstall' => false,
 		);
 	}
@@ -67,12 +69,12 @@ final class Settings {
 	 * @param mixed $input Submitted value.
 	 * @return array<string,mixed>
 	 */
-	public static function sanitize( $input ): array {
+	public static function sanitize( mixed $input ): array {
 		$input    = Cast::arr( $input );
 		$defaults = self::defaults();
 		$clean    = array();
 
-		foreach ( array( 'animate', 'lazy', 'hover_focus', 'data_table', 'delete_on_uninstall' ) as $flag ) {
+		foreach ( array( 'animate', 'lazy', 'hover_focus', 'data_table', 'count_views', 'count_editors', 'delete_on_uninstall' ) as $flag ) {
 			$clean[ $flag ] = array_key_exists( $flag, $input ) ? Cast::bool( $input[ $flag ] ) : ( empty( $input ) ? $defaults[ $flag ] : false );
 		}
 

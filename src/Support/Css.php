@@ -21,7 +21,7 @@ final class Css {
 	 *
 	 * @param mixed $value Any value.
 	 */
-	public static function color( $value ): string {
+	public static function color( mixed $value ): string {
 		if ( is_array( $value ) ) {
 			// Bricks stores colours as arrays.
 			foreach ( array( 'raw', 'rgb', 'hex' ) as $key ) {
@@ -56,7 +56,7 @@ final class Css {
 	 *
 	 * @param mixed $value Any value.
 	 */
-	public static function length( $value ): string {
+	public static function length( mixed $value ): string {
 		$value = strtolower( trim( Cast::string( $value ) ) );
 		if ( '' === $value ) {
 			return '';
@@ -73,7 +73,7 @@ final class Css {
 	 *
 	 * @param mixed $value Any value.
 	 */
-	public static function font_family( $value ): string {
+	public static function font_family( mixed $value ): string {
 		$value = trim( Cast::string( $value ) );
 		if ( '' === $value || strlen( $value ) > 200 ) {
 			return '';

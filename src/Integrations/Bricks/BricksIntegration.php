@@ -79,7 +79,7 @@ final class BricksIntegration {
 	 * @param mixed $i18n Builder strings.
 	 * @return mixed
 	 */
-	public function i18n( $i18n ) {
+	public function i18n( mixed $i18n ): mixed {
 		if ( is_array( $i18n ) ) {
 			$i18n['qaiyo'] = esc_html__( 'Qaiyo', 'qaiyo-easy-charts' );
 		}

@@ -14,6 +14,19 @@
 
 ---
 
+## Why Qaiyo Easy Charts
+
+Built against the most common complaints about WordPress chart plugins:
+
+| Common complaint | How this plugin answers it |
+|---|---|
+| Basic features locked behind Pro | Every chart type and feature in this plugin is free: animations, lazy loading, tooltips, export, view statistics. |
+| Charts break after updates | No third-party chart library to change under you. Every saved chart goes through one validating config with defaults, so older charts keep rendering the same; shortcode, block, element and meta names are frozen and covered by backward-compatibility tests. |
+| Heavy JavaScript (90 KB+) | ~6 KB JS and ~5.5 KB CSS gzipped, loaded only on pages that show a chart; the chart itself is HTML/CSS and works without JavaScript. |
+| GDPR trouble with Google's CDN | No external request on the front end: no CDN, no Google, no fonts or scripts from elsewhere. View statistics are anonymous and cookie-free. |
+| Poor mobile canvas rendering | No canvas: real HTML that adapts to the chart's own width (container queries), crisp at any zoom, stacking labels on narrow screens. |
+| Inaccessible charts | Figure + hidden data table, keyboard-focusable tooltips, patterns besides colours, reduced-motion and forced-colours support; axe-core reports no violations. |
+
 ## Charts
 
 ### Bar / column chart with ranges
@@ -56,6 +69,7 @@ Every type uses the same rows (label, value, second value, value text, colours),
 - **Paste from a spreadsheet** — copy rows from Excel / Google Sheets or paste CSV into the chart builder or the block; tabs, semicolons and commas are detected, header rows skipped, `1 200,5` style numbers understood.
 - **Copy the style of another chart** — colours, font, sizes, patterns and animation in one click; the data stays.
 - **PNG / SVG export** — download buttons in the builder preview, and optionally under the chart on the site. The export embeds the chart's stylesheet and fonts, so it looks exactly like the page, in its final drawn state.
+- **View statistics** — like Qaiyo Content Slider: the chart list shows how many visitors saw each chart (sortable), and the chart editor shows the total, the last 7 and 30 days and a 30-day graph, with a reset button. A view is counted only when the chart actually scrolls into view, once per visitor per 30 minutes; bots and chart editors are skipped. Anonymous by design: no cookies, no stored IP (a salted hash lives 30 minutes as a transient), and a suggested privacy-policy text is added to WordPress. Switchable in the settings.
 - **Every chart styled on its own** — colours, font and sizes live in each chart, block and builder element (there is no site-wide colour setting, so many different charts can sit side by side). New charts start from the default palette and show it as editable values. All styling is CSS custom properties.
 
 ## Accessibility
@@ -96,6 +110,7 @@ src/                           PSR-4 (Qaiyo\EasyCharts\), one class per file
   Integrations/Elementor|Bricks
   Admin/                       post type, chart editor, settings, brand menu, Discover Qaiyo
   Ai/                          Abilities API
+  Stats/                       anonymous chart views (REST endpoint, counters)
 templates/admin/               admin markup
 assets/                        chart.css / chart.js (front end), admin + editor + block scripts
 languages/                     .pot, .po, .mo and the build script
@@ -113,9 +128,9 @@ composer build      # release zip in build/ (development files from .distignore 
 
 | Tool | Configuration | Status |
 |---|---|---|
-| PHP_CodeSniffer + WordPress Coding Standards 3 + PHPCompatibilityWP (PHP 8.0+) | `phpcs.xml.dist` | 0 errors, 0 warnings |
+| PHP_CodeSniffer + WordPress Coding Standards 3 + PHPCompatibilityWP (PHP 8.0+; the code uses PHP 8 features: `match`, native `mixed` and union types, arrow functions, `str_contains` / `str_starts_with`) | `phpcs.xml.dist` | 0 errors, 0 warnings |
 | PHPStan 2 + `szepeviktor/phpstan-wordpress`, **level max** | `phpstan.neon.dist` | 0 errors |
-| PHPUnit 9 + Brain Monkey (unit tests without WordPress) | `phpunit.xml.dist`, `tests/` | passing |
+| PHPUnit 9 + Brain Monkey (unit tests without WordPress), incl. backward-compatibility tests | `phpunit.xml.dist`, `tests/` | passing |
 | Plugin Check (WordPress.org), `--mode=new`, static + runtime, experimental and low-severity checks | release build | no errors, no warnings |
 
 Elementor and Bricks are analysed against minimal stubs in `tests/stubs/`.

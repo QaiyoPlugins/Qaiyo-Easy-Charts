@@ -90,7 +90,7 @@ final class Shortcode {
 	 *
 	 * @param mixed $atts Shortcode attributes.
 	 */
-	public static function render( $atts ): string {
+	public static function render( mixed $atts ): string {
 		$atts = array_change_key_case( Cast::arr( $atts ), CASE_LOWER );
 
 		$config = array();

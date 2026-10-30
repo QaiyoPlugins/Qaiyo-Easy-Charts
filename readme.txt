@@ -39,6 +39,7 @@ Seven chart types, all from the same simple rows:
 * **Paste from Excel, Google Sheets or CSV** into the builder or the block.
 * **Copy the style of another chart** in one click.
 * **PNG and SVG export** from the builder and, optionally, from the page.
+* **View statistics** — see how many visitors actually saw each chart (total, 7 and 30 days, daily graph). Anonymous and cookie-free.
 * **Accessible** — a figure with an accessible name and a visually hidden data table for screen readers, forced-colours support, WCAG 2.2 AA admin screens.
 * **SEO and AI friendly** — real HTML text and a semantic data table instead of an image; WordPress Abilities API support so AI agents can list, read and create charts.
 * **Every chart styled on its own** — colours, font and sizes are set per chart, block or builder element, starting from a clean default palette.
@@ -73,6 +74,10 @@ Rows are separated by `|`, fields by `;`: label;value;range end;value text. Exam
 = Can I switch the animation off? =
 
 Yes, per chart (builder, block, Elementor, Bricks, or `animate="0"` in the shortcode), and site-wide as a default in Easy Charts → Settings. Visitors who prefer reduced motion never see it.
+
+= How are chart views counted? Is it GDPR friendly? =
+
+A view is counted when a saved chart scrolls into view, once per visitor per 30 minutes. No cookies are used and no personal data is stored: a one-way hash of the IP address and browser is kept for 30 minutes to avoid double counting, then deleted. Bots and people who can edit charts are not counted. You can switch counting off in Easy Charts → Settings, and a suggested privacy-policy text is added under Settings → Privacy.
 
 = Is my data sent anywhere? =
 

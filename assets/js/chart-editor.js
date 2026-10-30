@@ -412,6 +412,12 @@
 	fillStyleSources();
 	applyType( false );
 	document.addEventListener( 'click', onCopy );
+	document.addEventListener( 'click', function ( event ) {
+		var link = event.target.closest( '.qec-reset-views' );
+		if ( link && ! window.confirm( i18n.resetViews ) ) {
+			event.preventDefault();
+		}
+	} );
 
 	var titleField = document.getElementById( 'title' );
 	if ( titleField ) {

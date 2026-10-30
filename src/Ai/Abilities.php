@@ -13,6 +13,7 @@ namespace Qaiyo\EasyCharts\Ai;
 use Qaiyo\EasyCharts\Chart\ChartConfig;
 use Qaiyo\EasyCharts\Chart\Repository;
 use Qaiyo\EasyCharts\Schema;
+use Qaiyo\EasyCharts\Stats\Views;
 use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
@@ -98,9 +99,7 @@ final class Abilities {
 					'items' => $chart_summary,
 				),
 				'execute_callback'    => array( self::class, 'list_charts' ),
-				'permission_callback' => static function (): bool {
-					return current_user_can( 'edit_posts' );
-				},
+				'permission_callback' => static fn(): bool => current_user_can( 'edit_posts' ),
 				'meta'                => array(
 					'show_in_rest' => true,
 					'annotations'  => array(
@@ -136,6 +135,10 @@ final class Abilities {
 						'title'       => array( 'type' => 'string' ),
 						'shortcode'   => array( 'type' => 'string' ),
 						'type'        => array( 'type' => 'string' ),
+						'views'       => array(
+							'type'        => 'integer',
+							'description' => __( 'How many times the chart was seen (anonymous, counted when it scrolls into view).', 'qaiyo-easy-charts' ),
+						),
 						'orientation' => array( 'type' => 'string' ),
 						'unit'        => array( 'type' => 'string' ),
 						'items'       => array(
@@ -145,9 +148,7 @@ final class Abilities {
 					),
 				),
 				'execute_callback'    => array( self::class, 'get_chart' ),
-				'permission_callback' => static function ( $input ): bool {
-					return current_user_can( 'edit_post', Cast::int( Cast::arr( $input )['id'] ?? 0 ) );
-				},
+				'permission_callback' => static fn( mixed $input ): bool => current_user_can( 'edit_post', Cast::int( Cast::arr( $input )['id'] ?? 0 ) ),
 				'meta'                => array(
 					'show_in_rest' => true,
 					'annotations'  => array(
@@ -212,7 +213,7 @@ final class Abilities {
 					),
 				),
 				'execute_callback'    => array( self::class, 'create_chart' ),
-				'permission_callback' => static function ( $input ): bool {
+				'permission_callback' => static function ( mixed $input ): bool {
 					$publish = Cast::bool( Cast::arr( $input )['publish'] ?? false );
 					return current_user_can( 'edit_posts' ) && ( ! $publish || current_user_can( 'publish_posts' ) );
 				},
@@ -235,9 +236,7 @@ final class Abilities {
 	 */
 	public static function list_charts(): array {
 		return array_map(
-			static function ( array $chart ): array {
-				return $chart + array( 'shortcode' => Repository::shortcode( $chart['id'] ) );
-			},
+			static fn( array $chart ): array => $chart + array( 'shortcode' => Repository::shortcode( $chart['id'] ) ),
 			Repository::list()
 		);
 	}
@@ -248,7 +247,7 @@ final class Abilities {
 	 * @param mixed $input Validated input.
 	 * @return array<string,mixed>|\WP_Error
 	 */
-	public static function get_chart( $input ) {
+	public static function get_chart( mixed $input ): array|\WP_Error {
 		$id     = Cast::int( Cast::arr( $input )['id'] ?? 0 );
 		$config = Repository::find( $id, false );
 		if ( null === $config ) {
@@ -275,6 +274,7 @@ final class Abilities {
 			'title'       => $config['title'],
 			'shortcode'   => Repository::shortcode( $id ),
 			'type'        => $config['type'],
+			'views'       => Views::total( $id ),
 			'orientation' => $config['orientation'],
 			'unit'        => $config['unit'],
 			'items'       => $items,
@@ -287,7 +287,7 @@ final class Abilities {
 	 * @param mixed $input Validated input.
 	 * @return array<string,mixed>|\WP_Error
 	 */
-	public static function create_chart( $input ) {
+	public static function create_chart( mixed $input ): array|\WP_Error {
 		$input = Cast::arr( $input );
 		$title = Cast::string( $input['title'] ?? '' );
 

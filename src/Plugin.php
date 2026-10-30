@@ -18,6 +18,7 @@ use Qaiyo\EasyCharts\Frontend\Assets;
 use Qaiyo\EasyCharts\Frontend\Shortcode;
 use Qaiyo\EasyCharts\Integrations\Bricks\BricksIntegration;
 use Qaiyo\EasyCharts\Integrations\Elementor\ElementorIntegration;
+use Qaiyo\EasyCharts\Stats\Views;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -37,6 +38,7 @@ final class Plugin {
 		( new ElementorIntegration() )->register();
 		( new BricksIntegration() )->register();
 		( new Abilities() )->register();
+		( new Views() )->register();
 
 		if ( is_admin() ) {
 			BrandMenu::init();
@@ -60,7 +62,7 @@ final class Plugin {
 	 * @param mixed $links Existing links.
 	 * @return mixed
 	 */
-	public function action_links( $links ) {
+	public function action_links( mixed $links ): mixed {
 		if ( ! is_array( $links ) ) {
 			return $links;
 		}

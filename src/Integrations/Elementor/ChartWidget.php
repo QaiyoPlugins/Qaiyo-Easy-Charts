@@ -751,9 +751,7 @@ class ChartWidget extends Widget_Base {
 			return $config;
 		}
 
-		$yes = static function ( $value ): bool {
-			return 'yes' === $value;
-		};
+		$yes = static fn( mixed $value ): bool => 'yes' === $value;
 
 		return ChartConfig::sanitize(
 			array(

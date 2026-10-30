@@ -74,7 +74,7 @@ final class BrandMenu {
 	 * @param mixed $slugs Slugs collected so far.
 	 * @return array<mixed>
 	 */
-	public static function contribute_brand_slugs( $slugs ) {
+	public static function contribute_brand_slugs( mixed $slugs ) {
 		return array_merge( is_array( $slugs ) ? $slugs : array(), self::$brand_slugs );
 	}
 
@@ -113,10 +113,10 @@ final class BrandMenu {
 		}
 		foreach ( $active as $plugin ) {
 			$plugin = Cast::string( $plugin );
-			if ( 0 !== strpos( $plugin, 'qaiyo-' ) || QAIYO_EC_BASENAME === $plugin ) {
+			if ( ! str_starts_with( $plugin, 'qaiyo-' ) || QAIYO_EC_BASENAME === $plugin ) {
 				continue;
 			}
-			if ( 0 === strpos( $plugin, 'qaiyo-easy-charts-pro/' ) ) {
+			if ( str_starts_with( $plugin, 'qaiyo-easy-charts-pro/' ) ) {
 				continue;
 			}
 			return true;

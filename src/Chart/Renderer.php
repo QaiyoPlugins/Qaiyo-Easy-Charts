@@ -20,6 +20,7 @@ use Qaiyo\EasyCharts\Chart\Types\RowChart;
 use Qaiyo\EasyCharts\Chart\Types\StackedChart;
 use Qaiyo\EasyCharts\Frontend\Assets;
 use Qaiyo\EasyCharts\Schema;
+use Qaiyo\EasyCharts\Stats\Views;
 use Qaiyo\EasyCharts\Support\Cast;
 use Qaiyo\EasyCharts\Support\Css;
 
@@ -157,6 +158,9 @@ final class Renderer {
 		}
 		if ( $config['lazy'] ) {
 			$data['data-qec-lazy'] = '1';
+		}
+		if ( Views::should_track( $config['chart_id'] ) ) {
+			$data['data-qec-view'] = (string) $config['chart_id'];
 		}
 		return $data;
 	}
@@ -352,16 +356,12 @@ final class Renderer {
 	 * @return class-string<ChartType>
 	 */
 	private static function type_class( string $type ): string {
-		switch ( $type ) {
-			case 'ring':
-				return RingChart::class;
-			case 'stacked':
-				return StackedChart::class;
-			case 'rating':
-				return RatingChart::class;
-			default:
-				return RowChart::class;
-		}
+		return match ( $type ) {
+			'ring'    => RingChart::class,
+			'stacked' => StackedChart::class,
+			'rating'  => RatingChart::class,
+			default   => RowChart::class,
+		};
 	}
 
 	/**

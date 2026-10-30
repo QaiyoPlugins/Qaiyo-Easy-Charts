@@ -8,6 +8,7 @@
 namespace Qaiyo\EasyCharts\Frontend;
 
 use Qaiyo\EasyCharts\Schema;
+use Qaiyo\EasyCharts\Stats\Views;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -15,6 +16,14 @@ defined( 'ABSPATH' ) || exit;
  * Registers and enqueues the front-end chart assets.
  */
 final class Assets {
+
+	/**
+	 * Whether the view counter's endpoint was already printed.
+	 *
+	 * @var bool
+	 */
+	private static bool $view_data = false;
+
 
 	/**
 	 * Hook this component into WordPress.
@@ -67,6 +76,11 @@ final class Assets {
 		}
 		wp_enqueue_style( Schema::HANDLE_CHART );
 		wp_enqueue_script( Schema::HANDLE_CHART );
+
+		if ( Views::enabled() && ! self::$view_data ) {
+			self::$view_data = true;
+			wp_add_inline_script( Schema::HANDLE_CHART, 'window.qaiyoEcViews = ' . wp_json_encode( array( 'url' => Views::endpoint() ) ) . ';', 'before' );
+		}
 	}
 
 	/**

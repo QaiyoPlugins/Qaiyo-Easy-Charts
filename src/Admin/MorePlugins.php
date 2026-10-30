@@ -240,7 +240,7 @@ final class MorePlugins {
 		}
 		foreach ( array_keys( $installed ) as $file ) {
 			$file = (string) $file;
-			if ( 0 === strpos( $file, $slug . '/' ) || $slug . '.php' === $file ) {
+			if ( str_starts_with( $file, $slug . '/' ) || $slug . '.php' === $file ) {
 				return is_plugin_active( $file ) ? 'active' : 'installed';
 			}
 		}
@@ -304,7 +304,7 @@ final class MorePlugins {
 	 *
 	 * @param mixed $hook_suffix Current admin page.
 	 */
-	public static function enqueue_assets( $hook_suffix = '' ): void {
+	public static function enqueue_assets( mixed $hook_suffix = '' ): void {
 		if ( ! in_array( Cast::string( $hook_suffix ), self::$page_hooks, true ) ) {
 			return;
 		}

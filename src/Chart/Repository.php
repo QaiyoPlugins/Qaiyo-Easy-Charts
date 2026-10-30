@@ -41,6 +41,7 @@ final class Repository {
 		if ( '' === $config['title'] ) {
 			$config['title'] = get_the_title( $post );
 		}
+		$config['chart_id'] = $post->ID;
 		return $config;
 	}
 
@@ -51,7 +52,9 @@ final class Repository {
 	 * @param array<mixed> $config   Raw configuration; sanitized here.
 	 */
 	public static function save( int $chart_id, array $config ): void {
-		update_post_meta( $chart_id, Schema::META_CONFIG, ChartConfig::sanitize( $config ) );
+		$config = ChartConfig::sanitize( $config );
+		unset( $config['chart_id'] ); // Known from the post itself.
+		update_post_meta( $chart_id, Schema::META_CONFIG, $config );
 	}
 
 	/**
@@ -62,7 +65,7 @@ final class Repository {
 	 * @param string       $status "publish" or "draft".
 	 * @return int|\WP_Error
 	 */
-	public static function create( string $title, array $config, string $status ) {
+	public static function create( string $title, array $config, string $status ): int|\WP_Error {
 		$chart_id = wp_insert_post(
 			array(
 				'post_type'   => Schema::POST_TYPE,

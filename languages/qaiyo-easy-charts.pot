@@ -8,11 +8,11 @@ msgstr ""
 "X-Generator: Qaiyo build-translations.py\n"
 "X-Domain: qaiyo-easy-charts\n"
 
-#: src/Plugin.php:69 src/Admin/PostType.php:48
+#: src/Plugin.php:71 src/Admin/PostType.php:51
 msgid "Charts"
 msgstr ""
 
-#: src/Plugin.php:70 src/Admin/SettingsPage.php:69 templates/admin/chart-editor.php:225
+#: src/Plugin.php:72 src/Admin/SettingsPage.php:69 templates/admin/chart-editor.php:225 templates/admin/chart-views.php:57
 msgid "Settings"
 msgstr ""
 
@@ -20,56 +20,64 @@ msgstr ""
 msgid "Qaiyo Plugins"
 msgstr ""
 
-#: src/Admin/ChartEditor.php:63
+#: src/Admin/ChartEditor.php:64
 msgid "Chart builder"
 msgstr ""
 
-#: src/Admin/ChartEditor.php:64
+#: src/Admin/ChartEditor.php:65
 msgid "Embed"
 msgstr ""
 
-#: src/Admin/ChartEditor.php:189
+#: src/Admin/ChartEditor.php:66 src/Admin/PostType.php:103
+msgid "Views"
+msgstr ""
+
+#: src/Admin/ChartEditor.php:213 src/Stats/Views.php:258
 msgid "You are not allowed to edit this chart."
 msgstr ""
 
-#: src/Admin/ChartEditor.php:272
+#: src/Admin/ChartEditor.php:297
 msgid "Rows imported: %d."
 msgstr ""
 
-#: src/Admin/ChartEditor.php:273
+#: src/Admin/ChartEditor.php:298
 msgid "No rows found. Paste one row per line: label, value, second value, value text."
 msgstr ""
 
-#: src/Admin/ChartEditor.php:274
+#: src/Admin/ChartEditor.php:299
 msgid "Style copied. Save the chart to keep it."
 msgstr ""
 
-#: src/Admin/ChartEditor.php:275
+#: src/Admin/ChartEditor.php:300
 msgid "Bar added."
 msgstr ""
 
-#: src/Admin/ChartEditor.php:276
+#: src/Admin/ChartEditor.php:301
 msgid "Bar removed."
 msgstr ""
 
-#: src/Admin/ChartEditor.php:277
+#: src/Admin/ChartEditor.php:302
 msgid "Bar moved."
 msgstr ""
 
-#: src/Admin/ChartEditor.php:278
+#: src/Admin/ChartEditor.php:303
 msgid "Copied to the clipboard."
 msgstr ""
 
-#: src/Admin/ChartEditor.php:279
+#: src/Admin/ChartEditor.php:304
 msgid "The preview could not be refreshed."
 msgstr ""
 
-#: src/Admin/ChartEditor.php:280
+#: src/Admin/ChartEditor.php:305
 msgid "Animation is switched off for this chart."
 msgstr ""
 
-#: src/Admin/ChartEditor.php:281
+#: src/Admin/ChartEditor.php:306
 msgid "Chart type changed. The row fields follow the new type."
+msgstr ""
+
+#: src/Admin/ChartEditor.php:307
+msgid "Reset the view counter of this chart? This cannot be undone."
 msgstr ""
 
 #: src/Admin/MorePlugins.php:87 templates/admin/more-plugins.php:16
@@ -108,71 +116,75 @@ msgstr ""
 msgid "Deeper performance diagnostics, more optimisation rules and one-click fixes."
 msgstr ""
 
-#: src/Admin/PostType.php:49 src/Blocks/ChartBlock.php:136 src/Integrations/Bricks/ChartElement.php:142 src/Integrations/Elementor/ChartWidget.php:135 src/Integrations/Elementor/ChartWidget.php:551
+#: src/Admin/PostType.php:52 src/Blocks/ChartBlock.php:134 src/Integrations/Bricks/ChartElement.php:142 src/Integrations/Elementor/ChartWidget.php:135 src/Integrations/Elementor/ChartWidget.php:551
 msgid "Chart"
 msgstr ""
 
-#: src/Admin/PostType.php:50
+#: src/Admin/PostType.php:53
 msgid "Easy Charts"
 msgstr ""
 
-#: src/Admin/PostType.php:51
+#: src/Admin/PostType.php:54
 msgid "All charts"
 msgstr ""
 
-#: src/Admin/PostType.php:52
+#: src/Admin/PostType.php:55
 msgid "Add chart"
 msgstr ""
 
-#: src/Admin/PostType.php:53
+#: src/Admin/PostType.php:56
 msgid "Add new chart"
 msgstr ""
 
-#: src/Admin/PostType.php:54
+#: src/Admin/PostType.php:57
 msgid "Edit chart"
 msgstr ""
 
-#: src/Admin/PostType.php:55
+#: src/Admin/PostType.php:58
 msgid "New chart"
 msgstr ""
 
-#: src/Admin/PostType.php:56
+#: src/Admin/PostType.php:59
 msgid "Search charts"
 msgstr ""
 
-#: src/Admin/PostType.php:57
+#: src/Admin/PostType.php:60
 msgid "No charts yet."
 msgstr ""
 
-#: src/Admin/PostType.php:58
+#: src/Admin/PostType.php:61
 msgid "No charts in the trash."
 msgstr ""
 
-#: src/Admin/PostType.php:98 templates/admin/chart-embed.php:17
+#: src/Admin/PostType.php:101 templates/admin/chart-embed.php:17
 msgid "Shortcode"
 msgstr ""
 
-#: src/Admin/PostType.php:99
-msgid "Bars"
+#: src/Admin/PostType.php:102 src/Integrations/Elementor/ChartWidget.php:213
+msgid "Rows"
 msgstr ""
 
-#: src/Admin/PostType.php:135
+#: src/Admin/PostType.php:132
+msgid "%s in 30 days"
+msgstr ""
+
+#: src/Admin/PostType.php:186
 msgid "Chart saved."
 msgstr ""
 
-#: src/Admin/PostType.php:139 src/Admin/PostType.php:140
+#: src/Admin/PostType.php:190 src/Admin/PostType.php:191
 msgid "Chart updated."
 msgstr ""
 
-#: src/Admin/PostType.php:141
+#: src/Admin/PostType.php:192
 msgid "Chart published."
 msgstr ""
 
-#: src/Admin/PostType.php:144
+#: src/Admin/PostType.php:195
 msgid "Chart draft updated."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:68 templates/admin/settings.php:35
+#: src/Admin/SettingsPage.php:68 templates/admin/settings.php:37
 msgid "Easy Charts settings"
 msgstr ""
 
@@ -216,75 +228,79 @@ msgstr ""
 msgid "Animation length and delay between bars in milliseconds, e.g. 1100 and 140."
 msgstr ""
 
-#: src/Ai/Abilities.php:43
+#: src/Ai/Abilities.php:44
 msgid "Qaiyo Easy Charts"
 msgstr ""
 
-#: src/Ai/Abilities.php:44
+#: src/Ai/Abilities.php:45
 msgid "Create and read charts (bars with ranges, comparison bars, KPI rings, timelines, bullet charts, 100% stacked bars, rating distributions) that can be embedded with a shortcode."
 msgstr ""
 
-#: src/Ai/Abilities.php:63
+#: src/Ai/Abilities.php:64
 msgid "Label of the row."
 msgstr ""
 
-#: src/Ai/Abilities.php:67
+#: src/Ai/Abilities.php:68
 msgid "The value. Timeline: the start. Rating: the number of ratings."
 msgstr ""
 
-#: src/Ai/Abilities.php:71
+#: src/Ai/Abilities.php:72
 msgid "Optional second value. Bars: end of a highlighted range (15 for \"10–15\"). Comparison: the second series. Ring: the goal. Timeline: the finish. Bullet: the target."
 msgstr ""
 
-#: src/Ai/Abilities.php:75
+#: src/Ai/Abilities.php:76
 msgid "Optional text shown instead of the number, e.g. \"up to 5\"."
 msgstr ""
 
-#: src/Ai/Abilities.php:93
+#: src/Ai/Abilities.php:94
 msgid "List charts"
 msgstr ""
 
-#: src/Ai/Abilities.php:94
+#: src/Ai/Abilities.php:95
 msgid "Lists the saved charts with their ID, title, status and the shortcode that embeds each one."
 msgstr ""
 
-#: src/Ai/Abilities.php:118
+#: src/Ai/Abilities.php:117
 msgid "Get chart"
 msgstr ""
 
-#: src/Ai/Abilities.php:119
+#: src/Ai/Abilities.php:118
 msgid "Returns one saved chart: its type, rows (label, value, optional second value and text), unit, orientation and shortcode."
 msgstr ""
 
-#: src/Ai/Abilities.php:127
+#: src/Ai/Abilities.php:126
 msgid "Chart ID."
 msgstr ""
 
-#: src/Ai/Abilities.php:165
-msgid "Create chart"
+#: src/Ai/Abilities.php:140
+msgid "How many times the chart was seen (anonymous, counted when it scrolls into view)."
 msgstr ""
 
 #: src/Ai/Abilities.php:166
+msgid "Create chart"
+msgstr ""
+
+#: src/Ai/Abilities.php:167
 msgid "Creates a saved chart and returns its ID and the shortcode to place it in content. Each row has a label, a value and an optional second value whose meaning depends on the chart type."
 msgstr ""
 
-#: src/Ai/Abilities.php:174
+#: src/Ai/Abilities.php:175
 msgid "Chart title; also its accessible name."
 msgstr ""
 
-#: src/Ai/Abilities.php:188
+#: src/Ai/Abilities.php:189
 msgid "bars: bars with optional ranges; compare: two series per row; ring: KPI rings; timeline: start–finish bars; bullet: value against a target; stacked: one 100% bar split into parts; rating: rating levels with counts."
 msgstr ""
 
-#: src/Ai/Abilities.php:197
+#: src/Ai/Abilities.php:198
 msgid "Unit shown on the axis, e.g. \"days\"."
 msgstr ""
 
-#: src/Ai/Abilities.php:201
+#: src/Ai/Abilities.php:202
 msgid "Publish immediately (otherwise saved as a draft)."
 msgstr ""
 
-#: src/Ai/Abilities.php:255
+#: src/Ai/Abilities.php:254
 msgid "Chart not found."
 msgstr ""
 
@@ -292,319 +308,319 @@ msgstr ""
 msgid "At least one bar with a label and a value is required."
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:133 src/Integrations/Bricks/ChartElement.php:126 src/Integrations/Elementor/ChartWidget.php:117
+#: src/Blocks/ChartBlock.php:131 src/Integrations/Bricks/ChartElement.php:126 src/Integrations/Elementor/ChartWidget.php:117
 msgid "Data source"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:134 src/Integrations/Bricks/ChartElement.php:129 src/Integrations/Bricks/ChartElement.php:132 src/Integrations/Elementor/ChartWidget.php:121
+#: src/Blocks/ChartBlock.php:132 src/Integrations/Bricks/ChartElement.php:129 src/Integrations/Bricks/ChartElement.php:132 src/Integrations/Elementor/ChartWidget.php:121
 msgid "Enter bars here"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:135 src/Integrations/Bricks/ChartElement.php:130 src/Integrations/Elementor/ChartWidget.php:122
+#: src/Blocks/ChartBlock.php:133 src/Integrations/Bricks/ChartElement.php:130 src/Integrations/Elementor/ChartWidget.php:122
 msgid "Saved chart"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:137 src/Integrations/Bricks/ChartElement.php:145 src/Integrations/Elementor/ChartWidget.php:127
+#: src/Blocks/ChartBlock.php:135 src/Integrations/Bricks/ChartElement.php:145 src/Integrations/Elementor/ChartWidget.php:127
 msgid "— Select a chart —"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:138
+#: src/Blocks/ChartBlock.php:136
 msgid "Manage charts"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:139
+#: src/Blocks/ChartBlock.php:137
 msgid "Select a saved chart in the block settings."
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:140 src/Integrations/Bricks/ChartElement.php:171 src/Integrations/Elementor/ChartWidget.php:162 templates/admin/chart-editor.php:45 templates/admin/chart-editor.php:46 templates/admin/chart-editor.php:179
+#: src/Blocks/ChartBlock.php:138 src/Integrations/Bricks/ChartElement.php:171 src/Integrations/Elementor/ChartWidget.php:162 templates/admin/chart-editor.php:45 templates/admin/chart-editor.php:46 templates/admin/chart-editor.php:179
 msgid "Label"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:141 src/Chart/ChartConfig.php:98 src/Chart/ChartConfig.php:110 src/Chart/ChartConfig.php:122 src/Chart/ChartConfig.php:128 src/Chart/Types/RingChart.php:89 src/Chart/Types/RowChart.php:82 src/Chart/Types/RowChart.php:85 src/Chart/Types/StackedChart.php:95 src/Integrations/Bricks/ChartElement.php:175 src/Integrations/Elementor/ChartWidget.php:171
+#: src/Blocks/ChartBlock.php:139 src/Chart/ChartConfig.php:98 src/Chart/ChartConfig.php:110 src/Chart/ChartConfig.php:122 src/Chart/ChartConfig.php:128 src/Chart/Types/RingChart.php:89 src/Chart/Types/RowChart.php:77 src/Chart/Types/RowChart.php:78 src/Chart/Types/StackedChart.php:95 src/Integrations/Bricks/ChartElement.php:175 src/Integrations/Elementor/ChartWidget.php:171
 msgid "Value"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:142 src/Chart/ChartConfig.php:99
+#: src/Blocks/ChartBlock.php:140 src/Chart/ChartConfig.php:99
 msgid "Range end"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:143 src/Integrations/Bricks/ChartElement.php:184 src/Integrations/Elementor/ChartWidget.php:188 templates/admin/chart-editor.php:54 templates/admin/chart-editor.php:55 templates/admin/chart-editor.php:182
+#: src/Blocks/ChartBlock.php:141 src/Integrations/Bricks/ChartElement.php:184 src/Integrations/Elementor/ChartWidget.php:188 templates/admin/chart-editor.php:54 templates/admin/chart-editor.php:55 templates/admin/chart-editor.php:182
 msgid "Value text"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:144 src/Integrations/Bricks/ChartElement.php:100 src/Integrations/Elementor/ChartWidget.php:228 templates/admin/chart-editor.php:230
+#: src/Blocks/ChartBlock.php:142 src/Integrations/Bricks/ChartElement.php:100 src/Integrations/Elementor/ChartWidget.php:228 templates/admin/chart-editor.php:230
 msgid "Layout"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:145 src/Integrations/Bricks/ChartElement.php:204 src/Integrations/Elementor/ChartWidget.php:236 templates/admin/chart-editor.php:235
+#: src/Blocks/ChartBlock.php:143 src/Integrations/Bricks/ChartElement.php:204 src/Integrations/Elementor/ChartWidget.php:236 templates/admin/chart-editor.php:235
 msgid "Orientation"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:146
+#: src/Blocks/ChartBlock.php:144
 msgid "Default (from settings)"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:147 src/Integrations/Bricks/ChartElement.php:207 src/Integrations/Bricks/ChartElement.php:211 src/Integrations/Elementor/ChartWidget.php:240 templates/admin/chart-editor.php:237
+#: src/Blocks/ChartBlock.php:145 src/Integrations/Bricks/ChartElement.php:207 src/Integrations/Bricks/ChartElement.php:211 src/Integrations/Elementor/ChartWidget.php:240 templates/admin/chart-editor.php:237
 msgid "Horizontal bars"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:148 src/Integrations/Bricks/ChartElement.php:208 src/Integrations/Elementor/ChartWidget.php:241 templates/admin/chart-editor.php:238
+#: src/Blocks/ChartBlock.php:146 src/Integrations/Bricks/ChartElement.php:208 src/Integrations/Elementor/ChartWidget.php:241 templates/admin/chart-editor.php:238
 msgid "Vertical columns"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:149 src/Integrations/Bricks/ChartElement.php:209 src/Integrations/Elementor/ChartWidget.php:242 templates/admin/chart-editor.php:239
+#: src/Blocks/ChartBlock.php:147 src/Integrations/Bricks/ChartElement.php:209 src/Integrations/Elementor/ChartWidget.php:242 templates/admin/chart-editor.php:239
 msgid "Columns, bars on narrow screens"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:150 src/Integrations/Bricks/ChartElement.php:217 src/Integrations/Elementor/ChartWidget.php:251 templates/admin/chart-editor.php:245
+#: src/Blocks/ChartBlock.php:148 src/Integrations/Bricks/ChartElement.php:217 src/Integrations/Elementor/ChartWidget.php:251 templates/admin/chart-editor.php:245
 msgid "Labels of horizontal bars"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:151 src/Integrations/Bricks/ChartElement.php:220 src/Integrations/Bricks/ChartElement.php:224 src/Integrations/Elementor/ChartWidget.php:255 templates/admin/chart-editor.php:247
+#: src/Blocks/ChartBlock.php:149 src/Integrations/Bricks/ChartElement.php:220 src/Integrations/Bricks/ChartElement.php:224 src/Integrations/Elementor/ChartWidget.php:255 templates/admin/chart-editor.php:247
 msgid "Auto (stack when narrow)"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:152 src/Integrations/Bricks/ChartElement.php:221 src/Integrations/Elementor/ChartWidget.php:256 templates/admin/chart-editor.php:248
+#: src/Blocks/ChartBlock.php:150 src/Integrations/Bricks/ChartElement.php:221 src/Integrations/Elementor/ChartWidget.php:256 templates/admin/chart-editor.php:248
 msgid "Always in one row"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:153 src/Integrations/Bricks/ChartElement.php:222 src/Integrations/Elementor/ChartWidget.php:257 templates/admin/chart-editor.php:249
+#: src/Blocks/ChartBlock.php:151 src/Integrations/Bricks/ChartElement.php:222 src/Integrations/Elementor/ChartWidget.php:257 templates/admin/chart-editor.php:249
 msgid "Always above the bar"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:154 src/Integrations/Bricks/ChartElement.php:230 src/Integrations/Bricks/ChartElement.php:477 src/Integrations/Elementor/ChartWidget.php:269 src/Integrations/Elementor/ChartWidget.php:583 templates/admin/chart-editor.php:253
+#: src/Blocks/ChartBlock.php:152 src/Integrations/Bricks/ChartElement.php:230 src/Integrations/Bricks/ChartElement.php:477 src/Integrations/Elementor/ChartWidget.php:269 src/Integrations/Elementor/ChartWidget.php:583 templates/admin/chart-editor.php:253
 msgid "Title"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:155 src/Integrations/Bricks/ChartElement.php:238 src/Integrations/Elementor/ChartWidget.php:280 templates/admin/chart-editor.php:254 templates/admin/settings.php:92
+#: src/Blocks/ChartBlock.php:153 src/Integrations/Bricks/ChartElement.php:238 src/Integrations/Elementor/ChartWidget.php:280 templates/admin/chart-editor.php:254 templates/admin/settings.php:94
 msgid "Description"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:156 src/Integrations/Bricks/ChartElement.php:245 src/Integrations/Elementor/ChartWidget.php:290 templates/admin/chart-editor.php:255
+#: src/Blocks/ChartBlock.php:154 src/Integrations/Bricks/ChartElement.php:245 src/Integrations/Elementor/ChartWidget.php:290 templates/admin/chart-editor.php:255
 msgid "Show title and description above the chart"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:157 src/Integrations/Bricks/ChartElement.php:101 src/Integrations/Elementor/ChartWidget.php:302 templates/admin/chart-editor.php:260
+#: src/Blocks/ChartBlock.php:155 src/Integrations/Bricks/ChartElement.php:101 src/Integrations/Elementor/ChartWidget.php:302 templates/admin/chart-editor.php:260
 msgid "Scale & axis"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:158 src/Integrations/Bricks/ChartElement.php:287 src/Integrations/Elementor/ChartWidget.php:344 templates/admin/chart-editor.php:265
+#: src/Blocks/ChartBlock.php:156 src/Integrations/Bricks/ChartElement.php:287 src/Integrations/Elementor/ChartWidget.php:344 templates/admin/chart-editor.php:265
 msgid "Unit"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:159 src/Integrations/Bricks/ChartElement.php:295 src/Integrations/Elementor/ChartWidget.php:352 templates/admin/chart-editor.php:268
+#: src/Blocks/ChartBlock.php:157 src/Integrations/Bricks/ChartElement.php:295 src/Integrations/Elementor/ChartWidget.php:352 templates/admin/chart-editor.php:268
 msgid "Show unit on"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:160 src/Integrations/Bricks/ChartElement.php:298 src/Integrations/Bricks/ChartElement.php:302 src/Integrations/Elementor/ChartWidget.php:356 templates/admin/chart-editor.php:270
+#: src/Blocks/ChartBlock.php:158 src/Integrations/Bricks/ChartElement.php:298 src/Integrations/Bricks/ChartElement.php:302 src/Integrations/Elementor/ChartWidget.php:356 templates/admin/chart-editor.php:270
 msgid "Last tick"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:161 src/Integrations/Bricks/ChartElement.php:299 src/Integrations/Elementor/ChartWidget.php:357 templates/admin/chart-editor.php:271
+#: src/Blocks/ChartBlock.php:159 src/Integrations/Bricks/ChartElement.php:299 src/Integrations/Elementor/ChartWidget.php:357 templates/admin/chart-editor.php:271
 msgid "Every tick"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:162 src/Integrations/Bricks/ChartElement.php:300 src/Integrations/Elementor/ChartWidget.php:358 templates/admin/chart-editor.php:272
+#: src/Blocks/ChartBlock.php:160 src/Integrations/Bricks/ChartElement.php:300 src/Integrations/Elementor/ChartWidget.php:358 templates/admin/chart-editor.php:272
 msgid "Hidden"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:163 src/Integrations/Bricks/ChartElement.php:262 src/Integrations/Elementor/ChartWidget.php:318 templates/admin/chart-editor.php:263
+#: src/Blocks/ChartBlock.php:161 src/Integrations/Bricks/ChartElement.php:262 src/Integrations/Elementor/ChartWidget.php:318 templates/admin/chart-editor.php:263
 msgid "Maximum"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:164 src/Integrations/Bricks/ChartElement.php:265 src/Integrations/Elementor/ChartWidget.php:319 templates/admin/chart-editor.php:263
+#: src/Blocks/ChartBlock.php:162 src/Integrations/Bricks/ChartElement.php:265 src/Integrations/Elementor/ChartWidget.php:319 templates/admin/chart-editor.php:263
 msgid "Leave empty to calculate from the data."
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:165 src/Integrations/Bricks/ChartElement.php:271 src/Integrations/Elementor/ChartWidget.php:326 templates/admin/chart-editor.php:264
+#: src/Blocks/ChartBlock.php:163 src/Integrations/Bricks/ChartElement.php:271 src/Integrations/Elementor/ChartWidget.php:326 templates/admin/chart-editor.php:264
 msgid "Axis step"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:166 src/Integrations/Elementor/ChartWidget.php:335 templates/admin/chart-editor.php:275
+#: src/Blocks/ChartBlock.php:164 src/Integrations/Elementor/ChartWidget.php:335 templates/admin/chart-editor.php:275
 msgid "Show axis"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:167 src/Integrations/Elementor/ChartWidget.php:377 templates/admin/chart-editor.php:282
+#: src/Blocks/ChartBlock.php:165 src/Integrations/Elementor/ChartWidget.php:377 templates/admin/chart-editor.php:282
 msgid "Show values"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:168 templates/admin/chart-editor.php:296
+#: src/Blocks/ChartBlock.php:166 templates/admin/chart-editor.php:296
 msgid "Colors"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:169 src/Integrations/Bricks/ChartElement.php:189 src/Integrations/Bricks/ChartElement.php:444 src/Integrations/Elementor/ChartWidget.php:197 src/Integrations/Elementor/ChartWidget.php:565 templates/admin/chart-editor.php:57 templates/admin/chart-editor.php:58 templates/admin/chart-editor.php:183 templates/admin/chart-editor.php:299
+#: src/Blocks/ChartBlock.php:167 src/Integrations/Bricks/ChartElement.php:189 src/Integrations/Bricks/ChartElement.php:444 src/Integrations/Elementor/ChartWidget.php:197 src/Integrations/Elementor/ChartWidget.php:565 templates/admin/chart-editor.php:57 templates/admin/chart-editor.php:58 templates/admin/chart-editor.php:183 templates/admin/chart-editor.php:299
 msgid "Bar color"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:170 src/Integrations/Bricks/ChartElement.php:193 src/Integrations/Bricks/ChartElement.php:445 src/Integrations/Elementor/ChartWidget.php:205 src/Integrations/Elementor/ChartWidget.php:566 templates/admin/chart-editor.php:60 templates/admin/chart-editor.php:61 templates/admin/chart-editor.php:184 templates/admin/chart-editor.php:300
+#: src/Blocks/ChartBlock.php:168 src/Integrations/Bricks/ChartElement.php:193 src/Integrations/Bricks/ChartElement.php:445 src/Integrations/Elementor/ChartWidget.php:205 src/Integrations/Elementor/ChartWidget.php:566 templates/admin/chart-editor.php:60 templates/admin/chart-editor.php:61 templates/admin/chart-editor.php:184 templates/admin/chart-editor.php:300
 msgid "Range color"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:171 src/Integrations/Bricks/ChartElement.php:446 src/Integrations/Elementor/ChartWidget.php:567 templates/admin/chart-editor.php:301
+#: src/Blocks/ChartBlock.php:169 src/Integrations/Bricks/ChartElement.php:446 src/Integrations/Elementor/ChartWidget.php:567 templates/admin/chart-editor.php:301
 msgid "Track color"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:172 src/Integrations/Bricks/ChartElement.php:447 templates/admin/chart-editor.php:302
+#: src/Blocks/ChartBlock.php:170 src/Integrations/Bricks/ChartElement.php:447 templates/admin/chart-editor.php:302
 msgid "Label color"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:173 src/Integrations/Bricks/ChartElement.php:448 templates/admin/chart-editor.php:303
+#: src/Blocks/ChartBlock.php:171 src/Integrations/Bricks/ChartElement.php:448 templates/admin/chart-editor.php:303
 msgid "Value color"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:174 src/Integrations/Bricks/ChartElement.php:449 templates/admin/chart-editor.php:304
+#: src/Blocks/ChartBlock.php:172 src/Integrations/Bricks/ChartElement.php:449 templates/admin/chart-editor.php:304
 msgid "Axis color"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:175
+#: src/Blocks/ChartBlock.php:173
 msgid "Size"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:176 src/Integrations/Bricks/ChartElement.php:451 src/Integrations/Elementor/ChartWidget.php:569 templates/admin/chart-editor.php:320
+#: src/Blocks/ChartBlock.php:174 src/Integrations/Bricks/ChartElement.php:451 src/Integrations/Elementor/ChartWidget.php:569 templates/admin/chart-editor.php:320
 msgid "Bar thickness"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:177 src/Integrations/Bricks/ChartElement.php:452 src/Integrations/Elementor/ChartWidget.php:570 templates/admin/chart-editor.php:321
+#: src/Blocks/ChartBlock.php:175 src/Integrations/Bricks/ChartElement.php:452 src/Integrations/Elementor/ChartWidget.php:570 templates/admin/chart-editor.php:321
 msgid "Column chart height"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:178 src/Integrations/Bricks/ChartElement.php:453 src/Integrations/Elementor/ChartWidget.php:571 templates/admin/chart-editor.php:322
+#: src/Blocks/ChartBlock.php:176 src/Integrations/Bricks/ChartElement.php:453 src/Integrations/Elementor/ChartWidget.php:571 templates/admin/chart-editor.php:322
 msgid "Corner radius"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:179
+#: src/Blocks/ChartBlock.php:177
 msgid "Behaviour"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:180 src/Integrations/Elementor/ChartWidget.php:433 templates/admin/chart-editor.php:341
+#: src/Blocks/ChartBlock.php:178 src/Integrations/Elementor/ChartWidget.php:433 templates/admin/chart-editor.php:341
 msgid "Animate when scrolled into view"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:181 src/Integrations/Elementor/ChartWidget.php:524 templates/admin/chart-editor.php:329 templates/admin/settings.php:21
+#: src/Blocks/ChartBlock.php:179 src/Integrations/Elementor/ChartWidget.php:524 templates/admin/chart-editor.php:329 templates/admin/settings.php:21
 msgid "Highlight the hovered bar"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:182 src/Integrations/Elementor/ChartWidget.php:620 templates/admin/chart-editor.php:339
+#: src/Blocks/ChartBlock.php:180 src/Integrations/Elementor/ChartWidget.php:620 templates/admin/chart-editor.php:339
 msgid "Animation"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:183 src/Integrations/Bricks/ChartElement.php:341 src/Integrations/Elementor/ChartWidget.php:443 templates/admin/chart-editor.php:344
+#: src/Blocks/ChartBlock.php:181 src/Integrations/Bricks/ChartElement.php:341 src/Integrations/Elementor/ChartWidget.php:443 templates/admin/chart-editor.php:344
 msgid "Effect"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:184 src/Integrations/Bricks/ChartElement.php:344 src/Integrations/Bricks/ChartElement.php:348 src/Integrations/Elementor/ChartWidget.php:447 templates/admin/chart-editor.php:346
+#: src/Blocks/ChartBlock.php:182 src/Integrations/Bricks/ChartElement.php:344 src/Integrations/Bricks/ChartElement.php:348 src/Integrations/Elementor/ChartWidget.php:447 templates/admin/chart-editor.php:346
 msgid "Grow from the axis"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:185 src/Integrations/Bricks/ChartElement.php:345 src/Integrations/Elementor/ChartWidget.php:448 templates/admin/chart-editor.php:347
+#: src/Blocks/ChartBlock.php:183 src/Integrations/Bricks/ChartElement.php:345 src/Integrations/Elementor/ChartWidget.php:448 templates/admin/chart-editor.php:347
 msgid "Fade in"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:186 src/Integrations/Bricks/ChartElement.php:346 src/Integrations/Elementor/ChartWidget.php:449 templates/admin/chart-editor.php:348
+#: src/Blocks/ChartBlock.php:184 src/Integrations/Bricks/ChartElement.php:346 src/Integrations/Elementor/ChartWidget.php:449 templates/admin/chart-editor.php:348
 msgid "Rise into place"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:187 src/Integrations/Bricks/ChartElement.php:354 src/Integrations/Elementor/ChartWidget.php:457 templates/admin/chart-editor.php:353
+#: src/Blocks/ChartBlock.php:185 src/Integrations/Bricks/ChartElement.php:354 src/Integrations/Elementor/ChartWidget.php:457 templates/admin/chart-editor.php:353
 msgid "Motion curve"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:188 src/Integrations/Bricks/ChartElement.php:357 src/Integrations/Bricks/ChartElement.php:361 src/Integrations/Elementor/ChartWidget.php:461 templates/admin/chart-editor.php:355
+#: src/Blocks/ChartBlock.php:186 src/Integrations/Bricks/ChartElement.php:357 src/Integrations/Bricks/ChartElement.php:361 src/Integrations/Elementor/ChartWidget.php:461 templates/admin/chart-editor.php:355
 msgid "Smooth"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:189 src/Integrations/Bricks/ChartElement.php:358 src/Integrations/Elementor/ChartWidget.php:462 templates/admin/chart-editor.php:356
+#: src/Blocks/ChartBlock.php:187 src/Integrations/Bricks/ChartElement.php:358 src/Integrations/Elementor/ChartWidget.php:462 templates/admin/chart-editor.php:356
 msgid "Even"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:190 src/Integrations/Bricks/ChartElement.php:359 src/Integrations/Elementor/ChartWidget.php:463 templates/admin/chart-editor.php:357
+#: src/Blocks/ChartBlock.php:188 src/Integrations/Bricks/ChartElement.php:359 src/Integrations/Elementor/ChartWidget.php:463 templates/admin/chart-editor.php:357
 msgid "Springy"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:191 src/Integrations/Bricks/ChartElement.php:463 src/Integrations/Elementor/ChartWidget.php:627 templates/admin/chart-editor.php:360
+#: src/Blocks/ChartBlock.php:189 src/Integrations/Bricks/ChartElement.php:463 src/Integrations/Elementor/ChartWidget.php:627 templates/admin/chart-editor.php:360
 msgid "Duration (ms)"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:192 src/Integrations/Elementor/ChartWidget.php:643 templates/admin/chart-editor.php:361
+#: src/Blocks/ChartBlock.php:190 src/Integrations/Elementor/ChartWidget.php:643 templates/admin/chart-editor.php:361
 msgid "Delay between bars (ms)"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:193 src/Integrations/Elementor/ChartWidget.php:471 templates/admin/chart-editor.php:362
+#: src/Blocks/ChartBlock.php:191 src/Integrations/Elementor/ChartWidget.php:471 templates/admin/chart-editor.php:362
 msgid "Count the values up"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:194 src/Integrations/Bricks/ChartElement.php:374 src/Integrations/Elementor/ChartWidget.php:481 templates/admin/chart-editor.php:363
+#: src/Blocks/ChartBlock.php:192 src/Integrations/Bricks/ChartElement.php:374 src/Integrations/Elementor/ChartWidget.php:481 templates/admin/chart-editor.php:363
 msgid "Replay every time the chart scrolls into view"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:195 src/Integrations/Elementor/ChartWidget.php:490 templates/admin/chart-editor.php:331
+#: src/Blocks/ChartBlock.php:193 src/Integrations/Elementor/ChartWidget.php:490 templates/admin/chart-editor.php:331
 msgid "Lazy loading: draw the chart when it scrolls near"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:196 src/Integrations/Bricks/ChartElement.php:156 src/Integrations/Elementor/ChartWidget.php:150 templates/admin/chart-editor.php:167
+#: src/Blocks/ChartBlock.php:194 src/Integrations/Bricks/ChartElement.php:156 src/Integrations/Elementor/ChartWidget.php:150 templates/admin/chart-editor.php:167
 msgid "Chart type"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:197 src/Integrations/Bricks/ChartElement.php:99 src/Integrations/Elementor/ChartWidget.php:112
+#: src/Blocks/ChartBlock.php:195 src/Integrations/Bricks/ChartElement.php:99 src/Integrations/Elementor/ChartWidget.php:112
 msgid "Data"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:198
+#: src/Blocks/ChartBlock.php:196
 msgid "Row"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:199 templates/admin/chart-editor.php:212
+#: src/Blocks/ChartBlock.php:197 templates/admin/chart-editor.php:212
 msgid "Add row"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:200
+#: src/Blocks/ChartBlock.php:198
 msgid "Remove row"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:201
+#: src/Blocks/ChartBlock.php:199
 msgid "Move row up"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:202
+#: src/Blocks/ChartBlock.php:200
 msgid "Move row down"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:203 templates/admin/chart-editor.php:215
+#: src/Blocks/ChartBlock.php:201 templates/admin/chart-editor.php:215
 msgid "Paste from a spreadsheet or CSV"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:204
+#: src/Blocks/ChartBlock.php:202
 msgid "One row per line: label, value, second value, value text — separated by tabs, semicolons or commas. A header row is skipped."
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:205 templates/admin/chart-editor.php:218
+#: src/Blocks/ChartBlock.php:203 templates/admin/chart-editor.php:218
 msgid "Replace the rows"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:206 src/Integrations/Bricks/ChartElement.php:381 src/Integrations/Elementor/ChartWidget.php:408 templates/admin/chart-editor.php:287
+#: src/Blocks/ChartBlock.php:204 src/Integrations/Bricks/ChartElement.php:381 src/Integrations/Elementor/ChartWidget.php:408 templates/admin/chart-editor.php:287
 msgid "Name of the first series"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:207 src/Integrations/Bricks/ChartElement.php:388 src/Integrations/Elementor/ChartWidget.php:416 templates/admin/chart-editor.php:288
+#: src/Blocks/ChartBlock.php:205 src/Integrations/Bricks/ChartElement.php:388 src/Integrations/Elementor/ChartWidget.php:416 templates/admin/chart-editor.php:288
 msgid "Name of the second series"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:208 src/Integrations/Bricks/ChartElement.php:395 src/Integrations/Elementor/ChartWidget.php:424 templates/admin/chart-editor.php:290
+#: src/Blocks/ChartBlock.php:206 src/Integrations/Bricks/ChartElement.php:395 src/Integrations/Elementor/ChartWidget.php:424 templates/admin/chart-editor.php:290
 msgid "Bands"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:209 src/Integrations/Bricks/ChartElement.php:397 src/Integrations/Elementor/ChartWidget.php:425 templates/admin/chart-editor.php:290
+#: src/Blocks/ChartBlock.php:207 src/Integrations/Bricks/ChartElement.php:397 src/Integrations/Elementor/ChartWidget.php:425 templates/admin/chart-editor.php:290
 msgid "Upper limits of the shaded ranges, separated by commas, e.g. 50, 75, 100."
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:210 src/Integrations/Bricks/ChartElement.php:403 src/Integrations/Elementor/ChartWidget.php:500 templates/admin/chart-editor.php:332
+#: src/Blocks/ChartBlock.php:208 src/Integrations/Bricks/ChartElement.php:403 src/Integrations/Elementor/ChartWidget.php:500 templates/admin/chart-editor.php:332
 msgid "Tooltips on hover and keyboard focus"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:211 src/Integrations/Bricks/ChartElement.php:410 src/Integrations/Elementor/ChartWidget.php:508 templates/admin/chart-editor.php:333
+#: src/Blocks/ChartBlock.php:209 src/Integrations/Bricks/ChartElement.php:410 src/Integrations/Elementor/ChartWidget.php:508 templates/admin/chart-editor.php:333
 msgid "Patterns besides colours (colour-blind friendly)"
 msgstr ""
 
-#: src/Blocks/ChartBlock.php:212 src/Integrations/Bricks/ChartElement.php:417 src/Integrations/Elementor/ChartWidget.php:516 templates/admin/chart-editor.php:334
+#: src/Blocks/ChartBlock.php:210 src/Integrations/Bricks/ChartElement.php:417 src/Integrations/Elementor/ChartWidget.php:516 templates/admin/chart-editor.php:334
 msgid "Download buttons (PNG, SVG) under the chart"
 msgstr ""
 
@@ -648,11 +664,11 @@ msgstr ""
 msgid "Timeline"
 msgstr ""
 
-#: src/Chart/ChartConfig.php:116 src/Chart/Types/RowChart.php:79
+#: src/Chart/ChartConfig.php:116 src/Chart/Types/RowChart.php:76
 msgid "Start"
 msgstr ""
 
-#: src/Chart/ChartConfig.php:117 src/Chart/Types/RowChart.php:79
+#: src/Chart/ChartConfig.php:117 src/Chart/Types/RowChart.php:76
 msgid "Finish"
 msgstr ""
 
@@ -664,7 +680,7 @@ msgstr ""
 msgid "Bullet chart"
 msgstr ""
 
-#: src/Chart/ChartConfig.php:123 src/Chart/Types/RowChart.php:82
+#: src/Chart/ChartConfig.php:123 src/Chart/Types/RowChart.php:77
 msgid "Target"
 msgstr ""
 
@@ -692,15 +708,15 @@ msgstr ""
 msgid "One row per rating level: the label is the level (5, 4, 3…), the value the number of ratings. The average is calculated."
 msgstr ""
 
-#: src/Chart/Renderer.php:288
+#: src/Chart/Renderer.php:292
 msgid "Download the chart as PNG"
 msgstr ""
 
-#: src/Chart/Renderer.php:289
+#: src/Chart/Renderer.php:293
 msgid "Download the chart as SVG"
 msgstr ""
 
-#: src/Chart/Renderer.php:302
+#: src/Chart/Renderer.php:306
 msgid "Chart data"
 msgstr ""
 
@@ -724,7 +740,7 @@ msgstr ""
 msgid "Progress"
 msgstr ""
 
-#: src/Chart/Types/RowChart.php:122
+#: src/Chart/Types/RowChart.php:115
 msgid "Series %d"
 msgstr ""
 
@@ -852,12 +868,8 @@ msgstr ""
 msgid "Axis"
 msgstr ""
 
-#: src/Integrations/Bricks/ChartElement.php:614 src/Integrations/Elementor/ChartWidget.php:804
+#: src/Integrations/Bricks/ChartElement.php:614 src/Integrations/Elementor/ChartWidget.php:802
 msgid "Select a saved chart or add at least one bar."
-msgstr ""
-
-#: src/Integrations/Elementor/ChartWidget.php:213
-msgid "Rows"
 msgstr ""
 
 #: src/Integrations/Elementor/ChartWidget.php:533 templates/admin/chart-editor.php:330
@@ -874,6 +886,10 @@ msgstr ""
 
 #: src/Integrations/Elementor/ChartWidget.php:611
 msgid "Space above axis"
+msgstr ""
+
+#: src/Stats/Views.php:297
+msgid "When a chart scrolls into view, the site counts one anonymous view of that chart. No cookies are set and no personal data is stored: to avoid counting the same visitor twice, a one-way hash of the IP address and browser is kept for 30 minutes and then deleted automatically. Only the total number of views per chart and per day is stored."
 msgstr ""
 
 #: templates/admin/chart-editor.php:55
@@ -976,7 +992,7 @@ msgstr ""
 msgid "Empty: the font of your theme or builder."
 msgstr ""
 
-#: templates/admin/chart-editor.php:327 templates/admin/settings.php:52 templates/admin/settings.php:55
+#: templates/admin/chart-editor.php:327 templates/admin/settings.php:54 templates/admin/settings.php:57
 msgid "Behaviour & accessibility"
 msgstr ""
 
@@ -1000,7 +1016,39 @@ msgstr ""
 msgid "add the \"Qaiyo Easy Chart\" element, then choose \"Saved chart\" as the source."
 msgstr ""
 
-#: templates/admin/editor-intro.php:16 templates/admin/settings.php:29
+#: templates/admin/chart-views.php:23
+msgid "The view counter was reset."
+msgstr ""
+
+#: templates/admin/chart-views.php:28
+msgid "views in total"
+msgstr ""
+
+#: templates/admin/chart-views.php:33
+msgid "Last 7 days"
+msgstr ""
+
+#: templates/admin/chart-views.php:37
+msgid "Last 30 days"
+msgstr ""
+
+#: templates/admin/chart-views.php:48
+msgid "Views per day, last 30 days"
+msgstr ""
+
+#: templates/admin/chart-views.php:54
+msgid "A view is counted when the chart scrolls into view, once per visitor per 30 minutes. Anonymous: no cookies, no personal data. Bots and chart editors are not counted."
+msgstr ""
+
+#: templates/admin/chart-views.php:55
+msgid "View counting is switched off in the settings."
+msgstr ""
+
+#: templates/admin/chart-views.php:61
+msgid "Reset counter"
+msgstr ""
+
+#: templates/admin/editor-intro.php:16 templates/admin/settings.php:31
 msgid "Hi, %s!"
 msgstr ""
 
@@ -1064,31 +1112,39 @@ msgstr ""
 msgid "Add an accessible data table to every chart (screen readers, SEO, AI)"
 msgstr ""
 
-#: templates/admin/settings.php:38
+#: templates/admin/settings.php:23
+msgid "Count chart views (anonymous, no cookies)"
+msgstr ""
+
+#: templates/admin/settings.php:24
+msgid "Also count views of people who can edit charts"
+msgstr ""
+
+#: templates/admin/settings.php:40
 msgid "Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element."
 msgstr ""
 
-#: templates/admin/settings.php:48
+#: templates/admin/settings.php:50
 msgid "Defaults for new charts"
 msgstr ""
 
-#: templates/admin/settings.php:66
+#: templates/admin/settings.php:68
 msgid "Uninstall"
 msgstr ""
 
-#: templates/admin/settings.php:70
+#: templates/admin/settings.php:72
 msgid "Delete all charts and settings when the plugin is deleted"
 msgstr ""
 
-#: templates/admin/settings.php:72
+#: templates/admin/settings.php:74
 msgid "Off by default, so reinstalling keeps your charts."
 msgstr ""
 
-#: templates/admin/settings.php:84
+#: templates/admin/settings.php:86
 msgid "Shortcode reference"
 msgstr ""
 
-#: templates/admin/settings.php:91
+#: templates/admin/settings.php:93
 msgid "Attribute"
 msgstr ""
 

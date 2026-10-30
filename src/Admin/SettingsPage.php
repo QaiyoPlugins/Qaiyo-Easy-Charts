@@ -79,7 +79,7 @@ final class SettingsPage {
 	 *
 	 * @param mixed $hook_suffix Current admin page.
 	 */
-	public function enqueue( $hook_suffix ): void {
+	public function enqueue( mixed $hook_suffix ): void {
 		if ( '' === self::$hook || Cast::string( $hook_suffix ) !== self::$hook ) {
 			return;
 		}
@@ -128,7 +128,7 @@ final class SettingsPage {
 
 		// Keep the reference honest: every documented single attribute must exist.
 		foreach ( array_keys( $reference ) as $attribute ) {
-			if ( false === strpos( $attribute, ' ' ) && ! in_array( $attribute, array( 'id', 'data' ), true ) && ! isset( Shortcode::ATTRIBUTE_MAP[ $attribute ] ) ) {
+			if ( ! str_contains( $attribute, ' ' ) && ! in_array( $attribute, array( 'id', 'data' ), true ) && ! isset( Shortcode::ATTRIBUTE_MAP[ $attribute ] ) ) {
 				unset( $reference[ $attribute ] );
 			}
 		}

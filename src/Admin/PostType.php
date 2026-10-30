@@ -14,6 +14,7 @@ namespace Qaiyo\EasyCharts\Admin;
 
 use Qaiyo\EasyCharts\Chart\Repository;
 use Qaiyo\EasyCharts\Schema;
+use Qaiyo\EasyCharts\Stats\Views;
 use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
@@ -33,6 +34,8 @@ final class PostType {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_filter( 'manage_' . Schema::POST_TYPE . '_posts_columns', array( $this, 'columns' ) );
 		add_action( 'manage_' . Schema::POST_TYPE . '_posts_custom_column', array( $this, 'cell' ), 10, 2 );
+		add_filter( 'manage_edit-' . Schema::POST_TYPE . '_sortable_columns', array( $this, 'sortable_columns' ) );
+		add_action( 'pre_get_posts', array( $this, 'sort_by_views' ) );
 		add_action( 'admin_menu', array( $this, 'brand_menu' ), 5 );
 		add_filter( 'post_updated_messages', array( $this, 'messages' ) );
 	}
@@ -89,14 +92,15 @@ final class PostType {
 	 * @param mixed $columns Columns.
 	 * @return mixed
 	 */
-	public function columns( $columns ) {
+	public function columns( mixed $columns ): mixed {
 		if ( ! is_array( $columns ) ) {
 			return $columns;
 		}
 		$date = $columns['date'] ?? null;
 		unset( $columns['date'] );
 		$columns['qaiyo_ec_shortcode'] = __( 'Shortcode', 'qaiyo-easy-charts' );
-		$columns['qaiyo_ec_rows']      = __( 'Bars', 'qaiyo-easy-charts' );
+		$columns['qaiyo_ec_rows']      = __( 'Rows', 'qaiyo-easy-charts' );
+		$columns['qaiyo_ec_views']     = __( 'Views', 'qaiyo-easy-charts' );
 		if ( null !== $date ) {
 			$columns['date'] = $date;
 		}
@@ -109,7 +113,7 @@ final class PostType {
 	 * @param mixed $column  Column key.
 	 * @param mixed $post_id Post ID.
 	 */
-	public function cell( $column, $post_id ): void {
+	public function cell( mixed $column, mixed $post_id ): void {
 		$post_id = Cast::int( $post_id );
 		if ( 'qaiyo_ec_shortcode' === $column ) {
 			printf(
@@ -119,7 +123,54 @@ final class PostType {
 		} elseif ( 'qaiyo_ec_rows' === $column ) {
 			$config = Repository::find( $post_id, false );
 			echo esc_html( number_format_i18n( null === $config ? 0 : count( $config['items'] ) ) );
+		} elseif ( 'qaiyo_ec_views' === $column ) {
+			$stats = Views::stats( $post_id );
+			printf(
+				'<strong>%1$s</strong><br /><span class="qec-views-sub">%2$s</span>',
+				esc_html( number_format_i18n( $stats['total'] ) ),
+				/* translators: %s: number of views in the last 30 days. */
+				esc_html( sprintf( __( '%s in 30 days', 'qaiyo-easy-charts' ), number_format_i18n( $stats['month'] ) ) )
+			);
 		}
+	}
+
+	/**
+	 * Make the views column sortable.
+	 *
+	 * @param mixed $columns Sortable columns.
+	 * @return mixed
+	 */
+	public function sortable_columns( mixed $columns ): mixed {
+		if ( is_array( $columns ) ) {
+			$columns['qaiyo_ec_views'] = 'qaiyo_ec_views';
+		}
+		return $columns;
+	}
+
+	/**
+	 * Sort the chart list by views; charts never viewed count as 0.
+	 *
+	 * @param mixed $query Query.
+	 */
+	public function sort_by_views( mixed $query ): void {
+		if ( ! $query instanceof \WP_Query || ! is_admin() || ! $query->is_main_query() || 'qaiyo_ec_views' !== $query->get( 'orderby' ) ) {
+			return;
+		}
+		$query->set(
+			'meta_query',
+			array(
+				'relation'     => 'OR',
+				'qec_views'    => array(
+					'key'  => Views::META_TOTAL,
+					'type' => 'NUMERIC',
+				),
+				'qec_unviewed' => array(
+					'key'     => Views::META_TOTAL,
+					'compare' => 'NOT EXISTS',
+				),
+			)
+		);
+		$query->set( 'orderby', 'qec_views' );
 	}
 
 	/**
@@ -128,7 +179,7 @@ final class PostType {
 	 * @param mixed $messages Messages.
 	 * @return mixed
 	 */
-	public function messages( $messages ) {
+	public function messages( mixed $messages ): mixed {
 		if ( ! is_array( $messages ) ) {
 			return $messages;
 		}

@@ -99,12 +99,10 @@ final class ChartBlock {
 	 */
 	public function editor_data(): void {
 		$charts = array_map(
-			static function ( array $chart ): array {
-				return array(
-					'value' => $chart['id'],
-					'label' => 'publish' === $chart['status'] ? $chart['title'] : $chart['title'] . ' (' . $chart['status'] . ')',
-				);
-			},
+			static fn( array $chart ): array => array(
+				'value' => $chart['id'],
+				'label' => 'publish' === $chart['status'] ? $chart['title'] : $chart['title'] . ' (' . $chart['status'] . ')',
+			),
 			current_user_can( 'edit_posts' ) ? Repository::list() : array()
 		);
 
@@ -218,7 +216,7 @@ final class ChartBlock {
 	 *
 	 * @param mixed $attributes Block attributes.
 	 */
-	public static function render( $attributes ): string {
+	public static function render( mixed $attributes ): string {
 		$attributes = Cast::arr( $attributes );
 
 		if ( 'saved' === ( $attributes['source'] ?? '' ) ) {

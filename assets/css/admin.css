@@ -554,3 +554,89 @@ body.qec-admin-screen #wpbody-content {
 .qec-export-admin + .qec-play {
 	margin-left: 0;
 }
+
+/* Views meta box and list column ------------------------------------------- */
+
+.qec-views-total {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+	margin: 4px 0 12px;
+}
+
+.qec-views-total strong {
+	font-size: 28px;
+	line-height: 1;
+	font-variant-numeric: tabular-nums;
+}
+
+.qec-views-periods {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 8px;
+	margin: 0 0 12px;
+}
+
+.qec-views-periods div {
+	padding: 8px 10px;
+	background: #f6f5fd;
+	border-radius: 6px;
+}
+
+.qec-views-periods dt {
+	color: #50575e;
+	font-size: 12px;
+}
+
+.qec-views-periods dd {
+	margin: 2px 0 0;
+	font-size: 16px;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+.qec-views-spark {
+	margin: 0 0 12px;
+}
+
+.qec-views-bars {
+	display: flex;
+	align-items: flex-end;
+	gap: 2px;
+	height: 48px;
+	padding-bottom: 1px;
+	border-bottom: 1px solid #dcdcde;
+}
+
+.qec-views-bars span {
+	flex: 1;
+	min-height: 1px;
+	height: var(--qec-h);
+	background: #6c5ce7;
+	border-radius: 2px 2px 0 0;
+}
+
+.qec-views-spark figcaption {
+	margin-top: 4px;
+	color: #50575e;
+	font-size: 12px;
+}
+
+.qec-views-notice {
+	padding: 6px 10px;
+	background: #edfaef;
+	border-left: 3px solid #00a32a;
+}
+
+.qec-reset-views {
+	color: #b32d2e;
+}
+
+.column-qaiyo_ec_views {
+	width: 9em;
+}
+
+.qec-views-sub {
+	color: #50575e;
+	font-size: 12px;
+}

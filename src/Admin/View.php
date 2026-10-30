@@ -54,7 +54,7 @@ final class View {
 		$base = realpath( QAIYO_EC_PLUGIN_DIR . 'templates/admin' );
 		$file = realpath( QAIYO_EC_PLUGIN_DIR . 'templates/admin/' . $name . '.php' );
 
-		if ( false === $base || false === $file || 0 !== strpos( $file, $base . DIRECTORY_SEPARATOR ) || ! is_readable( $file ) ) {
+		if ( false === $base || false === $file || ! str_starts_with( $file, $base . DIRECTORY_SEPARATOR ) || ! is_readable( $file ) ) {
 			return '';
 		}
 		return $file;

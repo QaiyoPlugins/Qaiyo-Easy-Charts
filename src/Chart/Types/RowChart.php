@@ -71,19 +71,12 @@ final class RowChart implements ChartType {
 	public static function table( array $config ): array {
 		$item_heading = __( 'Item', 'qaiyo-easy-charts' );
 
-		switch ( $config['type'] ) {
-			case 'compare':
-				$head = array( $item_heading, self::series_name( $config, 'a' ), self::series_name( $config, 'b' ) );
-				break;
-			case 'timeline':
-				$head = array( $item_heading, __( 'Start', 'qaiyo-easy-charts' ), __( 'Finish', 'qaiyo-easy-charts' ) );
-				break;
-			case 'bullet':
-				$head = array( $item_heading, __( 'Value', 'qaiyo-easy-charts' ), __( 'Target', 'qaiyo-easy-charts' ) );
-				break;
-			default:
-				$head = array( $item_heading, __( 'Value', 'qaiyo-easy-charts' ) );
-		}
+		$head = match ( $config['type'] ) {
+			'compare'  => array( $item_heading, self::series_name( $config, 'a' ), self::series_name( $config, 'b' ) ),
+			'timeline' => array( $item_heading, __( 'Start', 'qaiyo-easy-charts' ), __( 'Finish', 'qaiyo-easy-charts' ) ),
+			'bullet'   => array( $item_heading, __( 'Value', 'qaiyo-easy-charts' ), __( 'Target', 'qaiyo-easy-charts' ) ),
+			default    => array( $item_heading, __( 'Value', 'qaiyo-easy-charts' ) ),
+		};
 
 		$rows = array();
 		foreach ( $config['items'] as $item ) {

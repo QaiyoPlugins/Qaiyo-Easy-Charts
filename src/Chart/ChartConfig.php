@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @phpstan-type QecItem array{label: string, value: float, max: float|string, text: string, color: string, range_color: string}
  * @phpstan-type QecTable array{head: list<string>, rows: list<non-empty-list<string>>, note: string}
- * @phpstan-type QecConfig array{type: string, orientation: string, items: list<QecItem>, title: string, description: string, show_caption: bool, scale_min: float, scale_max: float|string, step: float|string, unit: string, unit_position: string, show_axis: bool, show_values: bool, separator: string, prefix: string, suffix: string, layout: string, animate: bool, animation: string, duration: int, stagger: int, easing: string, replay: bool, count_up: bool, lazy: bool, hover_focus: bool, data_table: bool, bar_color: string, range_color: string, track_color: string, label_color: string, value_color: string, axis_color: string, font_family: string, bar_size: string, chart_height: string, radius: string, series_a: string, series_b: string, bands: list<float>, patterns: bool, tooltips: bool, export: bool}
+ * @phpstan-type    QecConfig array{type: string, chart_id: int, orientation: string, items: list<QecItem>, title: string, description: string, show_caption: bool, scale_min: float, scale_max: float|string, step: float|string, unit: string, unit_position: string, show_axis: bool, show_values: bool, separator: string, prefix: string, suffix: string, layout: string, animate: bool, animation: string, duration: int, stagger: int, easing: string, replay: bool, count_up: bool, lazy: bool, hover_focus: bool, data_table: bool, bar_color: string, range_color: string, track_color: string, label_color: string, value_color: string, axis_color: string, font_family: string, bar_size: string, chart_height: string, radius: string, series_a: string, series_b: string, bands: list<float>, patterns: bool, tooltips: bool, export: bool}
  */
 final class ChartConfig {
 
@@ -159,6 +159,7 @@ final class ChartConfig {
 
 		$defaults = array(
 			'type'          => 'bars',
+			'chart_id'      => 0,
 			'orientation'   => 'horizontal',
 			'items'         => array(),
 			'title'         => '',
@@ -276,6 +277,7 @@ final class ChartConfig {
 
 		$config = array(
 			'type'          => $type,
+			'chart_id'      => max( 0, Cast::int( $raw['chart_id'] ) ),
 			// Only bars can stand up as columns; every other type has one fixed layout.
 			'orientation'   => 'bars' === $type ? Cast::choice( $raw['orientation'], self::ORIENTATIONS, 'horizontal' ) : 'horizontal',
 			'items'         => self::sanitize_items( Cast::arr( $raw['items'] ), $type ),
@@ -394,7 +396,7 @@ final class ChartConfig {
 	 * @param int    $max_length Max length.
 	 * @param string $fallback Fallback.
 	 */
-	private static function text( $value, int $max_length, string $fallback = '' ): string {
+	private static function text( mixed $value, int $max_length, string $fallback = '' ): string {
 		$text = sanitize_text_field( Cast::string( $value ) );
 		if ( function_exists( 'mb_substr' ) ) {
 			$text = mb_substr( $text, 0, $max_length );
@@ -408,7 +410,7 @@ final class ChartConfig {
 	 * @param mixed $value Any value.
 	 * @return float|string Number, or '' when empty/invalid.
 	 */
-	private static function number_or_empty( $value ) {
+	private static function number_or_empty( mixed $value ): float|string {
 		$number = Cast::number( $value );
 		return null === $number ? '' : $number;
 	}
@@ -419,7 +421,7 @@ final class ChartConfig {
 	 * @param mixed $value Any value.
 	 * @return list<float>
 	 */
-	private static function bands( $value ): array {
+	private static function bands( mixed $value ): array {
 		if ( is_string( $value ) ) {
 			// Thresholds are separated by commas, semicolons or spaces; decimals use a dot.
 			$parts = preg_split( '/[\s,;|]+/', trim( $value ), -1, PREG_SPLIT_NO_EMPTY );
@@ -444,7 +446,7 @@ final class ChartConfig {
 	 * @param mixed $value Any value, e.g. 800 or "800ms".
 	 * @param int   $max   Upper bound.
 	 */
-	private static function milliseconds( $value, int $max ): int {
+	private static function milliseconds( mixed $value, int $max ): int {
 		$number = Cast::number( is_string( $value ) ? preg_replace( '/ms$/i', '', trim( $value ) ) : $value );
 		return null === $number ? 0 : (int) max( 0, min( $max, round( $number ) ) );
 	}
@@ -455,7 +457,7 @@ final class ChartConfig {
 	 * @param mixed $value Any value.
 	 * @param float $fallback Value used when $value is not a number.
 	 */
-	private static function number_or_default( $value, float $fallback ): float {
+	private static function number_or_default( mixed $value, float $fallback ): float {
 		$number = Cast::number( $value );
 		return null === $number ? $fallback : $number;
 	}
