@@ -5,7 +5,17 @@
  * @package qaiyo-easy-charts
  */
 
-namespace Bricks;
+namespace {
+	function bricks_is_builder(): bool {
+		return false;
+	}
+
+	function bricks_is_builder_call(): bool {
+		return false;
+	}
+}
+
+namespace Bricks {
 
 abstract class Element {
 	/** @var string */
@@ -51,4 +61,5 @@ abstract class Element {
 
 class Elements {
 	public static function register_element( string $file, string $name = '', string $element_class = '' ): void {}
+}
 }

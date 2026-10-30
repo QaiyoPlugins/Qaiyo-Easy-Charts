@@ -24,7 +24,8 @@ The first chart type is a **bar / column chart with ranges**: every bar has a so
 * **Gutenberg block** — saved chart or bars entered in the block, colours, block typography and spacing.
 * **Elementor widget and Bricks element** — saved chart or inline bars, with full typography (font family included), colours, sizes and animation controls.
 * **Responsive by the chart's own width** — container queries, so charts adapt in columns and sidebars too. Colliding axis labels are thinned out automatically.
-* **Animated** — bars grow when they scroll into view. Respects reduced-motion preferences; works without JavaScript.
+* **Animated, switchable per chart** — grow, fade or rise effects, smooth / even / springy motion, custom duration and delay between bars, values counting up, optional replay on every scroll. Respects reduced-motion preferences; works without JavaScript.
+* **Lazy loading** — charts are drawn only when they scroll near; the accessible data table stays in the HTML for search engines and screen readers.
 * **Accessible** — a figure with an accessible name and a visually hidden data table for screen readers, forced-colours support, WCAG 2.2 AA admin screens.
 * **SEO and AI friendly** — real HTML text and a semantic data table instead of an image; WordPress Abilities API support so AI agents can list, read and create charts.
 * **Every chart styled on its own** — colours, font and sizes are set per chart, block or builder element, starting from a clean default palette.
@@ -51,6 +52,10 @@ Yes — with the shortcode or the Gutenberg block.
 = What is the shortcode format for inline data? =
 
 Rows are separated by `|`, fields by `;`: label;value;range end;value text. Example: `[qaiyo_chart data="Landing page;5;;up to 5|Business site;10;15" unit="days"]`. Easy Charts → Settings lists every attribute.
+
+= Can I switch the animation off? =
+
+Yes, per chart (builder, block, Elementor, Bricks, or `animate="0"` in the shortcode), and site-wide as a default in Easy Charts → Settings. Visitors who prefer reduced motion never see it.
 
 = Is my data sent anywhere? =
 

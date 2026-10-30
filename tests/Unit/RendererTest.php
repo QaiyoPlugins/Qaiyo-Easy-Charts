@@ -93,4 +93,51 @@ final class RendererTest extends TestCase {
 		$this->assertStringContainsString( 'Landing page: akár 5 munkanap', $text );
 		$this->assertStringContainsString( 'Alap webshop: 10–20 munkanap', $text );
 	}
+
+	public function test_animation_options_become_classes_variables_and_data(): void {
+		$html = $this->render(
+			array(
+				'lazy'      => false,
+				'animation' => 'rise',
+				'easing'    => 'spring',
+				'duration'  => 900,
+				'stagger'   => 60,
+				'replay'    => true,
+			)
+		);
+
+		$this->assertStringContainsString( 'qec-anim-rise', $html );
+		$this->assertStringContainsString( 'qec-ease-spring', $html );
+		$this->assertStringContainsString( '--qec-duration:900ms;--qec-stagger:60ms;', $html );
+		$this->assertStringContainsString( 'data-qec-animate="1"', $html );
+		$this->assertStringContainsString( 'data-qec-replay="1"', $html );
+		$this->assertStringContainsString( 'data-qec-count="1"', $html );
+	}
+
+	public function test_without_animation_no_animation_markup(): void {
+		$html = $this->render(
+			array(
+				'animate' => false,
+				'lazy'    => false,
+			)
+		);
+
+		$this->assertStringNotContainsString( 'qec-anim-', $html );
+		$this->assertStringNotContainsString( 'data-qec-animate', $html );
+		$this->assertStringNotContainsString( 'data-qec-count', $html );
+	}
+
+	public function test_lazy_chart_defers_the_drawing_but_not_the_data_table(): void {
+		$html = $this->render( array( 'lazy' => true ) );
+
+		$this->assertStringContainsString( 'data-qec-lazy="1"', $html );
+		$this->assertStringContainsString( '<div class="qec-lazy-placeholder" style="--qec-rows:3" aria-hidden="true"></div>', $html );
+		$this->assertStringContainsString( '<template class="qec-lazy-template"><div class="qec-grid"', $html );
+		$this->assertStringContainsString( '<noscript><div class="qec-grid"', $html );
+
+		// The table sits outside the template, so it is readable before the chart is drawn.
+		$table = strpos( $html, '<table class="qec-data-table' );
+		$this->assertNotFalse( $table );
+		$this->assertGreaterThan( strrpos( $html, '</noscript>' ), $table );
+	}
 }

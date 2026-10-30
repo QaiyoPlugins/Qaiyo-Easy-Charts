@@ -200,5 +200,22 @@
 "block keyword\u0004graph": "グラフ",
 "block keyword\u0004qaiyo": "qaiyo",
 "Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "新規チャートの動作の既定値です。色、フォント、サイズは各チャート、ブロック、ビルダー要素で設定します。",
-"These colors belong to this chart only. Single bars can have their own colors in the table above.": "これらの色はこのチャート専用です。個々のバーには上の表で個別の色を設定できます。"
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "これらの色はこのチャート専用です。個々のバーには上の表で個別の色を設定できます。",
+"Animation is switched off for this chart.": "このチャートのアニメーションはオフです。",
+"Animation length and delay between bars in milliseconds, e.g. 1100 and 140.": "アニメーションの長さとバー間の遅延（ミリ秒）。例：1100 と 140。",
+"Effect": "エフェクト",
+"Grow from the axis": "軸から伸びる",
+"Fade in": "フェードイン",
+"Rise into place": "せり上がる",
+"Motion curve": "モーションカーブ",
+"Smooth": "なめらか",
+"Even": "一定",
+"Springy": "バネ",
+"Count the values up": "値をカウントアップ",
+"Replay every time the chart scrolls into view": "表示されるたびに再生",
+"Lazy loading: draw the chart when it scrolls near": "遅延読み込み：スクロールで近づいたときにチャートを描画",
+"Do not count the values up": "値をカウントアップしない",
+"Disable lazy loading": "遅延読み込みを無効化",
+"Play animation": "アニメーションを再生",
+"Lazy loading: draw charts when they scroll near": "遅延読み込み：スクロールで近づいたときにチャートを描画"
 }

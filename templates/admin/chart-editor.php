@@ -82,6 +82,9 @@ $qaiyo_ec_select = static function ( string $key, string $label, array $options 
 $qaiyo_ec_input = static function ( string $key, string $label, string $type = 'text', string $help = '', string $placeholder = '' ) use ( $qaiyo_ec_config, $qaiyo_ec_name, $qaiyo_ec_num ): void {
 	$id    = 'qec-' . str_replace( '_', '-', $key );
 	$value = 'number' === $type ? $qaiyo_ec_num( $qaiyo_ec_config[ $key ] ?? '' ) : Cast::string( $qaiyo_ec_config[ $key ] ?? '' );
+	if ( '0' === $value && in_array( $key, array( 'duration', 'stagger' ), true ) ) {
+		$value = ''; // 0 = the default timing, shown as the placeholder.
+	}
 	?>
 	<div class="qec-field">
 		<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label>
@@ -130,6 +133,7 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 				<span class="qec-panel-icon" aria-hidden="true"><span class="dashicons dashicons-visibility"></span></span>
 				<?php esc_html_e( 'Live preview', 'qaiyo-easy-charts' ); ?>
 			</h2>
+			<button type="button" class="button qec-play"><span class="dashicons dashicons-controls-play" aria-hidden="true"></span> <?php esc_html_e( 'Play animation', 'qaiyo-easy-charts' ); ?></button>
 			<div class="qec-device" role="group" aria-label="<?php esc_attr_e( 'Preview width', 'qaiyo-easy-charts' ); ?>">
 				<button type="button" class="button qec-device-button" data-qec-device="desktop" aria-pressed="true"><span class="dashicons dashicons-desktop" aria-hidden="true"></span> <?php esc_html_e( 'Desktop', 'qaiyo-easy-charts' ); ?></button>
 				<button type="button" class="button qec-device-button" data-qec-device="mobile" aria-pressed="false"><span class="dashicons dashicons-smartphone" aria-hidden="true"></span> <?php esc_html_e( 'Mobile', 'qaiyo-easy-charts' ); ?></button>
@@ -279,9 +283,38 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 			<fieldset class="qec-fieldset">
 				<legend><?php esc_html_e( 'Behaviour & accessibility', 'qaiyo-easy-charts' ); ?></legend>
 				<?php
-				$qaiyo_ec_check( 'animate', __( 'Animate when scrolled into view', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_check( 'hover_focus', __( 'Highlight the hovered bar', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_check( 'data_table', __( 'Add an accessible data table (screen readers, SEO, AI)', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'lazy', __( 'Lazy loading: draw the chart when it scrolls near', 'qaiyo-easy-charts' ) );
+				?>
+			</fieldset>
+
+			<fieldset class="qec-fieldset">
+				<legend><?php esc_html_e( 'Animation', 'qaiyo-easy-charts' ); ?></legend>
+				<?php
+				$qaiyo_ec_check( 'animate', __( 'Animate when scrolled into view', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_select(
+					'animation',
+					__( 'Effect', 'qaiyo-easy-charts' ),
+					array(
+						'grow' => __( 'Grow from the axis', 'qaiyo-easy-charts' ),
+						'fade' => __( 'Fade in', 'qaiyo-easy-charts' ),
+						'rise' => __( 'Rise into place', 'qaiyo-easy-charts' ),
+					)
+				);
+				$qaiyo_ec_select(
+					'easing',
+					__( 'Motion curve', 'qaiyo-easy-charts' ),
+					array(
+						'smooth' => __( 'Smooth', 'qaiyo-easy-charts' ),
+						'linear' => __( 'Even', 'qaiyo-easy-charts' ),
+						'spring' => __( 'Springy', 'qaiyo-easy-charts' ),
+					)
+				);
+				$qaiyo_ec_input( 'duration', __( 'Duration (ms)', 'qaiyo-easy-charts' ), 'number', '', '1100' );
+				$qaiyo_ec_input( 'stagger', __( 'Delay between bars (ms)', 'qaiyo-easy-charts' ), 'number', '', '140' );
+				$qaiyo_ec_check( 'count_up', __( 'Count the values up', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'replay', __( 'Replay every time the chart scrolls into view', 'qaiyo-easy-charts' ) );
 				?>
 			</fieldset>
 		</div>

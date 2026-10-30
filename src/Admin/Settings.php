@@ -34,6 +34,7 @@ final class Settings {
 	public static function defaults(): array {
 		return array(
 			'animate'             => true,
+			'lazy'                => true,
 			'hover_focus'         => true,
 			'data_table'          => true,
 			'delete_on_uninstall' => false,
@@ -71,7 +72,7 @@ final class Settings {
 		$defaults = self::defaults();
 		$clean    = array();
 
-		foreach ( array( 'animate', 'hover_focus', 'data_table', 'delete_on_uninstall' ) as $flag ) {
+		foreach ( array( 'animate', 'lazy', 'hover_focus', 'data_table', 'delete_on_uninstall' ) as $flag ) {
 			$clean[ $flag ] = array_key_exists( $flag, $input ) ? Cast::bool( $input[ $flag ] ) : ( empty( $input ) ? $defaults[ $flag ] : false );
 		}
 

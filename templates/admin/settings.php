@@ -17,6 +17,7 @@ $qaiyo_ec_option = Schema::OPTION_SETTINGS;
 
 $qaiyo_ec_flags = array(
 	'animate'     => __( 'Animate charts when they scroll into view', 'qaiyo-easy-charts' ),
+	'lazy'        => __( 'Lazy loading: draw charts when they scroll near', 'qaiyo-easy-charts' ),
 	'hover_focus' => __( 'Highlight the hovered bar', 'qaiyo-easy-charts' ),
 	'data_table'  => __( 'Add an accessible data table to every chart (screen readers, SEO, AI)', 'qaiyo-easy-charts' ),
 );

@@ -1,48 +1,41 @@
 /**
- * Qaiyo Easy Charts: entrance animations.
+ * Qaiyo Easy Charts — front-end behaviour.
  *
- * Charts render fully in HTML/CSS; this script only plays the reveal animation
- * when a chart scrolls into view and thins out colliding axis ticks. Without
- * it, charts are shown static.
+ * Charts render fully in HTML/CSS. This script only adds what needs a browser:
+ * lazy mounting near the viewport, the entrance animation (optionally replayed),
+ * counting values up, and thinning out colliding axis ticks. Without it, charts
+ * are shown static (lazy charts through their <noscript> copy).
  */
 ( function () {
 	'use strict';
 
 	var SELECTOR = '.qec-chart';
-	var observer = null;
+	var LAZY_MARGIN = '300px 0px';
 
-	function prefersReducedMotion() {
+	document.documentElement.classList.add( 'qec-js' );
+
+	function reducedMotion() {
 		return !! ( window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches );
 	}
 
-	function reveal( chart ) {
-		chart.classList.add( 'qec-in-view' );
+	function supportsObserver() {
+		return 'IntersectionObserver' in window;
 	}
 
-	function getObserver() {
-		if ( observer || ! ( 'IntersectionObserver' in window ) ) {
-			return observer;
+	/* Timing ---------------------------------------------------------------- */
+
+	function cssTime( chart, name, fallback ) {
+		var raw = window.getComputedStyle( chart ).getPropertyValue( name ).trim();
+		var value = parseFloat( raw );
+		if ( isNaN( value ) ) {
+			return fallback;
 		}
-
-		observer = new IntersectionObserver(
-			function ( entries ) {
-				entries.forEach( function ( entry ) {
-					if ( entry.isIntersecting ) {
-						reveal( entry.target );
-						observer.unobserve( entry.target );
-					}
-				} );
-			},
-			{ threshold: 0.2, rootMargin: '0px 0px -5% 0px' }
-		);
-
-		return observer;
+		return /ms$/.test( raw ) ? value : ( /s$/.test( raw ) ? value * 1000 : value );
 	}
 
-	/*
-	 * Hide intermediate axis ticks that would overlap their neighbours (e.g. "15"
-	 * colliding with "20 days" in a narrow column). First and last ticks stay.
-	 */
+	/* Axis ticks ------------------------------------------------------------- */
+
+	// Hide intermediate ticks that would overlap a neighbour; first and last stay.
 	function fitTicks( chart ) {
 		var ticks = Array.prototype.slice.call( chart.querySelectorAll( '.qec-axis .qec-tick' ) );
 		if ( ticks.length < 3 ) {
@@ -76,26 +69,201 @@
 		} );
 	} ) : null;
 
+	/* Count-up -------------------------------------------------------------- */
+
+	var NUMBER = /\d(?:[\d   .,]*\d)?/g;
+
+	// Write `value` into the digit positions of `token`, keeping its separators
+	// ("1 000", "3,5"), so the counting text always looks like the final one.
+	function maskFormat( token, value ) {
+		var fraction = token.match( /[.,](\d{1,2})$/ );
+		var digits = String( value );
+		var minimum = fraction ? fraction[ 1 ].length + 1 : 1;
+		while ( digits.length < minimum ) {
+			digits = '0' + digits;
+		}
+
+		var out = '';
+		var d = digits.length - 1;
+		for ( var i = token.length - 1; i >= 0 && d >= 0; i-- ) {
+			out = ( /\d/.test( token[ i ] ) ? digits[ d-- ] : token[ i ] ) + out;
+		}
+		return out;
+	}
+
+	function countUp( chart ) {
+		var duration = cssTime( chart, '--qec-duration', 1100 );
+		var stagger = cssTime( chart, '--qec-stagger', 140 );
+
+		chart.querySelectorAll( '.qec-value' ).forEach( function ( el, index ) {
+			var original = el.getAttribute( 'data-qec-text' );
+			if ( null === original ) {
+				original = el.textContent;
+				el.setAttribute( 'data-qec-text', original );
+			}
+
+			var tokens = original.match( NUMBER );
+			if ( ! tokens ) {
+				return;
+			}
+			var targets = tokens.map( function ( token ) {
+				return parseInt( token.replace( /\D/g, '' ), 10 );
+			} );
+
+			var row = el.closest( '.qec-row' );
+			var position = row ? parseInt( row.style.getPropertyValue( '--qec-i' ) || index, 10 ) : index;
+			var delay = position * stagger + duration * 0.6;
+			var length = duration * 0.8;
+			var start = null;
+
+			var render = function ( progress ) {
+				var n = 0;
+				el.textContent = original.replace( NUMBER, function ( token ) {
+					var target = targets[ n++ ];
+					return maskFormat( token, Math.round( target * progress ) );
+				} );
+			};
+
+			var step = function ( now ) {
+				if ( null === start ) {
+					start = now + delay;
+				}
+				var t = Math.min( 1, Math.max( 0, ( now - start ) / length ) );
+				render( 1 - Math.pow( 1 - t, 3 ) );
+				if ( t < 1 ) {
+					el.qecFrame = window.requestAnimationFrame( step );
+				} else {
+					el.textContent = original;
+				}
+			};
+
+			window.cancelAnimationFrame( el.qecFrame );
+			render( 0 );
+			el.qecFrame = window.requestAnimationFrame( step );
+		} );
+	}
+
+	function resetCount( chart ) {
+		chart.querySelectorAll( '.qec-value[data-qec-text]' ).forEach( function ( el ) {
+			window.cancelAnimationFrame( el.qecFrame );
+			el.textContent = el.getAttribute( 'data-qec-text' );
+		} );
+	}
+
+	/* Animation ------------------------------------------------------------- */
+
+	function show( chart ) {
+		chart.classList.add( 'qec-in-view' );
+		if ( chart.hasAttribute( 'data-qec-count' ) ) {
+			countUp( chart );
+		}
+	}
+
+	function hide( chart ) {
+		resetCount( chart );
+		chart.classList.remove( 'qec-in-view' );
+	}
+
+	var animationObserver = null;
+
+	function getAnimationObserver() {
+		if ( ! animationObserver && supportsObserver() ) {
+			animationObserver = new IntersectionObserver(
+				function ( entries ) {
+					entries.forEach( function ( entry ) {
+						var chart = entry.target;
+						var replay = chart.hasAttribute( 'data-qec-replay' );
+						if ( entry.isIntersecting ) {
+							show( chart );
+							if ( ! replay ) {
+								animationObserver.unobserve( chart );
+							}
+						} else if ( replay && chart.classList.contains( 'qec-in-view' ) ) {
+							hide( chart );
+						}
+					} );
+				},
+				{ threshold: 0.2 }
+			);
+		}
+		return animationObserver;
+	}
+
+	function activate( chart ) {
+		fitTicks( chart );
+		if ( resizeObserver ) {
+			resizeObserver.observe( chart );
+		}
+
+		var observer = getAnimationObserver();
+		if ( ! chart.hasAttribute( 'data-qec-animate' ) || ! observer || reducedMotion() ) {
+			return;
+		}
+
+		chart.classList.add( 'qec-armed' );
+		// Commit the start state before the reveal transition can begin.
+		void chart.offsetWidth;
+		observer.observe( chart );
+	}
+
+	/* Lazy loading ---------------------------------------------------------- */
+
+	function mount( chart ) {
+		var template = chart.querySelector( ':scope > template.qec-lazy-template' );
+		if ( ! template ) {
+			return;
+		}
+		var placeholder = chart.querySelector( ':scope > .qec-lazy-placeholder' );
+		var fragment = template.content.cloneNode( true );
+
+		if ( placeholder ) {
+			placeholder.replaceWith( fragment );
+		} else {
+			template.before( fragment );
+		}
+		template.remove();
+		chart.querySelectorAll( ':scope > noscript' ).forEach( function ( node ) {
+			node.remove();
+		} );
+	}
+
+	var lazyObserver = null;
+
+	function getLazyObserver() {
+		if ( ! lazyObserver && supportsObserver() ) {
+			lazyObserver = new IntersectionObserver(
+				function ( entries ) {
+					entries.forEach( function ( entry ) {
+						if ( entry.isIntersecting ) {
+							lazyObserver.unobserve( entry.target );
+							mount( entry.target );
+							activate( entry.target );
+						}
+					} );
+				},
+				{ rootMargin: LAZY_MARGIN }
+			);
+		}
+		return lazyObserver;
+	}
+
+	/* Setup ----------------------------------------------------------------- */
+
 	function setup( chart ) {
 		if ( chart.qecReady ) {
 			return;
 		}
 		chart.qecReady = true;
 
-		fitTicks( chart );
-		if ( resizeObserver ) {
-			resizeObserver.observe( chart );
+		if ( chart.hasAttribute( 'data-qec-lazy' ) ) {
+			var observer = getLazyObserver();
+			if ( observer ) {
+				observer.observe( chart );
+				return;
+			}
+			mount( chart );
 		}
-
-		var io = getObserver();
-		if ( ! chart.hasAttribute( 'data-qec-animate' ) || ! io || prefersReducedMotion() ) {
-			return;
-		}
-
-		chart.classList.add( 'qec-armed' );
-		// Commit the collapsed state before the reveal transition can start.
-		void chart.offsetWidth;
-		io.observe( chart );
+		activate( chart );
 	}
 
 	function init( context ) {
@@ -109,12 +277,13 @@
 		}
 	}
 
-	// Public: Called by Bricks after rendering the element in the builder, and usable by any code that inserts charts dynamically.
+	// Public: called by Bricks after rendering the element in the builder, and
+	// usable by any code that inserts charts dynamically.
 	window.qaiyoEasyChartsInit = function () {
 		init( document );
 	};
 
-	if ( document.readyState === 'loading' ) {
+	if ( 'loading' === document.readyState ) {
 		document.addEventListener( 'DOMContentLoaded', function () {
 			init( document );
 		} );

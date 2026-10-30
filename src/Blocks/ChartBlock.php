@@ -36,6 +36,13 @@ final class ChartBlock {
 		'showAxis'     => 'show_axis',
 		'showValues'   => 'show_values',
 		'animate'      => 'animate',
+		'animation'    => 'animation',
+		'easing'       => 'easing',
+		'duration'     => 'duration',
+		'stagger'      => 'stagger',
+		'countUp'      => 'count_up',
+		'replay'       => 'replay',
+		'lazy'         => 'lazy',
 		'hoverFocus'   => 'hover_focus',
 	);
 
@@ -170,6 +177,20 @@ final class ChartBlock {
 			'behaviour'     => __( 'Behaviour', 'qaiyo-easy-charts' ),
 			'animate'       => __( 'Animate when scrolled into view', 'qaiyo-easy-charts' ),
 			'hoverFocus'    => __( 'Highlight the hovered bar', 'qaiyo-easy-charts' ),
+			'animation'     => __( 'Animation', 'qaiyo-easy-charts' ),
+			'effect'        => __( 'Effect', 'qaiyo-easy-charts' ),
+			'grow'          => __( 'Grow from the axis', 'qaiyo-easy-charts' ),
+			'fade'          => __( 'Fade in', 'qaiyo-easy-charts' ),
+			'rise'          => __( 'Rise into place', 'qaiyo-easy-charts' ),
+			'easing'        => __( 'Motion curve', 'qaiyo-easy-charts' ),
+			'smooth'        => __( 'Smooth', 'qaiyo-easy-charts' ),
+			'linear'        => __( 'Even', 'qaiyo-easy-charts' ),
+			'spring'        => __( 'Springy', 'qaiyo-easy-charts' ),
+			'duration'      => __( 'Duration (ms)', 'qaiyo-easy-charts' ),
+			'stagger'       => __( 'Delay between bars (ms)', 'qaiyo-easy-charts' ),
+			'countUp'       => __( 'Count the values up', 'qaiyo-easy-charts' ),
+			'replay'        => __( 'Replay every time the chart scrolls into view', 'qaiyo-easy-charts' ),
+			'lazy'          => __( 'Lazy loading: draw the chart when it scrolls near', 'qaiyo-easy-charts' ),
 		);
 	}
 
@@ -210,6 +231,11 @@ final class ChartBlock {
 		$config = ChartConfig::sanitize( $config );
 		if ( array() === $config['items'] ) {
 			return '';
+		}
+
+		// The editor's server-side preview has no front-end script: draw it at once.
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+			$config['lazy'] = false;
 		}
 
 		return sprintf(

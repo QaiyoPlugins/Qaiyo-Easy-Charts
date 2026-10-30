@@ -111,16 +111,19 @@ final class SettingsPage {
 	 */
 	private static function shortcode_reference(): array {
 		$reference = array(
-			'id'                                      => __( 'ID of a saved chart. Any other attribute overrides its settings.', 'qaiyo-easy-charts' ),
-			'data'                                    => __( 'Inline bars: rows separated by "|", fields by ";" — label;value;range end;value text.', 'qaiyo-easy-charts' ),
-			'orientation'                             => 'horizontal | vertical | auto',
-			'title'                                   => __( 'Title (accessible name; shown with show_title="yes").', 'qaiyo-easy-charts' ),
-			'unit'                                    => __( 'Unit, e.g. days.', 'qaiyo-easy-charts' ),
-			'min / max / step'                        => __( 'Axis range and step. Empty max: automatic.', 'qaiyo-easy-charts' ),
-			'color / range_color / track_color'       => __( 'Colors, e.g. #0f0c24.', 'qaiyo-easy-charts' ),
-			'font'                                    => __( 'Font family, e.g. "DM Sans, sans-serif".', 'qaiyo-easy-charts' ),
-			'bar_size / height / radius'              => __( 'Bar thickness, column chart height, corner radius, e.g. 28px.', 'qaiyo-easy-charts' ),
-			'animate / hover / table / axis / values' => 'yes | no',
+			'id'                                => __( 'ID of a saved chart. Any other attribute overrides its settings.', 'qaiyo-easy-charts' ),
+			'data'                              => __( 'Inline bars: rows separated by "|", fields by ";" — label;value;range end;value text.', 'qaiyo-easy-charts' ),
+			'orientation'                       => 'horizontal | vertical | auto',
+			'title'                             => __( 'Title (accessible name; shown with show_title="yes").', 'qaiyo-easy-charts' ),
+			'unit'                              => __( 'Unit, e.g. days.', 'qaiyo-easy-charts' ),
+			'min / max / step'                  => __( 'Axis range and step. Empty max: automatic.', 'qaiyo-easy-charts' ),
+			'color / range_color / track_color' => __( 'Colors, e.g. #0f0c24.', 'qaiyo-easy-charts' ),
+			'font'                              => __( 'Font family, e.g. "DM Sans, sans-serif".', 'qaiyo-easy-charts' ),
+			'bar_size / height / radius'        => __( 'Bar thickness, column chart height, corner radius, e.g. 28px.', 'qaiyo-easy-charts' ),
+			'effect'                            => 'grow | fade | rise',
+			'easing'                            => 'smooth | linear | spring',
+			'duration / delay'                  => __( 'Animation length and delay between bars in milliseconds, e.g. 1100 and 140.', 'qaiyo-easy-charts' ),
+			'animate / replay / count / lazy / hover / table / axis / values' => 'yes | no',
 		);
 
 		// Keep the reference honest: every documented single attribute must exist.

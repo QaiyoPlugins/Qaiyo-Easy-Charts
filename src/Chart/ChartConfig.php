@@ -22,13 +22,19 @@ defined( 'ABSPATH' ) || exit;
  * Defaults, validation and parsing of chart configurations.
  *
  * @phpstan-type QecItem array{label: string, value: float, max: float|string, text: string, color: string, range_color: string}
- * @phpstan-type QecConfig array{orientation: string, items: list<QecItem>, title: string, description: string, show_caption: bool, scale_min: float, scale_max: float|string, step: float|string, unit: string, unit_position: string, show_axis: bool, show_values: bool, separator: string, prefix: string, suffix: string, layout: string, animate: bool, hover_focus: bool, data_table: bool, bar_color: string, range_color: string, track_color: string, label_color: string, value_color: string, axis_color: string, font_family: string, bar_size: string, chart_height: string, radius: string}
+ * @phpstan-type QecConfig array{orientation: string, items: list<QecItem>, title: string, description: string, show_caption: bool, scale_min: float, scale_max: float|string, step: float|string, unit: string, unit_position: string, show_axis: bool, show_values: bool, separator: string, prefix: string, suffix: string, layout: string, animate: bool, animation: string, duration: int, stagger: int, easing: string, replay: bool, count_up: bool, lazy: bool, hover_focus: bool, data_table: bool, bar_color: string, range_color: string, track_color: string, label_color: string, value_color: string, axis_color: string, font_family: string, bar_size: string, chart_height: string, radius: string}
  */
 final class ChartConfig {
 
 	const ORIENTATIONS   = array( 'horizontal', 'vertical', 'auto' );
 	const LAYOUTS        = array( 'auto', 'inline', 'stacked' );
 	const UNIT_POSITIONS = array( 'last', 'all', 'none' );
+	const ANIMATIONS     = array( 'grow', 'fade', 'rise' );
+	const EASINGS        = array( 'smooth', 'linear', 'spring' );
+
+	/** Animation timing bounds, in milliseconds. 0 = the stylesheet default. */
+	const MAX_DURATION = 5000;
+	const MAX_STAGGER  = 2000;
 
 	/** Hard cap on rows, so a single chart can never become unbounded work. */
 	const MAX_ITEMS = 100;
@@ -87,6 +93,13 @@ final class ChartConfig {
 			'suffix'        => '',
 			'layout'        => 'auto',
 			'animate'       => $settings['animate'],
+			'animation'     => 'grow',
+			'duration'      => 0,
+			'stagger'       => 0,
+			'easing'        => 'smooth',
+			'replay'        => false,
+			'count_up'      => true,
+			'lazy'          => $settings['lazy'],
 			'hover_focus'   => $settings['hover_focus'],
 			'data_table'    => $settings['data_table'],
 			'bar_color'     => '',
@@ -188,6 +201,13 @@ final class ChartConfig {
 			'suffix'        => self::text( $raw['suffix'], 40 ),
 			'layout'        => Cast::choice( $raw['layout'], self::LAYOUTS, 'auto' ),
 			'animate'       => Cast::bool( $raw['animate'] ),
+			'animation'     => Cast::choice( $raw['animation'], self::ANIMATIONS, 'grow' ),
+			'duration'      => self::milliseconds( $raw['duration'], self::MAX_DURATION ),
+			'stagger'       => self::milliseconds( $raw['stagger'], self::MAX_STAGGER ),
+			'easing'        => Cast::choice( $raw['easing'], self::EASINGS, 'smooth' ),
+			'replay'        => Cast::bool( $raw['replay'] ),
+			'count_up'      => Cast::bool( $raw['count_up'] ),
+			'lazy'          => Cast::bool( $raw['lazy'] ),
 			'hover_focus'   => Cast::bool( $raw['hover_focus'] ),
 			'data_table'    => Cast::bool( $raw['data_table'] ),
 			'bar_color'     => Css::color( $raw['bar_color'] ),
@@ -288,6 +308,17 @@ final class ChartConfig {
 	private static function number_or_empty( $value ) {
 		$number = Cast::number( $value );
 		return null === $number ? '' : $number;
+	}
+
+	/**
+	 * A whole number of milliseconds within 0..$max (0 = use the stylesheet default).
+	 *
+	 * @param mixed $value Any value, e.g. 800 or "800ms".
+	 * @param int   $max   Upper bound.
+	 */
+	private static function milliseconds( $value, int $max ): int {
+		$number = Cast::number( is_string( $value ) ? preg_replace( '/ms$/i', '', trim( $value ) ) : $value );
+		return null === $number ? 0 : (int) max( 0, min( $max, round( $number ) ) );
 	}
 
 	/**

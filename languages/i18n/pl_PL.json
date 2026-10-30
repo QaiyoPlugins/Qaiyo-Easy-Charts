@@ -200,5 +200,22 @@
 "block keyword\u0004graph": "diagram",
 "block keyword\u0004qaiyo": "qaiyo",
 "Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Domyślne zachowanie nowych wykresów. Kolory, czcionki i rozmiary ustawia się w każdym wykresie, bloku lub elemencie kreatora.",
-"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Te kolory należą tylko do tego wykresu. Pojedyncze słupki mogą mieć własne kolory w tabeli powyżej."
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Te kolory należą tylko do tego wykresu. Pojedyncze słupki mogą mieć własne kolory w tabeli powyżej.",
+"Animation is switched off for this chart.": "Animacja jest wyłączona dla tego wykresu.",
+"Animation length and delay between bars in milliseconds, e.g. 1100 and 140.": "Czas animacji i opóźnienie między słupkami w milisekundach, np. 1100 i 140.",
+"Effect": "Efekt",
+"Grow from the axis": "Wzrost od osi",
+"Fade in": "Pojawienie się",
+"Rise into place": "Wznoszenie na miejsce",
+"Motion curve": "Krzywa ruchu",
+"Smooth": "Płynna",
+"Even": "Równomierna",
+"Springy": "Sprężysta",
+"Count the values up": "Odliczanie wartości",
+"Replay every time the chart scrolls into view": "Odtwarzaj za każdym razem, gdy wykres pojawi się w widoku",
+"Lazy loading: draw the chart when it scrolls near": "Leniwe ładowanie: rysuj wykres, gdy przewijanie się zbliży",
+"Do not count the values up": "Nie odliczaj wartości",
+"Disable lazy loading": "Wyłącz leniwe ładowanie",
+"Play animation": "Odtwórz animację",
+"Lazy loading: draw charts when they scroll near": "Leniwe ładowanie: rysuj wykresy, gdy przewijanie się zbliży"
 }

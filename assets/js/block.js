@@ -216,8 +216,37 @@
 			panels.push(
 				el(
 					components.PanelBody,
-					{ key: 'behaviour', title: text( 'behaviour' ), initialOpen: false },
+					{ key: 'animation', title: text( 'animation' ), initialOpen: false },
 					el( components.ToggleControl, { label: text( 'animate' ), checked: a.animate, onChange: function ( v ) { set( { animate: v } ); } } ),
+					a.animate && el( components.SelectControl, {
+						label: text( 'effect' ),
+						value: a.animation,
+						options: [
+							{ value: 'grow', label: text( 'grow' ) },
+							{ value: 'fade', label: text( 'fade' ) },
+							{ value: 'rise', label: text( 'rise' ) }
+						],
+						onChange: function ( v ) { set( { animation: v } ); }
+					} ),
+					a.animate && el( components.SelectControl, {
+						label: text( 'easing' ),
+						value: a.easing,
+						options: [
+							{ value: 'smooth', label: text( 'smooth' ) },
+							{ value: 'linear', label: text( 'linear' ) },
+							{ value: 'spring', label: text( 'spring' ) }
+						],
+						onChange: function ( v ) { set( { easing: v } ); }
+					} ),
+					a.animate && el( components.TextControl, { label: text( 'duration' ), type: 'number', placeholder: '1100', value: a.duration, onChange: function ( v ) { set( { duration: v } ); } } ),
+					a.animate && el( components.TextControl, { label: text( 'stagger' ), type: 'number', placeholder: '140', value: a.stagger, onChange: function ( v ) { set( { stagger: v } ); } } ),
+					a.animate && el( components.ToggleControl, { label: text( 'countUp' ), checked: a.countUp, onChange: function ( v ) { set( { countUp: v } ); } } ),
+					a.animate && el( components.ToggleControl, { label: text( 'replay' ), checked: a.replay, onChange: function ( v ) { set( { replay: v } ); } } )
+				),
+				el(
+					components.PanelBody,
+					{ key: 'behaviour', title: text( 'behaviour' ), initialOpen: false },
+					el( components.ToggleControl, { label: text( 'lazy' ), checked: a.lazy, onChange: function ( v ) { set( { lazy: v } ); } } ),
 					el( components.ToggleControl, { label: text( 'hoverFocus' ), checked: a.hoverFocus, onChange: function ( v ) { set( { hoverFocus: v } ); } } )
 				)
 			);

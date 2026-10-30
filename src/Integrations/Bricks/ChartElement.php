@@ -321,6 +321,53 @@ class ChartElement extends \Bricks\Element {
 			'type'     => 'checkbox',
 			'required' => $inline,
 		);
+		$this->controls['animation']           = array(
+			'tab'         => 'content',
+			'group'       => 'values',
+			'label'       => esc_html__( 'Effect', 'qaiyo-easy-charts' ),
+			'type'        => 'select',
+			'options'     => array(
+				'grow' => esc_html__( 'Grow from the axis', 'qaiyo-easy-charts' ),
+				'fade' => esc_html__( 'Fade in', 'qaiyo-easy-charts' ),
+				'rise' => esc_html__( 'Rise into place', 'qaiyo-easy-charts' ),
+			),
+			'placeholder' => esc_html__( 'Grow from the axis', 'qaiyo-easy-charts' ),
+			'required'    => array( array( 'source', '!=', 'saved' ), array( 'disable_animation', '!=', true ) ),
+		);
+		$this->controls['easing']              = array(
+			'tab'         => 'content',
+			'group'       => 'values',
+			'label'       => esc_html__( 'Motion curve', 'qaiyo-easy-charts' ),
+			'type'        => 'select',
+			'options'     => array(
+				'smooth' => esc_html__( 'Smooth', 'qaiyo-easy-charts' ),
+				'linear' => esc_html__( 'Even', 'qaiyo-easy-charts' ),
+				'spring' => esc_html__( 'Springy', 'qaiyo-easy-charts' ),
+			),
+			'placeholder' => esc_html__( 'Smooth', 'qaiyo-easy-charts' ),
+			'required'    => array( array( 'source', '!=', 'saved' ), array( 'disable_animation', '!=', true ) ),
+		);
+		$this->controls['disable_count_up']    = array(
+			'tab'      => 'content',
+			'group'    => 'values',
+			'label'    => esc_html__( 'Do not count the values up', 'qaiyo-easy-charts' ),
+			'type'     => 'checkbox',
+			'required' => array( array( 'source', '!=', 'saved' ), array( 'disable_animation', '!=', true ) ),
+		);
+		$this->controls['replay']              = array(
+			'tab'      => 'content',
+			'group'    => 'values',
+			'label'    => esc_html__( 'Replay every time the chart scrolls into view', 'qaiyo-easy-charts' ),
+			'type'     => 'checkbox',
+			'required' => array( array( 'source', '!=', 'saved' ), array( 'disable_animation', '!=', true ) ),
+		);
+		$this->controls['disable_lazy']        = array(
+			'tab'      => 'content',
+			'group'    => 'values',
+			'label'    => esc_html__( 'Disable lazy loading', 'qaiyo-easy-charts' ),
+			'type'     => 'checkbox',
+			'required' => $inline,
+		);
 		$this->controls['disable_hover_focus'] = array(
 			'tab'      => 'content',
 			'group'    => 'values',
@@ -478,6 +525,11 @@ class ChartElement extends \Bricks\Element {
 				'prefix'        => $s['prefix'] ?? '',
 				'suffix'        => $s['suffix'] ?? '',
 				'animate'       => empty( $s['disable_animation'] ),
+				'animation'     => ! empty( $s['animation'] ) ? $s['animation'] : 'grow',
+				'easing'        => ! empty( $s['easing'] ) ? $s['easing'] : 'smooth',
+				'count_up'      => empty( $s['disable_count_up'] ),
+				'replay'        => ! empty( $s['replay'] ),
+				'lazy'          => empty( $s['disable_lazy'] ),
 				'hover_focus'   => empty( $s['disable_hover_focus'] ),
 				'data_table'    => empty( $s['disable_data_table'] ),
 			)
@@ -507,8 +559,12 @@ class ChartElement extends \Bricks\Element {
 		if ( '' !== $style ) {
 			$this->set_attribute( '_root', 'style', $style );
 		}
-		if ( $config['animate'] ) {
-			$this->set_attribute( '_root', 'data-qec-animate', '1' );
+		// In the Bricks builder the chart is drawn at once.
+		if ( function_exists( 'bricks_is_builder' ) && ( bricks_is_builder() || ( function_exists( 'bricks_is_builder_call' ) && bricks_is_builder_call() ) ) ) {
+			$config['lazy'] = false;
+		}
+		foreach ( Renderer::root_data( $config ) as $name => $value ) {
+			$this->set_attribute( '_root', $name, $value );
 		}
 		if ( ! $config['show_caption'] && '' !== $config['title'] ) {
 			$this->set_attribute( '_root', 'aria-label', $config['title'] );

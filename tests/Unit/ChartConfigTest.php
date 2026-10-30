@@ -88,4 +88,38 @@ final class ChartConfigTest extends TestCase {
 		}
 		$this->assertCount( 3, $demo['items'] );
 	}
+
+	public function test_animation_options_are_validated(): void {
+		$config = ChartConfig::sanitize(
+			array(
+				'animation' => 'explode',
+				'easing'    => 'bouncy',
+				'duration'  => '800ms',
+				'stagger'   => 99999,
+				'count_up'  => 'no',
+				'replay'    => 'yes',
+				'lazy'      => '0',
+			)
+		);
+
+		$this->assertSame( 'grow', $config['animation'] );
+		$this->assertSame( 'smooth', $config['easing'] );
+		$this->assertSame( 800, $config['duration'] );
+		$this->assertSame( ChartConfig::MAX_STAGGER, $config['stagger'] );
+		$this->assertFalse( $config['count_up'] );
+		$this->assertTrue( $config['replay'] );
+		$this->assertFalse( $config['lazy'] );
+	}
+
+	public function test_negative_or_invalid_timings_fall_back_to_default(): void {
+		$config = ChartConfig::sanitize(
+			array(
+				'duration' => -50,
+				'stagger'  => 'fast',
+			)
+		);
+
+		$this->assertSame( 0, $config['duration'] );
+		$this->assertSame( 0, $config['stagger'] );
+	}
 }

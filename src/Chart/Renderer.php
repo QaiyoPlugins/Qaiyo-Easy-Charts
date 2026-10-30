@@ -102,6 +102,8 @@ final class Renderer {
 					$config['hover_focus'] ? 'qec-hover-focus' : '',
 					$config['show_values'] ? '' : 'qec-no-values',
 					$config['show_axis'] ? '' : 'qec-no-axis',
+					$config['animate'] ? 'qec-anim-' . $config['animation'] : '',
+					$config['animate'] ? 'qec-ease-' . $config['easing'] : '',
 				)
 			)
 		);
@@ -118,7 +120,35 @@ final class Renderer {
 		foreach ( ChartConfig::STYLE_VARS as $key => $var ) {
 			$vars[ $var ] = (string) $config[ $key ];
 		}
+		$vars['--qec-duration'] = $config['duration'] > 0 ? $config['duration'] . 'ms' : '';
+		$vars['--qec-stagger']  = $config['stagger'] > 0 ? $config['stagger'] . 'ms' : '';
 		return Css::inline( $vars );
+	}
+
+	/**
+	 * Data attributes that switch on the front-end behaviour (animation,
+	 * replay, count-up, lazy loading), also used by builders that print
+	 * their own root element.
+	 *
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @return array<string,string>
+	 */
+	public static function root_data( array $config ): array {
+		$data = array();
+		if ( $config['animate'] ) {
+			$data['data-qec-animate'] = '1';
+			if ( $config['replay'] ) {
+				$data['data-qec-replay'] = '1';
+			}
+			if ( $config['count_up'] && $config['show_values'] ) {
+				$data['data-qec-count'] = '1';
+			}
+		}
+		if ( $config['lazy'] ) {
+			$data['data-qec-lazy'] = '1';
+		}
+		return $data;
 	}
 
 	/**
@@ -131,26 +161,29 @@ final class Renderer {
 		$scale = self::scale( $config );
 		$table = $config['data_table'] && array() !== $config['items'];
 
-		$html = self::caption( $config );
+		$visual = '';
 
 		// Columns show the unit as an axis title instead of on the top tick.
 		if ( $config['show_axis'] && '' !== $config['unit'] && 'none' !== $config['unit_position'] && 'horizontal' !== $config['orientation'] ) {
-			$html .= '<div class="qec-axis-title" aria-hidden="true">' . esc_html( $config['unit'] ) . '</div>';
+			$visual .= '<div class="qec-axis-title" aria-hidden="true">' . esc_html( $config['unit'] ) . '</div>';
 		}
 
-		$html .= $table
+		$visual .= $table
 			? '<div class="qec-grid" aria-hidden="true">'
 			: '<div class="qec-grid" role="list">';
 
 		foreach ( $config['items'] as $index => $item ) {
-			$html .= self::row( $config, $scale, $item, (int) $index, $table );
+			$visual .= self::row( $config, $scale, $item, (int) $index, $table );
 		}
 
 		if ( $config['show_axis'] ) {
-			$html .= self::axis( $config, $scale );
+			$visual .= self::axis( $config, $scale );
 		}
-		$html .= '</div>';
+		$visual .= '</div>';
 
+		$html = self::caption( $config ) . ( $config['lazy'] ? self::lazy( $config, $visual ) : $visual );
+
+		// The data table is never deferred: screen readers, search engines and AI read it at once.
 		if ( $table ) {
 			$html .= self::data_table( $config );
 		}
@@ -201,14 +234,31 @@ final class Renderer {
 		if ( '' !== $style ) {
 			$attributes .= sprintf( ' style="%s"', esc_attr( $style ) );
 		}
-		if ( $config['animate'] ) {
-			$attributes .= ' data-qec-animate';
+		foreach ( self::root_data( $config ) as $name => $value ) {
+			$attributes .= sprintf( ' %s="%s"', esc_attr( $name ), esc_attr( $value ) );
 		}
 		if ( ! $config['show_caption'] && '' !== $config['title'] ) {
 			$attributes .= sprintf( ' aria-label="%s"', esc_attr( $config['title'] ) );
 		}
 
 		return '<figure' . $attributes . '>' . self::inner( $config ) . '</figure>';
+	}
+
+	/**
+	 * Lazy loading: the drawn chart waits in a <template> and is mounted by
+	 * chart.js when it scrolls near the viewport. A placeholder of about the
+	 * same height keeps the layout stable; <noscript> keeps it visible without JS.
+	 *
+	 * @param array  $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @param string $visual Escaped chart markup.
+	 */
+	private static function lazy( array $config, string $visual ): string {
+		return sprintf(
+			'<div class="qec-lazy-placeholder" style="%1$s" aria-hidden="true"></div><template class="qec-lazy-template">%2$s</template><noscript>%2$s</noscript>',
+			esc_attr( '--qec-rows:' . count( $config['items'] ) ),
+			$visual
+		);
 	}
 
 	/**

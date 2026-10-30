@@ -14,7 +14,7 @@ msgstr ""
 msgid "Charts"
 msgstr "Grafici"
 
-#: build/qaiyo-easy-charts/src/Plugin.php:70 build/qaiyo-easy-charts/src/Admin/SettingsPage.php:69 build/qaiyo-easy-charts/templates/admin/chart-editor.php:195 src/Plugin.php:70 src/Admin/SettingsPage.php:69 templates/admin/chart-editor.php:195
+#: build/qaiyo-easy-charts/src/Plugin.php:70 build/qaiyo-easy-charts/src/Admin/SettingsPage.php:69 build/qaiyo-easy-charts/templates/admin/chart-editor.php:195 src/Plugin.php:70 src/Admin/SettingsPage.php:69 templates/admin/chart-editor.php:199
 msgid "Settings"
 msgstr "Impostazioni"
 
@@ -30,27 +30,27 @@ msgstr "Editor del grafico"
 msgid "Embed"
 msgstr "Incorpora"
 
-#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:187 src/Admin/ChartEditor.php:187
+#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:187 src/Admin/ChartEditor.php:189
 msgid "You are not allowed to edit this chart."
 msgstr "Non hai i permessi per modificare questo grafico."
 
-#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:240 src/Admin/ChartEditor.php:240
+#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:240 src/Admin/ChartEditor.php:245
 msgid "Bar added."
 msgstr "Barra aggiunta."
 
-#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:241 src/Admin/ChartEditor.php:241
+#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:241 src/Admin/ChartEditor.php:246
 msgid "Bar removed."
 msgstr "Barra rimossa."
 
-#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:242 src/Admin/ChartEditor.php:242
+#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:242 src/Admin/ChartEditor.php:247
 msgid "Bar moved."
 msgstr "Barra spostata."
 
-#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:243 src/Admin/ChartEditor.php:243
+#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:243 src/Admin/ChartEditor.php:248
 msgid "Copied to the clipboard."
 msgstr "Copiato negli appunti."
 
-#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:244 src/Admin/ChartEditor.php:244
+#: build/qaiyo-easy-charts/src/Admin/ChartEditor.php:244 src/Admin/ChartEditor.php:249
 msgid "The preview could not be refreshed."
 msgstr "Impossibile aggiornare l’anteprima."
 
@@ -90,7 +90,7 @@ msgstr "Strumenti wp-admin avanzati e miglioramenti del flusso di lavoro basati 
 msgid "Deeper performance diagnostics, more optimisation rules and one-click fixes."
 msgstr "Diagnostica delle prestazioni più approfondita, più regole di ottimizzazione e correzioni con un clic."
 
-#: build/qaiyo-easy-charts/src/Admin/PostType.php:49 build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:121 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:142 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:135 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:426 src/Admin/PostType.php:49 src/Blocks/ChartBlock.php:121 src/Integrations/Bricks/ChartElement.php:142 src/Integrations/Elementor/ChartWidget.php:135 src/Integrations/Elementor/ChartWidget.php:426
+#: build/qaiyo-easy-charts/src/Admin/PostType.php:49 build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:121 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:142 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:135 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:426 src/Admin/PostType.php:49 src/Blocks/ChartBlock.php:128 src/Integrations/Bricks/ChartElement.php:142 src/Integrations/Elementor/ChartWidget.php:135 src/Integrations/Elementor/ChartWidget.php:483
 msgid "Chart"
 msgstr "Grafico"
 
@@ -134,7 +134,7 @@ msgstr "Nessun grafico nel cestino."
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: build/qaiyo-easy-charts/src/Admin/PostType.php:99 build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:125 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:99 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:112 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:198 build/qaiyo-easy-charts/templates/admin/chart-editor.php:148 src/Admin/PostType.php:99 src/Blocks/ChartBlock.php:125 src/Integrations/Bricks/ChartElement.php:99 src/Integrations/Elementor/ChartWidget.php:112 src/Integrations/Elementor/ChartWidget.php:198 templates/admin/chart-editor.php:148
+#: build/qaiyo-easy-charts/src/Admin/PostType.php:99 build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:125 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:99 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:112 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:198 build/qaiyo-easy-charts/templates/admin/chart-editor.php:148 src/Admin/PostType.php:99 src/Blocks/ChartBlock.php:132 src/Integrations/Bricks/ChartElement.php:99 src/Integrations/Elementor/ChartWidget.php:112 src/Integrations/Elementor/ChartWidget.php:198 templates/admin/chart-editor.php:152
 msgid "Bars"
 msgstr "Barre"
 
@@ -154,7 +154,7 @@ msgstr "Grafico pubblicato."
 msgid "Chart draft updated."
 msgstr "Bozza del grafico aggiornata."
 
-#: build/qaiyo-easy-charts/src/Admin/SettingsPage.php:68 build/qaiyo-easy-charts/templates/admin/settings.php:34 src/Admin/SettingsPage.php:68 templates/admin/settings.php:34
+#: build/qaiyo-easy-charts/src/Admin/SettingsPage.php:68 build/qaiyo-easy-charts/templates/admin/settings.php:34 src/Admin/SettingsPage.php:68 templates/admin/settings.php:35
 msgid "Easy Charts settings"
 msgstr "Impostazioni di Easy Charts"
 
@@ -266,223 +266,223 @@ msgstr "Grafico non trovato."
 msgid "At least one bar with a label and a value is required."
 msgstr "È necessaria almeno una barra con etichetta e valore."
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:118 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:126 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:117 src/Blocks/ChartBlock.php:118 src/Integrations/Bricks/ChartElement.php:126 src/Integrations/Elementor/ChartWidget.php:117
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:118 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:126 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:117 src/Blocks/ChartBlock.php:125 src/Integrations/Bricks/ChartElement.php:126 src/Integrations/Elementor/ChartWidget.php:117
 msgid "Data source"
 msgstr "Origine dati"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:119 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:129 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:132 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:121 src/Blocks/ChartBlock.php:119 src/Integrations/Bricks/ChartElement.php:129 src/Integrations/Bricks/ChartElement.php:132 src/Integrations/Elementor/ChartWidget.php:121
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:119 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:129 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:132 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:121 src/Blocks/ChartBlock.php:126 src/Integrations/Bricks/ChartElement.php:129 src/Integrations/Bricks/ChartElement.php:132 src/Integrations/Elementor/ChartWidget.php:121
 msgid "Enter bars here"
 msgstr "Inserisci qui le barre"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:120 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:130 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:122 src/Blocks/ChartBlock.php:120 src/Integrations/Bricks/ChartElement.php:130 src/Integrations/Elementor/ChartWidget.php:122
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:120 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:130 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:122 src/Blocks/ChartBlock.php:127 src/Integrations/Bricks/ChartElement.php:130 src/Integrations/Elementor/ChartWidget.php:122
 msgid "Saved chart"
 msgstr "Grafico salvato"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:122 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:145 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:127 src/Blocks/ChartBlock.php:122 src/Integrations/Bricks/ChartElement.php:145 src/Integrations/Elementor/ChartWidget.php:127
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:122 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:145 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:127 src/Blocks/ChartBlock.php:129 src/Integrations/Bricks/ChartElement.php:145 src/Integrations/Elementor/ChartWidget.php:127
 msgid "— Select a chart —"
 msgstr "— Seleziona un grafico —"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:123 src/Blocks/ChartBlock.php:123
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:123 src/Blocks/ChartBlock.php:130
 msgid "Manage charts"
 msgstr "Gestisci grafici"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:124 src/Blocks/ChartBlock.php:124
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:124 src/Blocks/ChartBlock.php:131
 msgid "Select a saved chart in the block settings."
 msgstr "Seleziona un grafico salvato nelle impostazioni del blocco."
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:126 src/Blocks/ChartBlock.php:126
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:126 src/Blocks/ChartBlock.php:133
 msgid "Bar"
 msgstr "Barra"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:127 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:157 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:147 build/qaiyo-easy-charts/templates/admin/chart-editor.php:41 build/qaiyo-easy-charts/templates/admin/chart-editor.php:42 build/qaiyo-easy-charts/templates/admin/chart-editor.php:155 src/Blocks/ChartBlock.php:127 src/Integrations/Bricks/ChartElement.php:157 src/Integrations/Elementor/ChartWidget.php:147 templates/admin/chart-editor.php:41 templates/admin/chart-editor.php:42 templates/admin/chart-editor.php:155
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:127 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:157 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:147 build/qaiyo-easy-charts/templates/admin/chart-editor.php:41 build/qaiyo-easy-charts/templates/admin/chart-editor.php:42 build/qaiyo-easy-charts/templates/admin/chart-editor.php:155 src/Blocks/ChartBlock.php:134 src/Integrations/Bricks/ChartElement.php:157 src/Integrations/Elementor/ChartWidget.php:147 templates/admin/chart-editor.php:41 templates/admin/chart-editor.php:42 templates/admin/chart-editor.php:159
 msgid "Label"
 msgstr "Etichetta"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:128 build/qaiyo-easy-charts/src/Chart/Renderer.php:328 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:161 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:156 build/qaiyo-easy-charts/templates/admin/chart-editor.php:44 build/qaiyo-easy-charts/templates/admin/chart-editor.php:45 build/qaiyo-easy-charts/templates/admin/chart-editor.php:156 src/Blocks/ChartBlock.php:128 src/Chart/Renderer.php:328 src/Integrations/Bricks/ChartElement.php:161 src/Integrations/Elementor/ChartWidget.php:156 templates/admin/chart-editor.php:44 templates/admin/chart-editor.php:45 templates/admin/chart-editor.php:156
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:128 build/qaiyo-easy-charts/src/Chart/Renderer.php:328 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:161 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:156 build/qaiyo-easy-charts/templates/admin/chart-editor.php:44 build/qaiyo-easy-charts/templates/admin/chart-editor.php:45 build/qaiyo-easy-charts/templates/admin/chart-editor.php:156 src/Blocks/ChartBlock.php:135 src/Chart/Renderer.php:378 src/Integrations/Bricks/ChartElement.php:161 src/Integrations/Elementor/ChartWidget.php:156 templates/admin/chart-editor.php:44 templates/admin/chart-editor.php:45 templates/admin/chart-editor.php:160
 msgid "Value"
 msgstr "Valore"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:129 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:165 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:164 build/qaiyo-easy-charts/templates/admin/chart-editor.php:47 build/qaiyo-easy-charts/templates/admin/chart-editor.php:48 build/qaiyo-easy-charts/templates/admin/chart-editor.php:157 src/Blocks/ChartBlock.php:129 src/Integrations/Bricks/ChartElement.php:165 src/Integrations/Elementor/ChartWidget.php:164 templates/admin/chart-editor.php:47 templates/admin/chart-editor.php:48 templates/admin/chart-editor.php:157
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:129 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:165 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:164 build/qaiyo-easy-charts/templates/admin/chart-editor.php:47 build/qaiyo-easy-charts/templates/admin/chart-editor.php:48 build/qaiyo-easy-charts/templates/admin/chart-editor.php:157 src/Blocks/ChartBlock.php:136 src/Integrations/Bricks/ChartElement.php:165 src/Integrations/Elementor/ChartWidget.php:164 templates/admin/chart-editor.php:47 templates/admin/chart-editor.php:48 templates/admin/chart-editor.php:161
 msgid "Range end"
 msgstr "Fine intervallo"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:130 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:170 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:173 build/qaiyo-easy-charts/templates/admin/chart-editor.php:50 build/qaiyo-easy-charts/templates/admin/chart-editor.php:51 build/qaiyo-easy-charts/templates/admin/chart-editor.php:158 src/Blocks/ChartBlock.php:130 src/Integrations/Bricks/ChartElement.php:170 src/Integrations/Elementor/ChartWidget.php:173 templates/admin/chart-editor.php:50 templates/admin/chart-editor.php:51 templates/admin/chart-editor.php:158
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:130 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:170 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:173 build/qaiyo-easy-charts/templates/admin/chart-editor.php:50 build/qaiyo-easy-charts/templates/admin/chart-editor.php:51 build/qaiyo-easy-charts/templates/admin/chart-editor.php:158 src/Blocks/ChartBlock.php:137 src/Integrations/Bricks/ChartElement.php:170 src/Integrations/Elementor/ChartWidget.php:173 templates/admin/chart-editor.php:50 templates/admin/chart-editor.php:51 templates/admin/chart-editor.php:162
 msgid "Value text"
 msgstr "Testo del valore"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:131 build/qaiyo-easy-charts/templates/admin/chart-editor.php:188 src/Blocks/ChartBlock.php:131 templates/admin/chart-editor.php:188
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:131 build/qaiyo-easy-charts/templates/admin/chart-editor.php:188 src/Blocks/ChartBlock.php:138 templates/admin/chart-editor.php:192
 msgid "Add bar"
 msgstr "Aggiungi barra"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:132 build/qaiyo-easy-charts/templates/admin/chart-editor.php:62 src/Blocks/ChartBlock.php:132 templates/admin/chart-editor.php:62
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:132 build/qaiyo-easy-charts/templates/admin/chart-editor.php:62 src/Blocks/ChartBlock.php:139 templates/admin/chart-editor.php:62
 msgid "Remove bar"
 msgstr "Rimuovi barra"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:133 build/qaiyo-easy-charts/templates/admin/chart-editor.php:60 src/Blocks/ChartBlock.php:133 templates/admin/chart-editor.php:60
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:133 build/qaiyo-easy-charts/templates/admin/chart-editor.php:60 src/Blocks/ChartBlock.php:140 templates/admin/chart-editor.php:60
 msgid "Move bar up"
 msgstr "Sposta barra in alto"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:134 build/qaiyo-easy-charts/templates/admin/chart-editor.php:61 src/Blocks/ChartBlock.php:134 templates/admin/chart-editor.php:61
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:134 build/qaiyo-easy-charts/templates/admin/chart-editor.php:61 src/Blocks/ChartBlock.php:141 templates/admin/chart-editor.php:61
 msgid "Move bar down"
 msgstr "Sposta barra in basso"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:135 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:100 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:213 build/qaiyo-easy-charts/templates/admin/chart-editor.php:200 src/Blocks/ChartBlock.php:135 src/Integrations/Bricks/ChartElement.php:100 src/Integrations/Elementor/ChartWidget.php:213 templates/admin/chart-editor.php:200
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:135 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:100 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:213 build/qaiyo-easy-charts/templates/admin/chart-editor.php:200 src/Blocks/ChartBlock.php:142 src/Integrations/Bricks/ChartElement.php:100 src/Integrations/Elementor/ChartWidget.php:213 templates/admin/chart-editor.php:204
 msgid "Layout"
 msgstr "Layout"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:136 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:190 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:221 build/qaiyo-easy-charts/templates/admin/chart-editor.php:204 src/Blocks/ChartBlock.php:136 src/Integrations/Bricks/ChartElement.php:190 src/Integrations/Elementor/ChartWidget.php:221 templates/admin/chart-editor.php:204
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:136 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:190 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:221 build/qaiyo-easy-charts/templates/admin/chart-editor.php:204 src/Blocks/ChartBlock.php:143 src/Integrations/Bricks/ChartElement.php:190 src/Integrations/Elementor/ChartWidget.php:221 templates/admin/chart-editor.php:208
 msgid "Orientation"
 msgstr "Orientamento"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:137 src/Blocks/ChartBlock.php:137
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:137 src/Blocks/ChartBlock.php:144
 msgid "Default (from settings)"
 msgstr "Predefinito (dalle impostazioni)"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:138 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:193 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:197 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:225 build/qaiyo-easy-charts/templates/admin/chart-editor.php:206 src/Blocks/ChartBlock.php:138 src/Integrations/Bricks/ChartElement.php:193 src/Integrations/Bricks/ChartElement.php:197 src/Integrations/Elementor/ChartWidget.php:225 templates/admin/chart-editor.php:206
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:138 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:193 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:197 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:225 build/qaiyo-easy-charts/templates/admin/chart-editor.php:206 src/Blocks/ChartBlock.php:145 src/Integrations/Bricks/ChartElement.php:193 src/Integrations/Bricks/ChartElement.php:197 src/Integrations/Elementor/ChartWidget.php:225 templates/admin/chart-editor.php:210
 msgid "Horizontal bars"
 msgstr "Barre orizzontali"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:139 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:194 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:226 build/qaiyo-easy-charts/templates/admin/chart-editor.php:207 src/Blocks/ChartBlock.php:139 src/Integrations/Bricks/ChartElement.php:194 src/Integrations/Elementor/ChartWidget.php:226 templates/admin/chart-editor.php:207
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:139 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:194 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:226 build/qaiyo-easy-charts/templates/admin/chart-editor.php:207 src/Blocks/ChartBlock.php:146 src/Integrations/Bricks/ChartElement.php:194 src/Integrations/Elementor/ChartWidget.php:226 templates/admin/chart-editor.php:211
 msgid "Vertical columns"
 msgstr "Colonne verticali"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:140 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:195 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:227 build/qaiyo-easy-charts/templates/admin/chart-editor.php:208 src/Blocks/ChartBlock.php:140 src/Integrations/Bricks/ChartElement.php:195 src/Integrations/Elementor/ChartWidget.php:227 templates/admin/chart-editor.php:208
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:140 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:195 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:227 build/qaiyo-easy-charts/templates/admin/chart-editor.php:208 src/Blocks/ChartBlock.php:147 src/Integrations/Bricks/ChartElement.php:195 src/Integrations/Elementor/ChartWidget.php:227 templates/admin/chart-editor.php:212
 msgid "Columns, bars on narrow screens"
 msgstr "Colonne, barre sugli schermi stretti"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:141 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:203 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:235 build/qaiyo-easy-charts/templates/admin/chart-editor.php:213 src/Blocks/ChartBlock.php:141 src/Integrations/Bricks/ChartElement.php:203 src/Integrations/Elementor/ChartWidget.php:235 templates/admin/chart-editor.php:213
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:141 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:203 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:235 build/qaiyo-easy-charts/templates/admin/chart-editor.php:213 src/Blocks/ChartBlock.php:148 src/Integrations/Bricks/ChartElement.php:203 src/Integrations/Elementor/ChartWidget.php:235 templates/admin/chart-editor.php:217
 msgid "Labels of horizontal bars"
 msgstr "Etichette delle barre orizzontali"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:142 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:206 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:210 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:239 build/qaiyo-easy-charts/templates/admin/chart-editor.php:215 src/Blocks/ChartBlock.php:142 src/Integrations/Bricks/ChartElement.php:206 src/Integrations/Bricks/ChartElement.php:210 src/Integrations/Elementor/ChartWidget.php:239 templates/admin/chart-editor.php:215
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:142 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:206 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:210 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:239 build/qaiyo-easy-charts/templates/admin/chart-editor.php:215 src/Blocks/ChartBlock.php:149 src/Integrations/Bricks/ChartElement.php:206 src/Integrations/Bricks/ChartElement.php:210 src/Integrations/Elementor/ChartWidget.php:239 templates/admin/chart-editor.php:219
 msgid "Auto (stack when narrow)"
 msgstr "Automatico (impila se stretto)"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:143 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:207 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:240 build/qaiyo-easy-charts/templates/admin/chart-editor.php:216 src/Blocks/ChartBlock.php:143 src/Integrations/Bricks/ChartElement.php:207 src/Integrations/Elementor/ChartWidget.php:240 templates/admin/chart-editor.php:216
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:143 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:207 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:240 build/qaiyo-easy-charts/templates/admin/chart-editor.php:216 src/Blocks/ChartBlock.php:150 src/Integrations/Bricks/ChartElement.php:207 src/Integrations/Elementor/ChartWidget.php:240 templates/admin/chart-editor.php:220
 msgid "Always in one row"
 msgstr "Sempre su una riga"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:144 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:208 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:241 build/qaiyo-easy-charts/templates/admin/chart-editor.php:217 src/Blocks/ChartBlock.php:144 src/Integrations/Bricks/ChartElement.php:208 src/Integrations/Elementor/ChartWidget.php:241 templates/admin/chart-editor.php:217
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:144 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:208 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:241 build/qaiyo-easy-charts/templates/admin/chart-editor.php:217 src/Blocks/ChartBlock.php:151 src/Integrations/Bricks/ChartElement.php:208 src/Integrations/Elementor/ChartWidget.php:241 templates/admin/chart-editor.php:221
 msgid "Always above the bar"
 msgstr "Sempre sopra la barra"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:145 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:216 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:373 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:250 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:458 build/qaiyo-easy-charts/templates/admin/chart-editor.php:220 src/Blocks/ChartBlock.php:145 src/Integrations/Bricks/ChartElement.php:216 src/Integrations/Bricks/ChartElement.php:373 src/Integrations/Elementor/ChartWidget.php:250 src/Integrations/Elementor/ChartWidget.php:458 templates/admin/chart-editor.php:220
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:145 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:216 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:373 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:250 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:458 build/qaiyo-easy-charts/templates/admin/chart-editor.php:220 src/Blocks/ChartBlock.php:152 src/Integrations/Bricks/ChartElement.php:216 src/Integrations/Bricks/ChartElement.php:420 src/Integrations/Elementor/ChartWidget.php:250 src/Integrations/Elementor/ChartWidget.php:515 templates/admin/chart-editor.php:224
 msgid "Title"
 msgstr "Titolo"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:146 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:224 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:261 build/qaiyo-easy-charts/templates/admin/chart-editor.php:221 build/qaiyo-easy-charts/templates/admin/settings.php:91 src/Blocks/ChartBlock.php:146 src/Integrations/Bricks/ChartElement.php:224 src/Integrations/Elementor/ChartWidget.php:261 templates/admin/chart-editor.php:221 templates/admin/settings.php:91
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:146 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:224 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:261 build/qaiyo-easy-charts/templates/admin/chart-editor.php:221 build/qaiyo-easy-charts/templates/admin/settings.php:91 src/Blocks/ChartBlock.php:153 src/Integrations/Bricks/ChartElement.php:224 src/Integrations/Elementor/ChartWidget.php:261 templates/admin/chart-editor.php:225 templates/admin/settings.php:92
 msgid "Description"
 msgstr "Descrizione"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:147 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:231 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:271 build/qaiyo-easy-charts/templates/admin/chart-editor.php:222 src/Blocks/ChartBlock.php:147 src/Integrations/Bricks/ChartElement.php:231 src/Integrations/Elementor/ChartWidget.php:271 templates/admin/chart-editor.php:222
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:147 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:231 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:271 build/qaiyo-easy-charts/templates/admin/chart-editor.php:222 src/Blocks/ChartBlock.php:154 src/Integrations/Bricks/ChartElement.php:231 src/Integrations/Elementor/ChartWidget.php:271 templates/admin/chart-editor.php:226
 msgid "Show title and description above the chart"
 msgstr "Mostra titolo e descrizione sopra il grafico"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:148 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:101 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:283 build/qaiyo-easy-charts/templates/admin/chart-editor.php:227 src/Blocks/ChartBlock.php:148 src/Integrations/Bricks/ChartElement.php:101 src/Integrations/Elementor/ChartWidget.php:283 templates/admin/chart-editor.php:227
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:148 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:101 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:283 build/qaiyo-easy-charts/templates/admin/chart-editor.php:227 src/Blocks/ChartBlock.php:155 src/Integrations/Bricks/ChartElement.php:101 src/Integrations/Elementor/ChartWidget.php:283 templates/admin/chart-editor.php:231
 msgid "Scale & axis"
 msgstr "Scala e asse"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:149 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:273 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:325 build/qaiyo-easy-charts/templates/admin/chart-editor.php:232 src/Blocks/ChartBlock.php:149 src/Integrations/Bricks/ChartElement.php:273 src/Integrations/Elementor/ChartWidget.php:325 templates/admin/chart-editor.php:232
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:149 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:273 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:325 build/qaiyo-easy-charts/templates/admin/chart-editor.php:232 src/Blocks/ChartBlock.php:156 src/Integrations/Bricks/ChartElement.php:273 src/Integrations/Elementor/ChartWidget.php:325 templates/admin/chart-editor.php:236
 msgid "Unit"
 msgstr "Unità"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:150 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:281 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:333 build/qaiyo-easy-charts/templates/admin/chart-editor.php:235 src/Blocks/ChartBlock.php:150 src/Integrations/Bricks/ChartElement.php:281 src/Integrations/Elementor/ChartWidget.php:333 templates/admin/chart-editor.php:235
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:150 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:281 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:333 build/qaiyo-easy-charts/templates/admin/chart-editor.php:235 src/Blocks/ChartBlock.php:157 src/Integrations/Bricks/ChartElement.php:281 src/Integrations/Elementor/ChartWidget.php:333 templates/admin/chart-editor.php:239
 msgid "Show unit on"
 msgstr "Mostra l’unità su"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:151 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:284 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:288 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:337 build/qaiyo-easy-charts/templates/admin/chart-editor.php:237 src/Blocks/ChartBlock.php:151 src/Integrations/Bricks/ChartElement.php:284 src/Integrations/Bricks/ChartElement.php:288 src/Integrations/Elementor/ChartWidget.php:337 templates/admin/chart-editor.php:237
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:151 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:284 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:288 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:337 build/qaiyo-easy-charts/templates/admin/chart-editor.php:237 src/Blocks/ChartBlock.php:158 src/Integrations/Bricks/ChartElement.php:284 src/Integrations/Bricks/ChartElement.php:288 src/Integrations/Elementor/ChartWidget.php:337 templates/admin/chart-editor.php:241
 msgid "Last tick"
 msgstr "Ultima tacca"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:152 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:285 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:338 build/qaiyo-easy-charts/templates/admin/chart-editor.php:238 src/Blocks/ChartBlock.php:152 src/Integrations/Bricks/ChartElement.php:285 src/Integrations/Elementor/ChartWidget.php:338 templates/admin/chart-editor.php:238
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:152 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:285 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:338 build/qaiyo-easy-charts/templates/admin/chart-editor.php:238 src/Blocks/ChartBlock.php:159 src/Integrations/Bricks/ChartElement.php:285 src/Integrations/Elementor/ChartWidget.php:338 templates/admin/chart-editor.php:242
 msgid "Every tick"
 msgstr "Ogni tacca"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:153 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:286 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:339 build/qaiyo-easy-charts/templates/admin/chart-editor.php:239 src/Blocks/ChartBlock.php:153 src/Integrations/Bricks/ChartElement.php:286 src/Integrations/Elementor/ChartWidget.php:339 templates/admin/chart-editor.php:239
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:153 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:286 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:339 build/qaiyo-easy-charts/templates/admin/chart-editor.php:239 src/Blocks/ChartBlock.php:160 src/Integrations/Bricks/ChartElement.php:286 src/Integrations/Elementor/ChartWidget.php:339 templates/admin/chart-editor.php:243
 msgid "Hidden"
 msgstr "Nascosta"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:154 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:248 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:299 build/qaiyo-easy-charts/templates/admin/chart-editor.php:230 src/Blocks/ChartBlock.php:154 src/Integrations/Bricks/ChartElement.php:248 src/Integrations/Elementor/ChartWidget.php:299 templates/admin/chart-editor.php:230
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:154 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:248 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:299 build/qaiyo-easy-charts/templates/admin/chart-editor.php:230 src/Blocks/ChartBlock.php:161 src/Integrations/Bricks/ChartElement.php:248 src/Integrations/Elementor/ChartWidget.php:299 templates/admin/chart-editor.php:234
 msgid "Maximum"
 msgstr "Massimo"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:155 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:251 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:300 build/qaiyo-easy-charts/templates/admin/chart-editor.php:230 src/Blocks/ChartBlock.php:155 src/Integrations/Bricks/ChartElement.php:251 src/Integrations/Elementor/ChartWidget.php:300 templates/admin/chart-editor.php:230
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:155 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:251 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:300 build/qaiyo-easy-charts/templates/admin/chart-editor.php:230 src/Blocks/ChartBlock.php:162 src/Integrations/Bricks/ChartElement.php:251 src/Integrations/Elementor/ChartWidget.php:300 templates/admin/chart-editor.php:234
 msgid "Leave empty to calculate from the data."
 msgstr "Lascia vuoto per calcolarlo dai dati."
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:156 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:257 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:307 build/qaiyo-easy-charts/templates/admin/chart-editor.php:231 src/Blocks/ChartBlock.php:156 src/Integrations/Bricks/ChartElement.php:257 src/Integrations/Elementor/ChartWidget.php:307 templates/admin/chart-editor.php:231
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:156 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:257 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:307 build/qaiyo-easy-charts/templates/admin/chart-editor.php:231 src/Blocks/ChartBlock.php:163 src/Integrations/Bricks/ChartElement.php:257 src/Integrations/Elementor/ChartWidget.php:307 templates/admin/chart-editor.php:235
 msgid "Axis step"
 msgstr "Passo dell’asse"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:157 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:316 build/qaiyo-easy-charts/templates/admin/chart-editor.php:242 src/Blocks/ChartBlock.php:157 src/Integrations/Elementor/ChartWidget.php:316 templates/admin/chart-editor.php:242
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:157 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:316 build/qaiyo-easy-charts/templates/admin/chart-editor.php:242 src/Blocks/ChartBlock.php:164 src/Integrations/Elementor/ChartWidget.php:316 templates/admin/chart-editor.php:246
 msgid "Show axis"
 msgstr "Mostra asse"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:158 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:358 build/qaiyo-easy-charts/templates/admin/chart-editor.php:249 src/Blocks/ChartBlock.php:158 src/Integrations/Elementor/ChartWidget.php:358 templates/admin/chart-editor.php:249
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:158 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:358 build/qaiyo-easy-charts/templates/admin/chart-editor.php:249 src/Blocks/ChartBlock.php:165 src/Integrations/Elementor/ChartWidget.php:358 templates/admin/chart-editor.php:253
 msgid "Show values"
 msgstr "Mostra valori"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:159 build/qaiyo-easy-charts/templates/admin/chart-editor.php:257 src/Blocks/ChartBlock.php:159 templates/admin/chart-editor.php:257
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:159 build/qaiyo-easy-charts/templates/admin/chart-editor.php:257 src/Blocks/ChartBlock.php:166 templates/admin/chart-editor.php:261
 msgid "Colors"
 msgstr "Colori"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:160 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:175 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:340 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:182 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:440 build/qaiyo-easy-charts/templates/admin/chart-editor.php:53 build/qaiyo-easy-charts/templates/admin/chart-editor.php:54 build/qaiyo-easy-charts/templates/admin/chart-editor.php:159 build/qaiyo-easy-charts/templates/admin/chart-editor.php:260 src/Blocks/ChartBlock.php:160 src/Integrations/Bricks/ChartElement.php:175 src/Integrations/Bricks/ChartElement.php:340 src/Integrations/Elementor/ChartWidget.php:182 src/Integrations/Elementor/ChartWidget.php:440 templates/admin/chart-editor.php:53 templates/admin/chart-editor.php:54 templates/admin/chart-editor.php:159 templates/admin/chart-editor.php:260
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:160 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:175 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:340 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:182 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:440 build/qaiyo-easy-charts/templates/admin/chart-editor.php:53 build/qaiyo-easy-charts/templates/admin/chart-editor.php:54 build/qaiyo-easy-charts/templates/admin/chart-editor.php:159 build/qaiyo-easy-charts/templates/admin/chart-editor.php:260 src/Blocks/ChartBlock.php:167 src/Integrations/Bricks/ChartElement.php:175 src/Integrations/Bricks/ChartElement.php:387 src/Integrations/Elementor/ChartWidget.php:182 src/Integrations/Elementor/ChartWidget.php:497 templates/admin/chart-editor.php:53 templates/admin/chart-editor.php:54 templates/admin/chart-editor.php:163 templates/admin/chart-editor.php:264
 msgid "Bar color"
 msgstr "Colore della barra"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:161 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:179 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:341 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:190 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:441 build/qaiyo-easy-charts/templates/admin/chart-editor.php:56 build/qaiyo-easy-charts/templates/admin/chart-editor.php:57 build/qaiyo-easy-charts/templates/admin/chart-editor.php:160 build/qaiyo-easy-charts/templates/admin/chart-editor.php:261 src/Blocks/ChartBlock.php:161 src/Integrations/Bricks/ChartElement.php:179 src/Integrations/Bricks/ChartElement.php:341 src/Integrations/Elementor/ChartWidget.php:190 src/Integrations/Elementor/ChartWidget.php:441 templates/admin/chart-editor.php:56 templates/admin/chart-editor.php:57 templates/admin/chart-editor.php:160 templates/admin/chart-editor.php:261
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:161 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:179 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:341 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:190 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:441 build/qaiyo-easy-charts/templates/admin/chart-editor.php:56 build/qaiyo-easy-charts/templates/admin/chart-editor.php:57 build/qaiyo-easy-charts/templates/admin/chart-editor.php:160 build/qaiyo-easy-charts/templates/admin/chart-editor.php:261 src/Blocks/ChartBlock.php:168 src/Integrations/Bricks/ChartElement.php:179 src/Integrations/Bricks/ChartElement.php:388 src/Integrations/Elementor/ChartWidget.php:190 src/Integrations/Elementor/ChartWidget.php:498 templates/admin/chart-editor.php:56 templates/admin/chart-editor.php:57 templates/admin/chart-editor.php:164 templates/admin/chart-editor.php:265
 msgid "Range color"
 msgstr "Colore dell’intervallo"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:162 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:342 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:442 build/qaiyo-easy-charts/templates/admin/chart-editor.php:262 src/Blocks/ChartBlock.php:162 src/Integrations/Bricks/ChartElement.php:342 src/Integrations/Elementor/ChartWidget.php:442 templates/admin/chart-editor.php:262
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:162 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:342 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:442 build/qaiyo-easy-charts/templates/admin/chart-editor.php:262 src/Blocks/ChartBlock.php:169 src/Integrations/Bricks/ChartElement.php:389 src/Integrations/Elementor/ChartWidget.php:499 templates/admin/chart-editor.php:266
 msgid "Track color"
 msgstr "Colore dello sfondo barra"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:163 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:343 build/qaiyo-easy-charts/templates/admin/chart-editor.php:263 src/Blocks/ChartBlock.php:163 src/Integrations/Bricks/ChartElement.php:343 templates/admin/chart-editor.php:263
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:163 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:343 build/qaiyo-easy-charts/templates/admin/chart-editor.php:263 src/Blocks/ChartBlock.php:170 src/Integrations/Bricks/ChartElement.php:390 templates/admin/chart-editor.php:267
 msgid "Label color"
 msgstr "Colore delle etichette"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:164 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:344 build/qaiyo-easy-charts/templates/admin/chart-editor.php:264 src/Blocks/ChartBlock.php:164 src/Integrations/Bricks/ChartElement.php:344 templates/admin/chart-editor.php:264
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:164 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:344 build/qaiyo-easy-charts/templates/admin/chart-editor.php:264 src/Blocks/ChartBlock.php:171 src/Integrations/Bricks/ChartElement.php:391 templates/admin/chart-editor.php:268
 msgid "Value color"
 msgstr "Colore dei valori"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:165 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:345 build/qaiyo-easy-charts/templates/admin/chart-editor.php:265 src/Blocks/ChartBlock.php:165 src/Integrations/Bricks/ChartElement.php:345 templates/admin/chart-editor.php:265
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:165 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:345 build/qaiyo-easy-charts/templates/admin/chart-editor.php:265 src/Blocks/ChartBlock.php:172 src/Integrations/Bricks/ChartElement.php:392 templates/admin/chart-editor.php:269
 msgid "Axis color"
 msgstr "Colore dell’asse"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:166 src/Blocks/ChartBlock.php:166
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:166 src/Blocks/ChartBlock.php:173
 msgid "Size"
 msgstr "Dimensione"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:167 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:347 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:444 build/qaiyo-easy-charts/templates/admin/chart-editor.php:273 src/Blocks/ChartBlock.php:167 src/Integrations/Bricks/ChartElement.php:347 src/Integrations/Elementor/ChartWidget.php:444 templates/admin/chart-editor.php:273
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:167 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:347 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:444 build/qaiyo-easy-charts/templates/admin/chart-editor.php:273 src/Blocks/ChartBlock.php:174 src/Integrations/Bricks/ChartElement.php:394 src/Integrations/Elementor/ChartWidget.php:501 templates/admin/chart-editor.php:277
 msgid "Bar thickness"
 msgstr "Spessore della barra"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:168 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:348 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:445 build/qaiyo-easy-charts/templates/admin/chart-editor.php:274 src/Blocks/ChartBlock.php:168 src/Integrations/Bricks/ChartElement.php:348 src/Integrations/Elementor/ChartWidget.php:445 templates/admin/chart-editor.php:274
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:168 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:348 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:445 build/qaiyo-easy-charts/templates/admin/chart-editor.php:274 src/Blocks/ChartBlock.php:175 src/Integrations/Bricks/ChartElement.php:395 src/Integrations/Elementor/ChartWidget.php:502 templates/admin/chart-editor.php:278
 msgid "Column chart height"
 msgstr "Altezza del grafico a colonne"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:169 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:349 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:446 build/qaiyo-easy-charts/templates/admin/chart-editor.php:275 src/Blocks/ChartBlock.php:169 src/Integrations/Bricks/ChartElement.php:349 src/Integrations/Elementor/ChartWidget.php:446 templates/admin/chart-editor.php:275
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:169 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:349 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:446 build/qaiyo-easy-charts/templates/admin/chart-editor.php:275 src/Blocks/ChartBlock.php:176 src/Integrations/Bricks/ChartElement.php:396 src/Integrations/Elementor/ChartWidget.php:503 templates/admin/chart-editor.php:279
 msgid "Corner radius"
 msgstr "Raggio degli angoli"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:170 src/Blocks/ChartBlock.php:170
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:170 src/Blocks/ChartBlock.php:177
 msgid "Behaviour"
 msgstr "Comportamento"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:171 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:389 build/qaiyo-easy-charts/templates/admin/chart-editor.php:282 src/Blocks/ChartBlock.php:171 src/Integrations/Elementor/ChartWidget.php:389 templates/admin/chart-editor.php:282
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:171 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:389 build/qaiyo-easy-charts/templates/admin/chart-editor.php:282 src/Blocks/ChartBlock.php:178 src/Integrations/Elementor/ChartWidget.php:389 templates/admin/chart-editor.php:295
 msgid "Animate when scrolled into view"
 msgstr "Anima quando appare scorrendo"
 
-#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:172 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:399 build/qaiyo-easy-charts/templates/admin/chart-editor.php:283 build/qaiyo-easy-charts/templates/admin/settings.php:20 src/Blocks/ChartBlock.php:172 src/Integrations/Elementor/ChartWidget.php:399 templates/admin/chart-editor.php:283 templates/admin/settings.php:20
+#: build/qaiyo-easy-charts/src/Blocks/ChartBlock.php:172 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:399 build/qaiyo-easy-charts/templates/admin/chart-editor.php:283 build/qaiyo-easy-charts/templates/admin/settings.php:20 src/Blocks/ChartBlock.php:179 src/Integrations/Elementor/ChartWidget.php:456 templates/admin/chart-editor.php:286 templates/admin/settings.php:21
 msgid "Highlight the hovered bar"
 msgstr "Evidenzia la barra sotto il cursore"
 
-#: build/qaiyo-easy-charts/src/Chart/Renderer.php:324 src/Chart/Renderer.php:324
+#: build/qaiyo-easy-charts/src/Chart/Renderer.php:324 src/Chart/Renderer.php:374
 msgid "Chart data"
 msgstr "Dati del grafico"
 
-#: build/qaiyo-easy-charts/src/Chart/Renderer.php:328 src/Chart/Renderer.php:328
+#: build/qaiyo-easy-charts/src/Chart/Renderer.php:328 src/Chart/Renderer.php:378
 msgid "Item"
 msgstr "Voce"
 
@@ -518,11 +518,11 @@ msgstr "Facoltativo. Sostituisce il testo automatico, ad es. \"fino a 5\"."
 msgid "Used as the accessible name of the chart."
 msgstr "Usato come nome accessibile del grafico."
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:240 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:291 build/qaiyo-easy-charts/templates/admin/chart-editor.php:229 src/Integrations/Bricks/ChartElement.php:240 src/Integrations/Elementor/ChartWidget.php:291 templates/admin/chart-editor.php:229
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:240 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:291 build/qaiyo-easy-charts/templates/admin/chart-editor.php:229 src/Integrations/Bricks/ChartElement.php:240 src/Integrations/Elementor/ChartWidget.php:291 templates/admin/chart-editor.php:233
 msgid "Minimum"
 msgstr "Minimo"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:250 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:352 build/qaiyo-easy-charts/templates/admin/chart-editor.php:230 src/Integrations/Bricks/ChartElement.php:250 src/Integrations/Bricks/ChartElement.php:352 templates/admin/chart-editor.php:230
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:250 build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:352 build/qaiyo-easy-charts/templates/admin/chart-editor.php:230 src/Integrations/Bricks/ChartElement.php:250 src/Integrations/Bricks/ChartElement.php:399 templates/admin/chart-editor.php:234
 msgid "Auto"
 msgstr "Automatico"
 
@@ -534,15 +534,15 @@ msgstr "Nascondi asse"
 msgid "Hide values"
 msgstr "Nascondi valori"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:302 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:367 build/qaiyo-easy-charts/templates/admin/chart-editor.php:250 src/Integrations/Bricks/ChartElement.php:302 src/Integrations/Elementor/ChartWidget.php:367 templates/admin/chart-editor.php:250
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:302 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:367 build/qaiyo-easy-charts/templates/admin/chart-editor.php:250 src/Integrations/Bricks/ChartElement.php:302 src/Integrations/Elementor/ChartWidget.php:367 templates/admin/chart-editor.php:254
 msgid "Range separator"
 msgstr "Separatore dell’intervallo"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:303 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:375 build/qaiyo-easy-charts/templates/admin/chart-editor.php:251 src/Integrations/Bricks/ChartElement.php:303 src/Integrations/Elementor/ChartWidget.php:375 templates/admin/chart-editor.php:251
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:303 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:375 build/qaiyo-easy-charts/templates/admin/chart-editor.php:251 src/Integrations/Bricks/ChartElement.php:303 src/Integrations/Elementor/ChartWidget.php:375 templates/admin/chart-editor.php:255
 msgid "Prefix"
 msgstr "Prefisso"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:304 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:382 build/qaiyo-easy-charts/templates/admin/chart-editor.php:252 src/Integrations/Bricks/ChartElement.php:304 src/Integrations/Elementor/ChartWidget.php:382 templates/admin/chart-editor.php:252
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:304 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:382 build/qaiyo-easy-charts/templates/admin/chart-editor.php:252 src/Integrations/Bricks/ChartElement.php:304 src/Integrations/Elementor/ChartWidget.php:382 templates/admin/chart-editor.php:256
 msgid "Suffix"
 msgstr "Suffisso"
 
@@ -550,79 +550,79 @@ msgstr "Suffisso"
 msgid "Disable scroll animation"
 msgstr "Disattiva animazione allo scorrimento"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:327 src/Integrations/Bricks/ChartElement.php:327
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:327 src/Integrations/Bricks/ChartElement.php:374
 msgid "Disable bar highlight on hover"
 msgstr "Disattiva evidenziazione al passaggio del cursore"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:334 src/Integrations/Bricks/ChartElement.php:334
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:334 src/Integrations/Bricks/ChartElement.php:381
 msgid "Disable the accessible data table"
 msgstr "Disattiva la tabella dati accessibile"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:350 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:447 src/Integrations/Bricks/ChartElement.php:350 src/Integrations/Elementor/ChartWidget.php:447
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:350 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:447 src/Integrations/Bricks/ChartElement.php:397 src/Integrations/Elementor/ChartWidget.php:504
 msgid "Space between bars"
 msgstr "Spazio tra le barre"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:351 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:448 src/Integrations/Bricks/ChartElement.php:351 src/Integrations/Elementor/ChartWidget.php:448
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:351 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:448 src/Integrations/Bricks/ChartElement.php:398 src/Integrations/Elementor/ChartWidget.php:505
 msgid "Space between columns"
 msgstr "Spazio tra le colonne"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:352 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:479 src/Integrations/Bricks/ChartElement.php:352 src/Integrations/Elementor/ChartWidget.php:479
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:352 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:479 src/Integrations/Bricks/ChartElement.php:399 src/Integrations/Elementor/ChartWidget.php:536
 msgid "Label column width"
 msgstr "Larghezza colonna etichette"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:353 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:480 src/Integrations/Bricks/ChartElement.php:353 src/Integrations/Elementor/ChartWidget.php:480
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:353 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:480 src/Integrations/Bricks/ChartElement.php:400 src/Integrations/Elementor/ChartWidget.php:537
 msgid "Space before bar"
 msgstr "Spazio prima della barra"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:354 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:483 src/Integrations/Bricks/ChartElement.php:354 src/Integrations/Elementor/ChartWidget.php:483
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:354 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:483 src/Integrations/Bricks/ChartElement.php:401 src/Integrations/Elementor/ChartWidget.php:540
 msgid "Space after bar"
 msgstr "Spazio dopo la barra"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:359 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:502 src/Integrations/Bricks/ChartElement.php:359 src/Integrations/Elementor/ChartWidget.php:502
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:359 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:502 src/Blocks/ChartBlock.php:189 src/Integrations/Bricks/ChartElement.php:406 src/Integrations/Elementor/ChartWidget.php:559 templates/admin/chart-editor.php:314
 msgid "Duration (ms)"
 msgstr "Durata (ms)"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:369 src/Integrations/Bricks/ChartElement.php:369
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:369 src/Integrations/Bricks/ChartElement.php:416
 msgid "Chart font"
 msgstr "Carattere del grafico"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:370 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:455 src/Integrations/Bricks/ChartElement.php:370 src/Integrations/Elementor/ChartWidget.php:455
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:370 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:455 src/Integrations/Bricks/ChartElement.php:417 src/Integrations/Elementor/ChartWidget.php:512
 msgid "Labels"
 msgstr "Etichette"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:371 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:456 build/qaiyo-easy-charts/templates/admin/chart-editor.php:247 src/Integrations/Bricks/ChartElement.php:371 src/Integrations/Elementor/ChartWidget.php:456 templates/admin/chart-editor.php:247
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:371 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:456 build/qaiyo-easy-charts/templates/admin/chart-editor.php:247 src/Integrations/Bricks/ChartElement.php:418 src/Integrations/Elementor/ChartWidget.php:513 templates/admin/chart-editor.php:251
 msgid "Values"
 msgstr "Valori"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:372 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:457 src/Integrations/Bricks/ChartElement.php:372 src/Integrations/Elementor/ChartWidget.php:457
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:372 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:457 src/Integrations/Bricks/ChartElement.php:419 src/Integrations/Elementor/ChartWidget.php:514
 msgid "Axis"
 msgstr "Asse"
 
-#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:498 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:667 src/Integrations/Bricks/ChartElement.php:498 src/Integrations/Elementor/ChartWidget.php:667
+#: build/qaiyo-easy-charts/src/Integrations/Bricks/ChartElement.php:498 build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:667 src/Integrations/Bricks/ChartElement.php:550 src/Integrations/Elementor/ChartWidget.php:729
 msgid "Select a saved chart or add at least one bar."
 msgstr "Seleziona un grafico salvato o aggiungi almeno una barra."
 
-#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:408 build/qaiyo-easy-charts/templates/admin/chart-editor.php:284 src/Integrations/Elementor/ChartWidget.php:408 templates/admin/chart-editor.php:284
+#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:408 build/qaiyo-easy-charts/templates/admin/chart-editor.php:284 src/Integrations/Elementor/ChartWidget.php:465 templates/admin/chart-editor.php:287
 msgid "Add an accessible data table (screen readers, SEO, AI)"
 msgstr "Aggiungi una tabella dati accessibile (screen reader, SEO, IA)"
 
-#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:435 src/Integrations/Elementor/ChartWidget.php:435
+#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:435 src/Integrations/Elementor/ChartWidget.php:492
 msgid "Font"
 msgstr "Carattere"
 
-#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:469 src/Integrations/Elementor/ChartWidget.php:469
+#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:469 src/Integrations/Elementor/ChartWidget.php:526
 msgid "Color"
 msgstr "Colore"
 
-#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:486 src/Integrations/Elementor/ChartWidget.php:486
+#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:486 src/Integrations/Elementor/ChartWidget.php:543
 msgid "Space above axis"
 msgstr "Spazio sopra l’asse"
 
-#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:495 src/Integrations/Elementor/ChartWidget.php:495
+#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:495 src/Blocks/ChartBlock.php:180 src/Integrations/Elementor/ChartWidget.php:552 templates/admin/chart-editor.php:293
 msgid "Animation"
 msgstr "Animazione"
 
-#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:518 src/Integrations/Elementor/ChartWidget.php:518
+#: build/qaiyo-easy-charts/src/Integrations/Elementor/ChartWidget.php:518 src/Blocks/ChartBlock.php:190 src/Integrations/Elementor/ChartWidget.php:575 templates/admin/chart-editor.php:315
 msgid "Delay between bars (ms)"
 msgstr "Ritardo tra le barre (ms)"
 
@@ -630,55 +630,55 @@ msgstr "Ritardo tra le barre (ms)"
 msgid "Automatic"
 msgstr "Automatico"
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:131 templates/admin/chart-editor.php:131
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:131 templates/admin/chart-editor.php:134
 msgid "Live preview"
 msgstr "Anteprima dal vivo"
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:133 templates/admin/chart-editor.php:133
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:133 templates/admin/chart-editor.php:137
 msgid "Preview width"
 msgstr "Larghezza anteprima"
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:134 templates/admin/chart-editor.php:134
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:134 templates/admin/chart-editor.php:138
 msgid "Desktop"
 msgstr "Desktop"
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:135 templates/admin/chart-editor.php:135
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:135 templates/admin/chart-editor.php:139
 msgid "Mobile"
 msgstr "Mobile"
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:150 templates/admin/chart-editor.php:150
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:150 templates/admin/chart-editor.php:154
 msgid "Value is where the solid bar ends. Range end is optional: it adds a highlighted range after the value (e.g. 10–15). Value text replaces the automatic text, e.g. \"up to 5\"."
 msgstr "Il valore indica dove termina la barra piena. La fine intervallo è facoltativa: aggiunge un intervallo evidenziato dopo il valore (ad es. 10–15). Il testo del valore sostituisce quello automatico, ad es. \"fino a 5\"."
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:161 templates/admin/chart-editor.php:161
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:161 templates/admin/chart-editor.php:165
 msgid "Actions"
 msgstr "Azioni"
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:220 templates/admin/chart-editor.php:220
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:220 templates/admin/chart-editor.php:224
 msgid "Defaults to the chart name. Used as the accessible name of the chart."
 msgstr "Per impostazione predefinita è il nome del grafico. Usato come nome accessibile del grafico."
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:232 templates/admin/chart-editor.php:232
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:232 templates/admin/chart-editor.php:236
 msgid "e.g. days"
 msgstr "ad es. giorni"
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:258 templates/admin/chart-editor.php:258
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:258 templates/admin/chart-editor.php:262
 msgid "These colors belong to this chart only. Single bars can have their own colors in the table above."
 msgstr "Questi colori appartengono solo a questo grafico. Le singole barre possono avere colori propri nella tabella sopra."
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:270 templates/admin/chart-editor.php:270
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:270 templates/admin/chart-editor.php:274
 msgid "Typography & size"
 msgstr "Tipografia e dimensioni"
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:272 templates/admin/chart-editor.php:272
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:272 templates/admin/chart-editor.php:276
 msgid "Font family"
 msgstr "Famiglia di caratteri"
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:272 templates/admin/chart-editor.php:272
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:272 templates/admin/chart-editor.php:276
 msgid "Empty: the font of your theme or builder."
 msgstr "Vuoto: il carattere del tuo tema o builder."
 
-#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:280 build/qaiyo-easy-charts/templates/admin/settings.php:51 build/qaiyo-easy-charts/templates/admin/settings.php:54 templates/admin/chart-editor.php:280 templates/admin/settings.php:51 templates/admin/settings.php:54
+#: build/qaiyo-easy-charts/templates/admin/chart-editor.php:280 build/qaiyo-easy-charts/templates/admin/settings.php:51 build/qaiyo-easy-charts/templates/admin/settings.php:54 templates/admin/chart-editor.php:284 templates/admin/settings.php:52 templates/admin/settings.php:55
 msgid "Behaviour & accessibility"
 msgstr "Comportamento e accessibilità"
 
@@ -702,7 +702,7 @@ msgstr "aggiungi il blocco \"Qaiyo Easy Chart\" e scegli questo grafico."
 msgid "add the \"Qaiyo Easy Chart\" element, then choose \"Saved chart\" as the source."
 msgstr "aggiungi l’elemento \"Qaiyo Easy Chart\" e scegli \"Grafico salvato\" come origine."
 
-#: build/qaiyo-easy-charts/templates/admin/editor-intro.php:16 build/qaiyo-easy-charts/templates/admin/settings.php:28 templates/admin/editor-intro.php:16 templates/admin/settings.php:28
+#: build/qaiyo-easy-charts/templates/admin/editor-intro.php:16 build/qaiyo-easy-charts/templates/admin/settings.php:28 templates/admin/editor-intro.php:16 templates/admin/settings.php:29
 msgid "Hi, %s!"
 msgstr "Ciao, %s!"
 
@@ -758,37 +758,105 @@ msgstr "I plugin gratuiti provengono da WordPress.org. Questa pagina non invia r
 msgid "Animate charts when they scroll into view"
 msgstr "Anima i grafici quando appaiono scorrendo"
 
-#: build/qaiyo-easy-charts/templates/admin/settings.php:21 templates/admin/settings.php:21
+#: build/qaiyo-easy-charts/templates/admin/settings.php:21 templates/admin/settings.php:22
 msgid "Add an accessible data table to every chart (screen readers, SEO, AI)"
 msgstr "Aggiungi una tabella dati accessibile a ogni grafico (screen reader, SEO, IA)"
 
-#: build/qaiyo-easy-charts/templates/admin/settings.php:37 templates/admin/settings.php:37
+#: build/qaiyo-easy-charts/templates/admin/settings.php:37 templates/admin/settings.php:38
 msgid "Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element."
 msgstr "Comportamento predefinito dei nuovi grafici. Colori, caratteri e dimensioni si impostano in ogni grafico, blocco o elemento del builder."
 
-#: build/qaiyo-easy-charts/templates/admin/settings.php:47 templates/admin/settings.php:47
+#: build/qaiyo-easy-charts/templates/admin/settings.php:47 templates/admin/settings.php:48
 msgid "Defaults for new charts"
 msgstr "Valori predefiniti per i nuovi grafici"
 
-#: build/qaiyo-easy-charts/templates/admin/settings.php:65 templates/admin/settings.php:65
+#: build/qaiyo-easy-charts/templates/admin/settings.php:65 templates/admin/settings.php:66
 msgid "Uninstall"
 msgstr "Disinstallazione"
 
-#: build/qaiyo-easy-charts/templates/admin/settings.php:69 templates/admin/settings.php:69
+#: build/qaiyo-easy-charts/templates/admin/settings.php:69 templates/admin/settings.php:70
 msgid "Delete all charts and settings when the plugin is deleted"
 msgstr "Elimina tutti i grafici e le impostazioni quando il plugin viene eliminato"
 
-#: build/qaiyo-easy-charts/templates/admin/settings.php:71 templates/admin/settings.php:71
+#: build/qaiyo-easy-charts/templates/admin/settings.php:71 templates/admin/settings.php:72
 msgid "Off by default, so reinstalling keeps your charts."
 msgstr "Disattivato per impostazione predefinita, così reinstallando i grafici restano."
 
-#: build/qaiyo-easy-charts/templates/admin/settings.php:83 templates/admin/settings.php:83
+#: build/qaiyo-easy-charts/templates/admin/settings.php:83 templates/admin/settings.php:84
 msgid "Shortcode reference"
 msgstr "Riferimento dello shortcode"
 
-#: build/qaiyo-easy-charts/templates/admin/settings.php:90 templates/admin/settings.php:90
+#: build/qaiyo-easy-charts/templates/admin/settings.php:90 templates/admin/settings.php:91
 msgid "Attribute"
 msgstr "Attributo"
+
+#: src/Admin/ChartEditor.php:250
+msgid "Animation is switched off for this chart."
+msgstr "L’animazione è disattivata per questo grafico."
+
+#: src/Admin/SettingsPage.php:125
+msgid "Animation length and delay between bars in milliseconds, e.g. 1100 and 140."
+msgstr "Durata dell’animazione e ritardo tra le barre in millisecondi, ad es. 1100 e 140."
+
+#: src/Blocks/ChartBlock.php:181 src/Integrations/Bricks/ChartElement.php:327 src/Integrations/Elementor/ChartWidget.php:399 templates/admin/chart-editor.php:298
+msgid "Effect"
+msgstr "Effetto"
+
+#: src/Blocks/ChartBlock.php:182 src/Integrations/Bricks/ChartElement.php:330 src/Integrations/Bricks/ChartElement.php:334 src/Integrations/Elementor/ChartWidget.php:403 templates/admin/chart-editor.php:300
+msgid "Grow from the axis"
+msgstr "Crescita dall’asse"
+
+#: src/Blocks/ChartBlock.php:183 src/Integrations/Bricks/ChartElement.php:331 src/Integrations/Elementor/ChartWidget.php:404 templates/admin/chart-editor.php:301
+msgid "Fade in"
+msgstr "Dissolvenza"
+
+#: src/Blocks/ChartBlock.php:184 src/Integrations/Bricks/ChartElement.php:332 src/Integrations/Elementor/ChartWidget.php:405 templates/admin/chart-editor.php:302
+msgid "Rise into place"
+msgstr "Salita in posizione"
+
+#: src/Blocks/ChartBlock.php:185 src/Integrations/Bricks/ChartElement.php:340 src/Integrations/Elementor/ChartWidget.php:413 templates/admin/chart-editor.php:307
+msgid "Motion curve"
+msgstr "Curva di movimento"
+
+#: src/Blocks/ChartBlock.php:186 src/Integrations/Bricks/ChartElement.php:343 src/Integrations/Bricks/ChartElement.php:347 src/Integrations/Elementor/ChartWidget.php:417 templates/admin/chart-editor.php:309
+msgid "Smooth"
+msgstr "Morbida"
+
+#: src/Blocks/ChartBlock.php:187 src/Integrations/Bricks/ChartElement.php:344 src/Integrations/Elementor/ChartWidget.php:418 templates/admin/chart-editor.php:310
+msgid "Even"
+msgstr "Uniforme"
+
+#: src/Blocks/ChartBlock.php:188 src/Integrations/Bricks/ChartElement.php:345 src/Integrations/Elementor/ChartWidget.php:419 templates/admin/chart-editor.php:311
+msgid "Springy"
+msgstr "Elastica"
+
+#: src/Blocks/ChartBlock.php:191 src/Integrations/Elementor/ChartWidget.php:427 templates/admin/chart-editor.php:316
+msgid "Count the values up"
+msgstr "Conteggio dei valori"
+
+#: src/Blocks/ChartBlock.php:192 src/Integrations/Bricks/ChartElement.php:360 src/Integrations/Elementor/ChartWidget.php:437 templates/admin/chart-editor.php:317
+msgid "Replay every time the chart scrolls into view"
+msgstr "Ripeti ogni volta che il grafico entra nella vista"
+
+#: src/Blocks/ChartBlock.php:193 src/Integrations/Elementor/ChartWidget.php:446 templates/admin/chart-editor.php:288
+msgid "Lazy loading: draw the chart when it scrolls near"
+msgstr "Caricamento differito: disegna il grafico quando ci si avvicina scorrendo"
+
+#: src/Integrations/Bricks/ChartElement.php:353
+msgid "Do not count the values up"
+msgstr "Non contare i valori"
+
+#: src/Integrations/Bricks/ChartElement.php:367
+msgid "Disable lazy loading"
+msgstr "Disattiva il caricamento differito"
+
+#: templates/admin/chart-editor.php:136
+msgid "Play animation"
+msgstr "Riproduci animazione"
+
+#: templates/admin/settings.php:20
+msgid "Lazy loading: draw charts when they scroll near"
+msgstr "Caricamento differito: disegna i grafici quando ci si avvicina scorrendo"
 
 #: blocks/chart/block.json
 msgctxt "block title"

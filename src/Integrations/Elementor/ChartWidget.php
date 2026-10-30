@@ -394,6 +394,63 @@ class ChartWidget extends Widget_Base {
 			)
 		);
 		$this->add_control(
+			'animation',
+			array(
+				'label'     => esc_html__( 'Effect', 'qaiyo-easy-charts' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'grow',
+				'options'   => array(
+					'grow' => esc_html__( 'Grow from the axis', 'qaiyo-easy-charts' ),
+					'fade' => esc_html__( 'Fade in', 'qaiyo-easy-charts' ),
+					'rise' => esc_html__( 'Rise into place', 'qaiyo-easy-charts' ),
+				),
+				'condition' => array( 'animate' => 'yes' ),
+			)
+		);
+		$this->add_control(
+			'easing',
+			array(
+				'label'     => esc_html__( 'Motion curve', 'qaiyo-easy-charts' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'smooth',
+				'options'   => array(
+					'smooth' => esc_html__( 'Smooth', 'qaiyo-easy-charts' ),
+					'linear' => esc_html__( 'Even', 'qaiyo-easy-charts' ),
+					'spring' => esc_html__( 'Springy', 'qaiyo-easy-charts' ),
+				),
+				'condition' => array( 'animate' => 'yes' ),
+			)
+		);
+		$this->add_control(
+			'count_up',
+			array(
+				'label'        => esc_html__( 'Count the values up', 'qaiyo-easy-charts' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
+				'condition'    => array( 'animate' => 'yes' ),
+			)
+		);
+		$this->add_control(
+			'replay',
+			array(
+				'label'        => esc_html__( 'Replay every time the chart scrolls into view', 'qaiyo-easy-charts' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'condition'    => array( 'animate' => 'yes' ),
+			)
+		);
+		$this->add_control(
+			'lazy',
+			array(
+				'label'        => esc_html__( 'Lazy loading: draw the chart when it scrolls near', 'qaiyo-easy-charts' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
+				'separator'    => 'before',
+			)
+		);
+		$this->add_control(
 			'hover_focus',
 			array(
 				'label'        => esc_html__( 'Highlight the hovered bar', 'qaiyo-easy-charts' ),
@@ -649,6 +706,11 @@ class ChartWidget extends Widget_Base {
 				'prefix'        => $s['prefix'] ?? '',
 				'suffix'        => $s['suffix'] ?? '',
 				'animate'       => $yes( $s['animate'] ?? '' ),
+				'animation'     => $s['animation'] ?? 'grow',
+				'easing'        => $s['easing'] ?? 'smooth',
+				'count_up'      => $yes( $s['count_up'] ?? '' ),
+				'replay'        => $yes( $s['replay'] ?? '' ),
+				'lazy'          => $yes( $s['lazy'] ?? '' ),
 				'hover_focus'   => $yes( $s['hover_focus'] ?? '' ),
 				'data_table'    => $yes( $s['data_table'] ?? '' ),
 			)
@@ -667,6 +729,11 @@ class ChartWidget extends Widget_Base {
 				echo '<p>' . esc_html__( 'Select a saved chart or add at least one bar.', 'qaiyo-easy-charts' ) . '</p>';
 			}
 			return;
+		}
+
+		// In the Elementor editor the chart is drawn at once.
+		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+			$config['lazy'] = false;
 		}
 
 		echo Renderer::render( $config ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inside the renderer.

@@ -200,5 +200,22 @@
 "block keyword\u0004graph": "график",
 "block keyword\u0004qaiyo": "qaiyo",
 "Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Поведение новых диаграмм по умолчанию. Цвета, шрифты и размеры задаются в каждой диаграмме, блоке или элементе конструктора.",
-"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Эти цвета относятся только к этой диаграмме. Отдельным полосам можно задать свои цвета в таблице выше."
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Эти цвета относятся только к этой диаграмме. Отдельным полосам можно задать свои цвета в таблице выше.",
+"Animation is switched off for this chart.": "Анимация для этой диаграммы выключена.",
+"Animation length and delay between bars in milliseconds, e.g. 1100 and 140.": "Длительность анимации и задержка между столбцами в миллисекундах, например 1100 и 140.",
+"Effect": "Эффект",
+"Grow from the axis": "Рост от оси",
+"Fade in": "Проявление",
+"Rise into place": "Подъём на место",
+"Motion curve": "Кривая движения",
+"Smooth": "Плавная",
+"Even": "Равномерная",
+"Springy": "Пружинная",
+"Count the values up": "Счётчик значений",
+"Replay every time the chart scrolls into view": "Повторять каждый раз при появлении диаграммы",
+"Lazy loading: draw the chart when it scrolls near": "Отложенная загрузка: рисовать диаграмму при приближении прокрутки",
+"Do not count the values up": "Не анимировать значения счётчиком",
+"Disable lazy loading": "Отключить отложенную загрузку",
+"Play animation": "Воспроизвести анимацию",
+"Lazy loading: draw charts when they scroll near": "Отложенная загрузка: рисовать диаграммы при приближении прокрутки"
 }

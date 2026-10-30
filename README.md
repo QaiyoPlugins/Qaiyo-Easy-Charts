@@ -36,7 +36,9 @@ More chart types will follow.
   - Gutenberg block **Qaiyo Easy Chart** — saved chart or bars entered in the block, colour panel, block typography (font family, size), spacing, wide / full alignment.
   - Elementor widget and Bricks element — saved chart or inline repeater, full Style tab: chart font and per-text typography, colours, bar thickness, column height, radius, gaps, animation timing.
 - **Responsive by the chart's own width** (container queries) — works in columns and sidebars, not only on phones. Colliding axis ticks are thinned out automatically.
-- **Animated** — bars grow when scrolled into view, ranges follow; respects `prefers-reduced-motion`; static without JavaScript.
+- **Animated, switchable per chart** — effects `grow` / `fade` / `rise`, motion curves smooth / even / springy, duration and delay between bars, values counting up, optional replay on every scroll, a *Play animation* button in the builder preview. Respects `prefers-reduced-motion`; static without JavaScript.
+  Shortcode: `effect="rise" easing="spring" duration="900" delay="80" count="1" replay="0" animate="1"`.
+- **Lazy loading** — the chart is drawn when it scrolls within 300 px of the viewport (IntersectionObserver), with a size-matched placeholder so nothing jumps. The data table is always in the HTML, and a `<noscript>` copy keeps it visible without JavaScript. `lazy="0"` turns it off.
 - **Every chart styled on its own** — colours, font and sizes live in each chart, block and builder element (there is no site-wide colour setting, so many different charts can sit side by side). New charts start from the default palette and show it as editable values. All styling is CSS custom properties.
 
 ## Accessibility

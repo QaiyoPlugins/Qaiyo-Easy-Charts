@@ -153,7 +153,7 @@ final class ChartEditor {
 	 * @return array<mixed>
 	 */
 	public static function from_form( array $raw ): array {
-		foreach ( array( 'show_caption', 'show_axis', 'show_values', 'animate', 'hover_focus', 'data_table' ) as $flag ) {
+		foreach ( array( 'show_caption', 'show_axis', 'show_values', 'animate', 'replay', 'count_up', 'lazy', 'hover_focus', 'data_table' ) as $flag ) {
 			$raw[ $flag ] = ! empty( $raw[ $flag ] );
 		}
 		$raw['items'] = array_values( Cast::arr( $raw['items'] ?? array() ) );
@@ -172,7 +172,9 @@ final class ChartEditor {
 		if ( '' === $config['title'] ) {
 			$config['title'] = get_the_title( $post );
 		}
+		// The preview is drawn at once and plays its animation only on request.
 		$config['animate'] = false;
+		$config['lazy']    = false;
 		return $config;
 	}
 
@@ -195,7 +197,10 @@ final class ChartEditor {
 		if ( '' === $config['title'] && $post instanceof \WP_Post ) {
 			$config['title'] = isset( $_POST['post_title'] ) && is_string( $_POST['post_title'] ) ? sanitize_text_field( wp_unslash( $_POST['post_title'] ) ) : get_the_title( $post );
 		}
-		$config['animate'] = false;
+		// Animation plays only when the "Play animation" button asked for it; never lazy.
+		$config['animate'] = $config['animate'] && ! empty( $_POST['play'] );
+		$config['replay']  = false;
+		$config['lazy']    = false;
 
 		wp_send_json_success( array( 'html' => Renderer::render( $config, array(), false ) ) );
 	}
@@ -242,6 +247,7 @@ final class ChartEditor {
 						'rowMoved'    => __( 'Bar moved.', 'qaiyo-easy-charts' ),
 						'copied'      => __( 'Copied to the clipboard.', 'qaiyo-easy-charts' ),
 						'previewFail' => __( 'The preview could not be refreshed.', 'qaiyo-easy-charts' ),
+						'noAnimation' => __( 'Animation is switched off for this chart.', 'qaiyo-easy-charts' ),
 					),
 				)
 			) . ';',

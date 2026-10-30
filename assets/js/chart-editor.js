@@ -99,8 +99,11 @@
 		timer = window.setTimeout( refreshPreview, 350 );
 	}
 
-	function refreshPreview() {
+	function refreshPreview( play ) {
 		var data = new window.FormData();
+		if ( true === play ) {
+			data.append( 'play', '1' );
+		}
 		data.append( 'action', config.action );
 		data.append( 'nonce', config.nonce );
 		data.append( 'post_id', config.postId );
@@ -150,6 +153,21 @@
 			} );
 	}
 
+	/* Play animation ------------------------------------------------------ */
+
+	function onPlay( event ) {
+		if ( ! event.target.closest( '.qec-play' ) ) {
+			return;
+		}
+		var toggle = builder.querySelector( 'input[name="' + config.field + '[animate]"]' );
+		if ( toggle && ! toggle.checked ) {
+			speak( i18n.noAnimation );
+			return;
+		}
+		window.clearTimeout( timer );
+		refreshPreview( true );
+	}
+
 	/* Device toggle ------------------------------------------------------- */
 
 	function onDevice( event ) {
@@ -194,6 +212,7 @@
 	builder.addEventListener( 'input', schedulePreview );
 	builder.addEventListener( 'change', schedulePreview );
 	builder.addEventListener( 'click', onDevice );
+	builder.addEventListener( 'click', onPlay );
 	document.addEventListener( 'click', onCopy );
 
 	var titleField = document.getElementById( 'title' );

@@ -67,6 +67,8 @@ Since 1.0.0.
 | `show_axis`, `show_values`, `separator`, `prefix`, `suffix` | value display |
 | `layout` | `auto`, `inline`, `stacked` (label placement of horizontal bars) |
 | `animate`, `hover_focus`, `data_table` | behaviour and accessibility |
+| `animation` (`grow`, `fade`, `rise`), `easing` (`smooth`, `linear`, `spring`), `duration`, `stagger` (ms, 0 = theme default), `count_up`, `replay` | entrance animation |
+| `lazy` | draw the chart only when it scrolls near (the data table is always in the HTML) |
 | `bar_color`, `range_color`, `track_color`, `label_color`, `value_color`, `axis_color`, `font_family`, `bar_size`, `chart_height`, `radius` | style |
 
 ## JavaScript
@@ -78,7 +80,7 @@ load (AJAX, popups, infinite scroll). It is idempotent.
 
 Every visual setting is a custom property on `.qec-chart`, e.g.
 `--qec-primary`, `--qec-secondary`, `--qec-track`, `--qec-bar-size`,
-`--qec-chart-height`, `--qec-row-gap`, `--qec-column-gap`, `--qec-duration`.
+`--qec-chart-height`, `--qec-row-gap`, `--qec-column-gap`, `--qec-duration`, `--qec-stagger`.
 Defaults use `:where()` (zero specificity), so any theme rule wins.
 
 ## Abilities API (WordPress 6.9+)

@@ -200,5 +200,22 @@
 "block keyword\u0004graph": "diagramme",
 "block keyword\u0004qaiyo": "qaiyo",
 "Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Comportement par défaut des nouveaux graphiques. Les couleurs, polices et tailles se règlent dans chaque graphique, bloc ou élément de constructeur.",
-"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Ces couleurs appartiennent uniquement à ce graphique. Chaque barre peut avoir ses propres couleurs dans le tableau ci-dessus."
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Ces couleurs appartiennent uniquement à ce graphique. Chaque barre peut avoir ses propres couleurs dans le tableau ci-dessus.",
+"Animation is switched off for this chart.": "L’animation est désactivée pour ce graphique.",
+"Animation length and delay between bars in milliseconds, e.g. 1100 and 140.": "Durée de l’animation et délai entre les barres en millisecondes, p. ex. 1100 et 140.",
+"Effect": "Effet",
+"Grow from the axis": "Croître depuis l’axe",
+"Fade in": "Fondu",
+"Rise into place": "Monter en place",
+"Motion curve": "Courbe de mouvement",
+"Smooth": "Douce",
+"Even": "Régulière",
+"Springy": "Ressort",
+"Count the values up": "Compter les valeurs",
+"Replay every time the chart scrolls into view": "Rejouer à chaque apparition à l’écran",
+"Lazy loading: draw the chart when it scrolls near": "Chargement différé : dessiner le graphique à l’approche du défilement",
+"Do not count the values up": "Ne pas compter les valeurs",
+"Disable lazy loading": "Désactiver le chargement différé",
+"Play animation": "Lire l’animation",
+"Lazy loading: draw charts when they scroll near": "Chargement différé : dessiner les graphiques à l’approche du défilement"
 }

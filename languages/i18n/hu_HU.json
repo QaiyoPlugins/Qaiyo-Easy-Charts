@@ -200,5 +200,22 @@
 "block keyword\u0004graph": "grafikon",
 "block keyword\u0004qaiyo": "qaiyo",
 "Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Új chartok működési alapértékei. A színeket, betűtípusokat és méreteket minden chartban, blokkban vagy builder elemben külön állítod be.",
-"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Ezek a színek csak ehhez a charthoz tartoznak. Egyes sávoknak saját színt is adhatsz a fenti táblázatban."
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Ezek a színek csak ehhez a charthoz tartoznak. Egyes sávoknak saját színt is adhatsz a fenti táblázatban.",
+"Animation is switched off for this chart.": "Ennél a chartnál ki van kapcsolva az animáció.",
+"Animation length and delay between bars in milliseconds, e.g. 1100 and 140.": "Az animáció hossza és a sávok közti késleltetés ezredmásodpercben, pl. 1100 és 140.",
+"Effect": "Effekt",
+"Grow from the axis": "Növekedés a tengelytől",
+"Fade in": "Beúsztatás",
+"Rise into place": "Felemelkedés a helyére",
+"Motion curve": "Mozgásgörbe",
+"Smooth": "Lágy",
+"Even": "Egyenletes",
+"Springy": "Rugós",
+"Count the values up": "Értékek felszámlálása",
+"Replay every time the chart scrolls into view": "Újrajátszás, valahányszor a chart a képbe gördül",
+"Lazy loading: draw the chart when it scrolls near": "Lusta betöltés: a chart akkor rajzolódik ki, amikor a közelébe görgetnek",
+"Do not count the values up": "Ne számolja fel az értékeket",
+"Disable lazy loading": "Lusta betöltés kikapcsolása",
+"Play animation": "Animáció lejátszása",
+"Lazy loading: draw charts when they scroll near": "Lusta betöltés: a chartok akkor rajzolódnak ki, amikor a közelükbe görgetnek"
 }
