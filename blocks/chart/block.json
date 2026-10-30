@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "qaiyo-easy-charts/chart",
+	"version": "1.0.0",
+	"title": "Qaiyo Easy Chart",
+	"category": "widgets",
+	"icon": "chart-bar",
+	"description": "Animated, accessible bar or column chart with optional ranges.",
+	"keywords": [ "chart", "bar", "column", "graph", "qaiyo" ],
+	"textdomain": "qaiyo-easy-charts",
+	"attributes": {
+		"source": { "type": "string", "enum": [ "inline", "saved" ], "default": "inline" },
+		"chartId": { "type": "integer", "default": 0 },
+		"items": {
+			"type": "array",
+			"default": [
+				{ "label": "Landing page", "value": "5", "max": "", "text": "akár 5" },
+				{ "label": "Üzleti weboldal", "value": "10", "max": "15", "text": "" },
+				{ "label": "Alap webshop", "value": "10", "max": "20", "text": "" }
+			],
+			"items": {
+				"type": "object",
+				"properties": {
+					"label": { "type": "string" },
+					"value": { "type": "string" },
+					"max": { "type": "string" },
+					"text": { "type": "string" }
+				}
+			}
+		},
+		"orientation": { "type": "string", "enum": [ "", "horizontal", "vertical", "auto" ], "default": "" },
+		"layout": { "type": "string", "enum": [ "auto", "inline", "stacked" ], "default": "auto" },
+		"title": { "type": "string", "default": "" },
+		"description": { "type": "string", "default": "" },
+		"showCaption": { "type": "boolean", "default": false },
+		"unit": { "type": "string", "default": "munkanap" },
+		"unitPosition": { "type": "string", "enum": [ "last", "all", "none" ], "default": "last" },
+		"scaleMax": { "type": "string", "default": "" },
+		"step": { "type": "string", "default": "5" },
+		"showAxis": { "type": "boolean", "default": true },
+		"showValues": { "type": "boolean", "default": true },
+		"barColor": { "type": "string", "default": "" },
+		"rangeColor": { "type": "string", "default": "" },
+		"trackColor": { "type": "string", "default": "" },
+		"labelColor": { "type": "string", "default": "" },
+		"valueColor": { "type": "string", "default": "" },
+		"axisColor": { "type": "string", "default": "" },
+		"barSize": { "type": "string", "default": "" },
+		"chartHeight": { "type": "string", "default": "" },
+		"radius": { "type": "string", "default": "" },
+		"animate": { "type": "boolean", "default": true },
+		"hoverFocus": { "type": "boolean", "default": true }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"anchor": true,
+		"spacing": { "margin": true, "padding": true },
+		"typography": { "fontSize": true, "lineHeight": true, "__experimentalFontFamily": true }
+	},
+	"editorScript": "qec-block-editor",
+	"style": "qec-chart",
+	"viewScript": "qec-chart"
+}

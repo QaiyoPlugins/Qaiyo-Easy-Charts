@@ -1,0 +1,15 @@
+{
+	"name": "qaiyo/qaiyo-easy-charts",
+	"description": "Simple, beautiful, animated and accessible charts for WordPress, Gutenberg, Elementor and Bricks Builder.",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"homepage": "https://qaiyo-plugins.com/qaiyo-easy-charts/",
+	"require": {
+		"php": ">=7.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"Qaiyo\\EasyCharts\\": "src/"
+		}
+	}
+}

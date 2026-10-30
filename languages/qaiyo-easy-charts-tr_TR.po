@@ -1,0 +1,834 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: qaiyo-easy-charts 1.0.0\n"
+"Report-Msgid-Bugs-To: https://qaiyo-plugins.com\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Qaiyo build-translations.py\n"
+"X-Domain: qaiyo-easy-charts\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/Plugin.php:63 src/Admin/PostType.php:39
+msgid "Charts"
+msgstr "Grafikler"
+
+#: src/Plugin.php:64 src/Admin/SettingsPage.php:50 templates/admin/chart-editor.php:183
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: src/Admin/BrandMenu.php:228
+msgid "Qaiyo Plugins"
+msgstr "Qaiyo Eklentileri"
+
+#: src/Admin/ChartEditor.php:47
+msgid "Chart builder"
+msgstr "Grafik düzenleyici"
+
+#: src/Admin/ChartEditor.php:48
+msgid "Embed"
+msgstr "Yerleştir"
+
+#: src/Admin/ChartEditor.php:160
+msgid "You are not allowed to edit this chart."
+msgstr "Bu grafiği düzenleme izniniz yok."
+
+#: src/Admin/ChartEditor.php:211
+msgid "Bar added."
+msgstr "Çubuk eklendi."
+
+#: src/Admin/ChartEditor.php:212
+msgid "Bar removed."
+msgstr "Çubuk kaldırıldı."
+
+#: src/Admin/ChartEditor.php:213
+msgid "Bar moved."
+msgstr "Çubuk taşındı."
+
+#: src/Admin/ChartEditor.php:214
+msgid "Copied to the clipboard."
+msgstr "Panoya kopyalandı."
+
+#: src/Admin/ChartEditor.php:215
+msgid "The preview could not be refreshed."
+msgstr "Önizleme yenilenemedi."
+
+#: src/Admin/MorePlugins.php:64 templates/admin/more-plugins.php:16
+msgid "More plugins from Qaiyo"
+msgstr "Qaiyo'dan daha fazla eklenti"
+
+#: src/Admin/MorePlugins.php:65
+msgid "Discover Qaiyo"
+msgstr "Qaiyo'yu keşfet"
+
+#: src/Admin/MorePlugins.php:169
+msgid "TikTok channel feeds and scheduled background refresh of your channel galleries."
+msgstr "TikTok kanal akışları ve kanal galerilerinizin zamanlanmış arka plan yenilemesi."
+
+#: src/Admin/MorePlugins.php:174
+msgid "Extra layouts, star ratings, a front-end submission form and video testimonials."
+msgstr "Ek düzenler, yıldız puanları, ön yüz gönderim formu ve video referansları."
+
+#: src/Admin/MorePlugins.php:179
+msgid "Per-term taxonomy access, advanced per-user rules and finer-grained access control."
+msgstr "Terim bazında taksonomi erişimi, gelişmiş kullanıcı kuralları ve daha ayrıntılı erişim denetimi."
+
+#: src/Admin/MorePlugins.php:184
+msgid "Background processing, scheduling, automatic image sourcing and full change history."
+msgstr "Arka plan işleme, zamanlama, otomatik görsel bulma ve eksiksiz değişiklik geçmişi."
+
+#: src/Admin/MorePlugins.php:189
+msgid "Unlimited services and staff, extra booking layouts and advanced scheduling rules."
+msgstr "Sınırsız hizmet ve personel, ek rezervasyon düzenleri ve gelişmiş zamanlama kuralları."
+
+#: src/Admin/MorePlugins.php:194
+msgid "Advanced wp-admin tools and workflow enhancements that build on the free modules."
+msgstr "Ücretsiz modüllere dayanan gelişmiş wp-admin araçları ve iş akışı iyileştirmeleri."
+
+#: src/Admin/MorePlugins.php:199
+msgid "Deeper performance diagnostics, more optimisation rules and one-click fixes."
+msgstr "Daha derin performans tanılaması, daha fazla optimizasyon kuralı ve tek tıkla düzeltmeler."
+
+#: src/Admin/PostType.php:40 src/Blocks/ChartBlock.php:109 src/Integrations/Bricks/ChartElement.php:82 src/Integrations/Elementor/ChartWidget.php:87 src/Integrations/Elementor/ChartWidget.php:375
+msgid "Chart"
+msgstr "Grafik"
+
+#: src/Admin/PostType.php:41
+msgid "Easy Charts"
+msgstr "Easy Charts"
+
+#: src/Admin/PostType.php:42
+msgid "All charts"
+msgstr "Tüm grafikler"
+
+#: src/Admin/PostType.php:43
+msgid "Add chart"
+msgstr "Grafik ekle"
+
+#: src/Admin/PostType.php:44
+msgid "Add new chart"
+msgstr "Yeni grafik ekle"
+
+#: src/Admin/PostType.php:45
+msgid "Edit chart"
+msgstr "Grafiği düzenle"
+
+#: src/Admin/PostType.php:46
+msgid "New chart"
+msgstr "Yeni grafik"
+
+#: src/Admin/PostType.php:47
+msgid "Search charts"
+msgstr "Grafiklerde ara"
+
+#: src/Admin/PostType.php:48
+msgid "No charts yet."
+msgstr "Henüz grafik yok."
+
+#: src/Admin/PostType.php:49
+msgid "No charts in the trash."
+msgstr "Çöp kutusunda grafik yok."
+
+#: src/Admin/PostType.php:84 templates/admin/chart-embed.php:17
+msgid "Shortcode"
+msgstr "Kısa kod"
+
+#: src/Admin/PostType.php:85 src/Blocks/ChartBlock.php:113 src/Integrations/Bricks/ChartElement.php:44 src/Integrations/Elementor/ChartWidget.php:64 src/Integrations/Elementor/ChartWidget.php:150 templates/admin/chart-editor.php:136
+msgid "Bars"
+msgstr "Çubuklar"
+
+#: src/Admin/PostType.php:119
+msgid "Chart saved."
+msgstr "Grafik kaydedildi."
+
+#: src/Admin/PostType.php:123 src/Admin/PostType.php:124
+msgid "Chart updated."
+msgstr "Grafik güncellendi."
+
+#: src/Admin/PostType.php:125
+msgid "Chart published."
+msgstr "Grafik yayımlandı."
+
+#: src/Admin/PostType.php:128
+msgid "Chart draft updated."
+msgstr "Grafik taslağı güncellendi."
+
+#: src/Admin/SettingsPage.php:49 templates/admin/settings.php:44
+msgid "Easy Charts settings"
+msgstr "Easy Charts ayarları"
+
+#: src/Admin/SettingsPage.php:73
+msgid "You do not have permission to access this page."
+msgstr "Bu sayfaya erişim izniniz yok."
+
+#: src/Admin/SettingsPage.php:94
+msgid "ID of a saved chart. Any other attribute overrides its settings."
+msgstr "Kayıtlı bir grafiğin kimliği. Diğer tüm öznitelikler ayarlarını geçersiz kılar."
+
+#: src/Admin/SettingsPage.php:95
+msgid "Inline bars: rows separated by \"|\", fields by \";\" — label;value;range end;value text."
+msgstr "Satır içi çubuklar: satırlar \"|\", alanlar \";\" ile ayrılır — etiket;değer;aralık sonu;değer metni."
+
+#: src/Admin/SettingsPage.php:97
+msgid "Title (accessible name; shown with show_title=\"yes\")."
+msgstr "Başlık (erişilebilir ad; show_title=\"yes\" ile görünür)."
+
+#: src/Admin/SettingsPage.php:98
+msgid "Unit, e.g. days."
+msgstr "Birim, ör. gün."
+
+#: src/Admin/SettingsPage.php:99
+msgid "Axis range and step. Empty max: automatic."
+msgstr "Eksen aralığı ve adımı. Boş max: otomatik."
+
+#: src/Admin/SettingsPage.php:100
+msgid "Colors, e.g. #0f0c24."
+msgstr "Renkler, ör. #0f0c24."
+
+#: src/Admin/SettingsPage.php:101
+msgid "Font family, e.g. \"DM Sans, sans-serif\"."
+msgstr "Yazı tipi ailesi, ör. \"DM Sans, sans-serif\"."
+
+#: src/Admin/SettingsPage.php:102
+msgid "Bar thickness, column chart height, corner radius, e.g. 28px."
+msgstr "Çubuk kalınlığı, sütun grafiği yüksekliği, köşe yarıçapı, ör. 28px."
+
+#: src/Ai/Abilities.php:34
+msgid "Qaiyo Easy Charts"
+msgstr "Qaiyo Easy Charts"
+
+#: src/Ai/Abilities.php:35
+msgid "Create and read bar and column charts that can be embedded with a shortcode."
+msgstr "Kısa kodla yerleştirilebilen çubuk ve sütun grafikleri oluşturun ve okuyun."
+
+#: src/Ai/Abilities.php:51
+msgid "Label of the bar."
+msgstr "Çubuğun etiketi."
+
+#: src/Ai/Abilities.php:55
+msgid "Where the solid bar ends."
+msgstr "Dolu çubuğun bittiği yer."
+
+#: src/Ai/Abilities.php:59
+msgid "Optional end of a highlighted range after the value, e.g. 15 for \"10–15\"."
+msgstr "Değerden sonraki vurgulu aralığın isteğe bağlı sonu, ör. \"10–15\" için 15."
+
+#: src/Ai/Abilities.php:63
+msgid "Optional text shown instead of the number, e.g. \"up to 5\"."
+msgstr "Sayı yerine gösterilecek isteğe bağlı metin, ör. \"5'e kadar\"."
+
+#: src/Ai/Abilities.php:81
+msgid "List charts"
+msgstr "Grafikleri listele"
+
+#: src/Ai/Abilities.php:82
+msgid "Lists the saved charts with their ID, title, status and the shortcode that embeds each one."
+msgstr "Kayıtlı grafikleri kimlik, başlık, durum ve her birini yerleştiren kısa kodla listeler."
+
+#: src/Ai/Abilities.php:106
+msgid "Get chart"
+msgstr "Grafiği getir"
+
+#: src/Ai/Abilities.php:107
+msgid "Returns one saved chart: its bars (label, value, optional range end and text), unit, orientation and shortcode."
+msgstr "Kayıtlı bir grafiği döndürür: çubukları (etiket, değer, isteğe bağlı aralık sonu ve metin), birim, yön ve kısa kod."
+
+#: src/Ai/Abilities.php:115
+msgid "Chart ID."
+msgstr "Grafik kimliği."
+
+#: src/Ai/Abilities.php:152
+msgid "Create chart"
+msgstr "Grafik oluştur"
+
+#: src/Ai/Abilities.php:153
+msgid "Creates a saved bar or column chart and returns its ID and the shortcode to place it in content. Each bar has a label and a value; an optional range end draws a highlighted range (e.g. 10–15 days)."
+msgstr "Kayıtlı bir çubuk veya sütun grafiği oluşturur ve kimliğini ile içeriğe yerleştirmek için kısa kodu döndürür. Her çubuğun bir etiketi ve değeri vardır; isteğe bağlı aralık sonu vurgulu bir aralık çizer (ör. 10–15 gün)."
+
+#: src/Ai/Abilities.php:161
+msgid "Chart title; also its accessible name."
+msgstr "Grafik başlığı; aynı zamanda erişilebilir adı."
+
+#: src/Ai/Abilities.php:178
+msgid "Unit shown on the axis, e.g. \"days\"."
+msgstr "Eksende gösterilen birim, ör. \"gün\"."
+
+#: src/Ai/Abilities.php:182
+msgid "Publish immediately (otherwise saved as a draft)."
+msgstr "Hemen yayımla (aksi halde taslak olarak kaydedilir)."
+
+#: src/Ai/Abilities.php:232
+msgid "Chart not found."
+msgstr "Grafik bulunamadı."
+
+#: src/Ai/Abilities.php:277
+msgid "At least one bar with a label and a value is required."
+msgstr "Etiketi ve değeri olan en az bir çubuk gerekir."
+
+#: src/Blocks/ChartBlock.php:106 src/Integrations/Bricks/ChartElement.php:66 src/Integrations/Elementor/ChartWidget.php:69
+msgid "Data source"
+msgstr "Veri kaynağı"
+
+#: src/Blocks/ChartBlock.php:107 src/Integrations/Bricks/ChartElement.php:69 src/Integrations/Bricks/ChartElement.php:72 src/Integrations/Elementor/ChartWidget.php:73
+msgid "Enter bars here"
+msgstr "Çubukları burada gir"
+
+#: src/Blocks/ChartBlock.php:108 src/Integrations/Bricks/ChartElement.php:70 src/Integrations/Elementor/ChartWidget.php:74
+msgid "Saved chart"
+msgstr "Kayıtlı grafik"
+
+#: src/Blocks/ChartBlock.php:110 src/Integrations/Bricks/ChartElement.php:85 src/Integrations/Elementor/ChartWidget.php:79
+msgid "— Select a chart —"
+msgstr "— Bir grafik seçin —"
+
+#: src/Blocks/ChartBlock.php:111
+msgid "Manage charts"
+msgstr "Grafikleri yönet"
+
+#: src/Blocks/ChartBlock.php:112
+msgid "Select a saved chart in the block settings."
+msgstr "Blok ayarlarından kayıtlı bir grafik seçin."
+
+#: src/Blocks/ChartBlock.php:114
+msgid "Bar"
+msgstr "Çubuk"
+
+#: src/Blocks/ChartBlock.php:115 src/Integrations/Bricks/ChartElement.php:97 src/Integrations/Elementor/ChartWidget.php:99 templates/admin/chart-editor.php:32 templates/admin/chart-editor.php:33 templates/admin/chart-editor.php:143
+msgid "Label"
+msgstr "Etiket"
+
+#: src/Blocks/ChartBlock.php:116 src/Chart/Renderer.php:293 src/Integrations/Bricks/ChartElement.php:101 src/Integrations/Elementor/ChartWidget.php:108 templates/admin/chart-editor.php:35 templates/admin/chart-editor.php:36 templates/admin/chart-editor.php:144
+msgid "Value"
+msgstr "Değer"
+
+#: src/Blocks/ChartBlock.php:117 src/Integrations/Bricks/ChartElement.php:105 src/Integrations/Elementor/ChartWidget.php:116 templates/admin/chart-editor.php:38 templates/admin/chart-editor.php:39 templates/admin/chart-editor.php:145
+msgid "Range end"
+msgstr "Aralık sonu"
+
+#: src/Blocks/ChartBlock.php:118 src/Integrations/Bricks/ChartElement.php:110 src/Integrations/Elementor/ChartWidget.php:125 templates/admin/chart-editor.php:41 templates/admin/chart-editor.php:42 templates/admin/chart-editor.php:146
+msgid "Value text"
+msgstr "Değer metni"
+
+#: src/Blocks/ChartBlock.php:119 templates/admin/chart-editor.php:176
+msgid "Add bar"
+msgstr "Çubuk ekle"
+
+#: src/Blocks/ChartBlock.php:120 templates/admin/chart-editor.php:53
+msgid "Remove bar"
+msgstr "Çubuğu kaldır"
+
+#: src/Blocks/ChartBlock.php:121 templates/admin/chart-editor.php:51
+msgid "Move bar up"
+msgstr "Çubuğu yukarı taşı"
+
+#: src/Blocks/ChartBlock.php:122 templates/admin/chart-editor.php:52
+msgid "Move bar down"
+msgstr "Çubuğu aşağı taşı"
+
+#: src/Blocks/ChartBlock.php:123 src/Integrations/Bricks/ChartElement.php:45 src/Integrations/Elementor/ChartWidget.php:165 templates/admin/chart-editor.php:188
+msgid "Layout"
+msgstr "Düzen"
+
+#: src/Blocks/ChartBlock.php:124 src/Integrations/Bricks/ChartElement.php:130 src/Integrations/Elementor/ChartWidget.php:173 templates/admin/chart-editor.php:192 templates/admin/settings.php:89
+msgid "Orientation"
+msgstr "Yön"
+
+#: src/Blocks/ChartBlock.php:125
+msgid "Default (from settings)"
+msgstr "Varsayılan (ayarlardan)"
+
+#: src/Blocks/ChartBlock.php:126 src/Integrations/Bricks/ChartElement.php:133 src/Integrations/Bricks/ChartElement.php:137 src/Integrations/Elementor/ChartWidget.php:177 templates/admin/chart-editor.php:194 templates/admin/settings.php:92
+msgid "Horizontal bars"
+msgstr "Yatay çubuklar"
+
+#: src/Blocks/ChartBlock.php:127 src/Integrations/Bricks/ChartElement.php:134 src/Integrations/Elementor/ChartWidget.php:178 templates/admin/chart-editor.php:195 templates/admin/settings.php:93
+msgid "Vertical columns"
+msgstr "Dikey sütunlar"
+
+#: src/Blocks/ChartBlock.php:128 src/Integrations/Bricks/ChartElement.php:135 src/Integrations/Elementor/ChartWidget.php:179 templates/admin/chart-editor.php:196 templates/admin/settings.php:94
+msgid "Columns, bars on narrow screens"
+msgstr "Sütunlar, dar ekranlarda çubuklar"
+
+#: src/Blocks/ChartBlock.php:129 src/Integrations/Bricks/ChartElement.php:143 src/Integrations/Elementor/ChartWidget.php:187 templates/admin/chart-editor.php:201
+msgid "Labels of horizontal bars"
+msgstr "Yatay çubuk etiketleri"
+
+#: src/Blocks/ChartBlock.php:130 src/Integrations/Bricks/ChartElement.php:146 src/Integrations/Bricks/ChartElement.php:150 src/Integrations/Elementor/ChartWidget.php:191 templates/admin/chart-editor.php:203
+msgid "Auto (stack when narrow)"
+msgstr "Otomatik (dar alanda alt alta)"
+
+#: src/Blocks/ChartBlock.php:131 src/Integrations/Bricks/ChartElement.php:147 src/Integrations/Elementor/ChartWidget.php:192 templates/admin/chart-editor.php:204
+msgid "Always in one row"
+msgstr "Her zaman tek satırda"
+
+#: src/Blocks/ChartBlock.php:132 src/Integrations/Bricks/ChartElement.php:148 src/Integrations/Elementor/ChartWidget.php:193 templates/admin/chart-editor.php:205
+msgid "Always above the bar"
+msgstr "Her zaman çubuğun üstünde"
+
+#: src/Blocks/ChartBlock.php:133 src/Integrations/Bricks/ChartElement.php:156 src/Integrations/Bricks/ChartElement.php:313 src/Integrations/Elementor/ChartWidget.php:202 src/Integrations/Elementor/ChartWidget.php:407 templates/admin/chart-editor.php:208
+msgid "Title"
+msgstr "Başlık"
+
+#: src/Blocks/ChartBlock.php:134 src/Integrations/Bricks/ChartElement.php:164 src/Integrations/Elementor/ChartWidget.php:213 templates/admin/chart-editor.php:209 templates/admin/settings.php:139
+msgid "Description"
+msgstr "Açıklama"
+
+#: src/Blocks/ChartBlock.php:135 src/Integrations/Bricks/ChartElement.php:171 src/Integrations/Elementor/ChartWidget.php:223 templates/admin/chart-editor.php:210
+msgid "Show title and description above the chart"
+msgstr "Başlığı ve açıklamayı grafiğin üstünde göster"
+
+#: src/Blocks/ChartBlock.php:136 src/Integrations/Bricks/ChartElement.php:46 src/Integrations/Elementor/ChartWidget.php:235 templates/admin/chart-editor.php:215
+msgid "Scale & axis"
+msgstr "Ölçek ve eksen"
+
+#: src/Blocks/ChartBlock.php:137 src/Integrations/Bricks/ChartElement.php:213 src/Integrations/Elementor/ChartWidget.php:277 templates/admin/chart-editor.php:220
+msgid "Unit"
+msgstr "Birim"
+
+#: src/Blocks/ChartBlock.php:138 src/Integrations/Bricks/ChartElement.php:221 src/Integrations/Elementor/ChartWidget.php:285 templates/admin/chart-editor.php:223
+msgid "Show unit on"
+msgstr "Birimi göster"
+
+#: src/Blocks/ChartBlock.php:139 src/Integrations/Bricks/ChartElement.php:224 src/Integrations/Bricks/ChartElement.php:228 src/Integrations/Elementor/ChartWidget.php:289 templates/admin/chart-editor.php:225
+msgid "Last tick"
+msgstr "Son işarette"
+
+#: src/Blocks/ChartBlock.php:140 src/Integrations/Bricks/ChartElement.php:225 src/Integrations/Elementor/ChartWidget.php:290 templates/admin/chart-editor.php:226
+msgid "Every tick"
+msgstr "Her işarette"
+
+#: src/Blocks/ChartBlock.php:141 src/Integrations/Bricks/ChartElement.php:226 src/Integrations/Elementor/ChartWidget.php:291 templates/admin/chart-editor.php:227
+msgid "Hidden"
+msgstr "Gizli"
+
+#: src/Blocks/ChartBlock.php:142 src/Integrations/Bricks/ChartElement.php:188 src/Integrations/Elementor/ChartWidget.php:251 templates/admin/chart-editor.php:218
+msgid "Maximum"
+msgstr "Maksimum"
+
+#: src/Blocks/ChartBlock.php:143 src/Integrations/Bricks/ChartElement.php:191 src/Integrations/Elementor/ChartWidget.php:252 templates/admin/chart-editor.php:218
+msgid "Leave empty to calculate from the data."
+msgstr "Verilerden hesaplamak için boş bırakın."
+
+#: src/Blocks/ChartBlock.php:144 src/Integrations/Bricks/ChartElement.php:197 src/Integrations/Elementor/ChartWidget.php:259 templates/admin/chart-editor.php:219
+msgid "Axis step"
+msgstr "Eksen adımı"
+
+#: src/Blocks/ChartBlock.php:145 src/Integrations/Elementor/ChartWidget.php:268 templates/admin/chart-editor.php:230
+msgid "Show axis"
+msgstr "Ekseni göster"
+
+#: src/Blocks/ChartBlock.php:146 src/Integrations/Elementor/ChartWidget.php:310 templates/admin/chart-editor.php:237
+msgid "Show values"
+msgstr "Değerleri göster"
+
+#: src/Blocks/ChartBlock.php:147 templates/admin/chart-editor.php:245
+msgid "Colors"
+msgstr "Renkler"
+
+#: src/Blocks/ChartBlock.php:148 src/Integrations/Bricks/ChartElement.php:115 src/Integrations/Bricks/ChartElement.php:280 src/Integrations/Elementor/ChartWidget.php:134 src/Integrations/Elementor/ChartWidget.php:389 templates/admin/chart-editor.php:44 templates/admin/chart-editor.php:45 templates/admin/chart-editor.php:147 templates/admin/chart-editor.php:248 templates/admin/settings.php:20
+msgid "Bar color"
+msgstr "Çubuk rengi"
+
+#: src/Blocks/ChartBlock.php:149 src/Integrations/Bricks/ChartElement.php:119 src/Integrations/Bricks/ChartElement.php:281 src/Integrations/Elementor/ChartWidget.php:142 src/Integrations/Elementor/ChartWidget.php:390 templates/admin/chart-editor.php:47 templates/admin/chart-editor.php:48 templates/admin/chart-editor.php:148 templates/admin/chart-editor.php:249 templates/admin/settings.php:21
+msgid "Range color"
+msgstr "Aralık rengi"
+
+#: src/Blocks/ChartBlock.php:150 src/Integrations/Bricks/ChartElement.php:282 src/Integrations/Elementor/ChartWidget.php:391 templates/admin/chart-editor.php:250 templates/admin/settings.php:22
+msgid "Track color"
+msgstr "Çubuk arka plan rengi"
+
+#: src/Blocks/ChartBlock.php:151 src/Integrations/Bricks/ChartElement.php:283 templates/admin/chart-editor.php:251 templates/admin/settings.php:23
+msgid "Label color"
+msgstr "Etiket rengi"
+
+#: src/Blocks/ChartBlock.php:152 src/Integrations/Bricks/ChartElement.php:284 templates/admin/chart-editor.php:252 templates/admin/settings.php:24
+msgid "Value color"
+msgstr "Değer rengi"
+
+#: src/Blocks/ChartBlock.php:153 src/Integrations/Bricks/ChartElement.php:285 templates/admin/chart-editor.php:253 templates/admin/settings.php:25
+msgid "Axis color"
+msgstr "Eksen rengi"
+
+#: src/Blocks/ChartBlock.php:154
+msgid "Size"
+msgstr "Boyut"
+
+#: src/Blocks/ChartBlock.php:155 src/Integrations/Bricks/ChartElement.php:287 src/Integrations/Elementor/ChartWidget.php:393 templates/admin/chart-editor.php:261
+msgid "Bar thickness"
+msgstr "Çubuk kalınlığı"
+
+#: src/Blocks/ChartBlock.php:156 src/Integrations/Bricks/ChartElement.php:288 src/Integrations/Elementor/ChartWidget.php:394 templates/admin/chart-editor.php:262
+msgid "Column chart height"
+msgstr "Sütun grafiği yüksekliği"
+
+#: src/Blocks/ChartBlock.php:157 src/Integrations/Bricks/ChartElement.php:289 src/Integrations/Elementor/ChartWidget.php:395 templates/admin/chart-editor.php:263
+msgid "Corner radius"
+msgstr "Köşe yarıçapı"
+
+#: src/Blocks/ChartBlock.php:158
+msgid "Behaviour"
+msgstr "Davranış"
+
+#: src/Blocks/ChartBlock.php:159 src/Integrations/Elementor/ChartWidget.php:341 templates/admin/chart-editor.php:270
+msgid "Animate when scrolled into view"
+msgstr "Kaydırınca göründüğünde canlandır"
+
+#: src/Blocks/ChartBlock.php:160 src/Integrations/Elementor/ChartWidget.php:351 templates/admin/chart-editor.php:271 templates/admin/settings.php:30
+msgid "Highlight the hovered bar"
+msgstr "İmlecin üzerindeki çubuğu vurgula"
+
+#: src/Chart/Renderer.php:289
+msgid "Chart data"
+msgstr "Grafik verileri"
+
+#: src/Chart/Renderer.php:293
+msgid "Item"
+msgstr "Öğe"
+
+#: src/Integrations/Bricks/BricksIntegration.php:41 src/Integrations/Elementor/ElementorIntegration.php:42
+msgid "Qaiyo"
+msgstr "Qaiyo"
+
+#: src/Integrations/Bricks/ChartElement.php:31 src/Integrations/Elementor/ChartWidget.php:34
+msgid "Qaiyo Easy Chart"
+msgstr "Qaiyo Easy Chart"
+
+#: src/Integrations/Bricks/ChartElement.php:47 src/Integrations/Elementor/ChartWidget.php:302
+msgid "Values & behaviour"
+msgstr "Değerler ve davranış"
+
+#: src/Integrations/Bricks/ChartElement.php:48
+msgid "Chart style"
+msgstr "Grafik stili"
+
+#: src/Integrations/Bricks/ChartElement.php:49
+msgid "Typography"
+msgstr "Tipografi"
+
+#: src/Integrations/Bricks/ChartElement.php:107 src/Integrations/Elementor/ChartWidget.php:117
+msgid "Optional. Draws a highlighted range from Value to this number."
+msgstr "İsteğe bağlı. Değerden bu sayıya kadar vurgulu bir aralık çizer."
+
+#: src/Integrations/Bricks/ChartElement.php:112 src/Integrations/Elementor/ChartWidget.php:126
+msgid "Optional. Replaces the automatic text, e.g. \"up to 5\"."
+msgstr "İsteğe bağlı. Otomatik metnin yerini alır, ör. \"5'e kadar\"."
+
+#: src/Integrations/Bricks/ChartElement.php:158 src/Integrations/Elementor/ChartWidget.php:203
+msgid "Used as the accessible name of the chart."
+msgstr "Grafiğin erişilebilir adı olarak kullanılır."
+
+#: src/Integrations/Bricks/ChartElement.php:180 src/Integrations/Elementor/ChartWidget.php:243 templates/admin/chart-editor.php:217
+msgid "Minimum"
+msgstr "Minimum"
+
+#: src/Integrations/Bricks/ChartElement.php:190 src/Integrations/Bricks/ChartElement.php:292 templates/admin/chart-editor.php:218
+msgid "Auto"
+msgstr "Otomatik"
+
+#: src/Integrations/Bricks/ChartElement.php:206
+msgid "Hide axis"
+msgstr "Ekseni gizle"
+
+#: src/Integrations/Bricks/ChartElement.php:236
+msgid "Hide values"
+msgstr "Değerleri gizle"
+
+#: src/Integrations/Bricks/ChartElement.php:242 src/Integrations/Elementor/ChartWidget.php:319 templates/admin/chart-editor.php:238
+msgid "Range separator"
+msgstr "Aralık ayırıcı"
+
+#: src/Integrations/Bricks/ChartElement.php:243 src/Integrations/Elementor/ChartWidget.php:327 templates/admin/chart-editor.php:239
+msgid "Prefix"
+msgstr "Önek"
+
+#: src/Integrations/Bricks/ChartElement.php:244 src/Integrations/Elementor/ChartWidget.php:334 templates/admin/chart-editor.php:240
+msgid "Suffix"
+msgstr "Sonek"
+
+#: src/Integrations/Bricks/ChartElement.php:260
+msgid "Disable scroll animation"
+msgstr "Kaydırma animasyonunu kapat"
+
+#: src/Integrations/Bricks/ChartElement.php:267
+msgid "Disable bar highlight on hover"
+msgstr "Üzerine gelince çubuk vurgusunu kapat"
+
+#: src/Integrations/Bricks/ChartElement.php:274
+msgid "Disable the accessible data table"
+msgstr "Erişilebilir veri tablosunu kapat"
+
+#: src/Integrations/Bricks/ChartElement.php:290 src/Integrations/Elementor/ChartWidget.php:396
+msgid "Space between bars"
+msgstr "Çubuklar arası boşluk"
+
+#: src/Integrations/Bricks/ChartElement.php:291 src/Integrations/Elementor/ChartWidget.php:397
+msgid "Space between columns"
+msgstr "Sütunlar arası boşluk"
+
+#: src/Integrations/Bricks/ChartElement.php:292 src/Integrations/Elementor/ChartWidget.php:428
+msgid "Label column width"
+msgstr "Etiket sütunu genişliği"
+
+#: src/Integrations/Bricks/ChartElement.php:293 src/Integrations/Elementor/ChartWidget.php:429
+msgid "Space before bar"
+msgstr "Çubuktan önceki boşluk"
+
+#: src/Integrations/Bricks/ChartElement.php:294 src/Integrations/Elementor/ChartWidget.php:432
+msgid "Space after bar"
+msgstr "Çubuktan sonraki boşluk"
+
+#: src/Integrations/Bricks/ChartElement.php:299 src/Integrations/Elementor/ChartWidget.php:451
+msgid "Duration (ms)"
+msgstr "Süre (ms)"
+
+#: src/Integrations/Bricks/ChartElement.php:309
+msgid "Chart font"
+msgstr "Grafik yazı tipi"
+
+#: src/Integrations/Bricks/ChartElement.php:310 src/Integrations/Elementor/ChartWidget.php:404
+msgid "Labels"
+msgstr "Etiketler"
+
+#: src/Integrations/Bricks/ChartElement.php:311 src/Integrations/Elementor/ChartWidget.php:405 templates/admin/chart-editor.php:235
+msgid "Values"
+msgstr "Değerler"
+
+#: src/Integrations/Bricks/ChartElement.php:312 src/Integrations/Elementor/ChartWidget.php:406
+msgid "Axis"
+msgstr "Eksen"
+
+#: src/Integrations/Bricks/ChartElement.php:408 src/Integrations/Elementor/ChartWidget.php:575
+msgid "Select a saved chart or add at least one bar."
+msgstr "Kayıtlı bir grafik seçin veya en az bir çubuk ekleyin."
+
+#: src/Integrations/Elementor/ChartWidget.php:360 templates/admin/chart-editor.php:272
+msgid "Add an accessible data table (screen readers, SEO, AI)"
+msgstr "Erişilebilir veri tablosu ekle (ekran okuyucular, SEO, yapay zeka)"
+
+#: src/Integrations/Elementor/ChartWidget.php:384
+msgid "Font"
+msgstr "Yazı tipi"
+
+#: src/Integrations/Elementor/ChartWidget.php:418
+msgid "Color"
+msgstr "Renk"
+
+#: src/Integrations/Elementor/ChartWidget.php:435
+msgid "Space above axis"
+msgstr "Eksen üstündeki boşluk"
+
+#: src/Integrations/Elementor/ChartWidget.php:444
+msgid "Animation"
+msgstr "Animasyon"
+
+#: src/Integrations/Elementor/ChartWidget.php:461
+msgid "Delay between bars (ms)"
+msgstr "Çubuklar arası gecikme (ms)"
+
+#: templates/admin/chart-editor.php:42
+msgid "Automatic"
+msgstr "Otomatik"
+
+#: templates/admin/chart-editor.php:119
+msgid "Live preview"
+msgstr "Canlı önizleme"
+
+#: templates/admin/chart-editor.php:121
+msgid "Preview width"
+msgstr "Önizleme genişliği"
+
+#: templates/admin/chart-editor.php:122
+msgid "Desktop"
+msgstr "Masaüstü"
+
+#: templates/admin/chart-editor.php:123
+msgid "Mobile"
+msgstr "Mobil"
+
+#: templates/admin/chart-editor.php:138
+msgid "Value is where the solid bar ends. Range end is optional: it adds a highlighted range after the value (e.g. 10–15). Value text replaces the automatic text, e.g. \"up to 5\"."
+msgstr "Değer, dolu çubuğun bittiği yerdir. Aralık sonu isteğe bağlıdır: değerden sonra vurgulu bir aralık ekler (ör. 10–15). Değer metni otomatik metnin yerini alır, ör. \"5'e kadar\"."
+
+#: templates/admin/chart-editor.php:149
+msgid "Actions"
+msgstr "İşlemler"
+
+#: templates/admin/chart-editor.php:208
+msgid "Defaults to the chart name. Used as the accessible name of the chart."
+msgstr "Varsayılan olarak grafik adıdır. Grafiğin erişilebilir adı olarak kullanılır."
+
+#: templates/admin/chart-editor.php:220
+msgid "e.g. days"
+msgstr "ör. gün"
+
+#: templates/admin/chart-editor.php:246
+msgid "Empty fields use the colors from Easy Charts → Settings."
+msgstr "Boş alanlar Easy Charts → Ayarlar'daki renkleri kullanır."
+
+#: templates/admin/chart-editor.php:258
+msgid "Typography & size"
+msgstr "Tipografi ve boyut"
+
+#: templates/admin/chart-editor.php:260 templates/admin/settings.php:72
+msgid "Font family"
+msgstr "Yazı tipi ailesi"
+
+#: templates/admin/chart-editor.php:260
+msgid "Empty: the font of your theme or builder."
+msgstr "Boş: temanızın veya oluşturucunuzun yazı tipi."
+
+#: templates/admin/chart-editor.php:268 templates/admin/settings.php:99 templates/admin/settings.php:102
+msgid "Behaviour & accessibility"
+msgstr "Davranış ve erişilebilirlik"
+
+#: templates/admin/chart-embed.php:15
+msgid "Save the chart to get its shortcode."
+msgstr "Kısa kodunu almak için grafiği kaydedin."
+
+#: templates/admin/chart-embed.php:22
+msgid "Copy"
+msgstr "Kopyala"
+
+#: templates/admin/chart-embed.php:27
+msgid "Gutenberg:"
+msgstr "Gutenberg:"
+
+#: templates/admin/chart-embed.php:27
+msgid "add the \"Qaiyo Easy Chart\" block and pick this chart."
+msgstr "\"Qaiyo Easy Chart\" bloğunu ekleyin ve bu grafiği seçin."
+
+#: templates/admin/chart-embed.php:28
+msgid "add the \"Qaiyo Easy Chart\" element, then choose \"Saved chart\" as the source."
+msgstr "\"Qaiyo Easy Chart\" öğesini ekleyin, ardından kaynak olarak \"Kayıtlı grafik\" seçin."
+
+#: templates/admin/editor-intro.php:16 templates/admin/settings.php:38
+msgid "Hi, %s!"
+msgstr "Merhaba, %s!"
+
+#: templates/admin/editor-intro.php:23
+msgid "Enter the bars, adjust the look, and check the live preview. Then place the chart with the shortcode, the Gutenberg block, Elementor or Bricks."
+msgstr "Çubukları girin, görünümü ayarlayın ve canlı önizlemeyi kontrol edin. Ardından grafiği kısa kod, Gutenberg bloğu, Elementor veya Bricks ile yerleştirin."
+
+#: templates/admin/more-plugins.php:17
+msgid "Free plugins from the WordPress.org directory and Pro extensions from the Qaiyo ecosystem."
+msgstr "WordPress.org dizininden ücretsiz eklentiler ve Qaiyo ekosisteminden Pro uzantılar."
+
+#: templates/admin/more-plugins.php:20
+msgid "Free plugins"
+msgstr "Ücretsiz eklentiler"
+
+#: templates/admin/more-plugins.php:22
+msgid "The WordPress.org plugin directory could not be reached right now. Please try again later."
+msgstr "WordPress.org eklenti dizinine şu anda ulaşılamıyor. Lütfen daha sonra tekrar deneyin."
+
+#: templates/admin/more-plugins.php:37
+msgid "Active"
+msgstr "Etkin"
+
+#: templates/admin/more-plugins.php:39
+msgid "Installed"
+msgstr "Yüklü"
+
+#: templates/admin/more-plugins.php:52
+msgid "Install"
+msgstr "Yükle"
+
+#: templates/admin/more-plugins.php:57
+msgid "Details"
+msgstr "Ayrıntılar"
+
+#: templates/admin/more-plugins.php:58 templates/admin/more-plugins.php:83
+msgid "(opens in a new tab)"
+msgstr "(yeni sekmede açılır)"
+
+#: templates/admin/more-plugins.php:66
+msgid "Pro extensions"
+msgstr "Pro uzantılar"
+
+#: templates/admin/more-plugins.php:82
+msgid "Learn more"
+msgstr "Daha fazla bilgi"
+
+#: templates/admin/more-plugins.php:91
+msgid "Free plugins are listed from WordPress.org. This page makes no request to any Qaiyo server."
+msgstr "Ücretsiz eklentiler WordPress.org'dan listelenir. Bu sayfa hiçbir Qaiyo sunucusuna istek göndermez."
+
+#: templates/admin/settings.php:29
+msgid "Animate charts when they scroll into view"
+msgstr "Grafikleri kaydırınca göründüklerinde canlandır"
+
+#: templates/admin/settings.php:31
+msgid "Add an accessible data table to every chart (screen readers, SEO, AI)"
+msgstr "Her grafiğe erişilebilir veri tablosu ekle (ekran okuyucular, SEO, yapay zeka)"
+
+#: templates/admin/settings.php:47
+msgid "Site-wide defaults for every chart. Each chart, block and builder element can override them."
+msgstr "Tüm grafikler için site genelindeki varsayılanlar. Her grafik, blok ve oluşturucu öğesi bunları geçersiz kılabilir."
+
+#: templates/admin/settings.php:57
+msgid "Colors & font"
+msgstr "Renkler ve yazı tipi"
+
+#: templates/admin/settings.php:76
+msgid "Empty: charts use the font of your theme or page builder. The font itself must be loaded by your theme."
+msgstr "Boş: grafikler temanızın veya sayfa oluşturucunuzun yazı tipini kullanır. Yazı tipinin kendisi temanız tarafından yüklenmelidir."
+
+#: templates/admin/settings.php:85
+msgid "Defaults for new charts"
+msgstr "Yeni grafikler için varsayılanlar"
+
+#: templates/admin/settings.php:113
+msgid "Uninstall"
+msgstr "Kaldırma"
+
+#: templates/admin/settings.php:117
+msgid "Delete all charts and settings when the plugin is deleted"
+msgstr "Eklenti silindiğinde tüm grafikleri ve ayarları sil"
+
+#: templates/admin/settings.php:119
+msgid "Off by default, so reinstalling keeps your charts."
+msgstr "Varsayılan olarak kapalıdır; yeniden yüklemede grafikleriniz korunur."
+
+#: templates/admin/settings.php:131
+msgid "Shortcode reference"
+msgstr "Kısa kod başvurusu"
+
+#: templates/admin/settings.php:138
+msgid "Attribute"
+msgstr "Öznitelik"
+
+#: blocks/chart/block.json
+msgctxt "block title"
+msgid "Qaiyo Easy Chart"
+msgstr "Qaiyo Easy Chart"
+
+#: blocks/chart/block.json
+msgctxt "block description"
+msgid "Animated, accessible bar or column chart with optional ranges."
+msgstr "İsteğe bağlı aralıklara sahip, animasyonlu ve erişilebilir çubuk veya sütun grafiği."
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "chart"
+msgstr "grafik"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "bar"
+msgstr "çubuk"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "column"
+msgstr "sütun"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "graph"
+msgstr "diyagram"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "qaiyo"
+msgstr "qaiyo"

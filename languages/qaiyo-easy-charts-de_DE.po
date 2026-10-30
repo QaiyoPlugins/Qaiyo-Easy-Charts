@@ -1,0 +1,834 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: qaiyo-easy-charts 1.0.0\n"
+"Report-Msgid-Bugs-To: https://qaiyo-plugins.com\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Qaiyo build-translations.py\n"
+"X-Domain: qaiyo-easy-charts\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/Plugin.php:63 src/Admin/PostType.php:39
+msgid "Charts"
+msgstr "Diagramme"
+
+#: src/Plugin.php:64 src/Admin/SettingsPage.php:50 templates/admin/chart-editor.php:183
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: src/Admin/BrandMenu.php:228
+msgid "Qaiyo Plugins"
+msgstr "Qaiyo Plugins"
+
+#: src/Admin/ChartEditor.php:47
+msgid "Chart builder"
+msgstr "Diagramm-Editor"
+
+#: src/Admin/ChartEditor.php:48
+msgid "Embed"
+msgstr "Einbetten"
+
+#: src/Admin/ChartEditor.php:160
+msgid "You are not allowed to edit this chart."
+msgstr "Du darfst dieses Diagramm nicht bearbeiten."
+
+#: src/Admin/ChartEditor.php:211
+msgid "Bar added."
+msgstr "Balken hinzugefügt."
+
+#: src/Admin/ChartEditor.php:212
+msgid "Bar removed."
+msgstr "Balken entfernt."
+
+#: src/Admin/ChartEditor.php:213
+msgid "Bar moved."
+msgstr "Balken verschoben."
+
+#: src/Admin/ChartEditor.php:214
+msgid "Copied to the clipboard."
+msgstr "In die Zwischenablage kopiert."
+
+#: src/Admin/ChartEditor.php:215
+msgid "The preview could not be refreshed."
+msgstr "Die Vorschau konnte nicht aktualisiert werden."
+
+#: src/Admin/MorePlugins.php:64 templates/admin/more-plugins.php:16
+msgid "More plugins from Qaiyo"
+msgstr "Weitere Plugins von Qaiyo"
+
+#: src/Admin/MorePlugins.php:65
+msgid "Discover Qaiyo"
+msgstr "Qaiyo entdecken"
+
+#: src/Admin/MorePlugins.php:169
+msgid "TikTok channel feeds and scheduled background refresh of your channel galleries."
+msgstr "TikTok-Kanal-Feeds und geplante Hintergrundaktualisierung deiner Kanalgalerien."
+
+#: src/Admin/MorePlugins.php:174
+msgid "Extra layouts, star ratings, a front-end submission form and video testimonials."
+msgstr "Zusätzliche Layouts, Sternebewertungen, ein Frontend-Einreichungsformular und Video-Testimonials."
+
+#: src/Admin/MorePlugins.php:179
+msgid "Per-term taxonomy access, advanced per-user rules and finer-grained access control."
+msgstr "Taxonomie-Zugriff pro Begriff, erweiterte Benutzerregeln und feinere Zugriffskontrolle."
+
+#: src/Admin/MorePlugins.php:184
+msgid "Background processing, scheduling, automatic image sourcing and full change history."
+msgstr "Hintergrundverarbeitung, Zeitplanung, automatische Bildbeschaffung und vollständiger Änderungsverlauf."
+
+#: src/Admin/MorePlugins.php:189
+msgid "Unlimited services and staff, extra booking layouts and advanced scheduling rules."
+msgstr "Unbegrenzte Leistungen und Mitarbeitende, zusätzliche Buchungslayouts und erweiterte Terminregeln."
+
+#: src/Admin/MorePlugins.php:194
+msgid "Advanced wp-admin tools and workflow enhancements that build on the free modules."
+msgstr "Erweiterte wp-admin-Werkzeuge und Workflow-Verbesserungen auf Basis der kostenlosen Module."
+
+#: src/Admin/MorePlugins.php:199
+msgid "Deeper performance diagnostics, more optimisation rules and one-click fixes."
+msgstr "Tiefere Performance-Diagnose, mehr Optimierungsregeln und Ein-Klick-Korrekturen."
+
+#: src/Admin/PostType.php:40 src/Blocks/ChartBlock.php:109 src/Integrations/Bricks/ChartElement.php:82 src/Integrations/Elementor/ChartWidget.php:87 src/Integrations/Elementor/ChartWidget.php:375
+msgid "Chart"
+msgstr "Diagramm"
+
+#: src/Admin/PostType.php:41
+msgid "Easy Charts"
+msgstr "Easy Charts"
+
+#: src/Admin/PostType.php:42
+msgid "All charts"
+msgstr "Alle Diagramme"
+
+#: src/Admin/PostType.php:43
+msgid "Add chart"
+msgstr "Diagramm hinzufügen"
+
+#: src/Admin/PostType.php:44
+msgid "Add new chart"
+msgstr "Neues Diagramm hinzufügen"
+
+#: src/Admin/PostType.php:45
+msgid "Edit chart"
+msgstr "Diagramm bearbeiten"
+
+#: src/Admin/PostType.php:46
+msgid "New chart"
+msgstr "Neues Diagramm"
+
+#: src/Admin/PostType.php:47
+msgid "Search charts"
+msgstr "Diagramme durchsuchen"
+
+#: src/Admin/PostType.php:48
+msgid "No charts yet."
+msgstr "Noch keine Diagramme."
+
+#: src/Admin/PostType.php:49
+msgid "No charts in the trash."
+msgstr "Keine Diagramme im Papierkorb."
+
+#: src/Admin/PostType.php:84 templates/admin/chart-embed.php:17
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: src/Admin/PostType.php:85 src/Blocks/ChartBlock.php:113 src/Integrations/Bricks/ChartElement.php:44 src/Integrations/Elementor/ChartWidget.php:64 src/Integrations/Elementor/ChartWidget.php:150 templates/admin/chart-editor.php:136
+msgid "Bars"
+msgstr "Balken"
+
+#: src/Admin/PostType.php:119
+msgid "Chart saved."
+msgstr "Diagramm gespeichert."
+
+#: src/Admin/PostType.php:123 src/Admin/PostType.php:124
+msgid "Chart updated."
+msgstr "Diagramm aktualisiert."
+
+#: src/Admin/PostType.php:125
+msgid "Chart published."
+msgstr "Diagramm veröffentlicht."
+
+#: src/Admin/PostType.php:128
+msgid "Chart draft updated."
+msgstr "Diagrammentwurf aktualisiert."
+
+#: src/Admin/SettingsPage.php:49 templates/admin/settings.php:44
+msgid "Easy Charts settings"
+msgstr "Easy Charts Einstellungen"
+
+#: src/Admin/SettingsPage.php:73
+msgid "You do not have permission to access this page."
+msgstr "Du hast keine Berechtigung, diese Seite aufzurufen."
+
+#: src/Admin/SettingsPage.php:94
+msgid "ID of a saved chart. Any other attribute overrides its settings."
+msgstr "ID eines gespeicherten Diagramms. Jedes weitere Attribut überschreibt dessen Einstellungen."
+
+#: src/Admin/SettingsPage.php:95
+msgid "Inline bars: rows separated by \"|\", fields by \";\" — label;value;range end;value text."
+msgstr "Inline-Balken: Zeilen durch \"|\", Felder durch \";\" getrennt — Beschriftung;Wert;Bereichsende;Werttext."
+
+#: src/Admin/SettingsPage.php:97
+msgid "Title (accessible name; shown with show_title=\"yes\")."
+msgstr "Titel (barrierefreier Name; sichtbar mit show_title=\"yes\")."
+
+#: src/Admin/SettingsPage.php:98
+msgid "Unit, e.g. days."
+msgstr "Einheit, z. B. Tage."
+
+#: src/Admin/SettingsPage.php:99
+msgid "Axis range and step. Empty max: automatic."
+msgstr "Achsenbereich und Schrittweite. Leeres max: automatisch."
+
+#: src/Admin/SettingsPage.php:100
+msgid "Colors, e.g. #0f0c24."
+msgstr "Farben, z. B. #0f0c24."
+
+#: src/Admin/SettingsPage.php:101
+msgid "Font family, e.g. \"DM Sans, sans-serif\"."
+msgstr "Schriftfamilie, z. B. \"DM Sans, sans-serif\"."
+
+#: src/Admin/SettingsPage.php:102
+msgid "Bar thickness, column chart height, corner radius, e.g. 28px."
+msgstr "Balkenstärke, Höhe des Säulendiagramms, Eckenradius, z. B. 28px."
+
+#: src/Ai/Abilities.php:34
+msgid "Qaiyo Easy Charts"
+msgstr "Qaiyo Easy Charts"
+
+#: src/Ai/Abilities.php:35
+msgid "Create and read bar and column charts that can be embedded with a shortcode."
+msgstr "Balken- und Säulendiagramme erstellen und lesen, die per Shortcode eingebettet werden können."
+
+#: src/Ai/Abilities.php:51
+msgid "Label of the bar."
+msgstr "Beschriftung des Balkens."
+
+#: src/Ai/Abilities.php:55
+msgid "Where the solid bar ends."
+msgstr "Wo der volle Balken endet."
+
+#: src/Ai/Abilities.php:59
+msgid "Optional end of a highlighted range after the value, e.g. 15 for \"10–15\"."
+msgstr "Optionales Ende eines hervorgehobenen Bereichs nach dem Wert, z. B. 15 für \"10–15\"."
+
+#: src/Ai/Abilities.php:63
+msgid "Optional text shown instead of the number, e.g. \"up to 5\"."
+msgstr "Optionaler Text statt der Zahl, z. B. \"bis zu 5\"."
+
+#: src/Ai/Abilities.php:81
+msgid "List charts"
+msgstr "Diagramme auflisten"
+
+#: src/Ai/Abilities.php:82
+msgid "Lists the saved charts with their ID, title, status and the shortcode that embeds each one."
+msgstr "Listet die gespeicherten Diagramme mit ID, Titel, Status und dem Shortcode zum Einbetten auf."
+
+#: src/Ai/Abilities.php:106
+msgid "Get chart"
+msgstr "Diagramm abrufen"
+
+#: src/Ai/Abilities.php:107
+msgid "Returns one saved chart: its bars (label, value, optional range end and text), unit, orientation and shortcode."
+msgstr "Gibt ein gespeichertes Diagramm zurück: Balken (Beschriftung, Wert, optionales Bereichsende und Text), Einheit, Ausrichtung und Shortcode."
+
+#: src/Ai/Abilities.php:115
+msgid "Chart ID."
+msgstr "Diagramm-ID."
+
+#: src/Ai/Abilities.php:152
+msgid "Create chart"
+msgstr "Diagramm erstellen"
+
+#: src/Ai/Abilities.php:153
+msgid "Creates a saved bar or column chart and returns its ID and the shortcode to place it in content. Each bar has a label and a value; an optional range end draws a highlighted range (e.g. 10–15 days)."
+msgstr "Erstellt ein gespeichertes Balken- oder Säulendiagramm und gibt seine ID und den Shortcode zum Einfügen in Inhalte zurück. Jeder Balken hat eine Beschriftung und einen Wert; ein optionales Bereichsende zeichnet einen hervorgehobenen Bereich (z. B. 10–15 Tage)."
+
+#: src/Ai/Abilities.php:161
+msgid "Chart title; also its accessible name."
+msgstr "Diagrammtitel; zugleich sein barrierefreier Name."
+
+#: src/Ai/Abilities.php:178
+msgid "Unit shown on the axis, e.g. \"days\"."
+msgstr "Auf der Achse angezeigte Einheit, z. B. \"Tage\"."
+
+#: src/Ai/Abilities.php:182
+msgid "Publish immediately (otherwise saved as a draft)."
+msgstr "Sofort veröffentlichen (sonst als Entwurf gespeichert)."
+
+#: src/Ai/Abilities.php:232
+msgid "Chart not found."
+msgstr "Diagramm nicht gefunden."
+
+#: src/Ai/Abilities.php:277
+msgid "At least one bar with a label and a value is required."
+msgstr "Mindestens ein Balken mit Beschriftung und Wert ist erforderlich."
+
+#: src/Blocks/ChartBlock.php:106 src/Integrations/Bricks/ChartElement.php:66 src/Integrations/Elementor/ChartWidget.php:69
+msgid "Data source"
+msgstr "Datenquelle"
+
+#: src/Blocks/ChartBlock.php:107 src/Integrations/Bricks/ChartElement.php:69 src/Integrations/Bricks/ChartElement.php:72 src/Integrations/Elementor/ChartWidget.php:73
+msgid "Enter bars here"
+msgstr "Balken hier eingeben"
+
+#: src/Blocks/ChartBlock.php:108 src/Integrations/Bricks/ChartElement.php:70 src/Integrations/Elementor/ChartWidget.php:74
+msgid "Saved chart"
+msgstr "Gespeichertes Diagramm"
+
+#: src/Blocks/ChartBlock.php:110 src/Integrations/Bricks/ChartElement.php:85 src/Integrations/Elementor/ChartWidget.php:79
+msgid "— Select a chart —"
+msgstr "— Diagramm auswählen —"
+
+#: src/Blocks/ChartBlock.php:111
+msgid "Manage charts"
+msgstr "Diagramme verwalten"
+
+#: src/Blocks/ChartBlock.php:112
+msgid "Select a saved chart in the block settings."
+msgstr "Wähle in den Blockeinstellungen ein gespeichertes Diagramm aus."
+
+#: src/Blocks/ChartBlock.php:114
+msgid "Bar"
+msgstr "Balken"
+
+#: src/Blocks/ChartBlock.php:115 src/Integrations/Bricks/ChartElement.php:97 src/Integrations/Elementor/ChartWidget.php:99 templates/admin/chart-editor.php:32 templates/admin/chart-editor.php:33 templates/admin/chart-editor.php:143
+msgid "Label"
+msgstr "Beschriftung"
+
+#: src/Blocks/ChartBlock.php:116 src/Chart/Renderer.php:293 src/Integrations/Bricks/ChartElement.php:101 src/Integrations/Elementor/ChartWidget.php:108 templates/admin/chart-editor.php:35 templates/admin/chart-editor.php:36 templates/admin/chart-editor.php:144
+msgid "Value"
+msgstr "Wert"
+
+#: src/Blocks/ChartBlock.php:117 src/Integrations/Bricks/ChartElement.php:105 src/Integrations/Elementor/ChartWidget.php:116 templates/admin/chart-editor.php:38 templates/admin/chart-editor.php:39 templates/admin/chart-editor.php:145
+msgid "Range end"
+msgstr "Bereichsende"
+
+#: src/Blocks/ChartBlock.php:118 src/Integrations/Bricks/ChartElement.php:110 src/Integrations/Elementor/ChartWidget.php:125 templates/admin/chart-editor.php:41 templates/admin/chart-editor.php:42 templates/admin/chart-editor.php:146
+msgid "Value text"
+msgstr "Werttext"
+
+#: src/Blocks/ChartBlock.php:119 templates/admin/chart-editor.php:176
+msgid "Add bar"
+msgstr "Balken hinzufügen"
+
+#: src/Blocks/ChartBlock.php:120 templates/admin/chart-editor.php:53
+msgid "Remove bar"
+msgstr "Balken entfernen"
+
+#: src/Blocks/ChartBlock.php:121 templates/admin/chart-editor.php:51
+msgid "Move bar up"
+msgstr "Balken nach oben"
+
+#: src/Blocks/ChartBlock.php:122 templates/admin/chart-editor.php:52
+msgid "Move bar down"
+msgstr "Balken nach unten"
+
+#: src/Blocks/ChartBlock.php:123 src/Integrations/Bricks/ChartElement.php:45 src/Integrations/Elementor/ChartWidget.php:165 templates/admin/chart-editor.php:188
+msgid "Layout"
+msgstr "Layout"
+
+#: src/Blocks/ChartBlock.php:124 src/Integrations/Bricks/ChartElement.php:130 src/Integrations/Elementor/ChartWidget.php:173 templates/admin/chart-editor.php:192 templates/admin/settings.php:89
+msgid "Orientation"
+msgstr "Ausrichtung"
+
+#: src/Blocks/ChartBlock.php:125
+msgid "Default (from settings)"
+msgstr "Standard (aus den Einstellungen)"
+
+#: src/Blocks/ChartBlock.php:126 src/Integrations/Bricks/ChartElement.php:133 src/Integrations/Bricks/ChartElement.php:137 src/Integrations/Elementor/ChartWidget.php:177 templates/admin/chart-editor.php:194 templates/admin/settings.php:92
+msgid "Horizontal bars"
+msgstr "Horizontale Balken"
+
+#: src/Blocks/ChartBlock.php:127 src/Integrations/Bricks/ChartElement.php:134 src/Integrations/Elementor/ChartWidget.php:178 templates/admin/chart-editor.php:195 templates/admin/settings.php:93
+msgid "Vertical columns"
+msgstr "Vertikale Säulen"
+
+#: src/Blocks/ChartBlock.php:128 src/Integrations/Bricks/ChartElement.php:135 src/Integrations/Elementor/ChartWidget.php:179 templates/admin/chart-editor.php:196 templates/admin/settings.php:94
+msgid "Columns, bars on narrow screens"
+msgstr "Säulen, auf schmalen Bildschirmen Balken"
+
+#: src/Blocks/ChartBlock.php:129 src/Integrations/Bricks/ChartElement.php:143 src/Integrations/Elementor/ChartWidget.php:187 templates/admin/chart-editor.php:201
+msgid "Labels of horizontal bars"
+msgstr "Beschriftungen horizontaler Balken"
+
+#: src/Blocks/ChartBlock.php:130 src/Integrations/Bricks/ChartElement.php:146 src/Integrations/Bricks/ChartElement.php:150 src/Integrations/Elementor/ChartWidget.php:191 templates/admin/chart-editor.php:203
+msgid "Auto (stack when narrow)"
+msgstr "Automatisch (bei wenig Platz untereinander)"
+
+#: src/Blocks/ChartBlock.php:131 src/Integrations/Bricks/ChartElement.php:147 src/Integrations/Elementor/ChartWidget.php:192 templates/admin/chart-editor.php:204
+msgid "Always in one row"
+msgstr "Immer in einer Zeile"
+
+#: src/Blocks/ChartBlock.php:132 src/Integrations/Bricks/ChartElement.php:148 src/Integrations/Elementor/ChartWidget.php:193 templates/admin/chart-editor.php:205
+msgid "Always above the bar"
+msgstr "Immer über dem Balken"
+
+#: src/Blocks/ChartBlock.php:133 src/Integrations/Bricks/ChartElement.php:156 src/Integrations/Bricks/ChartElement.php:313 src/Integrations/Elementor/ChartWidget.php:202 src/Integrations/Elementor/ChartWidget.php:407 templates/admin/chart-editor.php:208
+msgid "Title"
+msgstr "Titel"
+
+#: src/Blocks/ChartBlock.php:134 src/Integrations/Bricks/ChartElement.php:164 src/Integrations/Elementor/ChartWidget.php:213 templates/admin/chart-editor.php:209 templates/admin/settings.php:139
+msgid "Description"
+msgstr "Beschreibung"
+
+#: src/Blocks/ChartBlock.php:135 src/Integrations/Bricks/ChartElement.php:171 src/Integrations/Elementor/ChartWidget.php:223 templates/admin/chart-editor.php:210
+msgid "Show title and description above the chart"
+msgstr "Titel und Beschreibung über dem Diagramm anzeigen"
+
+#: src/Blocks/ChartBlock.php:136 src/Integrations/Bricks/ChartElement.php:46 src/Integrations/Elementor/ChartWidget.php:235 templates/admin/chart-editor.php:215
+msgid "Scale & axis"
+msgstr "Skala & Achse"
+
+#: src/Blocks/ChartBlock.php:137 src/Integrations/Bricks/ChartElement.php:213 src/Integrations/Elementor/ChartWidget.php:277 templates/admin/chart-editor.php:220
+msgid "Unit"
+msgstr "Einheit"
+
+#: src/Blocks/ChartBlock.php:138 src/Integrations/Bricks/ChartElement.php:221 src/Integrations/Elementor/ChartWidget.php:285 templates/admin/chart-editor.php:223
+msgid "Show unit on"
+msgstr "Einheit anzeigen bei"
+
+#: src/Blocks/ChartBlock.php:139 src/Integrations/Bricks/ChartElement.php:224 src/Integrations/Bricks/ChartElement.php:228 src/Integrations/Elementor/ChartWidget.php:289 templates/admin/chart-editor.php:225
+msgid "Last tick"
+msgstr "Letzter Teilstrich"
+
+#: src/Blocks/ChartBlock.php:140 src/Integrations/Bricks/ChartElement.php:225 src/Integrations/Elementor/ChartWidget.php:290 templates/admin/chart-editor.php:226
+msgid "Every tick"
+msgstr "Jeder Teilstrich"
+
+#: src/Blocks/ChartBlock.php:141 src/Integrations/Bricks/ChartElement.php:226 src/Integrations/Elementor/ChartWidget.php:291 templates/admin/chart-editor.php:227
+msgid "Hidden"
+msgstr "Ausgeblendet"
+
+#: src/Blocks/ChartBlock.php:142 src/Integrations/Bricks/ChartElement.php:188 src/Integrations/Elementor/ChartWidget.php:251 templates/admin/chart-editor.php:218
+msgid "Maximum"
+msgstr "Maximum"
+
+#: src/Blocks/ChartBlock.php:143 src/Integrations/Bricks/ChartElement.php:191 src/Integrations/Elementor/ChartWidget.php:252 templates/admin/chart-editor.php:218
+msgid "Leave empty to calculate from the data."
+msgstr "Leer lassen, um aus den Daten zu berechnen."
+
+#: src/Blocks/ChartBlock.php:144 src/Integrations/Bricks/ChartElement.php:197 src/Integrations/Elementor/ChartWidget.php:259 templates/admin/chart-editor.php:219
+msgid "Axis step"
+msgstr "Achsenschritt"
+
+#: src/Blocks/ChartBlock.php:145 src/Integrations/Elementor/ChartWidget.php:268 templates/admin/chart-editor.php:230
+msgid "Show axis"
+msgstr "Achse anzeigen"
+
+#: src/Blocks/ChartBlock.php:146 src/Integrations/Elementor/ChartWidget.php:310 templates/admin/chart-editor.php:237
+msgid "Show values"
+msgstr "Werte anzeigen"
+
+#: src/Blocks/ChartBlock.php:147 templates/admin/chart-editor.php:245
+msgid "Colors"
+msgstr "Farben"
+
+#: src/Blocks/ChartBlock.php:148 src/Integrations/Bricks/ChartElement.php:115 src/Integrations/Bricks/ChartElement.php:280 src/Integrations/Elementor/ChartWidget.php:134 src/Integrations/Elementor/ChartWidget.php:389 templates/admin/chart-editor.php:44 templates/admin/chart-editor.php:45 templates/admin/chart-editor.php:147 templates/admin/chart-editor.php:248 templates/admin/settings.php:20
+msgid "Bar color"
+msgstr "Balkenfarbe"
+
+#: src/Blocks/ChartBlock.php:149 src/Integrations/Bricks/ChartElement.php:119 src/Integrations/Bricks/ChartElement.php:281 src/Integrations/Elementor/ChartWidget.php:142 src/Integrations/Elementor/ChartWidget.php:390 templates/admin/chart-editor.php:47 templates/admin/chart-editor.php:48 templates/admin/chart-editor.php:148 templates/admin/chart-editor.php:249 templates/admin/settings.php:21
+msgid "Range color"
+msgstr "Bereichsfarbe"
+
+#: src/Blocks/ChartBlock.php:150 src/Integrations/Bricks/ChartElement.php:282 src/Integrations/Elementor/ChartWidget.php:391 templates/admin/chart-editor.php:250 templates/admin/settings.php:22
+msgid "Track color"
+msgstr "Hintergrundfarbe der Spur"
+
+#: src/Blocks/ChartBlock.php:151 src/Integrations/Bricks/ChartElement.php:283 templates/admin/chart-editor.php:251 templates/admin/settings.php:23
+msgid "Label color"
+msgstr "Beschriftungsfarbe"
+
+#: src/Blocks/ChartBlock.php:152 src/Integrations/Bricks/ChartElement.php:284 templates/admin/chart-editor.php:252 templates/admin/settings.php:24
+msgid "Value color"
+msgstr "Wertfarbe"
+
+#: src/Blocks/ChartBlock.php:153 src/Integrations/Bricks/ChartElement.php:285 templates/admin/chart-editor.php:253 templates/admin/settings.php:25
+msgid "Axis color"
+msgstr "Achsenfarbe"
+
+#: src/Blocks/ChartBlock.php:154
+msgid "Size"
+msgstr "Größe"
+
+#: src/Blocks/ChartBlock.php:155 src/Integrations/Bricks/ChartElement.php:287 src/Integrations/Elementor/ChartWidget.php:393 templates/admin/chart-editor.php:261
+msgid "Bar thickness"
+msgstr "Balkenstärke"
+
+#: src/Blocks/ChartBlock.php:156 src/Integrations/Bricks/ChartElement.php:288 src/Integrations/Elementor/ChartWidget.php:394 templates/admin/chart-editor.php:262
+msgid "Column chart height"
+msgstr "Höhe des Säulendiagramms"
+
+#: src/Blocks/ChartBlock.php:157 src/Integrations/Bricks/ChartElement.php:289 src/Integrations/Elementor/ChartWidget.php:395 templates/admin/chart-editor.php:263
+msgid "Corner radius"
+msgstr "Eckenradius"
+
+#: src/Blocks/ChartBlock.php:158
+msgid "Behaviour"
+msgstr "Verhalten"
+
+#: src/Blocks/ChartBlock.php:159 src/Integrations/Elementor/ChartWidget.php:341 templates/admin/chart-editor.php:270
+msgid "Animate when scrolled into view"
+msgstr "Beim Hineinscrollen animieren"
+
+#: src/Blocks/ChartBlock.php:160 src/Integrations/Elementor/ChartWidget.php:351 templates/admin/chart-editor.php:271 templates/admin/settings.php:30
+msgid "Highlight the hovered bar"
+msgstr "Balken unter dem Mauszeiger hervorheben"
+
+#: src/Chart/Renderer.php:289
+msgid "Chart data"
+msgstr "Diagrammdaten"
+
+#: src/Chart/Renderer.php:293
+msgid "Item"
+msgstr "Eintrag"
+
+#: src/Integrations/Bricks/BricksIntegration.php:41 src/Integrations/Elementor/ElementorIntegration.php:42
+msgid "Qaiyo"
+msgstr "Qaiyo"
+
+#: src/Integrations/Bricks/ChartElement.php:31 src/Integrations/Elementor/ChartWidget.php:34
+msgid "Qaiyo Easy Chart"
+msgstr "Qaiyo Easy Chart"
+
+#: src/Integrations/Bricks/ChartElement.php:47 src/Integrations/Elementor/ChartWidget.php:302
+msgid "Values & behaviour"
+msgstr "Werte & Verhalten"
+
+#: src/Integrations/Bricks/ChartElement.php:48
+msgid "Chart style"
+msgstr "Diagrammstil"
+
+#: src/Integrations/Bricks/ChartElement.php:49
+msgid "Typography"
+msgstr "Typografie"
+
+#: src/Integrations/Bricks/ChartElement.php:107 src/Integrations/Elementor/ChartWidget.php:117
+msgid "Optional. Draws a highlighted range from Value to this number."
+msgstr "Optional. Zeichnet einen hervorgehobenen Bereich vom Wert bis zu dieser Zahl."
+
+#: src/Integrations/Bricks/ChartElement.php:112 src/Integrations/Elementor/ChartWidget.php:126
+msgid "Optional. Replaces the automatic text, e.g. \"up to 5\"."
+msgstr "Optional. Ersetzt den automatischen Text, z. B. \"bis zu 5\"."
+
+#: src/Integrations/Bricks/ChartElement.php:158 src/Integrations/Elementor/ChartWidget.php:203
+msgid "Used as the accessible name of the chart."
+msgstr "Wird als barrierefreier Name des Diagramms verwendet."
+
+#: src/Integrations/Bricks/ChartElement.php:180 src/Integrations/Elementor/ChartWidget.php:243 templates/admin/chart-editor.php:217
+msgid "Minimum"
+msgstr "Minimum"
+
+#: src/Integrations/Bricks/ChartElement.php:190 src/Integrations/Bricks/ChartElement.php:292 templates/admin/chart-editor.php:218
+msgid "Auto"
+msgstr "Automatisch"
+
+#: src/Integrations/Bricks/ChartElement.php:206
+msgid "Hide axis"
+msgstr "Achse ausblenden"
+
+#: src/Integrations/Bricks/ChartElement.php:236
+msgid "Hide values"
+msgstr "Werte ausblenden"
+
+#: src/Integrations/Bricks/ChartElement.php:242 src/Integrations/Elementor/ChartWidget.php:319 templates/admin/chart-editor.php:238
+msgid "Range separator"
+msgstr "Bereichstrennzeichen"
+
+#: src/Integrations/Bricks/ChartElement.php:243 src/Integrations/Elementor/ChartWidget.php:327 templates/admin/chart-editor.php:239
+msgid "Prefix"
+msgstr "Präfix"
+
+#: src/Integrations/Bricks/ChartElement.php:244 src/Integrations/Elementor/ChartWidget.php:334 templates/admin/chart-editor.php:240
+msgid "Suffix"
+msgstr "Suffix"
+
+#: src/Integrations/Bricks/ChartElement.php:260
+msgid "Disable scroll animation"
+msgstr "Scroll-Animation deaktivieren"
+
+#: src/Integrations/Bricks/ChartElement.php:267
+msgid "Disable bar highlight on hover"
+msgstr "Balkenhervorhebung beim Überfahren deaktivieren"
+
+#: src/Integrations/Bricks/ChartElement.php:274
+msgid "Disable the accessible data table"
+msgstr "Barrierefreie Datentabelle deaktivieren"
+
+#: src/Integrations/Bricks/ChartElement.php:290 src/Integrations/Elementor/ChartWidget.php:396
+msgid "Space between bars"
+msgstr "Abstand zwischen Balken"
+
+#: src/Integrations/Bricks/ChartElement.php:291 src/Integrations/Elementor/ChartWidget.php:397
+msgid "Space between columns"
+msgstr "Abstand zwischen Säulen"
+
+#: src/Integrations/Bricks/ChartElement.php:292 src/Integrations/Elementor/ChartWidget.php:428
+msgid "Label column width"
+msgstr "Breite der Beschriftungsspalte"
+
+#: src/Integrations/Bricks/ChartElement.php:293 src/Integrations/Elementor/ChartWidget.php:429
+msgid "Space before bar"
+msgstr "Abstand vor dem Balken"
+
+#: src/Integrations/Bricks/ChartElement.php:294 src/Integrations/Elementor/ChartWidget.php:432
+msgid "Space after bar"
+msgstr "Abstand nach dem Balken"
+
+#: src/Integrations/Bricks/ChartElement.php:299 src/Integrations/Elementor/ChartWidget.php:451
+msgid "Duration (ms)"
+msgstr "Dauer (ms)"
+
+#: src/Integrations/Bricks/ChartElement.php:309
+msgid "Chart font"
+msgstr "Diagrammschrift"
+
+#: src/Integrations/Bricks/ChartElement.php:310 src/Integrations/Elementor/ChartWidget.php:404
+msgid "Labels"
+msgstr "Beschriftungen"
+
+#: src/Integrations/Bricks/ChartElement.php:311 src/Integrations/Elementor/ChartWidget.php:405 templates/admin/chart-editor.php:235
+msgid "Values"
+msgstr "Werte"
+
+#: src/Integrations/Bricks/ChartElement.php:312 src/Integrations/Elementor/ChartWidget.php:406
+msgid "Axis"
+msgstr "Achse"
+
+#: src/Integrations/Bricks/ChartElement.php:408 src/Integrations/Elementor/ChartWidget.php:575
+msgid "Select a saved chart or add at least one bar."
+msgstr "Wähle ein gespeichertes Diagramm oder füge mindestens einen Balken hinzu."
+
+#: src/Integrations/Elementor/ChartWidget.php:360 templates/admin/chart-editor.php:272
+msgid "Add an accessible data table (screen readers, SEO, AI)"
+msgstr "Barrierefreie Datentabelle hinzufügen (Screenreader, SEO, KI)"
+
+#: src/Integrations/Elementor/ChartWidget.php:384
+msgid "Font"
+msgstr "Schrift"
+
+#: src/Integrations/Elementor/ChartWidget.php:418
+msgid "Color"
+msgstr "Farbe"
+
+#: src/Integrations/Elementor/ChartWidget.php:435
+msgid "Space above axis"
+msgstr "Abstand über der Achse"
+
+#: src/Integrations/Elementor/ChartWidget.php:444
+msgid "Animation"
+msgstr "Animation"
+
+#: src/Integrations/Elementor/ChartWidget.php:461
+msgid "Delay between bars (ms)"
+msgstr "Verzögerung zwischen Balken (ms)"
+
+#: templates/admin/chart-editor.php:42
+msgid "Automatic"
+msgstr "Automatisch"
+
+#: templates/admin/chart-editor.php:119
+msgid "Live preview"
+msgstr "Live-Vorschau"
+
+#: templates/admin/chart-editor.php:121
+msgid "Preview width"
+msgstr "Vorschaubreite"
+
+#: templates/admin/chart-editor.php:122
+msgid "Desktop"
+msgstr "Desktop"
+
+#: templates/admin/chart-editor.php:123
+msgid "Mobile"
+msgstr "Mobil"
+
+#: templates/admin/chart-editor.php:138
+msgid "Value is where the solid bar ends. Range end is optional: it adds a highlighted range after the value (e.g. 10–15). Value text replaces the automatic text, e.g. \"up to 5\"."
+msgstr "Der Wert ist das Ende des vollen Balkens. Das Bereichsende ist optional: Es fügt nach dem Wert einen hervorgehobenen Bereich hinzu (z. B. 10–15). Der Werttext ersetzt den automatischen Text, z. B. \"bis zu 5\"."
+
+#: templates/admin/chart-editor.php:149
+msgid "Actions"
+msgstr "Aktionen"
+
+#: templates/admin/chart-editor.php:208
+msgid "Defaults to the chart name. Used as the accessible name of the chart."
+msgstr "Standardmäßig der Diagrammname. Wird als barrierefreier Name des Diagramms verwendet."
+
+#: templates/admin/chart-editor.php:220
+msgid "e.g. days"
+msgstr "z. B. Tage"
+
+#: templates/admin/chart-editor.php:246
+msgid "Empty fields use the colors from Easy Charts → Settings."
+msgstr "Leere Felder verwenden die Farben aus Easy Charts → Einstellungen."
+
+#: templates/admin/chart-editor.php:258
+msgid "Typography & size"
+msgstr "Typografie & Größe"
+
+#: templates/admin/chart-editor.php:260 templates/admin/settings.php:72
+msgid "Font family"
+msgstr "Schriftfamilie"
+
+#: templates/admin/chart-editor.php:260
+msgid "Empty: the font of your theme or builder."
+msgstr "Leer: die Schrift deines Themes oder Builders."
+
+#: templates/admin/chart-editor.php:268 templates/admin/settings.php:99 templates/admin/settings.php:102
+msgid "Behaviour & accessibility"
+msgstr "Verhalten & Barrierefreiheit"
+
+#: templates/admin/chart-embed.php:15
+msgid "Save the chart to get its shortcode."
+msgstr "Speichere das Diagramm, um seinen Shortcode zu erhalten."
+
+#: templates/admin/chart-embed.php:22
+msgid "Copy"
+msgstr "Kopieren"
+
+#: templates/admin/chart-embed.php:27
+msgid "Gutenberg:"
+msgstr "Gutenberg:"
+
+#: templates/admin/chart-embed.php:27
+msgid "add the \"Qaiyo Easy Chart\" block and pick this chart."
+msgstr "füge den Block \"Qaiyo Easy Chart\" hinzu und wähle dieses Diagramm."
+
+#: templates/admin/chart-embed.php:28
+msgid "add the \"Qaiyo Easy Chart\" element, then choose \"Saved chart\" as the source."
+msgstr "füge das Element \"Qaiyo Easy Chart\" hinzu und wähle \"Gespeichertes Diagramm\" als Quelle."
+
+#: templates/admin/editor-intro.php:16 templates/admin/settings.php:38
+msgid "Hi, %s!"
+msgstr "Hallo, %s!"
+
+#: templates/admin/editor-intro.php:23
+msgid "Enter the bars, adjust the look, and check the live preview. Then place the chart with the shortcode, the Gutenberg block, Elementor or Bricks."
+msgstr "Gib die Balken ein, passe das Aussehen an und prüfe die Live-Vorschau. Platziere das Diagramm dann per Shortcode, Gutenberg-Block, Elementor oder Bricks."
+
+#: templates/admin/more-plugins.php:17
+msgid "Free plugins from the WordPress.org directory and Pro extensions from the Qaiyo ecosystem."
+msgstr "Kostenlose Plugins aus dem WordPress.org-Verzeichnis und Pro-Erweiterungen aus dem Qaiyo-Ökosystem."
+
+#: templates/admin/more-plugins.php:20
+msgid "Free plugins"
+msgstr "Kostenlose Plugins"
+
+#: templates/admin/more-plugins.php:22
+msgid "The WordPress.org plugin directory could not be reached right now. Please try again later."
+msgstr "Das WordPress.org-Pluginverzeichnis ist gerade nicht erreichbar. Bitte versuche es später erneut."
+
+#: templates/admin/more-plugins.php:37
+msgid "Active"
+msgstr "Aktiv"
+
+#: templates/admin/more-plugins.php:39
+msgid "Installed"
+msgstr "Installiert"
+
+#: templates/admin/more-plugins.php:52
+msgid "Install"
+msgstr "Installieren"
+
+#: templates/admin/more-plugins.php:57
+msgid "Details"
+msgstr "Details"
+
+#: templates/admin/more-plugins.php:58 templates/admin/more-plugins.php:83
+msgid "(opens in a new tab)"
+msgstr "(öffnet in einem neuen Tab)"
+
+#: templates/admin/more-plugins.php:66
+msgid "Pro extensions"
+msgstr "Pro-Erweiterungen"
+
+#: templates/admin/more-plugins.php:82
+msgid "Learn more"
+msgstr "Mehr erfahren"
+
+#: templates/admin/more-plugins.php:91
+msgid "Free plugins are listed from WordPress.org. This page makes no request to any Qaiyo server."
+msgstr "Kostenlose Plugins werden von WordPress.org geladen. Diese Seite sendet keine Anfrage an einen Qaiyo-Server."
+
+#: templates/admin/settings.php:29
+msgid "Animate charts when they scroll into view"
+msgstr "Diagramme beim Hineinscrollen animieren"
+
+#: templates/admin/settings.php:31
+msgid "Add an accessible data table to every chart (screen readers, SEO, AI)"
+msgstr "Jedem Diagramm eine barrierefreie Datentabelle hinzufügen (Screenreader, SEO, KI)"
+
+#: templates/admin/settings.php:47
+msgid "Site-wide defaults for every chart. Each chart, block and builder element can override them."
+msgstr "Websiteweite Standards für alle Diagramme. Jedes Diagramm, jeder Block und jedes Builder-Element kann sie überschreiben."
+
+#: templates/admin/settings.php:57
+msgid "Colors & font"
+msgstr "Farben & Schrift"
+
+#: templates/admin/settings.php:76
+msgid "Empty: charts use the font of your theme or page builder. The font itself must be loaded by your theme."
+msgstr "Leer: Diagramme verwenden die Schrift deines Themes oder Page Builders. Die Schrift selbst muss dein Theme laden."
+
+#: templates/admin/settings.php:85
+msgid "Defaults for new charts"
+msgstr "Standards für neue Diagramme"
+
+#: templates/admin/settings.php:113
+msgid "Uninstall"
+msgstr "Deinstallation"
+
+#: templates/admin/settings.php:117
+msgid "Delete all charts and settings when the plugin is deleted"
+msgstr "Alle Diagramme und Einstellungen löschen, wenn das Plugin gelöscht wird"
+
+#: templates/admin/settings.php:119
+msgid "Off by default, so reinstalling keeps your charts."
+msgstr "Standardmäßig aus, damit deine Diagramme bei einer Neuinstallation erhalten bleiben."
+
+#: templates/admin/settings.php:131
+msgid "Shortcode reference"
+msgstr "Shortcode-Referenz"
+
+#: templates/admin/settings.php:138
+msgid "Attribute"
+msgstr "Attribut"
+
+#: blocks/chart/block.json
+msgctxt "block title"
+msgid "Qaiyo Easy Chart"
+msgstr "Qaiyo Easy Chart"
+
+#: blocks/chart/block.json
+msgctxt "block description"
+msgid "Animated, accessible bar or column chart with optional ranges."
+msgstr "Animiertes, barrierefreies Balken- oder Säulendiagramm mit optionalen Bereichen."
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "chart"
+msgstr "diagramm"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "bar"
+msgstr "balken"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "column"
+msgstr "säule"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "graph"
+msgstr "grafik"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "qaiyo"
+msgstr "qaiyo"

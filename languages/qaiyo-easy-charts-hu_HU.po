@@ -1,0 +1,834 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: qaiyo-easy-charts 1.0.0\n"
+"Report-Msgid-Bugs-To: https://qaiyo-plugins.com\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Qaiyo build-translations.py\n"
+"X-Domain: qaiyo-easy-charts\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/Plugin.php:63 src/Admin/PostType.php:39
+msgid "Charts"
+msgstr "Chartok"
+
+#: src/Plugin.php:64 src/Admin/SettingsPage.php:50 templates/admin/chart-editor.php:183
+msgid "Settings"
+msgstr "Beállítások"
+
+#: src/Admin/BrandMenu.php:228
+msgid "Qaiyo Plugins"
+msgstr "Qaiyo pluginok"
+
+#: src/Admin/ChartEditor.php:47
+msgid "Chart builder"
+msgstr "Chart szerkesztő"
+
+#: src/Admin/ChartEditor.php:48
+msgid "Embed"
+msgstr "Beágyazás"
+
+#: src/Admin/ChartEditor.php:160
+msgid "You are not allowed to edit this chart."
+msgstr "Nincs jogosultságod a chart szerkesztéséhez."
+
+#: src/Admin/ChartEditor.php:211
+msgid "Bar added."
+msgstr "Sáv hozzáadva."
+
+#: src/Admin/ChartEditor.php:212
+msgid "Bar removed."
+msgstr "Sáv törölve."
+
+#: src/Admin/ChartEditor.php:213
+msgid "Bar moved."
+msgstr "Sáv áthelyezve."
+
+#: src/Admin/ChartEditor.php:214
+msgid "Copied to the clipboard."
+msgstr "Vágólapra másolva."
+
+#: src/Admin/ChartEditor.php:215
+msgid "The preview could not be refreshed."
+msgstr "Az előnézetet nem sikerült frissíteni."
+
+#: src/Admin/MorePlugins.php:64 templates/admin/more-plugins.php:16
+msgid "More plugins from Qaiyo"
+msgstr "További Qaiyo pluginok"
+
+#: src/Admin/MorePlugins.php:65
+msgid "Discover Qaiyo"
+msgstr "Fedezd fel a Qaiyót"
+
+#: src/Admin/MorePlugins.php:169
+msgid "TikTok channel feeds and scheduled background refresh of your channel galleries."
+msgstr "TikTok csatorna-feedek és a csatornagalériák ütemezett háttérfrissítése."
+
+#: src/Admin/MorePlugins.php:174
+msgid "Extra layouts, star ratings, a front-end submission form and video testimonials."
+msgstr "Extra elrendezések, csillagos értékelés, frontendes beküldőűrlap és videós vélemények."
+
+#: src/Admin/MorePlugins.php:179
+msgid "Per-term taxonomy access, advanced per-user rules and finer-grained access control."
+msgstr "Kifejezésenkénti taxonómia-hozzáférés, haladó felhasználói szabályok és finomabb jogosultságkezelés."
+
+#: src/Admin/MorePlugins.php:184
+msgid "Background processing, scheduling, automatic image sourcing and full change history."
+msgstr "Háttérfeldolgozás, ütemezés, automatikus képbeszerzés és teljes változástörténet."
+
+#: src/Admin/MorePlugins.php:189
+msgid "Unlimited services and staff, extra booking layouts and advanced scheduling rules."
+msgstr "Korlátlan szolgáltatás és munkatárs, extra foglalási elrendezések és haladó ütemezési szabályok."
+
+#: src/Admin/MorePlugins.php:194
+msgid "Advanced wp-admin tools and workflow enhancements that build on the free modules."
+msgstr "Haladó wp-admin eszközök és munkafolyamat-fejlesztések az ingyenes modulokra építve."
+
+#: src/Admin/MorePlugins.php:199
+msgid "Deeper performance diagnostics, more optimisation rules and one-click fixes."
+msgstr "Mélyebb teljesítménydiagnosztika, több optimalizálási szabály és egykattintásos javítások."
+
+#: src/Admin/PostType.php:40 src/Blocks/ChartBlock.php:109 src/Integrations/Bricks/ChartElement.php:82 src/Integrations/Elementor/ChartWidget.php:87 src/Integrations/Elementor/ChartWidget.php:375
+msgid "Chart"
+msgstr "Chart"
+
+#: src/Admin/PostType.php:41
+msgid "Easy Charts"
+msgstr "Easy Charts"
+
+#: src/Admin/PostType.php:42
+msgid "All charts"
+msgstr "Összes chart"
+
+#: src/Admin/PostType.php:43
+msgid "Add chart"
+msgstr "Új chart"
+
+#: src/Admin/PostType.php:44
+msgid "Add new chart"
+msgstr "Új chart hozzáadása"
+
+#: src/Admin/PostType.php:45
+msgid "Edit chart"
+msgstr "Chart szerkesztése"
+
+#: src/Admin/PostType.php:46
+msgid "New chart"
+msgstr "Új chart"
+
+#: src/Admin/PostType.php:47
+msgid "Search charts"
+msgstr "Chartok keresése"
+
+#: src/Admin/PostType.php:48
+msgid "No charts yet."
+msgstr "Még nincs chart."
+
+#: src/Admin/PostType.php:49
+msgid "No charts in the trash."
+msgstr "Nincs chart a lomtárban."
+
+#: src/Admin/PostType.php:84 templates/admin/chart-embed.php:17
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: src/Admin/PostType.php:85 src/Blocks/ChartBlock.php:113 src/Integrations/Bricks/ChartElement.php:44 src/Integrations/Elementor/ChartWidget.php:64 src/Integrations/Elementor/ChartWidget.php:150 templates/admin/chart-editor.php:136
+msgid "Bars"
+msgstr "Sávok"
+
+#: src/Admin/PostType.php:119
+msgid "Chart saved."
+msgstr "Chart mentve."
+
+#: src/Admin/PostType.php:123 src/Admin/PostType.php:124
+msgid "Chart updated."
+msgstr "Chart frissítve."
+
+#: src/Admin/PostType.php:125
+msgid "Chart published."
+msgstr "Chart közzétéve."
+
+#: src/Admin/PostType.php:128
+msgid "Chart draft updated."
+msgstr "Chart piszkozat frissítve."
+
+#: src/Admin/SettingsPage.php:49 templates/admin/settings.php:44
+msgid "Easy Charts settings"
+msgstr "Easy Charts beállítások"
+
+#: src/Admin/SettingsPage.php:73
+msgid "You do not have permission to access this page."
+msgstr "Nincs jogosultságod az oldal megnyitásához."
+
+#: src/Admin/SettingsPage.php:94
+msgid "ID of a saved chart. Any other attribute overrides its settings."
+msgstr "Egy mentett chart azonosítója. Minden további attribútum felülírja a beállításait."
+
+#: src/Admin/SettingsPage.php:95
+msgid "Inline bars: rows separated by \"|\", fields by \";\" — label;value;range end;value text."
+msgstr "Inline sávok: a sorokat \"|\", a mezőket \";\" választja el — címke;érték;tartomány vége;értékszöveg."
+
+#: src/Admin/SettingsPage.php:97
+msgid "Title (accessible name; shown with show_title=\"yes\")."
+msgstr "Cím (akadálymentes név; show_title=\"yes\" esetén látszik)."
+
+#: src/Admin/SettingsPage.php:98
+msgid "Unit, e.g. days."
+msgstr "Mértékegység, pl. nap."
+
+#: src/Admin/SettingsPage.php:99
+msgid "Axis range and step. Empty max: automatic."
+msgstr "Tengelytartomány és lépésköz. Üres max: automatikus."
+
+#: src/Admin/SettingsPage.php:100
+msgid "Colors, e.g. #0f0c24."
+msgstr "Színek, pl. #0f0c24."
+
+#: src/Admin/SettingsPage.php:101
+msgid "Font family, e.g. \"DM Sans, sans-serif\"."
+msgstr "Betűcsalád, pl. \"DM Sans, sans-serif\"."
+
+#: src/Admin/SettingsPage.php:102
+msgid "Bar thickness, column chart height, corner radius, e.g. 28px."
+msgstr "Sávvastagság, oszlopdiagram-magasság, sarokkerekítés, pl. 28px."
+
+#: src/Ai/Abilities.php:34
+msgid "Qaiyo Easy Charts"
+msgstr "Qaiyo Easy Charts"
+
+#: src/Ai/Abilities.php:35
+msgid "Create and read bar and column charts that can be embedded with a shortcode."
+msgstr "Shortcode-dal beágyazható sáv- és oszlopdiagramok létrehozása és lekérdezése."
+
+#: src/Ai/Abilities.php:51
+msgid "Label of the bar."
+msgstr "A sáv címkéje."
+
+#: src/Ai/Abilities.php:55
+msgid "Where the solid bar ends."
+msgstr "Ahol a teli sáv véget ér."
+
+#: src/Ai/Abilities.php:59
+msgid "Optional end of a highlighted range after the value, e.g. 15 for \"10–15\"."
+msgstr "Az érték utáni kiemelt tartomány opcionális vége, pl. 15 a \"10–15\"-höz."
+
+#: src/Ai/Abilities.php:63
+msgid "Optional text shown instead of the number, e.g. \"up to 5\"."
+msgstr "Opcionális szöveg a szám helyett, pl. \"akár 5\"."
+
+#: src/Ai/Abilities.php:81
+msgid "List charts"
+msgstr "Chartok listázása"
+
+#: src/Ai/Abilities.php:82
+msgid "Lists the saved charts with their ID, title, status and the shortcode that embeds each one."
+msgstr "Kilistázza a mentett chartokat azonosítóval, címmel, állapottal és a beágyazó shortcode-dal."
+
+#: src/Ai/Abilities.php:106
+msgid "Get chart"
+msgstr "Chart lekérdezése"
+
+#: src/Ai/Abilities.php:107
+msgid "Returns one saved chart: its bars (label, value, optional range end and text), unit, orientation and shortcode."
+msgstr "Egy mentett chartot ad vissza: sávjait (címke, érték, opcionális tartományvég és szöveg), mértékegységét, tájolását és shortcode-ját."
+
+#: src/Ai/Abilities.php:115
+msgid "Chart ID."
+msgstr "Chart azonosító."
+
+#: src/Ai/Abilities.php:152
+msgid "Create chart"
+msgstr "Chart létrehozása"
+
+#: src/Ai/Abilities.php:153
+msgid "Creates a saved bar or column chart and returns its ID and the shortcode to place it in content. Each bar has a label and a value; an optional range end draws a highlighted range (e.g. 10–15 days)."
+msgstr "Mentett sáv- vagy oszlopdiagramot hoz létre, és visszaadja az azonosítóját és a tartalomba illeszthető shortcode-ot. Minden sávnak van címkéje és értéke; az opcionális tartományvég kiemelt tartományt rajzol (pl. 10–15 nap)."
+
+#: src/Ai/Abilities.php:161
+msgid "Chart title; also its accessible name."
+msgstr "A chart címe; egyben az akadálymentes neve."
+
+#: src/Ai/Abilities.php:178
+msgid "Unit shown on the axis, e.g. \"days\"."
+msgstr "A tengelyen megjelenő mértékegység, pl. \"nap\"."
+
+#: src/Ai/Abilities.php:182
+msgid "Publish immediately (otherwise saved as a draft)."
+msgstr "Azonnali közzététel (egyébként piszkozatként mentődik)."
+
+#: src/Ai/Abilities.php:232
+msgid "Chart not found."
+msgstr "A chart nem található."
+
+#: src/Ai/Abilities.php:277
+msgid "At least one bar with a label and a value is required."
+msgstr "Legalább egy címkével és értékkel rendelkező sáv szükséges."
+
+#: src/Blocks/ChartBlock.php:106 src/Integrations/Bricks/ChartElement.php:66 src/Integrations/Elementor/ChartWidget.php:69
+msgid "Data source"
+msgstr "Adatforrás"
+
+#: src/Blocks/ChartBlock.php:107 src/Integrations/Bricks/ChartElement.php:69 src/Integrations/Bricks/ChartElement.php:72 src/Integrations/Elementor/ChartWidget.php:73
+msgid "Enter bars here"
+msgstr "Sávok megadása itt"
+
+#: src/Blocks/ChartBlock.php:108 src/Integrations/Bricks/ChartElement.php:70 src/Integrations/Elementor/ChartWidget.php:74
+msgid "Saved chart"
+msgstr "Mentett chart"
+
+#: src/Blocks/ChartBlock.php:110 src/Integrations/Bricks/ChartElement.php:85 src/Integrations/Elementor/ChartWidget.php:79
+msgid "— Select a chart —"
+msgstr "— Válassz chartot —"
+
+#: src/Blocks/ChartBlock.php:111
+msgid "Manage charts"
+msgstr "Chartok kezelése"
+
+#: src/Blocks/ChartBlock.php:112
+msgid "Select a saved chart in the block settings."
+msgstr "Válassz egy mentett chartot a blokk beállításaiban."
+
+#: src/Blocks/ChartBlock.php:114
+msgid "Bar"
+msgstr "Sáv"
+
+#: src/Blocks/ChartBlock.php:115 src/Integrations/Bricks/ChartElement.php:97 src/Integrations/Elementor/ChartWidget.php:99 templates/admin/chart-editor.php:32 templates/admin/chart-editor.php:33 templates/admin/chart-editor.php:143
+msgid "Label"
+msgstr "Címke"
+
+#: src/Blocks/ChartBlock.php:116 src/Chart/Renderer.php:293 src/Integrations/Bricks/ChartElement.php:101 src/Integrations/Elementor/ChartWidget.php:108 templates/admin/chart-editor.php:35 templates/admin/chart-editor.php:36 templates/admin/chart-editor.php:144
+msgid "Value"
+msgstr "Érték"
+
+#: src/Blocks/ChartBlock.php:117 src/Integrations/Bricks/ChartElement.php:105 src/Integrations/Elementor/ChartWidget.php:116 templates/admin/chart-editor.php:38 templates/admin/chart-editor.php:39 templates/admin/chart-editor.php:145
+msgid "Range end"
+msgstr "Tartomány vége"
+
+#: src/Blocks/ChartBlock.php:118 src/Integrations/Bricks/ChartElement.php:110 src/Integrations/Elementor/ChartWidget.php:125 templates/admin/chart-editor.php:41 templates/admin/chart-editor.php:42 templates/admin/chart-editor.php:146
+msgid "Value text"
+msgstr "Értékszöveg"
+
+#: src/Blocks/ChartBlock.php:119 templates/admin/chart-editor.php:176
+msgid "Add bar"
+msgstr "Sáv hozzáadása"
+
+#: src/Blocks/ChartBlock.php:120 templates/admin/chart-editor.php:53
+msgid "Remove bar"
+msgstr "Sáv törlése"
+
+#: src/Blocks/ChartBlock.php:121 templates/admin/chart-editor.php:51
+msgid "Move bar up"
+msgstr "Sáv mozgatása fel"
+
+#: src/Blocks/ChartBlock.php:122 templates/admin/chart-editor.php:52
+msgid "Move bar down"
+msgstr "Sáv mozgatása le"
+
+#: src/Blocks/ChartBlock.php:123 src/Integrations/Bricks/ChartElement.php:45 src/Integrations/Elementor/ChartWidget.php:165 templates/admin/chart-editor.php:188
+msgid "Layout"
+msgstr "Elrendezés"
+
+#: src/Blocks/ChartBlock.php:124 src/Integrations/Bricks/ChartElement.php:130 src/Integrations/Elementor/ChartWidget.php:173 templates/admin/chart-editor.php:192 templates/admin/settings.php:89
+msgid "Orientation"
+msgstr "Tájolás"
+
+#: src/Blocks/ChartBlock.php:125
+msgid "Default (from settings)"
+msgstr "Alapértelmezett (a beállításokból)"
+
+#: src/Blocks/ChartBlock.php:126 src/Integrations/Bricks/ChartElement.php:133 src/Integrations/Bricks/ChartElement.php:137 src/Integrations/Elementor/ChartWidget.php:177 templates/admin/chart-editor.php:194 templates/admin/settings.php:92
+msgid "Horizontal bars"
+msgstr "Fekvő sávok"
+
+#: src/Blocks/ChartBlock.php:127 src/Integrations/Bricks/ChartElement.php:134 src/Integrations/Elementor/ChartWidget.php:178 templates/admin/chart-editor.php:195 templates/admin/settings.php:93
+msgid "Vertical columns"
+msgstr "Álló oszlopok"
+
+#: src/Blocks/ChartBlock.php:128 src/Integrations/Bricks/ChartElement.php:135 src/Integrations/Elementor/ChartWidget.php:179 templates/admin/chart-editor.php:196 templates/admin/settings.php:94
+msgid "Columns, bars on narrow screens"
+msgstr "Oszlopok, keskeny képernyőn sávok"
+
+#: src/Blocks/ChartBlock.php:129 src/Integrations/Bricks/ChartElement.php:143 src/Integrations/Elementor/ChartWidget.php:187 templates/admin/chart-editor.php:201
+msgid "Labels of horizontal bars"
+msgstr "Fekvő sávok címkéi"
+
+#: src/Blocks/ChartBlock.php:130 src/Integrations/Bricks/ChartElement.php:146 src/Integrations/Bricks/ChartElement.php:150 src/Integrations/Elementor/ChartWidget.php:191 templates/admin/chart-editor.php:203
+msgid "Auto (stack when narrow)"
+msgstr "Automatikus (keskeny helyen egymás alatt)"
+
+#: src/Blocks/ChartBlock.php:131 src/Integrations/Bricks/ChartElement.php:147 src/Integrations/Elementor/ChartWidget.php:192 templates/admin/chart-editor.php:204
+msgid "Always in one row"
+msgstr "Mindig egy sorban"
+
+#: src/Blocks/ChartBlock.php:132 src/Integrations/Bricks/ChartElement.php:148 src/Integrations/Elementor/ChartWidget.php:193 templates/admin/chart-editor.php:205
+msgid "Always above the bar"
+msgstr "Mindig a sáv fölött"
+
+#: src/Blocks/ChartBlock.php:133 src/Integrations/Bricks/ChartElement.php:156 src/Integrations/Bricks/ChartElement.php:313 src/Integrations/Elementor/ChartWidget.php:202 src/Integrations/Elementor/ChartWidget.php:407 templates/admin/chart-editor.php:208
+msgid "Title"
+msgstr "Cím"
+
+#: src/Blocks/ChartBlock.php:134 src/Integrations/Bricks/ChartElement.php:164 src/Integrations/Elementor/ChartWidget.php:213 templates/admin/chart-editor.php:209 templates/admin/settings.php:139
+msgid "Description"
+msgstr "Leírás"
+
+#: src/Blocks/ChartBlock.php:135 src/Integrations/Bricks/ChartElement.php:171 src/Integrations/Elementor/ChartWidget.php:223 templates/admin/chart-editor.php:210
+msgid "Show title and description above the chart"
+msgstr "Cím és leírás megjelenítése a chart fölött"
+
+#: src/Blocks/ChartBlock.php:136 src/Integrations/Bricks/ChartElement.php:46 src/Integrations/Elementor/ChartWidget.php:235 templates/admin/chart-editor.php:215
+msgid "Scale & axis"
+msgstr "Skála és tengely"
+
+#: src/Blocks/ChartBlock.php:137 src/Integrations/Bricks/ChartElement.php:213 src/Integrations/Elementor/ChartWidget.php:277 templates/admin/chart-editor.php:220
+msgid "Unit"
+msgstr "Mértékegység"
+
+#: src/Blocks/ChartBlock.php:138 src/Integrations/Bricks/ChartElement.php:221 src/Integrations/Elementor/ChartWidget.php:285 templates/admin/chart-editor.php:223
+msgid "Show unit on"
+msgstr "Mértékegység helye"
+
+#: src/Blocks/ChartBlock.php:139 src/Integrations/Bricks/ChartElement.php:224 src/Integrations/Bricks/ChartElement.php:228 src/Integrations/Elementor/ChartWidget.php:289 templates/admin/chart-editor.php:225
+msgid "Last tick"
+msgstr "Utolsó osztásnál"
+
+#: src/Blocks/ChartBlock.php:140 src/Integrations/Bricks/ChartElement.php:225 src/Integrations/Elementor/ChartWidget.php:290 templates/admin/chart-editor.php:226
+msgid "Every tick"
+msgstr "Minden osztásnál"
+
+#: src/Blocks/ChartBlock.php:141 src/Integrations/Bricks/ChartElement.php:226 src/Integrations/Elementor/ChartWidget.php:291 templates/admin/chart-editor.php:227
+msgid "Hidden"
+msgstr "Rejtett"
+
+#: src/Blocks/ChartBlock.php:142 src/Integrations/Bricks/ChartElement.php:188 src/Integrations/Elementor/ChartWidget.php:251 templates/admin/chart-editor.php:218
+msgid "Maximum"
+msgstr "Maximum"
+
+#: src/Blocks/ChartBlock.php:143 src/Integrations/Bricks/ChartElement.php:191 src/Integrations/Elementor/ChartWidget.php:252 templates/admin/chart-editor.php:218
+msgid "Leave empty to calculate from the data."
+msgstr "Hagyd üresen, ha az adatokból számolja."
+
+#: src/Blocks/ChartBlock.php:144 src/Integrations/Bricks/ChartElement.php:197 src/Integrations/Elementor/ChartWidget.php:259 templates/admin/chart-editor.php:219
+msgid "Axis step"
+msgstr "Tengely lépésköze"
+
+#: src/Blocks/ChartBlock.php:145 src/Integrations/Elementor/ChartWidget.php:268 templates/admin/chart-editor.php:230
+msgid "Show axis"
+msgstr "Tengely megjelenítése"
+
+#: src/Blocks/ChartBlock.php:146 src/Integrations/Elementor/ChartWidget.php:310 templates/admin/chart-editor.php:237
+msgid "Show values"
+msgstr "Értékek megjelenítése"
+
+#: src/Blocks/ChartBlock.php:147 templates/admin/chart-editor.php:245
+msgid "Colors"
+msgstr "Színek"
+
+#: src/Blocks/ChartBlock.php:148 src/Integrations/Bricks/ChartElement.php:115 src/Integrations/Bricks/ChartElement.php:280 src/Integrations/Elementor/ChartWidget.php:134 src/Integrations/Elementor/ChartWidget.php:389 templates/admin/chart-editor.php:44 templates/admin/chart-editor.php:45 templates/admin/chart-editor.php:147 templates/admin/chart-editor.php:248 templates/admin/settings.php:20
+msgid "Bar color"
+msgstr "Sáv színe"
+
+#: src/Blocks/ChartBlock.php:149 src/Integrations/Bricks/ChartElement.php:119 src/Integrations/Bricks/ChartElement.php:281 src/Integrations/Elementor/ChartWidget.php:142 src/Integrations/Elementor/ChartWidget.php:390 templates/admin/chart-editor.php:47 templates/admin/chart-editor.php:48 templates/admin/chart-editor.php:148 templates/admin/chart-editor.php:249 templates/admin/settings.php:21
+msgid "Range color"
+msgstr "Tartomány színe"
+
+#: src/Blocks/ChartBlock.php:150 src/Integrations/Bricks/ChartElement.php:282 src/Integrations/Elementor/ChartWidget.php:391 templates/admin/chart-editor.php:250 templates/admin/settings.php:22
+msgid "Track color"
+msgstr "Háttérsáv színe"
+
+#: src/Blocks/ChartBlock.php:151 src/Integrations/Bricks/ChartElement.php:283 templates/admin/chart-editor.php:251 templates/admin/settings.php:23
+msgid "Label color"
+msgstr "Címke színe"
+
+#: src/Blocks/ChartBlock.php:152 src/Integrations/Bricks/ChartElement.php:284 templates/admin/chart-editor.php:252 templates/admin/settings.php:24
+msgid "Value color"
+msgstr "Érték színe"
+
+#: src/Blocks/ChartBlock.php:153 src/Integrations/Bricks/ChartElement.php:285 templates/admin/chart-editor.php:253 templates/admin/settings.php:25
+msgid "Axis color"
+msgstr "Tengely színe"
+
+#: src/Blocks/ChartBlock.php:154
+msgid "Size"
+msgstr "Méret"
+
+#: src/Blocks/ChartBlock.php:155 src/Integrations/Bricks/ChartElement.php:287 src/Integrations/Elementor/ChartWidget.php:393 templates/admin/chart-editor.php:261
+msgid "Bar thickness"
+msgstr "Sávvastagság"
+
+#: src/Blocks/ChartBlock.php:156 src/Integrations/Bricks/ChartElement.php:288 src/Integrations/Elementor/ChartWidget.php:394 templates/admin/chart-editor.php:262
+msgid "Column chart height"
+msgstr "Oszlopdiagram magassága"
+
+#: src/Blocks/ChartBlock.php:157 src/Integrations/Bricks/ChartElement.php:289 src/Integrations/Elementor/ChartWidget.php:395 templates/admin/chart-editor.php:263
+msgid "Corner radius"
+msgstr "Sarokkerekítés"
+
+#: src/Blocks/ChartBlock.php:158
+msgid "Behaviour"
+msgstr "Működés"
+
+#: src/Blocks/ChartBlock.php:159 src/Integrations/Elementor/ChartWidget.php:341 templates/admin/chart-editor.php:270
+msgid "Animate when scrolled into view"
+msgstr "Animáció, amikor görgetéssel láthatóvá válik"
+
+#: src/Blocks/ChartBlock.php:160 src/Integrations/Elementor/ChartWidget.php:351 templates/admin/chart-editor.php:271 templates/admin/settings.php:30
+msgid "Highlight the hovered bar"
+msgstr "A kurzor alatti sáv kiemelése"
+
+#: src/Chart/Renderer.php:289
+msgid "Chart data"
+msgstr "Chart adatai"
+
+#: src/Chart/Renderer.php:293
+msgid "Item"
+msgstr "Elem"
+
+#: src/Integrations/Bricks/BricksIntegration.php:41 src/Integrations/Elementor/ElementorIntegration.php:42
+msgid "Qaiyo"
+msgstr "Qaiyo"
+
+#: src/Integrations/Bricks/ChartElement.php:31 src/Integrations/Elementor/ChartWidget.php:34
+msgid "Qaiyo Easy Chart"
+msgstr "Qaiyo Easy Chart"
+
+#: src/Integrations/Bricks/ChartElement.php:47 src/Integrations/Elementor/ChartWidget.php:302
+msgid "Values & behaviour"
+msgstr "Értékek és működés"
+
+#: src/Integrations/Bricks/ChartElement.php:48
+msgid "Chart style"
+msgstr "Chart stílusa"
+
+#: src/Integrations/Bricks/ChartElement.php:49
+msgid "Typography"
+msgstr "Tipográfia"
+
+#: src/Integrations/Bricks/ChartElement.php:107 src/Integrations/Elementor/ChartWidget.php:117
+msgid "Optional. Draws a highlighted range from Value to this number."
+msgstr "Opcionális. Kiemelt tartományt rajzol az értéktől eddig a számig."
+
+#: src/Integrations/Bricks/ChartElement.php:112 src/Integrations/Elementor/ChartWidget.php:126
+msgid "Optional. Replaces the automatic text, e.g. \"up to 5\"."
+msgstr "Opcionális. Lecseréli az automatikus szöveget, pl. \"akár 5\"."
+
+#: src/Integrations/Bricks/ChartElement.php:158 src/Integrations/Elementor/ChartWidget.php:203
+msgid "Used as the accessible name of the chart."
+msgstr "A chart akadálymentes neveként szolgál."
+
+#: src/Integrations/Bricks/ChartElement.php:180 src/Integrations/Elementor/ChartWidget.php:243 templates/admin/chart-editor.php:217
+msgid "Minimum"
+msgstr "Minimum"
+
+#: src/Integrations/Bricks/ChartElement.php:190 src/Integrations/Bricks/ChartElement.php:292 templates/admin/chart-editor.php:218
+msgid "Auto"
+msgstr "Automatikus"
+
+#: src/Integrations/Bricks/ChartElement.php:206
+msgid "Hide axis"
+msgstr "Tengely elrejtése"
+
+#: src/Integrations/Bricks/ChartElement.php:236
+msgid "Hide values"
+msgstr "Értékek elrejtése"
+
+#: src/Integrations/Bricks/ChartElement.php:242 src/Integrations/Elementor/ChartWidget.php:319 templates/admin/chart-editor.php:238
+msgid "Range separator"
+msgstr "Tartomány elválasztója"
+
+#: src/Integrations/Bricks/ChartElement.php:243 src/Integrations/Elementor/ChartWidget.php:327 templates/admin/chart-editor.php:239
+msgid "Prefix"
+msgstr "Előtag"
+
+#: src/Integrations/Bricks/ChartElement.php:244 src/Integrations/Elementor/ChartWidget.php:334 templates/admin/chart-editor.php:240
+msgid "Suffix"
+msgstr "Utótag"
+
+#: src/Integrations/Bricks/ChartElement.php:260
+msgid "Disable scroll animation"
+msgstr "Görgetési animáció kikapcsolása"
+
+#: src/Integrations/Bricks/ChartElement.php:267
+msgid "Disable bar highlight on hover"
+msgstr "Sávkiemelés kikapcsolása hoverre"
+
+#: src/Integrations/Bricks/ChartElement.php:274
+msgid "Disable the accessible data table"
+msgstr "Akadálymentes adattábla kikapcsolása"
+
+#: src/Integrations/Bricks/ChartElement.php:290 src/Integrations/Elementor/ChartWidget.php:396
+msgid "Space between bars"
+msgstr "Sávok közötti távolság"
+
+#: src/Integrations/Bricks/ChartElement.php:291 src/Integrations/Elementor/ChartWidget.php:397
+msgid "Space between columns"
+msgstr "Oszlopok közötti távolság"
+
+#: src/Integrations/Bricks/ChartElement.php:292 src/Integrations/Elementor/ChartWidget.php:428
+msgid "Label column width"
+msgstr "Címkeoszlop szélessége"
+
+#: src/Integrations/Bricks/ChartElement.php:293 src/Integrations/Elementor/ChartWidget.php:429
+msgid "Space before bar"
+msgstr "Távolság a sáv előtt"
+
+#: src/Integrations/Bricks/ChartElement.php:294 src/Integrations/Elementor/ChartWidget.php:432
+msgid "Space after bar"
+msgstr "Távolság a sáv után"
+
+#: src/Integrations/Bricks/ChartElement.php:299 src/Integrations/Elementor/ChartWidget.php:451
+msgid "Duration (ms)"
+msgstr "Időtartam (ms)"
+
+#: src/Integrations/Bricks/ChartElement.php:309
+msgid "Chart font"
+msgstr "Chart betűtípusa"
+
+#: src/Integrations/Bricks/ChartElement.php:310 src/Integrations/Elementor/ChartWidget.php:404
+msgid "Labels"
+msgstr "Címkék"
+
+#: src/Integrations/Bricks/ChartElement.php:311 src/Integrations/Elementor/ChartWidget.php:405 templates/admin/chart-editor.php:235
+msgid "Values"
+msgstr "Értékek"
+
+#: src/Integrations/Bricks/ChartElement.php:312 src/Integrations/Elementor/ChartWidget.php:406
+msgid "Axis"
+msgstr "Tengely"
+
+#: src/Integrations/Bricks/ChartElement.php:408 src/Integrations/Elementor/ChartWidget.php:575
+msgid "Select a saved chart or add at least one bar."
+msgstr "Válassz egy mentett chartot, vagy adj hozzá legalább egy sávot."
+
+#: src/Integrations/Elementor/ChartWidget.php:360 templates/admin/chart-editor.php:272
+msgid "Add an accessible data table (screen readers, SEO, AI)"
+msgstr "Akadálymentes adattábla (képernyőolvasók, SEO, AI)"
+
+#: src/Integrations/Elementor/ChartWidget.php:384
+msgid "Font"
+msgstr "Betűtípus"
+
+#: src/Integrations/Elementor/ChartWidget.php:418
+msgid "Color"
+msgstr "Szín"
+
+#: src/Integrations/Elementor/ChartWidget.php:435
+msgid "Space above axis"
+msgstr "Távolság a tengely fölött"
+
+#: src/Integrations/Elementor/ChartWidget.php:444
+msgid "Animation"
+msgstr "Animáció"
+
+#: src/Integrations/Elementor/ChartWidget.php:461
+msgid "Delay between bars (ms)"
+msgstr "Késleltetés a sávok között (ms)"
+
+#: templates/admin/chart-editor.php:42
+msgid "Automatic"
+msgstr "Automatikus"
+
+#: templates/admin/chart-editor.php:119
+msgid "Live preview"
+msgstr "Élő előnézet"
+
+#: templates/admin/chart-editor.php:121
+msgid "Preview width"
+msgstr "Előnézet szélessége"
+
+#: templates/admin/chart-editor.php:122
+msgid "Desktop"
+msgstr "Asztali"
+
+#: templates/admin/chart-editor.php:123
+msgid "Mobile"
+msgstr "Mobil"
+
+#: templates/admin/chart-editor.php:138
+msgid "Value is where the solid bar ends. Range end is optional: it adds a highlighted range after the value (e.g. 10–15). Value text replaces the automatic text, e.g. \"up to 5\"."
+msgstr "Az érték az, ahol a teli sáv véget ér. A tartomány vége opcionális: kiemelt tartományt ad az érték után (pl. 10–15). Az értékszöveg lecseréli az automatikus szöveget, pl. \"akár 5\"."
+
+#: templates/admin/chart-editor.php:149
+msgid "Actions"
+msgstr "Műveletek"
+
+#: templates/admin/chart-editor.php:208
+msgid "Defaults to the chart name. Used as the accessible name of the chart."
+msgstr "Alapértelmezés szerint a chart neve. A chart akadálymentes neveként szolgál."
+
+#: templates/admin/chart-editor.php:220
+msgid "e.g. days"
+msgstr "pl. nap"
+
+#: templates/admin/chart-editor.php:246
+msgid "Empty fields use the colors from Easy Charts → Settings."
+msgstr "Az üres mezők az Easy Charts → Beállítások színeit használják."
+
+#: templates/admin/chart-editor.php:258
+msgid "Typography & size"
+msgstr "Tipográfia és méret"
+
+#: templates/admin/chart-editor.php:260 templates/admin/settings.php:72
+msgid "Font family"
+msgstr "Betűcsalád"
+
+#: templates/admin/chart-editor.php:260
+msgid "Empty: the font of your theme or builder."
+msgstr "Üresen: a téma vagy a builder betűtípusa."
+
+#: templates/admin/chart-editor.php:268 templates/admin/settings.php:99 templates/admin/settings.php:102
+msgid "Behaviour & accessibility"
+msgstr "Működés és akadálymentesség"
+
+#: templates/admin/chart-embed.php:15
+msgid "Save the chart to get its shortcode."
+msgstr "Mentsd el a chartot a shortcode-hoz."
+
+#: templates/admin/chart-embed.php:22
+msgid "Copy"
+msgstr "Másolás"
+
+#: templates/admin/chart-embed.php:27
+msgid "Gutenberg:"
+msgstr "Gutenberg:"
+
+#: templates/admin/chart-embed.php:27
+msgid "add the \"Qaiyo Easy Chart\" block and pick this chart."
+msgstr "add hozzá a \"Qaiyo Easy Chart\" blokkot, és válaszd ki ezt a chartot."
+
+#: templates/admin/chart-embed.php:28
+msgid "add the \"Qaiyo Easy Chart\" element, then choose \"Saved chart\" as the source."
+msgstr "add hozzá a \"Qaiyo Easy Chart\" elemet, majd forrásnak válaszd a \"Mentett chart\" opciót."
+
+#: templates/admin/editor-intro.php:16 templates/admin/settings.php:38
+msgid "Hi, %s!"
+msgstr "Szia, %s!"
+
+#: templates/admin/editor-intro.php:23
+msgid "Enter the bars, adjust the look, and check the live preview. Then place the chart with the shortcode, the Gutenberg block, Elementor or Bricks."
+msgstr "Add meg a sávokat, állítsd be a megjelenést, és nézd meg az élő előnézetet. Utána shortcode-dal, Gutenberg blokkal, Elementorral vagy Bricksszel helyezheted el a chartot."
+
+#: templates/admin/more-plugins.php:17
+msgid "Free plugins from the WordPress.org directory and Pro extensions from the Qaiyo ecosystem."
+msgstr "Ingyenes pluginok a WordPress.org könyvtárból és Pro bővítmények a Qaiyo ökoszisztémából."
+
+#: templates/admin/more-plugins.php:20
+msgid "Free plugins"
+msgstr "Ingyenes pluginok"
+
+#: templates/admin/more-plugins.php:22
+msgid "The WordPress.org plugin directory could not be reached right now. Please try again later."
+msgstr "A WordPress.org plugin könyvtár most nem érhető el. Próbáld újra később."
+
+#: templates/admin/more-plugins.php:37
+msgid "Active"
+msgstr "Aktív"
+
+#: templates/admin/more-plugins.php:39
+msgid "Installed"
+msgstr "Telepítve"
+
+#: templates/admin/more-plugins.php:52
+msgid "Install"
+msgstr "Telepítés"
+
+#: templates/admin/more-plugins.php:57
+msgid "Details"
+msgstr "Részletek"
+
+#: templates/admin/more-plugins.php:58 templates/admin/more-plugins.php:83
+msgid "(opens in a new tab)"
+msgstr "(új lapon nyílik meg)"
+
+#: templates/admin/more-plugins.php:66
+msgid "Pro extensions"
+msgstr "Pro bővítmények"
+
+#: templates/admin/more-plugins.php:82
+msgid "Learn more"
+msgstr "Tudj meg többet"
+
+#: templates/admin/more-plugins.php:91
+msgid "Free plugins are listed from WordPress.org. This page makes no request to any Qaiyo server."
+msgstr "Az ingyenes pluginok a WordPress.org-ról jönnek. Ez az oldal nem küld kérést egyetlen Qaiyo szervernek sem."
+
+#: templates/admin/settings.php:29
+msgid "Animate charts when they scroll into view"
+msgstr "Chartok animálása, amikor görgetéssel láthatóvá válnak"
+
+#: templates/admin/settings.php:31
+msgid "Add an accessible data table to every chart (screen readers, SEO, AI)"
+msgstr "Akadálymentes adattábla minden charthoz (képernyőolvasók, SEO, AI)"
+
+#: templates/admin/settings.php:47
+msgid "Site-wide defaults for every chart. Each chart, block and builder element can override them."
+msgstr "Webhelyszintű alapértékek minden charthoz. Minden chart, blokk és builder elem felülírhatja őket."
+
+#: templates/admin/settings.php:57
+msgid "Colors & font"
+msgstr "Színek és betűtípus"
+
+#: templates/admin/settings.php:76
+msgid "Empty: charts use the font of your theme or page builder. The font itself must be loaded by your theme."
+msgstr "Üresen: a chartok a téma vagy az oldalépítő betűtípusát használják. Magát a betűtípust a témának kell betöltenie."
+
+#: templates/admin/settings.php:85
+msgid "Defaults for new charts"
+msgstr "Új chartok alapértékei"
+
+#: templates/admin/settings.php:113
+msgid "Uninstall"
+msgstr "Eltávolítás"
+
+#: templates/admin/settings.php:117
+msgid "Delete all charts and settings when the plugin is deleted"
+msgstr "Minden chart és beállítás törlése a plugin törlésekor"
+
+#: templates/admin/settings.php:119
+msgid "Off by default, so reinstalling keeps your charts."
+msgstr "Alapból kikapcsolva, így újratelepítéskor megmaradnak a chartjaid."
+
+#: templates/admin/settings.php:131
+msgid "Shortcode reference"
+msgstr "Shortcode referencia"
+
+#: templates/admin/settings.php:138
+msgid "Attribute"
+msgstr "Attribútum"
+
+#: blocks/chart/block.json
+msgctxt "block title"
+msgid "Qaiyo Easy Chart"
+msgstr "Qaiyo Easy Chart"
+
+#: blocks/chart/block.json
+msgctxt "block description"
+msgid "Animated, accessible bar or column chart with optional ranges."
+msgstr "Animált, akadálymentes sáv- vagy oszlopdiagram opcionális tartományokkal."
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "chart"
+msgstr "diagram"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "bar"
+msgstr "sáv"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "column"
+msgstr "oszlop"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "graph"
+msgstr "grafikon"
+
+#: blocks/chart/block.json
+msgctxt "block keyword"
+msgid "qaiyo"
+msgstr "qaiyo"

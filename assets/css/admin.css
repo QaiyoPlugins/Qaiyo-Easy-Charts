@@ -1,0 +1,494 @@
+/**
+ * Qaiyo Easy Charts — admin styles (Qaiyo Design System v2).
+ * Scoped to the plugin's own screens (body.qec-admin-screen, .qec-settings-wrap).
+ */
+
+.qec-admin-screen,
+.qec-settings-wrap {
+	--qec-a-accent: #6c5ce7;
+	--qec-a-accent-hover: #5a4bd1;
+	--qec-a-accent-light: rgba(108, 92, 231, 0.08);
+	--qec-a-bg: #f8f6ff;
+	--qec-a-card: #ffffff;
+	--qec-a-border: #e2e8f0;
+	--qec-a-border-soft: #f1f5f9;
+	--qec-a-text: #0f172a;
+	--qec-a-muted: #556274;
+	--qec-a-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 2px 6px rgba(15, 23, 42, 0.04);
+	--qec-a-shadow-hover: 0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+body.qec-admin-screen #wpcontent,
+body.qec-admin-screen #wpbody-content {
+	background: var(--qec-a-bg);
+}
+
+/* Intro ------------------------------------------------------------------ */
+
+.qec-intro {
+	margin: 4px 0 18px;
+}
+
+.qec-greeting {
+	margin: 0 0 4px;
+	color: var(--qec-a-muted);
+	font-size: 14px;
+}
+
+.qec-brand-line {
+	margin: 0 0 6px;
+	color: var(--qec-a-text);
+	font-size: 24px;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+}
+
+.qec-brand {
+	color: var(--qec-a-accent);
+	font-weight: 800;
+}
+
+.qec-version {
+	margin-left: 4px;
+	color: var(--qec-a-muted);
+	font-size: 13px;
+	font-weight: 400;
+	vertical-align: middle;
+}
+
+.qec-description {
+	max-width: 760px;
+	margin: 0;
+	color: var(--qec-a-muted);
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+/* Meta boxes as cards ---------------------------------------------------- */
+
+.qec-admin-screen .postbox {
+	border: 1px solid transparent;
+	border-radius: 16px;
+	box-shadow: var(--qec-a-shadow);
+	overflow: hidden;
+}
+
+.qec-admin-screen .postbox .postbox-header {
+	border-bottom-color: var(--qec-a-border-soft);
+}
+
+.qec-admin-screen #qec-chart-builder .inside {
+	margin: 0;
+	padding: 0;
+}
+
+.qec-builder {
+	display: grid;
+	gap: 0;
+}
+
+.qec-panel {
+	padding: 22px 24px;
+	border-bottom: 1px solid var(--qec-a-border-soft);
+}
+
+.qec-panel:last-child {
+	border-bottom: 0;
+}
+
+.qec-panel-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 14px;
+}
+
+.qec-panel-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0 0 6px !important;
+	padding: 0 !important;
+	color: var(--qec-a-text);
+	font-size: 15px !important;
+	font-weight: 700 !important;
+}
+
+.qec-panel-head .qec-panel-title {
+	margin: 0 !important;
+}
+
+.qec-panel-icon {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 9px;
+	background: var(--qec-a-accent-light);
+	color: var(--qec-a-accent);
+}
+
+.qec-panel-desc {
+	max-width: 820px;
+	margin: 0 0 14px;
+	color: var(--qec-a-muted);
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+/* Preview ---------------------------------------------------------------- */
+
+.qec-preview-stage {
+	padding: 28px;
+	border-radius: 12px;
+	background: var(--qec-a-bg);
+	overflow: auto;
+}
+
+.qec-preview {
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 28px;
+	border-radius: 12px;
+	background: #fff;
+	transition: max-width 0.3s ease, opacity 0.2s ease;
+}
+
+.qec-preview[data-device="mobile"] {
+	max-width: 390px;
+}
+
+.qec-preview[aria-busy="true"] {
+	opacity: 0.6;
+}
+
+.qec-device {
+	display: inline-flex;
+	gap: 6px;
+}
+
+.qec-device-button .dashicons {
+	margin-top: 3px;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.qec-device-button[aria-pressed="true"] {
+	border-color: var(--qec-a-accent) !important;
+	background: var(--qec-a-accent-light) !important;
+	color: var(--qec-a-accent) !important;
+}
+
+/* Rows table ------------------------------------------------------------- */
+
+.qec-rows-table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0 6px;
+}
+
+.qec-rows-table th {
+	padding: 0 8px 2px;
+	color: var(--qec-a-muted);
+	font-size: 12px;
+	font-weight: 600;
+	text-align: left;
+}
+
+.qec-rows-table td {
+	padding: 8px;
+	background: var(--qec-a-border-soft);
+	vertical-align: middle;
+}
+
+.qec-rows-table td:first-child {
+	border-radius: 10px 0 0 10px;
+}
+
+.qec-rows-table td:last-child {
+	border-radius: 0 10px 10px 0;
+}
+
+.qec-rows-table input[type="number"] {
+	width: 6em;
+}
+
+@media screen and (min-width: 1101px) {
+	.qec-rows-table td:first-child {
+		width: 26%;
+	}
+
+	.qec-rows-table td:nth-child(4) {
+		width: 18%;
+	}
+}
+
+.qec-row-actions {
+	white-space: nowrap;
+}
+
+.qec-row-actions .button-link {
+	padding: 4px;
+	border-radius: 6px;
+	color: var(--qec-a-muted);
+}
+
+.qec-row-actions .button-link:hover,
+.qec-row-actions .button-link:focus {
+	color: var(--qec-a-accent);
+}
+
+.qec-row-actions .qec-remove:hover,
+.qec-row-actions .qec-remove:focus {
+	color: #b32d2e;
+}
+
+.qec-add-row .dashicons {
+	margin-top: 4px;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+@media screen and (max-width: 1100px) {
+	.qec-rows-table thead {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+	}
+
+	.qec-rows-table,
+	.qec-rows-table tbody,
+	.qec-rows-table tr,
+	.qec-rows-table td {
+		display: block;
+	}
+
+	.qec-rows-table tr {
+		margin-bottom: 10px;
+		padding: 8px;
+		border-radius: 10px;
+		background: var(--qec-a-border-soft);
+	}
+
+	.qec-rows-table td,
+	.qec-rows-table td:first-child,
+	.qec-rows-table td:last-child {
+		border-radius: 0;
+		background: transparent;
+	}
+
+	.qec-rows-table td[data-label]::before {
+		content: attr(data-label);
+		display: block;
+		margin-bottom: 4px;
+		color: var(--qec-a-muted);
+		font-size: 12px;
+		font-weight: 600;
+	}
+}
+
+/* Settings grid ---------------------------------------------------------- */
+
+.qec-settings-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 16px;
+}
+
+.qec-fieldset {
+	margin: 0;
+	padding: 16px 18px;
+	border: 1px solid var(--qec-a-border);
+	border-radius: 12px;
+	background: #fff;
+	min-width: 0;
+}
+
+.qec-fieldset legend {
+	padding: 0 6px;
+	color: var(--qec-a-text);
+	font-size: 13px;
+	font-weight: 700;
+}
+
+.qec-field {
+	margin: 0 0 12px;
+}
+
+.qec-field:last-child {
+	margin-bottom: 0;
+}
+
+.qec-field > label {
+	display: block;
+	margin-bottom: 4px;
+	color: var(--qec-a-text);
+	font-weight: 600;
+}
+
+.qec-field input[type="text"],
+.qec-field input[type="number"],
+.qec-field select {
+	width: 100%;
+	max-width: 100%;
+}
+
+.qec-field--check > label {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	font-weight: 400;
+}
+
+.qec-field--check input {
+	margin-top: 2px;
+}
+
+.qec-field .description {
+	margin: 4px 0 0;
+}
+
+/* Embed box -------------------------------------------------------------- */
+
+.qec-embed-label {
+	display: block;
+	margin-bottom: 4px;
+	font-weight: 600;
+}
+
+.qec-copy {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.qec-copy input {
+	width: 100%;
+}
+
+.qec-copy input {
+	flex: 1 1 100%;
+	min-width: 0;
+}
+
+.qec-copy .dashicons {
+	margin-top: 4px;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.qec-embed-list {
+	margin: 12px 0 0;
+	color: var(--qec-a-muted);
+}
+
+.qec-shortcode-cell {
+	user-select: all;
+}
+
+/* Settings page ---------------------------------------------------------- */
+
+.qec-settings-wrap {
+	box-sizing: border-box;
+	min-height: calc(100vh - 32px);
+	margin: 0 -20px 0 -22px;
+	padding: 32px 28px;
+	background: var(--qec-a-bg);
+}
+
+.qec-settings-wrap h1 {
+	margin: 0 0 6px;
+	padding: 0;
+	color: var(--qec-a-text);
+	font-size: 28px;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+}
+
+.qec-settings-wrap .qec-description {
+	margin-bottom: 24px;
+}
+
+.qec-card {
+	max-width: 1180px;
+	margin: 0 0 20px;
+	padding: 24px 26px;
+	border: 1px solid transparent;
+	border-radius: 16px;
+	background: var(--qec-a-card);
+	box-shadow: var(--qec-a-shadow);
+	transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.qec-card:hover {
+	border-color: var(--qec-a-accent);
+	box-shadow: var(--qec-a-shadow-hover);
+}
+
+.qec-card h2 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0 0 4px;
+	color: var(--qec-a-text);
+	font-size: 15px;
+	font-weight: 700;
+}
+
+.qec-card .form-table th {
+	width: 220px;
+	color: var(--qec-a-text);
+	font-weight: 600;
+}
+
+.qec-card code {
+	font-size: 12px;
+}
+
+.qec-settings-wrap .button-primary,
+.qec-admin-screen .button-primary {
+	border-color: var(--qec-a-accent);
+	background: var(--qec-a-accent);
+}
+
+.qec-settings-wrap .button-primary:hover,
+.qec-settings-wrap .button-primary:focus,
+.qec-admin-screen .button-primary:hover,
+.qec-admin-screen .button-primary:focus {
+	border-color: var(--qec-a-accent-hover);
+	background: var(--qec-a-accent-hover);
+}
+
+@media screen and (max-width: 782px) {
+	.qec-settings-wrap {
+		margin: 0 -10px;
+		padding: 20px 14px;
+	}
+
+	.qec-panel {
+		padding: 18px 14px;
+	}
+
+	.qec-preview-stage,
+	.qec-preview {
+		padding: 14px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.qec-card,
+	.qec-preview {
+		transition: none;
+	}
+}

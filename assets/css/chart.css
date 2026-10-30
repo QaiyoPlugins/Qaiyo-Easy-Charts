@@ -1,0 +1,594 @@
+/**
+ * Qaiyo Easy Charts — front-end chart styles.
+ *
+ * Every visual setting is a CSS custom property on the chart root, so builder
+ * controls (Elementor, Bricks, the block editor) and shortcode attributes only
+ * ever set variables. Defaults use :where() (zero specificity) so any other
+ * value always wins regardless of stylesheet order.
+ */
+
+:where(.qec-chart) {
+	--qec-primary: #0f0c24;
+	--qec-secondary: #95e6d8;
+	--qec-track: #ecebf1;
+	--qec-label-color: #0f0c24;
+	--qec-value-color: #0f0c24;
+	--qec-axis-color: #6b6880;
+
+	--qec-bar-radius: 0px;
+	--qec-row-gap: 16px;
+	--qec-label-width: fit-content(40%);
+	--qec-label-gap: 40px;
+	--qec-value-gap: 16px;
+	--qec-axis-gap: 20px;
+	--qec-stack-gap: 8px;
+	--qec-chart-height: 280px;
+	--qec-column-gap: 24px;
+
+	--qec-duration: 1100ms;
+	--qec-stagger: 140ms;
+	--qec-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--qec-dim-opacity: 0.35;
+}
+
+.qec-chart {
+	container: qec-chart / inline-size;
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: var(--qec-font-family, inherit);
+}
+
+.qec-chart *,
+.qec-chart *::before,
+.qec-chart *::after {
+	box-sizing: border-box;
+}
+
+/* Caption ---------------------------------------------------------------- */
+
+.qec-chart .qec-caption {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin: 0 0 24px;
+	padding: 0;
+}
+
+.qec-chart .qec-title {
+	color: var(--qec-label-color);
+	font-size: 1.25em;
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.qec-chart .qec-description {
+	color: var(--qec-axis-color);
+	font-size: 0.9375em;
+	line-height: 1.5;
+}
+
+/* Grid: horizontal bars (base) ------------------------------------------- */
+
+.qec-chart .qec-grid {
+	display: grid;
+	grid-template-columns: var(--qec-label-width) minmax(0, 1fr) auto;
+	row-gap: var(--qec-row-gap);
+	align-items: center;
+}
+
+.qec-chart .qec-row,
+.qec-chart .qec-axis-row {
+	display: grid;
+	grid-column: 1 / -1;
+	grid-template-columns: subgrid;
+	align-items: center;
+}
+
+@supports not (grid-template-columns: subgrid) {
+	.qec-chart .qec-row,
+	.qec-chart .qec-axis-row {
+		grid-template-columns: minmax(0, 30%) minmax(0, 1fr) 6em;
+	}
+}
+
+.qec-chart .qec-row {
+	transition: opacity 0.25s ease;
+}
+
+.qec-chart .qec-label {
+	padding-right: var(--qec-label-gap);
+	color: var(--qec-label-color);
+	font-size: 1.0625em;
+	font-weight: 500;
+	line-height: 1.3;
+	overflow-wrap: anywhere;
+}
+
+.qec-chart .qec-track {
+	position: relative;
+	display: block;
+	height: var(--qec-bar-size, 28px);
+	overflow: hidden;
+	background: var(--qec-track);
+	border-radius: var(--qec-bar-radius);
+}
+
+.qec-chart .qec-seg {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--qec-start);
+	width: var(--qec-size);
+	transform-origin: left center;
+}
+
+.qec-chart .qec-seg--primary {
+	background: var(--qec-primary);
+}
+
+.qec-chart .qec-seg--secondary {
+	background: var(--qec-secondary);
+}
+
+.qec-chart .qec-value {
+	padding-left: var(--qec-value-gap);
+	color: var(--qec-value-color);
+	font-size: 1.0625em;
+	font-weight: 700;
+	line-height: 1.3;
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+.qec-chart .qec-axis-row {
+	margin-top: calc(var(--qec-axis-gap) - var(--qec-row-gap));
+}
+
+.qec-chart .qec-axis {
+	position: relative;
+	grid-column: 2;
+	height: 1.5em;
+	color: var(--qec-axis-color);
+	font-size: 0.875em;
+	line-height: 1.5;
+}
+
+.qec-chart .qec-tick {
+	position: absolute;
+	top: 0;
+	left: var(--qec-pos);
+	transform: translateX(-50%);
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+.qec-chart .qec-tick:first-child {
+	transform: none;
+}
+
+.qec-chart .qec-tick:last-child {
+	transform: translateX(-100%);
+}
+
+.qec-chart .qec-sr-only {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+.qec-chart .qec-tick.qec-tick--hidden {
+	visibility: hidden;
+}
+
+/* Axis title (columns only): the unit, shown above the value axis. */
+.qec-chart .qec-axis-title {
+	display: none;
+	margin: 0 0 8px;
+	color: var(--qec-axis-color);
+	font-size: 0.875em;
+	line-height: 1.4;
+}
+
+/* Hover: dim the other rows ---------------------------------------------- */
+
+@media (hover: hover) {
+	.qec-chart.qec-hover-focus .qec-grid:has(.qec-row:hover) .qec-row:not(:hover) {
+		opacity: var(--qec-dim-opacity);
+	}
+}
+
+/* Horizontal, stacked: label + value on top, full-width bar below --------- */
+
+.qec-bars.qec-layout-stacked .qec-grid {
+	grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.qec-bars.qec-layout-stacked .qec-row {
+	row-gap: var(--qec-stack-gap);
+}
+
+.qec-bars.qec-layout-stacked .qec-label {
+	grid-column: 1;
+	grid-row: 1;
+	padding-right: var(--qec-value-gap);
+}
+
+.qec-bars.qec-layout-stacked .qec-value {
+	grid-column: 2;
+	grid-row: 1;
+	padding-left: 0;
+	text-align: right;
+}
+
+.qec-bars.qec-layout-stacked .qec-track {
+	grid-column: 1 / -1;
+	grid-row: 2;
+}
+
+.qec-bars.qec-layout-stacked .qec-axis-spacer {
+	display: none;
+}
+
+.qec-bars.qec-layout-stacked .qec-axis {
+	grid-column: 1 / -1;
+}
+
+/* Same, automatically, when the chart itself is narrow (container query: it
+   reacts to columns and sidebars too, not only to phone screens). */
+@container qec-chart (max-width: 560px) {
+	.qec-bars.qec-layout-auto:not(.qec-orient-vertical) .qec-grid {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	.qec-bars.qec-layout-auto:not(.qec-orient-vertical) .qec-row {
+		row-gap: var(--qec-stack-gap);
+	}
+
+	.qec-bars.qec-layout-auto:not(.qec-orient-vertical) .qec-label {
+		grid-column: 1;
+		grid-row: 1;
+		padding-right: var(--qec-value-gap);
+	}
+
+	.qec-bars.qec-layout-auto:not(.qec-orient-vertical) .qec-value {
+		grid-column: 2;
+		grid-row: 1;
+		padding-left: 0;
+		text-align: right;
+	}
+
+	.qec-bars.qec-layout-auto:not(.qec-orient-vertical) .qec-track {
+		grid-column: 1 / -1;
+		grid-row: 2;
+	}
+
+	.qec-bars.qec-layout-auto:not(.qec-orient-vertical) .qec-axis-spacer {
+		display: none;
+	}
+
+	.qec-bars.qec-layout-auto:not(.qec-orient-vertical) .qec-axis {
+		grid-column: 1 / -1;
+	}
+}
+
+/* Narrow: show every other intermediate tick so labels never collide. */
+@container qec-chart (max-width: 480px) {
+	.qec-bars:not(.qec-orient-vertical) .qec-tick:nth-child(even):not(:first-child):not(:last-child) {
+		display: none;
+	}
+}
+
+/* Vertical columns ---------------------------------------------------------
+ * The same block appears twice: once for "vertical" (always) and once inside a
+ * container query for "auto" (columns when wide, bars when narrow). Keep the
+ * two copies identical. */
+
+.qec-bars.qec-orient-vertical .qec-grid {
+	grid-template-columns: auto;
+	grid-template-rows: auto var(--qec-chart-height) auto;
+	grid-auto-columns: minmax(0, 1fr);
+	grid-auto-flow: column;
+	column-gap: var(--qec-column-gap);
+	row-gap: 0;
+	align-items: stretch;
+}
+
+.qec-bars.qec-orient-vertical .qec-row {
+	grid-column: auto;
+	grid-row: 1 / -1;
+	grid-template-columns: none;
+	grid-template-rows: subgrid;
+	row-gap: 0;
+	justify-items: center;
+}
+
+.qec-bars.qec-orient-vertical .qec-value {
+	grid-column: 1;
+	grid-row: 1;
+	align-self: end;
+	padding: 0 0 10px;
+	text-align: center;
+	white-space: normal;
+}
+
+.qec-bars.qec-orient-vertical .qec-track {
+	grid-column: 1;
+	grid-row: 2;
+	width: min(100%, var(--qec-bar-size, 64px));
+	height: 100%;
+}
+
+.qec-bars.qec-orient-vertical .qec-label {
+	grid-column: 1;
+	grid-row: 3;
+	align-self: start;
+	padding: 12px 0 0;
+	text-align: center;
+}
+
+.qec-bars.qec-orient-vertical .qec-seg {
+	top: auto;
+	right: 0;
+	bottom: var(--qec-start);
+	left: 0;
+	width: auto;
+	height: var(--qec-size);
+	transform-origin: center bottom;
+}
+
+.qec-bars.qec-orient-vertical .qec-axis-row {
+	grid-column: 1;
+	grid-row: 1 / -1;
+	grid-template-columns: none;
+	grid-template-rows: subgrid;
+	margin: 0;
+}
+
+.qec-bars.qec-orient-vertical .qec-axis-spacer {
+	display: none;
+}
+
+.qec-bars.qec-orient-vertical .qec-axis {
+	display: grid;
+	grid-column: 1;
+	grid-row: 2;
+	height: 100%;
+	padding-right: 12px;
+}
+
+.qec-bars.qec-orient-vertical .qec-tick,
+.qec-bars.qec-orient-vertical .qec-tick:first-child,
+.qec-bars.qec-orient-vertical .qec-tick:last-child {
+	position: relative;
+	top: auto;
+	left: auto;
+	bottom: var(--qec-pos);
+	grid-area: 1 / 1;
+	align-self: end;
+	justify-self: end;
+	transform: translateY(50%);
+	text-align: right;
+}
+
+
+.qec-bars.qec-orient-vertical .qec-axis-title {
+	display: block;
+}
+
+.qec-bars.qec-orient-vertical .qec-tick .qec-unit {
+	display: none;
+}
+
+.qec-bars.qec-orient-vertical .qec-label {
+	overflow-wrap: break-word;
+	hyphens: auto;
+}
+
+@container qec-chart (max-width: 480px) {
+	.qec-bars.qec-orient-vertical .qec-grid {
+		column-gap: 12px;
+	}
+
+	.qec-bars.qec-orient-vertical .qec-label,
+	.qec-bars.qec-orient-vertical .qec-value {
+		font-size: 0.875em;
+	}
+
+	.qec-bars.qec-orient-vertical .qec-axis {
+		padding-right: 8px;
+	}
+}
+
+@container qec-chart (min-width: 561px) {
+	.qec-bars.qec-orient-auto .qec-axis-title {
+		display: block;
+	}
+
+	.qec-bars.qec-orient-auto .qec-tick .qec-unit {
+		display: none;
+	}
+
+	.qec-bars.qec-orient-auto .qec-label {
+		overflow-wrap: break-word;
+		hyphens: auto;
+	}
+
+	.qec-bars.qec-orient-auto .qec-grid {
+		grid-template-columns: auto;
+		grid-template-rows: auto var(--qec-chart-height) auto;
+		grid-auto-columns: minmax(0, 1fr);
+		grid-auto-flow: column;
+		column-gap: var(--qec-column-gap);
+		row-gap: 0;
+		align-items: stretch;
+	}
+
+	.qec-bars.qec-orient-auto .qec-row {
+		grid-column: auto;
+		grid-row: 1 / -1;
+		grid-template-columns: none;
+		grid-template-rows: subgrid;
+		row-gap: 0;
+		justify-items: center;
+	}
+
+	.qec-bars.qec-orient-auto .qec-value {
+		grid-column: 1;
+		grid-row: 1;
+		align-self: end;
+		padding: 0 0 10px;
+		text-align: center;
+		white-space: normal;
+	}
+
+	.qec-bars.qec-orient-auto .qec-track {
+		grid-column: 1;
+		grid-row: 2;
+		width: min(100%, var(--qec-bar-size, 64px));
+		height: 100%;
+	}
+
+	.qec-bars.qec-orient-auto .qec-label {
+		grid-column: 1;
+		grid-row: 3;
+		align-self: start;
+		padding: 12px 0 0;
+		text-align: center;
+	}
+
+	.qec-bars.qec-orient-auto .qec-seg {
+		top: auto;
+		right: 0;
+		bottom: var(--qec-start);
+		left: 0;
+		width: auto;
+		height: var(--qec-size);
+		transform-origin: center bottom;
+	}
+
+	.qec-bars.qec-orient-auto .qec-axis-row {
+		grid-column: 1;
+		grid-row: 1 / -1;
+		grid-template-columns: none;
+		grid-template-rows: subgrid;
+		margin: 0;
+	}
+
+	.qec-bars.qec-orient-auto .qec-axis-spacer {
+		display: none;
+	}
+
+	.qec-bars.qec-orient-auto .qec-axis {
+		display: grid;
+		grid-column: 1;
+		grid-row: 2;
+		height: 100%;
+		padding-right: 12px;
+	}
+
+	.qec-bars.qec-orient-auto .qec-tick,
+	.qec-bars.qec-orient-auto .qec-tick:first-child,
+	.qec-bars.qec-orient-auto .qec-tick:last-child {
+		position: relative;
+		top: auto;
+		left: auto;
+		bottom: var(--qec-pos);
+		grid-area: 1 / 1;
+		align-self: end;
+		justify-self: end;
+		transform: translateY(50%);
+		text-align: right;
+	}
+}
+
+/* Entrance animation --------------------------------------------------------
+ * JS adds .qec-armed (collapsed, no transition) and later .qec-in-view
+ * (transition to the final state). Without JS the chart is simply static. */
+
+.qec-chart.qec-armed:not(.qec-in-view) .qec-seg {
+	transform: scaleX(0);
+}
+
+.qec-bars.qec-orient-vertical.qec-armed:not(.qec-in-view) .qec-seg {
+	transform: scaleY(0);
+}
+
+@container qec-chart (min-width: 561px) {
+	.qec-bars.qec-orient-auto.qec-armed:not(.qec-in-view) .qec-seg {
+		transform: scaleY(0);
+	}
+}
+
+.qec-chart.qec-armed:not(.qec-in-view) .qec-value {
+	opacity: 0;
+	transform: translateY(6px);
+}
+
+.qec-chart.qec-armed:not(.qec-in-view) .qec-label,
+.qec-chart.qec-armed:not(.qec-in-view) .qec-tick {
+	opacity: 0;
+}
+
+.qec-chart.qec-in-view .qec-seg--primary {
+	transition: transform var(--qec-duration) var(--qec-ease);
+	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger));
+}
+
+.qec-chart.qec-in-view .qec-seg--secondary {
+	transition: transform calc(var(--qec-duration) * 0.8) var(--qec-ease);
+	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger) + var(--qec-duration) * 0.55);
+}
+
+.qec-chart.qec-in-view .qec-label {
+	transition: opacity 0.5s ease;
+	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger));
+}
+
+.qec-chart.qec-in-view .qec-value {
+	transition: opacity 0.5s ease, transform 0.6s var(--qec-ease);
+	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger) + var(--qec-duration) * 0.6);
+}
+
+.qec-chart.qec-in-view .qec-tick {
+	transition: opacity 0.6s ease;
+	transition-delay: calc(var(--qec-duration) * 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.qec-chart .qec-seg,
+	.qec-chart .qec-value,
+	.qec-chart .qec-label,
+	.qec-chart .qec-tick,
+	.qec-chart .qec-row {
+		transition: none !important;
+	}
+}
+
+/* Windows high contrast / forced colours: keep the bars visible. */
+@media (forced-colors: active) {
+	.qec-chart .qec-track {
+		background: Canvas;
+		outline: 1px solid CanvasText;
+	}
+
+	.qec-chart .qec-seg {
+		forced-color-adjust: none;
+	}
+
+	.qec-chart .qec-seg--primary {
+		background: CanvasText;
+	}
+
+	.qec-chart .qec-seg--secondary {
+		background: Highlight;
+	}
+}
