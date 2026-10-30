@@ -296,5 +296,18 @@
 "%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s の白背景に対するコントラストは %2$s:1 です。WCAG AA を満たすにはテキストに 4.5:1 以上が必要です。",
 "All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "すべての文字色が白背景で WCAG AA のコントラスト 4.5:1 を満たしています。",
 "Busiest day in the last 30 days: %1$s, %2$s views.": "過去30日間で最も表示された日：%1$s、%2$s 回。",
-"No views in the last 30 days.": "過去30日間の表示はありません。"
+"No views in the last 30 days.": "過去30日間の表示はありません。",
+"Dark mode: %1$s has a contrast of %2$s:1 on the dark background. Text needs at least 4.5:1 to meet WCAG AA.": "ダークモード：%1$s の暗い背景に対するコントラストは %2$s:1 です。WCAG AA を満たすにはテキストに 4.5:1 以上が必要です。",
+"Dark mode: all text colours meet the WCAG AA contrast of 4.5:1 on the dark background.": "ダークモード：すべての文字色が暗い背景で WCAG AA のコントラスト 4.5:1 を満たしています。",
+"Colour scheme: light, dark, or auto (follows the visitor and the theme).": "配色：ライト、ダーク、または自動（訪問者とテーマに合わせる）。",
+"Color scheme": "配色",
+"From the chart (light by default)": "チャートの設定（既定はライト）",
+"Light": "ライト",
+"Dark": "ダーク",
+"Automatic (follows the visitor and the theme)": "自動（訪問者とテーマに合わせる）",
+"Dark mode colors": "ダークモードの色",
+"Background": "背景",
+"Padding with a background": "背景色がある場合の余白",
+"Preview colour scheme": "プレビューの配色",
+"Used when the chart is dark, or in automatic mode when the visitor or the theme uses dark mode. Set the background to transparent on a dark site.": "チャートがダークのとき、または自動モードで訪問者やテーマがダークモードのときに使われます。ダークなサイトでは背景を透明にしてください。"
 }

@@ -672,3 +672,26 @@ body.qec-admin-screen #wpbody-content {
 	background: #fcf9e8;
 	border-left-color: #dba617;
 }
+
+/* Dark preview stage ---------------------------------------------------------- */
+
+.qec-preview-stage {
+	transition: background-color 0.2s ease;
+}
+
+.qec-preview-stage.is-dark {
+	background: #1b1830;
+}
+
+/* The "page" of the preview turns dark too, like a dark theme would. */
+.qec-preview-stage.is-dark .qec-preview {
+	background: #242038;
+}
+
+.qec-scheme-preview {
+	margin-left: auto;
+}
+
+.qec-scheme-preview + .qec-export-admin {
+	margin-left: 0;
+}

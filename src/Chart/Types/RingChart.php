@@ -44,10 +44,10 @@ final class RingChart implements ChartType {
 				'div',
 				'qec-ring',
 				array(
-					'--qec-i'         => (string) $index,
-					'--qec-p'         => rtrim( Css::percent( $percent ), '%' ),
-					'--qec-primary'   => $item['color'],
-					'--qec-secondary' => $item['range_color'],
+					'--qec-i'              => (string) $index,
+					'--qec-p'              => rtrim( Css::percent( $percent ), '%' ),
+					'--qec-item-primary'   => $item['color'],
+					'--qec-item-secondary' => $item['range_color'],
 				)
 			);
 			$html .= '<span class="qec-ring-figure"' . $hidden . '>'

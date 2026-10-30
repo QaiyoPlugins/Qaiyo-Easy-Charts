@@ -296,5 +296,18 @@
 "%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s ha un contrasto di %2$s:1 su sfondo bianco. Il testo richiede almeno 4,5:1 per WCAG AA.",
 "All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Tutti i colori del testo rispettano il contrasto WCAG AA di 4,5:1 su sfondo bianco.",
 "Busiest day in the last 30 days: %1$s, %2$s views.": "Giorno con più visualizzazioni negli ultimi 30 giorni: %1$s, %2$s visualizzazioni.",
-"No views in the last 30 days.": "Nessuna visualizzazione negli ultimi 30 giorni."
+"No views in the last 30 days.": "Nessuna visualizzazione negli ultimi 30 giorni.",
+"Dark mode: %1$s has a contrast of %2$s:1 on the dark background. Text needs at least 4.5:1 to meet WCAG AA.": "Modalità scura: %1$s ha un contrasto di %2$s:1 sullo sfondo scuro. Il testo richiede almeno 4,5:1 per WCAG AA.",
+"Dark mode: all text colours meet the WCAG AA contrast of 4.5:1 on the dark background.": "Modalità scura: tutti i colori del testo rispettano il contrasto WCAG AA di 4,5:1 sullo sfondo scuro.",
+"Colour scheme: light, dark, or auto (follows the visitor and the theme).": "Schema colori: chiaro, scuro o automatico (segue il visitatore e il tema).",
+"Color scheme": "Schema colori",
+"From the chart (light by default)": "Quello del grafico (chiaro per impostazione predefinita)",
+"Light": "Chiaro",
+"Dark": "Scuro",
+"Automatic (follows the visitor and the theme)": "Automatico (segue il visitatore e il tema)",
+"Dark mode colors": "Colori della modalità scura",
+"Background": "Sfondo",
+"Padding with a background": "Spaziatura interna con sfondo",
+"Preview colour scheme": "Schema colori dell’anteprima",
+"Used when the chart is dark, or in automatic mode when the visitor or the theme uses dark mode. Set the background to transparent on a dark site.": "Usati quando il grafico è scuro, o in modalità automatica quando il visitatore o il tema usano la modalità scura. Su un sito scuro imposta lo sfondo trasparente."
 }

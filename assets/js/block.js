@@ -272,7 +272,37 @@
 					{ label: text( 'trackColor' ), value: colorValue( a.trackColor, 'track_color' ), onChange: function ( v ) { set( { trackColor: v || '' } ); } },
 					{ label: text( 'labelColor' ), value: colorValue( a.labelColor, 'label_color' ), onChange: function ( v ) { set( { labelColor: v || '' } ); } },
 					{ label: text( 'valueColor' ), value: colorValue( a.valueColor, 'value_color' ), onChange: function ( v ) { set( { valueColor: v || '' } ); } },
-					{ label: text( 'axisColor' ), value: colorValue( a.axisColor, 'axis_color' ), onChange: function ( v ) { set( { axisColor: v || '' } ); } }
+					{ label: text( 'axisColor' ), value: colorValue( a.axisColor, 'axis_color' ), onChange: function ( v ) { set( { axisColor: v || '' } ); } },
+					{ label: text( 'background' ), value: a.bgColor || undefined, onChange: function ( v ) { set( { bgColor: v || '' } ); } }
+				]
+			} ),
+			el(
+				components.PanelBody,
+				{ key: 'scheme', title: text( 'scheme' ), initialOpen: false },
+				el( components.SelectControl, {
+					label: text( 'scheme' ),
+					value: a.scheme,
+					options: [
+						{ value: '', label: text( 'schemeDefault' ) },
+						{ value: 'light', label: text( 'light' ) },
+						{ value: 'dark', label: text( 'dark' ) },
+						{ value: 'auto', label: text( 'schemeAuto' ) }
+					],
+					onChange: function ( v ) { set( { scheme: v } ); }
+				} )
+			),
+			( 'dark' === a.scheme || 'auto' === a.scheme ) && el( PanelColorSettings, {
+				key: 'darkColors',
+				title: text( 'darkColors' ),
+				initialOpen: true,
+				colorSettings: [
+					{ label: text( 'background' ), value: colorValue( a.darkBgColor, 'dark_bg_color' ), onChange: function ( v ) { set( { darkBgColor: v || '' } ); } },
+					{ label: text( 'barColor' ), value: colorValue( a.darkBarColor, 'dark_bar_color' ), onChange: function ( v ) { set( { darkBarColor: v || '' } ); } },
+					{ label: text( 'rangeColor' ), value: colorValue( a.darkRangeColor, 'dark_range_color' ), onChange: function ( v ) { set( { darkRangeColor: v || '' } ); } },
+					{ label: text( 'trackColor' ), value: colorValue( a.darkTrackColor, 'dark_track_color' ), onChange: function ( v ) { set( { darkTrackColor: v || '' } ); } },
+					{ label: text( 'labelColor' ), value: colorValue( a.darkLabelColor, 'dark_label_color' ), onChange: function ( v ) { set( { darkLabelColor: v || '' } ); } },
+					{ label: text( 'valueColor' ), value: colorValue( a.darkValueColor, 'dark_value_color' ), onChange: function ( v ) { set( { darkValueColor: v || '' } ); } },
+					{ label: text( 'axisColor' ), value: colorValue( a.darkAxisColor, 'dark_axis_color' ), onChange: function ( v ) { set( { darkAxisColor: v || '' } ); } }
 				]
 			} ),
 			el(

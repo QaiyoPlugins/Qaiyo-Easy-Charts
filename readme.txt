@@ -39,6 +39,7 @@ Seven chart types, all from the same simple rows:
 * **Paste from Excel, Google Sheets or CSV** into the builder or the block.
 * **Copy the style of another chart** in one click.
 * **PNG and SVG export** from the builder and, optionally, from the page.
+* **Light, dark or automatic colour scheme** — per chart, with its own dark colours; automatic follows the visitor's system and the theme's dark mode.
 * **View statistics** — see how many visitors actually saw each chart (total, 7 and 30 days, daily graph). Anonymous and cookie-free.
 * **WCAG 2.2 AA** — tested with axe-core and for reflow at 320 px, text spacing, 200 % text, keyboard-accessible and dismissible tooltips, animations under 5 seconds, reduced motion, and a live contrast check for chosen colours.
 * **Accessible** — a figure with an accessible name and a visually hidden data table for screen readers, forced-colours support, WCAG 2.2 AA admin screens.

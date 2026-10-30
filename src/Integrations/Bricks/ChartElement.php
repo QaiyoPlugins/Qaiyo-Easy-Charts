@@ -448,6 +448,51 @@ class ChartElement extends \Bricks\Element {
 		$this->color( 'value_color', esc_html__( 'Value color', 'qaiyo-easy-charts' ), '--qec-value-color' );
 		$this->color( 'axis_color', esc_html__( 'Axis color', 'qaiyo-easy-charts' ), '--qec-axis-color' );
 
+		$this->controls['chart_scheme']   = array(
+			'tab'         => 'content',
+			'group'       => 'style',
+			'label'       => esc_html__( 'Color scheme', 'qaiyo-easy-charts' ),
+			'type'        => 'select',
+			'options'     => array(
+				'light' => esc_html__( 'Light', 'qaiyo-easy-charts' ),
+				'dark'  => esc_html__( 'Dark', 'qaiyo-easy-charts' ),
+				'auto'  => esc_html__( 'Automatic (follows the visitor and the theme)', 'qaiyo-easy-charts' ),
+			),
+			'placeholder' => esc_html__( 'From the chart (light by default)', 'qaiyo-easy-charts' ),
+		);
+		$this->controls['bg_color']       = array(
+			'tab'   => 'content',
+			'group' => 'style',
+			'label' => esc_html__( 'Background', 'qaiyo-easy-charts' ),
+			'type'  => 'color',
+			'css'   => array( array( 'property' => '--qec-bg' ) ),
+		);
+		$this->controls['card_padding']   = array(
+			'tab'         => 'content',
+			'group'       => 'style',
+			'label'       => esc_html__( 'Padding with a background', 'qaiyo-easy-charts' ),
+			'type'        => 'number',
+			'units'       => true,
+			'placeholder' => '24px',
+			'css'         => array(
+				array( 'property' => '--qec-pad' ),
+				array( 'property' => '--qec-dark-pad' ),
+			),
+		);
+		$this->controls['dark_separator'] = array(
+			'tab'   => 'content',
+			'group' => 'style',
+			'label' => esc_html__( 'Dark mode colors', 'qaiyo-easy-charts' ),
+			'type'  => 'separator',
+		);
+		$this->color( 'dark_bg_color', esc_html__( 'Background', 'qaiyo-easy-charts' ), '--qec-dark-bg' );
+		$this->color( 'dark_bar_color', esc_html__( 'Bar color', 'qaiyo-easy-charts' ), '--qec-dark-primary' );
+		$this->color( 'dark_range_color', esc_html__( 'Range color', 'qaiyo-easy-charts' ), '--qec-dark-secondary' );
+		$this->color( 'dark_track_color', esc_html__( 'Track color', 'qaiyo-easy-charts' ), '--qec-dark-track' );
+		$this->color( 'dark_label_color', esc_html__( 'Label color', 'qaiyo-easy-charts' ), '--qec-dark-label-color' );
+		$this->color( 'dark_value_color', esc_html__( 'Value color', 'qaiyo-easy-charts' ), '--qec-dark-value-color' );
+		$this->color( 'dark_axis_color', esc_html__( 'Axis color', 'qaiyo-easy-charts' ), '--qec-dark-axis-color' );
+
 		$this->size( 'bar_size', esc_html__( 'Bar thickness', 'qaiyo-easy-charts' ), '--qec-bar-size', '28px' );
 		$this->size( 'chart_height', esc_html__( 'Column chart height', 'qaiyo-easy-charts' ), '--qec-chart-height', '280px' );
 		$this->size( 'bar_radius', esc_html__( 'Corner radius', 'qaiyo-easy-charts' ), '--qec-bar-radius', '0px' );
@@ -504,7 +549,7 @@ class ChartElement extends \Bricks\Element {
 			'group'   => 'style',
 			'label'   => $label,
 			'type'    => 'color',
-			'default' => array( 'hex' => ChartConfig::DEFAULT_STYLE[ $id ] ?? '' ),
+			'default' => array( 'hex' => ChartConfig::DEFAULT_STYLE[ $id ] ?? ChartConfig::DEFAULT_DARK_STYLE[ $id ] ?? '' ),
 			'css'     => array( array( 'property' => $variable ) ),
 		);
 	}
@@ -543,7 +588,7 @@ class ChartElement extends \Bricks\Element {
 				return null;
 			}
 			// Values changed in the Bricks style controls win over the saved chart's look.
-			foreach ( ChartConfig::DEFAULT_STYLE as $key => $default ) {
+			foreach ( ChartConfig::DEFAULT_STYLE + ChartConfig::DEFAULT_DARK_STYLE + array( 'bg_color' => '' ) as $key => $default ) {
 				$color = Css::color( $s[ $key ] ?? '' );
 				if ( '' !== $color && $color !== $default ) {
 					$config[ $key ] = '';
@@ -560,12 +605,16 @@ class ChartElement extends \Bricks\Element {
 			if ( '' !== Cast::string( Cast::arr( $s['chart_typography'] ?? null )['font-family'] ?? '' ) ) {
 				$config['font_family'] = '';
 			}
-			return $config;
+			if ( ! empty( $s['chart_scheme'] ) ) {
+				$config['scheme'] = Cast::string( $s['chart_scheme'] );
+			}
+			return ChartConfig::sanitize( $config );
 		}
 
 		return ChartConfig::sanitize(
 			array(
 				'type'          => ! empty( $s['chart_type'] ) ? $s['chart_type'] : 'bars',
+				'scheme'        => ! empty( $s['chart_scheme'] ) ? $s['chart_scheme'] : 'light',
 				'items'         => Cast::arr( $s['items'] ?? array() ),
 				'series_a'      => $s['series_a'] ?? '',
 				'series_b'      => $s['series_b'] ?? '',

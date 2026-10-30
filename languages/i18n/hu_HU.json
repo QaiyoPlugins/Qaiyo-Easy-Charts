@@ -296,5 +296,18 @@
 "%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s kontrasztja fehér háttéren %2$s:1. A szövegnek legalább 4,5:1 kell a WCAG AA-hoz.",
 "All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Minden szövegszín teljesíti a WCAG AA 4,5:1-es kontrasztját fehér háttéren.",
 "Busiest day in the last 30 days: %1$s, %2$s views.": "Legforgalmasabb nap az elmúlt 30 napban: %1$s, %2$s megtekintés.",
-"No views in the last 30 days.": "Nem volt megtekintés az elmúlt 30 napban."
+"No views in the last 30 days.": "Nem volt megtekintés az elmúlt 30 napban.",
+"Dark mode: %1$s has a contrast of %2$s:1 on the dark background. Text needs at least 4.5:1 to meet WCAG AA.": "Sötét mód: %1$s kontrasztja a sötét háttéren %2$s:1. A szövegnek legalább 4,5:1 kell a WCAG AA-hoz.",
+"Dark mode: all text colours meet the WCAG AA contrast of 4.5:1 on the dark background.": "Sötét mód: minden szövegszín teljesíti a WCAG AA 4,5:1-es kontrasztját a sötét háttéren.",
+"Colour scheme: light, dark, or auto (follows the visitor and the theme).": "Színséma: világos, sötét vagy automatikus (a látogatót és a témát követi).",
+"Color scheme": "Színséma",
+"From the chart (light by default)": "A chart szerint (alapból világos)",
+"Light": "Világos",
+"Dark": "Sötét",
+"Automatic (follows the visitor and the theme)": "Automatikus (a látogatót és a témát követi)",
+"Dark mode colors": "Sötét mód színei",
+"Background": "Háttér",
+"Padding with a background": "Belső margó háttérszín esetén",
+"Preview colour scheme": "Előnézet színsémája",
+"Used when the chart is dark, or in automatic mode when the visitor or the theme uses dark mode. Set the background to transparent on a dark site.": "Akkor érvényes, ha a chart sötét, vagy automatikus módban, amikor a látogató vagy a téma sötét módot használ. Sötét oldalon állítsd a hátteret átlátszóra."
 }

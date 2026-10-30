@@ -63,8 +63,8 @@ final class RatingChart implements ChartType {
 				'div',
 				'qec-row',
 				array(
-					'--qec-i'       => (string) $index,
-					'--qec-primary' => $item['color'],
+					'--qec-i'            => (string) $index,
+					'--qec-item-primary' => $item['color'],
 				)
 			);
 			$html .= '<span class="qec-label"' . $hidden . '>' . esc_html( $item['label'] ) . '</span>';

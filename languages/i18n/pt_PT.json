@@ -296,5 +296,18 @@
 "%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s tem um contraste de %2$s:1 sobre fundo branco. O texto precisa de pelo menos 4,5:1 para cumprir WCAG AA.",
 "All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Todas as cores de texto cumprem o contraste WCAG AA de 4,5:1 sobre fundo branco.",
 "Busiest day in the last 30 days: %1$s, %2$s views.": "Dia com mais visualizações nos últimos 30 dias: %1$s, %2$s visualizações.",
-"No views in the last 30 days.": "Sem visualizações nos últimos 30 dias."
+"No views in the last 30 days.": "Sem visualizações nos últimos 30 dias.",
+"Dark mode: %1$s has a contrast of %2$s:1 on the dark background. Text needs at least 4.5:1 to meet WCAG AA.": "Modo escuro: %1$s tem um contraste de %2$s:1 sobre o fundo escuro. O texto precisa de pelo menos 4,5:1 para cumprir WCAG AA.",
+"Dark mode: all text colours meet the WCAG AA contrast of 4.5:1 on the dark background.": "Modo escuro: todas as cores de texto cumprem o contraste WCAG AA de 4,5:1 sobre o fundo escuro.",
+"Colour scheme: light, dark, or auto (follows the visitor and the theme).": "Esquema de cores: claro, escuro ou automático (segue o visitante e o tema).",
+"Color scheme": "Esquema de cores",
+"From the chart (light by default)": "O do gráfico (claro por predefinição)",
+"Light": "Claro",
+"Dark": "Escuro",
+"Automatic (follows the visitor and the theme)": "Automático (segue o visitante e o tema)",
+"Dark mode colors": "Cores do modo escuro",
+"Background": "Fundo",
+"Padding with a background": "Espaçamento interior com fundo",
+"Preview colour scheme": "Esquema de cores da pré-visualização",
+"Used when the chart is dark, or in automatic mode when the visitor or the theme uses dark mode. Set the background to transparent on a dark site.": "Usadas quando o gráfico é escuro, ou no modo automático quando o visitante ou o tema usam o modo escuro. Num site escuro, defina o fundo como transparente."
 }

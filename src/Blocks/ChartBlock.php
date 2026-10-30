@@ -55,15 +55,24 @@ final class ChartBlock {
 
 	/** Style attributes, applied on top of saved charts too. */
 	const STYLE_MAP = array(
-		'barColor'    => 'bar_color',
-		'rangeColor'  => 'range_color',
-		'trackColor'  => 'track_color',
-		'labelColor'  => 'label_color',
-		'valueColor'  => 'value_color',
-		'axisColor'   => 'axis_color',
-		'barSize'     => 'bar_size',
-		'chartHeight' => 'chart_height',
-		'radius'      => 'radius',
+		'barColor'       => 'bar_color',
+		'rangeColor'     => 'range_color',
+		'trackColor'     => 'track_color',
+		'labelColor'     => 'label_color',
+		'valueColor'     => 'value_color',
+		'axisColor'      => 'axis_color',
+		'barSize'        => 'bar_size',
+		'chartHeight'    => 'chart_height',
+		'radius'         => 'radius',
+		'scheme'         => 'scheme',
+		'bgColor'        => 'bg_color',
+		'darkBarColor'   => 'dark_bar_color',
+		'darkRangeColor' => 'dark_range_color',
+		'darkTrackColor' => 'dark_track_color',
+		'darkLabelColor' => 'dark_label_color',
+		'darkValueColor' => 'dark_value_color',
+		'darkAxisColor'  => 'dark_axis_color',
+		'darkBgColor'    => 'dark_bg_color',
 	);
 
 	/**
@@ -111,7 +120,7 @@ final class ChartBlock {
 			'window.qaiyoEcBlock = ' . wp_json_encode(
 				array(
 					'charts'    => $charts,
-					'defaults'  => ChartConfig::DEFAULT_STYLE,
+					'defaults'  => ChartConfig::DEFAULT_STYLE + ChartConfig::DEFAULT_DARK_STYLE,
 					'types'     => ChartConfig::type_labels(),
 					'manageUrl' => admin_url( PostType::MENU_SLUG ),
 					'i18n'      => self::strings(),
@@ -208,6 +217,13 @@ final class ChartBlock {
 			'tooltips'      => __( 'Tooltips on hover and keyboard focus', 'qaiyo-easy-charts' ),
 			'patterns'      => __( 'Patterns besides colours (colour-blind friendly)', 'qaiyo-easy-charts' ),
 			'export'        => __( 'Download buttons (PNG, SVG) under the chart', 'qaiyo-easy-charts' ),
+			'scheme'        => __( 'Color scheme', 'qaiyo-easy-charts' ),
+			'schemeDefault' => __( 'From the chart (light by default)', 'qaiyo-easy-charts' ),
+			'light'         => __( 'Light', 'qaiyo-easy-charts' ),
+			'dark'          => __( 'Dark', 'qaiyo-easy-charts' ),
+			'schemeAuto'    => __( 'Automatic (follows the visitor and the theme)', 'qaiyo-easy-charts' ),
+			'darkColors'    => __( 'Dark mode colors', 'qaiyo-easy-charts' ),
+			'background'    => __( 'Background', 'qaiyo-easy-charts' ),
 		);
 	}
 

@@ -296,5 +296,18 @@
 "%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "Контраст «%1$s» на белом фоне — %2$s:1. Для WCAG AA тексту нужно не менее 4,5:1.",
 "All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Все цвета текста соответствуют контрасту WCAG AA 4,5:1 на белом фоне.",
 "Busiest day in the last 30 days: %1$s, %2$s views.": "Самый посещаемый день за последние 30 дней: %1$s, просмотров: %2$s.",
-"No views in the last 30 days.": "За последние 30 дней просмотров не было."
+"No views in the last 30 days.": "За последние 30 дней просмотров не было.",
+"Dark mode: %1$s has a contrast of %2$s:1 on the dark background. Text needs at least 4.5:1 to meet WCAG AA.": "Тёмный режим: контраст «%1$s» на тёмном фоне — %2$s:1. Для WCAG AA тексту нужно не менее 4,5:1.",
+"Dark mode: all text colours meet the WCAG AA contrast of 4.5:1 on the dark background.": "Тёмный режим: все цвета текста соответствуют контрасту WCAG AA 4,5:1 на тёмном фоне.",
+"Colour scheme: light, dark, or auto (follows the visitor and the theme).": "Цветовая схема: светлая, тёмная или автоматическая (по настройкам посетителя и темы).",
+"Color scheme": "Цветовая схема",
+"From the chart (light by default)": "Как в диаграмме (по умолчанию светлая)",
+"Light": "Светлая",
+"Dark": "Тёмная",
+"Automatic (follows the visitor and the theme)": "Автоматическая (по настройкам посетителя и темы)",
+"Dark mode colors": "Цвета тёмного режима",
+"Background": "Фон",
+"Padding with a background": "Внутренний отступ при фоне",
+"Preview colour scheme": "Цветовая схема предпросмотра",
+"Used when the chart is dark, or in automatic mode when the visitor or the theme uses dark mode. Set the background to transparent on a dark site.": "Используются, когда диаграмма тёмная, или в автоматическом режиме, когда посетитель или тема используют тёмный режим. На тёмном сайте сделайте фон прозрачным."
 }

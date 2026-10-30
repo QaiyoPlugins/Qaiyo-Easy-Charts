@@ -402,29 +402,74 @@
 		return 0.2126 * channels[ 0 ] + 0.7152 * channels[ 1 ] + 0.0722 * channels[ 2 ];
 	}
 
-	function checkContrast() {
-		var box = document.getElementById( 'qec-contrast' );
+	function contrastRatio( a, b ) {
+		return ( Math.max( a, b ) + 0.05 ) / ( Math.min( a, b ) + 0.05 );
+	}
+
+	function fieldColor( key ) {
+		var field = builder.querySelector( '[name="' + fieldName( key ) + '"]' );
+		return field ? ( field.value || field.getAttribute( 'data-default-color' ) || '' ) : '';
+	}
+
+	// Checks three text colours against a background and writes the result into a status box.
+	function reportContrast( boxId, keys, background, message, ok ) {
+		var box = document.getElementById( boxId );
 		if ( ! box ) {
 			return;
 		}
 		var problems = [];
-		[ 'label_color', 'value_color', 'axis_color' ].forEach( function ( key ) {
-			var field = builder.querySelector( '[name="' + fieldName( key ) + '"]' );
-			var lum = field ? luminance( field.value || field.getAttribute( 'data-default-color' ) ) : null;
+		keys.forEach( function ( key ) {
+			var lum = luminance( fieldColor( key ) );
 			if ( null === lum ) {
 				return;
 			}
-			var ratio = 1.05 / ( lum + 0.05 );
+			var ratio = contrastRatio( lum, background );
 			if ( ratio < 4.5 ) {
-				var label = builder.querySelector( 'label[for="' + field.id + '"]' );
-				problems.push( ( i18n.lowContrast || '' ).replace( '%1$s', label ? label.textContent.trim() : key ).replace( '%2$s', ratio.toFixed( 1 ) ) );
+				var field = builder.querySelector( '[name="' + fieldName( key ) + '"]' );
+				var label = field ? builder.querySelector( 'label[for="' + field.id + '"]' ) : null;
+				problems.push( ( message || '' ).replace( '%1$s', label ? label.textContent.trim() : key ).replace( '%2$s', ratio.toFixed( 1 ) ) );
 			}
 		} );
-		var text = problems.length ? problems.join( ' ' ) : i18n.contrastOk;
+		var text = problems.length ? problems.join( ' ' ) : ok;
 		if ( box.textContent !== text ) {
 			box.textContent = text;
 		}
 		box.classList.toggle( 'is-warning', problems.length > 0 );
+	}
+
+	function checkContrast() {
+		var lightBg = luminance( fieldColor( 'bg_color' ) );
+		reportContrast( 'qec-contrast', [ 'label_color', 'value_color', 'axis_color' ], null === lightBg ? 1 : lightBg, i18n.lowContrast, i18n.contrastOk );
+
+		var darkBg = luminance( fieldColor( 'dark_bg_color' ) );
+		reportContrast( 'qec-contrast-dark', [ 'dark_label_color', 'dark_value_color', 'dark_axis_color' ], null === darkBg ? luminance( '#0f0c24' ) : darkBg, i18n.lowContrastDark, i18n.contrastDarkOk );
+	}
+
+	/* Colour scheme ------------------------------------------------------------ */
+
+	function previewScheme( scheme ) {
+		builder.querySelectorAll( '[data-qec-preview-scheme]' ).forEach( function ( button ) {
+			button.setAttribute( 'aria-pressed', button.getAttribute( 'data-qec-preview-scheme' ) === scheme ? 'true' : 'false' );
+		} );
+		preview.classList.toggle( 'qec-force-dark', 'dark' === scheme );
+		preview.classList.toggle( 'qec-force-light', 'dark' !== scheme );
+		preview.closest( '.qec-preview-stage' ).classList.toggle( 'is-dark', 'dark' === scheme );
+	}
+
+	function applyScheme() {
+		var select = document.getElementById( 'qec-scheme' );
+		var scheme = select ? select.value : 'light';
+		builder.querySelectorAll( '[data-qec-schemes]' ).forEach( function ( group ) {
+			group.hidden = -1 === group.getAttribute( 'data-qec-schemes' ).split( ' ' ).indexOf( scheme );
+		} );
+		previewScheme( 'dark' === scheme ? 'dark' : ( 'light' === scheme ? 'light' : ( preview.classList.contains( 'qec-force-dark' ) ? 'dark' : 'light' ) ) );
+	}
+
+	function onPreviewScheme( event ) {
+		var button = event.target.closest( '[data-qec-preview-scheme]' );
+		if ( button ) {
+			previewScheme( button.getAttribute( 'data-qec-preview-scheme' ) );
+		}
 	}
 
 	/* Export ------------------------------------------------------------------ */
@@ -454,7 +499,10 @@
 	} );
 	fillStyleSources();
 	applyType( false );
+	applyScheme();
 	checkContrast();
+	builder.addEventListener( 'click', onPreviewScheme );
+	document.getElementById( 'qec-scheme' ).addEventListener( 'change', applyScheme );
 	document.addEventListener( 'click', onCopy );
 	document.addEventListener( 'click', function ( event ) {
 		var link = event.target.closest( '.qec-reset-views' );

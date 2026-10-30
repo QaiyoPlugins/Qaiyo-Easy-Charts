@@ -249,6 +249,48 @@
 		"export": {
 			"type": "boolean",
 			"default": false
+		},
+		"scheme": {
+			"type": "string",
+			"enum": [
+				"",
+				"light",
+				"dark",
+				"auto"
+			],
+			"default": ""
+		},
+		"bgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"darkBarColor": {
+			"type": "string",
+			"default": ""
+		},
+		"darkRangeColor": {
+			"type": "string",
+			"default": ""
+		},
+		"darkTrackColor": {
+			"type": "string",
+			"default": ""
+		},
+		"darkLabelColor": {
+			"type": "string",
+			"default": ""
+		},
+		"darkValueColor": {
+			"type": "string",
+			"default": ""
+		},
+		"darkAxisColor": {
+			"type": "string",
+			"default": ""
+		},
+		"darkBgColor": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

@@ -197,6 +197,12 @@ final class Abilities {
 							'type'        => 'string',
 							'description' => __( 'Unit shown on the axis, e.g. "days".', 'qaiyo-easy-charts' ),
 						),
+						'scheme'      => array(
+							'type'        => 'string',
+							'enum'        => ChartConfig::SCHEMES,
+							'default'     => 'light',
+							'description' => __( 'Colour scheme: light, dark, or auto (follows the visitor and the theme).', 'qaiyo-easy-charts' ),
+						),
 						'publish'     => array(
 							'type'        => 'boolean',
 							'description' => __( 'Publish immediately (otherwise saved as a draft).', 'qaiyo-easy-charts' ),
@@ -293,6 +299,7 @@ final class Abilities {
 
 		$config = array(
 			'type'        => $input['type'] ?? 'bars',
+			'scheme'      => $input['scheme'] ?? 'light',
 			'items'       => Cast::arr( $input['items'] ?? array() ),
 			'orientation' => $input['orientation'] ?? 'horizontal',
 			'unit'        => $input['unit'] ?? '',

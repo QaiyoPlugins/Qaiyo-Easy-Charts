@@ -38,6 +38,84 @@
 	--qec-c6: #be185d;
 	--qec-ring-size: 160px;
 	--qec-pattern: rgba(255, 255, 255, 0.6);
+
+	/* Dark mode colours (all at least 8:1 on the dark background, WCAG 1.4.3 / 1.4.11). */
+	--qec-dark-primary: #d9d5ff;
+	--qec-dark-secondary: #95e6d8;
+	--qec-dark-track: #2b2745;
+	--qec-dark-label-color: #f4f3fb;
+	--qec-dark-value-color: #ffffff;
+	--qec-dark-axis-color: #a9a6bf;
+	--qec-dark-bg: #0f0c24;
+	--qec-dark-c3: #a99ff5;
+	--qec-dark-c4: #f4a259;
+	--qec-dark-c5: #a9a6bf;
+	--qec-dark-c6: #f08aa7;
+}
+
+/* Colour scheme ----------------------------------------------------------------
+ * The colours in use (--qec-u-*) come from the light set (--qec-primary, …) or
+ * the dark set (--qec-dark-primary, …). Charts, builders and shortcodes only
+ * ever set those two sets, so each scheme keeps its own colours. "auto" follows
+ * the visitor's system setting and the common theme switches (.dark,
+ * [data-theme="dark"], .is-dark-theme); a theme set to light keeps it light. */
+
+.qec-chart {
+	--qec-u-primary: var(--qec-primary);
+	--qec-u-secondary: var(--qec-secondary);
+	--qec-u-track: var(--qec-track);
+	--qec-u-label: var(--qec-label-color);
+	--qec-u-value: var(--qec-value-color);
+	--qec-u-axis: var(--qec-axis-color);
+	--qec-u-bg: var(--qec-bg, transparent);
+	--qec-u-pad: var(--qec-pad, 0px);
+	--qec-u-c3: var(--qec-c3);
+	--qec-u-c4: var(--qec-c4);
+	--qec-u-c5: var(--qec-c5);
+	--qec-u-c6: var(--qec-c6);
+	--qec-u-tip-bg: #0f0c24;
+	--qec-u-tip-text: #ffffff;
+}
+
+.qec-chart.qec-scheme-dark,
+:is(.dark, [data-theme="dark"], .is-dark-theme, .qec-force-dark) .qec-chart.qec-scheme-auto {
+	--qec-u-primary: var(--qec-dark-primary);
+	--qec-u-secondary: var(--qec-dark-secondary);
+	--qec-u-track: var(--qec-dark-track);
+	--qec-u-label: var(--qec-dark-label-color);
+	--qec-u-value: var(--qec-dark-value-color);
+	--qec-u-axis: var(--qec-dark-axis-color);
+	--qec-u-bg: var(--qec-dark-bg);
+	--qec-u-pad: var(--qec-dark-pad, 24px);
+	--qec-u-c3: var(--qec-dark-c3);
+	--qec-u-c4: var(--qec-dark-c4);
+	--qec-u-c5: var(--qec-dark-c5);
+	--qec-u-c6: var(--qec-dark-c6);
+	--qec-u-tip-bg: #f4f3fb;
+	--qec-u-tip-text: #0f0c24;
+	--qec-pattern: rgba(15, 12, 36, 0.45);
+	color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not(.light):not([data-theme="light"]):not(.is-light-theme) .qec-chart.qec-scheme-auto:not(:is(.light, [data-theme="light"], .is-light-theme, .qec-force-light) *) {
+		--qec-u-primary: var(--qec-dark-primary);
+		--qec-u-secondary: var(--qec-dark-secondary);
+		--qec-u-track: var(--qec-dark-track);
+		--qec-u-label: var(--qec-dark-label-color);
+		--qec-u-value: var(--qec-dark-value-color);
+		--qec-u-axis: var(--qec-dark-axis-color);
+		--qec-u-bg: var(--qec-dark-bg);
+		--qec-u-pad: var(--qec-dark-pad, 24px);
+		--qec-u-c3: var(--qec-dark-c3);
+		--qec-u-c4: var(--qec-dark-c4);
+		--qec-u-c5: var(--qec-dark-c5);
+		--qec-u-c6: var(--qec-dark-c6);
+		--qec-u-tip-bg: #f4f3fb;
+		--qec-u-tip-text: #0f0c24;
+		--qec-pattern: rgba(15, 12, 36, 0.45);
+		color-scheme: dark;
+	}
 }
 
 .qec-chart {
@@ -48,6 +126,9 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: var(--qec-font-family, inherit);
+	padding: var(--qec-u-pad);
+	background: var(--qec-u-bg);
+	border-radius: var(--qec-card-radius, 12px);
 }
 
 .qec-chart *,
@@ -67,14 +148,14 @@
 }
 
 .qec-chart .qec-title {
-	color: var(--qec-label-color);
+	color: var(--qec-u-label);
 	font-size: 1.25em;
 	font-weight: 700;
 	line-height: 1.3;
 }
 
 .qec-chart .qec-description {
-	color: var(--qec-axis-color);
+	color: var(--qec-u-axis);
 	font-size: 0.9375em;
 	line-height: 1.5;
 }
@@ -109,7 +190,7 @@
 
 .qec-chart .qec-label {
 	padding-right: var(--qec-label-gap);
-	color: var(--qec-label-color);
+	color: var(--qec-u-label);
 	font-size: 1.0625em;
 	font-weight: 500;
 	line-height: 1.3;
@@ -121,7 +202,7 @@
 	display: block;
 	height: var(--qec-bar-size, 28px);
 	overflow: hidden;
-	background: var(--qec-track);
+	background: var(--qec-u-track);
 	border-radius: var(--qec-bar-radius);
 }
 
@@ -135,16 +216,16 @@
 }
 
 .qec-chart .qec-seg--primary {
-	background: var(--qec-primary);
+	background: var(--qec-item-primary, var(--qec-u-primary));
 }
 
 .qec-chart .qec-seg--secondary {
-	background: var(--qec-secondary);
+	background: var(--qec-item-secondary, var(--qec-u-secondary));
 }
 
 .qec-chart .qec-value {
 	padding-left: var(--qec-value-gap);
-	color: var(--qec-value-color);
+	color: var(--qec-u-value);
 	font-size: 1.0625em;
 	font-weight: 700;
 	line-height: 1.3;
@@ -160,7 +241,7 @@
 	position: relative;
 	grid-column: 2;
 	height: 1.5em;
-	color: var(--qec-axis-color);
+	color: var(--qec-u-axis);
 	font-size: 0.875em;
 	line-height: 1.5;
 }
@@ -202,7 +283,7 @@
 .qec-chart .qec-axis-title {
 	display: none;
 	margin: 0 0 8px;
-	color: var(--qec-axis-color);
+	color: var(--qec-u-axis);
 	font-size: 0.875em;
 	line-height: 1.4;
 }
@@ -527,7 +608,7 @@
 	flex-wrap: wrap;
 	gap: 8px 20px;
 	margin: 0 0 16px;
-	color: var(--qec-label-color);
+	color: var(--qec-u-label);
 	font-size: 0.9375em;
 	line-height: 1.4;
 }
@@ -543,11 +624,11 @@
 	width: 0.875em;
 	height: 0.875em;
 	border-radius: min(var(--qec-bar-radius), 3px);
-	background: var(--qec-c, var(--qec-primary));
+	background: var(--qec-c, var(--qec-u-primary));
 }
 
 .qec-chart .qec-swatch--b {
-	background: var(--qec-secondary);
+	background: var(--qec-u-secondary);
 }
 
 /* Comparison: two series per row, one above the other --------------------- */
@@ -560,17 +641,17 @@
 
 .qec-type-compare .qec-seg {
 	height: calc(50% - 2px);
-	background: var(--qec-track);
+	background: var(--qec-u-track);
 	border-radius: var(--qec-bar-radius);
 }
 
 .qec-type-compare .qec-seg--a {
-	background: var(--qec-primary);
+	background: var(--qec-item-primary, var(--qec-u-primary));
 }
 
 .qec-type-compare .qec-seg--b {
 	top: auto;
-	background: var(--qec-secondary);
+	background: var(--qec-item-secondary, var(--qec-u-secondary));
 }
 
 .qec-chart .qec-value--pair {
@@ -602,7 +683,7 @@
 	bottom: auto;
 	width: calc(var(--qec-bar-size, 28px) * 0.7);
 	height: calc(var(--qec-bar-size, 28px) * 0.7);
-	background: var(--qec-secondary);
+	background: var(--qec-item-secondary, var(--qec-u-secondary));
 	transform: translate(-50%, -50%) rotate(45deg);
 	transform-origin: center;
 }
@@ -615,7 +696,7 @@
 	bottom: 0;
 	left: var(--qec-start);
 	width: var(--qec-size);
-	background: color-mix(in srgb, var(--qec-axis-color) calc(var(--qec-band) * 12%), var(--qec-track));
+	background: color-mix(in srgb, var(--qec-u-axis) calc(var(--qec-band) * 12%), var(--qec-u-track));
 }
 
 .qec-type-bullet .qec-seg--measure {
@@ -629,12 +710,12 @@
 	bottom: 10%;
 	left: var(--qec-pos);
 	width: 3px;
-	background: var(--qec-secondary);
+	background: var(--qec-u-secondary);
 	transform: translateX(-50%);
 }
 
 .qec-type-bullet .qec-target {
-	background: var(--qec-value-color);
+	background: var(--qec-u-value);
 }
 
 /* KPI rings ---------------------------------------------------------------- */
@@ -680,11 +761,11 @@
 }
 
 .qec-chart .qec-ring-track {
-	stroke: var(--qec-track);
+	stroke: var(--qec-u-track);
 }
 
 .qec-chart .qec-ring-bar {
-	stroke: var(--qec-primary);
+	stroke: var(--qec-item-primary, var(--qec-u-primary));
 	stroke-linecap: round;
 	stroke-dasharray: var(--qec-p) 100;
 }
@@ -709,7 +790,7 @@
 	height: calc(var(--qec-bar-size, 28px) * 1.4);
 	margin: 0 0 20px;
 	overflow: hidden;
-	background: var(--qec-track);
+	background: var(--qec-u-track);
 	border-radius: var(--qec-bar-radius);
 }
 
@@ -719,15 +800,15 @@
 }
 
 .qec-chart .qec-stack-seg + .qec-stack-seg {
-	box-shadow: inset 2px 0 0 var(--qec-track);
+	box-shadow: inset 2px 0 0 var(--qec-u-track);
 }
 
-.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 1) { --qec-c: var(--qec-primary); }
-.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 2) { --qec-c: var(--qec-secondary); }
-.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 3) { --qec-c: var(--qec-c3); }
-.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 4) { --qec-c: var(--qec-c4); }
-.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 5) { --qec-c: var(--qec-c5); }
-.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 6) { --qec-c: var(--qec-c6); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 1) { --qec-c: var(--qec-u-primary); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 2) { --qec-c: var(--qec-u-secondary); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 3) { --qec-c: var(--qec-u-c3); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 4) { --qec-c: var(--qec-u-c4); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 5) { --qec-c: var(--qec-u-c5); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 6) { --qec-c: var(--qec-u-c6); }
 
 .qec-chart .qec-legend--stack {
 	margin: 0;
@@ -745,7 +826,7 @@
 }
 
 .qec-chart .qec-share {
-	color: var(--qec-axis-color);
+	color: var(--qec-u-axis);
 	font-weight: 500;
 }
 
@@ -767,7 +848,7 @@
 }
 
 .qec-chart .qec-rating-average {
-	color: var(--qec-value-color);
+	color: var(--qec-u-value);
 	font-size: 3em;
 	font-weight: 700;
 	line-height: 1;
@@ -787,7 +868,7 @@
 }
 
 .qec-chart .qec-stars-base svg {
-	fill: var(--qec-track);
+	fill: var(--qec-u-track);
 }
 
 .qec-chart .qec-stars-fill {
@@ -798,11 +879,11 @@
 }
 
 .qec-chart .qec-stars-fill svg {
-	fill: var(--qec-secondary);
+	fill: var(--qec-u-secondary);
 }
 
 .qec-chart .qec-rating-total {
-	color: var(--qec-axis-color);
+	color: var(--qec-u-axis);
 	font-size: 0.875em;
 }
 
@@ -890,7 +971,7 @@
 
 .qec-tooltips .qec-mark:focus-visible {
 	border-radius: 4px;
-	outline: 2px solid var(--qec-label-color);
+	outline: 2px solid var(--qec-u-label);
 	outline-offset: 3px;
 }
 
@@ -903,8 +984,8 @@
 	max-width: min(320px, 100cqi);
 	padding: 6px 10px;
 	/* Fixed colours, so a light bar colour can never make the tip unreadable (18:1). */
-	color: #fff;
-	background: #0f0c24;
+	color: var(--qec-u-tip-text);
+	background: var(--qec-u-tip-bg);
 	border-radius: 6px;
 	box-shadow: 0 6px 20px rgba(15, 12, 36, 0.18);
 	font-size: 0.8125em;
@@ -949,9 +1030,9 @@
 
 .qec-chart .qec-export-btn {
 	padding: 4px 12px;
-	color: var(--qec-label-color);
+	color: var(--qec-u-label);
 	background: transparent;
-	border: 1px solid var(--qec-axis-color);
+	border: 1px solid var(--qec-u-axis);
 	border-radius: 999px;
 	font: inherit;
 	font-size: 0.8125em;
@@ -966,11 +1047,11 @@
 }
 
 .qec-chart .qec-export-btn:hover {
-	border-color: var(--qec-label-color);
+	border-color: var(--qec-u-label);
 }
 
 .qec-chart .qec-export-btn:focus-visible {
-	outline: 2px solid var(--qec-label-color);
+	outline: 2px solid var(--qec-u-label);
 	outline-offset: 2px;
 }
 

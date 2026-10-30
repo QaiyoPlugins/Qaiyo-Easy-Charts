@@ -40,7 +40,7 @@ final class RendererTest extends TestCase {
 	public function test_markup_is_an_accessible_figure_with_a_data_table(): void {
 		$html = $this->render( array( 'title' => 'Delivery' ) );
 
-		$this->assertStringStartsWith( '<figure class="qec-chart qec-type-bars qec-bars qec-orient-horizontal', $html );
+		$this->assertStringStartsWith( '<figure class="qec-chart qec-type-bars qec-scheme-light qec-bars qec-orient-horizontal', $html );
 		$this->assertStringContainsString( 'aria-label="Delivery"', $html );
 		$this->assertStringContainsString( '<div class="qec-grid" aria-hidden="true">', $html );
 		$this->assertStringContainsString( '<caption>Delivery</caption>', $html );

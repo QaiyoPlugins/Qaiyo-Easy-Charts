@@ -296,5 +296,18 @@
 "%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s ma kontrast %2$s:1 na białym tle. Tekst wymaga co najmniej 4,5:1, aby spełnić WCAG AA.",
 "All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Wszystkie kolory tekstu spełniają kontrast WCAG AA 4,5:1 na białym tle.",
 "Busiest day in the last 30 days: %1$s, %2$s views.": "Najczęściej oglądany dzień w ostatnich 30 dniach: %1$s, %2$s wyświetleń.",
-"No views in the last 30 days.": "Brak wyświetleń w ostatnich 30 dniach."
+"No views in the last 30 days.": "Brak wyświetleń w ostatnich 30 dniach.",
+"Dark mode: %1$s has a contrast of %2$s:1 on the dark background. Text needs at least 4.5:1 to meet WCAG AA.": "Tryb ciemny: %1$s ma kontrast %2$s:1 na ciemnym tle. Tekst wymaga co najmniej 4,5:1, aby spełnić WCAG AA.",
+"Dark mode: all text colours meet the WCAG AA contrast of 4.5:1 on the dark background.": "Tryb ciemny: wszystkie kolory tekstu spełniają kontrast WCAG AA 4,5:1 na ciemnym tle.",
+"Colour scheme: light, dark, or auto (follows the visitor and the theme).": "Schemat kolorów: jasny, ciemny lub automatyczny (według odwiedzającego i motywu).",
+"Color scheme": "Schemat kolorów",
+"From the chart (light by default)": "Z wykresu (domyślnie jasny)",
+"Light": "Jasny",
+"Dark": "Ciemny",
+"Automatic (follows the visitor and the theme)": "Automatyczny (według odwiedzającego i motywu)",
+"Dark mode colors": "Kolory trybu ciemnego",
+"Background": "Tło",
+"Padding with a background": "Wewnętrzny odstęp przy tle",
+"Preview colour scheme": "Schemat kolorów podglądu",
+"Used when the chart is dark, or in automatic mode when the visitor or the theme uses dark mode. Set the background to transparent on a dark site.": "Używane, gdy wykres jest ciemny, lub w trybie automatycznym, gdy odwiedzający albo motyw używa trybu ciemnego. Na ciemnej stronie ustaw tło na przezroczyste."
 }

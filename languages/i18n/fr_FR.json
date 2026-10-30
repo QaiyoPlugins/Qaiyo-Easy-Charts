@@ -296,5 +296,18 @@
 "%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s a un contraste de %2$s:1 sur fond blanc. Le texte doit atteindre au moins 4,5:1 pour le niveau WCAG AA.",
 "All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Toutes les couleurs de texte atteignent le contraste WCAG AA de 4,5:1 sur fond blanc.",
 "Busiest day in the last 30 days: %1$s, %2$s views.": "Jour le plus consulté des 30 derniers jours : %1$s, %2$s vues.",
-"No views in the last 30 days.": "Aucune vue au cours des 30 derniers jours."
+"No views in the last 30 days.": "Aucune vue au cours des 30 derniers jours.",
+"Dark mode: %1$s has a contrast of %2$s:1 on the dark background. Text needs at least 4.5:1 to meet WCAG AA.": "Mode sombre : %1$s a un contraste de %2$s:1 sur le fond sombre. Le texte doit atteindre au moins 4,5:1 pour le niveau WCAG AA.",
+"Dark mode: all text colours meet the WCAG AA contrast of 4.5:1 on the dark background.": "Mode sombre : toutes les couleurs de texte atteignent le contraste WCAG AA de 4,5:1 sur le fond sombre.",
+"Colour scheme: light, dark, or auto (follows the visitor and the theme).": "Jeu de couleurs : clair, sombre ou automatique (suit le visiteur et le thème).",
+"Color scheme": "Jeu de couleurs",
+"From the chart (light by default)": "Celui du graphique (clair par défaut)",
+"Light": "Clair",
+"Dark": "Sombre",
+"Automatic (follows the visitor and the theme)": "Automatique (suit le visiteur et le thème)",
+"Dark mode colors": "Couleurs du mode sombre",
+"Background": "Arrière-plan",
+"Padding with a background": "Marge intérieure avec arrière-plan",
+"Preview colour scheme": "Jeu de couleurs de l’aperçu",
+"Used when the chart is dark, or in automatic mode when the visitor or the theme uses dark mode. Set the background to transparent on a dark site.": "Utilisées lorsque le graphique est sombre, ou en mode automatique lorsque le visiteur ou le thème utilise le mode sombre. Sur un site sombre, mettez l’arrière-plan en transparent."
 }

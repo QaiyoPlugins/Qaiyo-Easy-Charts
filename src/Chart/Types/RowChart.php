@@ -147,9 +147,9 @@ final class RowChart implements ChartType {
 			'div',
 			'qec-row',
 			array(
-				'--qec-i'         => (string) $index,
-				'--qec-primary'   => $item['color'],
-				'--qec-secondary' => $item['range_color'],
+				'--qec-i'              => (string) $index,
+				'--qec-item-primary'   => $item['color'],
+				'--qec-item-secondary' => $item['range_color'],
 			)
 		);
 		$html .= '<span class="qec-label"' . $hidden . '>' . esc_html( $item['label'] ) . '</span>';

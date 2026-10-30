@@ -109,7 +109,7 @@ $qaiyo_ec_input = static function ( string $key, string $label, string $type = '
 
 $qaiyo_ec_color = static function ( string $key, string $label ) use ( $qaiyo_ec_config, $qaiyo_ec_name ): void {
 	$id      = 'qec-' . str_replace( '_', '-', $key );
-	$default = ChartConfig::DEFAULT_STYLE[ $key ] ?? '';
+	$default = ChartConfig::DEFAULT_STYLE[ $key ] ?? ChartConfig::DEFAULT_DARK_STYLE[ $key ] ?? '';
 	$value   = Cast::string( $qaiyo_ec_config[ $key ] ?? '' );
 	$value   = '' !== $value ? $value : $default;
 	?>
@@ -141,6 +141,10 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 				<span class="qec-panel-icon" aria-hidden="true"><span class="dashicons dashicons-visibility"></span></span>
 				<?php esc_html_e( 'Live preview', 'qaiyo-easy-charts' ); ?>
 			</h2>
+			<div class="qec-device qec-scheme-preview" role="group" aria-label="<?php esc_attr_e( 'Preview colour scheme', 'qaiyo-easy-charts' ); ?>">
+				<button type="button" class="button qec-device-button" data-qec-preview-scheme="light" aria-pressed="true"><?php esc_html_e( 'Light', 'qaiyo-easy-charts' ); ?></button>
+				<button type="button" class="button qec-device-button" data-qec-preview-scheme="dark" aria-pressed="false"><?php esc_html_e( 'Dark', 'qaiyo-easy-charts' ); ?></button>
+			</div>
 			<div class="qec-export-admin" role="group" aria-label="<?php esc_attr_e( 'Download the chart', 'qaiyo-easy-charts' ); ?>">
 				<button type="button" class="button" data-qec-admin-export="png"><span class="dashicons dashicons-download" aria-hidden="true"></span> PNG</button>
 				<button type="button" class="button" data-qec-admin-export="svg"><span class="dashicons dashicons-download" aria-hidden="true"></span> SVG</button>
@@ -296,6 +300,18 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 				<legend><?php esc_html_e( 'Colors', 'qaiyo-easy-charts' ); ?></legend>
 				<p class="description"><?php esc_html_e( 'These colors belong to this chart only. Single bars can have their own colors in the table above.', 'qaiyo-easy-charts' ); ?></p>
 				<?php
+				$qaiyo_ec_select(
+					'scheme',
+					__( 'Color scheme', 'qaiyo-easy-charts' ),
+					array(
+						'light' => __( 'Light', 'qaiyo-easy-charts' ),
+						'dark'  => __( 'Dark', 'qaiyo-easy-charts' ),
+						'auto'  => __( 'Automatic (follows the visitor and the theme)', 'qaiyo-easy-charts' ),
+					)
+				);
+				$qaiyo_ec_color( 'bg_color', __( 'Background', 'qaiyo-easy-charts' ) );
+				?>
+				<?php
 				$qaiyo_ec_color( 'bar_color', __( 'Bar color', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_color( 'range_color', __( 'Range color', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_color( 'track_color', __( 'Track color', 'qaiyo-easy-charts' ) );
@@ -312,6 +328,21 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 					<button type="button" class="button qec-style-apply"><?php esc_html_e( 'Copy style', 'qaiyo-easy-charts' ); ?></button>
 					<p class="description" id="qec-style-source-help"><?php esc_html_e( 'Colours, font, sizes, patterns and animation; the data stays.', 'qaiyo-easy-charts' ); ?></p>
 				</div>
+			</fieldset>
+
+			<fieldset class="qec-fieldset" data-qec-schemes="dark auto">
+				<legend><?php esc_html_e( 'Dark mode colors', 'qaiyo-easy-charts' ); ?></legend>
+				<p class="description"><?php esc_html_e( 'Used when the chart is dark, or in automatic mode when the visitor or the theme uses dark mode. Set the background to transparent on a dark site.', 'qaiyo-easy-charts' ); ?></p>
+				<?php
+				$qaiyo_ec_color( 'dark_bg_color', __( 'Background', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'dark_bar_color', __( 'Bar color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'dark_range_color', __( 'Range color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'dark_track_color', __( 'Track color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'dark_label_color', __( 'Label color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'dark_value_color', __( 'Value color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'dark_axis_color', __( 'Axis color', 'qaiyo-easy-charts' ) );
+				?>
+				<div class="qec-contrast" id="qec-contrast-dark" role="status" aria-live="polite"></div>
 			</fieldset>
 
 			<fieldset class="qec-fieldset">

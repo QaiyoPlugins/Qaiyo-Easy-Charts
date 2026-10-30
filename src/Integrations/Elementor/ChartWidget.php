@@ -574,6 +574,53 @@ class ChartWidget extends Widget_Base {
 
 		$this->end_controls_section();
 
+		/* Colour scheme ---------------------------------------------------- */
+		$this->start_controls_section(
+			'section_style_scheme',
+			array(
+				'label' => esc_html__( 'Color scheme', 'qaiyo-easy-charts' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+		$this->add_control(
+			'chart_scheme',
+			array(
+				'label'   => esc_html__( 'Color scheme', 'qaiyo-easy-charts' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '',
+				'options' => array(
+					''      => esc_html__( 'From the chart (light by default)', 'qaiyo-easy-charts' ),
+					'light' => esc_html__( 'Light', 'qaiyo-easy-charts' ),
+					'dark'  => esc_html__( 'Dark', 'qaiyo-easy-charts' ),
+					'auto'  => esc_html__( 'Automatic (follows the visitor and the theme)', 'qaiyo-easy-charts' ),
+				),
+			)
+		);
+		$this->add_control(
+			'bg_color',
+			array(
+				'label'     => esc_html__( 'Background', 'qaiyo-easy-charts' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array( self::ROOT => '--qec-bg: {{VALUE}}; --qec-pad: 24px;' ),
+			)
+		);
+		$this->add_control(
+			'dark_heading',
+			array(
+				'label'     => esc_html__( 'Dark mode colors', 'qaiyo-easy-charts' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+		$this->color( 'dark_bg_color', esc_html__( 'Background', 'qaiyo-easy-charts' ), '--qec-dark-bg' );
+		$this->color( 'dark_bar_color', esc_html__( 'Bar color', 'qaiyo-easy-charts' ), '--qec-dark-primary' );
+		$this->color( 'dark_range_color', esc_html__( 'Range color', 'qaiyo-easy-charts' ), '--qec-dark-secondary' );
+		$this->color( 'dark_track_color', esc_html__( 'Track color', 'qaiyo-easy-charts' ), '--qec-dark-track' );
+		$this->color( 'dark_label_color', esc_html__( 'Label color', 'qaiyo-easy-charts' ), '--qec-dark-label-color' );
+		$this->color( 'dark_value_color', esc_html__( 'Value color', 'qaiyo-easy-charts' ), '--qec-dark-value-color' );
+		$this->color( 'dark_axis_color', esc_html__( 'Axis color', 'qaiyo-easy-charts' ), '--qec-dark-axis-color' );
+		$this->end_controls_section();
+
 		/* Texts ----------------------------------------------------------- */
 		foreach (
 			array(
@@ -669,7 +716,7 @@ class ChartWidget extends Widget_Base {
 			array(
 				'label'     => $label,
 				'type'      => Controls_Manager::COLOR,
-				'default'   => ChartConfig::DEFAULT_STYLE[ $id ] ?? '',
+				'default'   => ChartConfig::DEFAULT_STYLE[ $id ] ?? ChartConfig::DEFAULT_DARK_STYLE[ $id ] ?? '',
 				'selectors' => array( self::ROOT => $variable . ': {{VALUE}};' ),
 			)
 		);
@@ -740,15 +787,26 @@ class ChartWidget extends Widget_Base {
 				'bar_size'                     => 'bar_size',
 				'chart_height'                 => 'chart_height',
 				'bar_radius'                   => 'radius',
+				'bg_color'                     => 'bg_color',
+				'dark_bg_color'                => 'dark_bg_color',
+				'dark_bar_color'               => 'dark_bar_color',
+				'dark_range_color'             => 'dark_range_color',
+				'dark_track_color'             => 'dark_track_color',
+				'dark_label_color'             => 'dark_label_color',
+				'dark_value_color'             => 'dark_value_color',
+				'dark_axis_color'              => 'dark_axis_color',
 			);
 			foreach ( $overrides as $control => $key ) {
 				$value   = $s[ $control ] ?? '';
-				$default = ChartConfig::DEFAULT_STYLE[ $control ] ?? '';
+				$default = ChartConfig::DEFAULT_STYLE[ $control ] ?? ChartConfig::DEFAULT_DARK_STYLE[ $control ] ?? '';
 				if ( ( is_array( $value ) && '' !== Cast::string( $value['size'] ?? '' ) ) || ( is_string( $value ) && '' !== $value && strtolower( $value ) !== $default ) ) {
 					$config[ $key ] = '';
 				}
 			}
-			return $config;
+			if ( '' !== Cast::string( $s['chart_scheme'] ?? '' ) ) {
+				$config['scheme'] = Cast::string( $s['chart_scheme'] );
+			}
+			return ChartConfig::sanitize( $config );
 		}
 
 		$yes = static fn( mixed $value ): bool => 'yes' === $value;
@@ -756,6 +814,7 @@ class ChartWidget extends Widget_Base {
 		return ChartConfig::sanitize(
 			array(
 				'type'          => $s['chart_type'] ?? 'bars',
+				'scheme'        => '' !== Cast::string( $s['chart_scheme'] ?? '' ) ? $s['chart_scheme'] : 'light',
 				'items'         => Cast::arr( $s['items'] ?? array() ),
 				'orientation'   => $s['orientation'] ?? 'horizontal',
 				'series_a'      => $s['series_a'] ?? '',

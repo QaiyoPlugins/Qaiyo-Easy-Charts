@@ -296,5 +296,18 @@
 "%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s tiene un contraste de %2$s:1 sobre fondo blanco. El texto necesita al menos 4,5:1 para cumplir WCAG AA.",
 "All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Todos los colores de texto cumplen el contraste WCAG AA de 4,5:1 sobre fondo blanco.",
 "Busiest day in the last 30 days: %1$s, %2$s views.": "Día con más vistas de los últimos 30 días: %1$s, %2$s vistas.",
-"No views in the last 30 days.": "Sin vistas en los últimos 30 días."
+"No views in the last 30 days.": "Sin vistas en los últimos 30 días.",
+"Dark mode: %1$s has a contrast of %2$s:1 on the dark background. Text needs at least 4.5:1 to meet WCAG AA.": "Modo oscuro: %1$s tiene un contraste de %2$s:1 sobre el fondo oscuro. El texto necesita al menos 4,5:1 para cumplir WCAG AA.",
+"Dark mode: all text colours meet the WCAG AA contrast of 4.5:1 on the dark background.": "Modo oscuro: todos los colores de texto cumplen el contraste WCAG AA de 4,5:1 sobre el fondo oscuro.",
+"Colour scheme: light, dark, or auto (follows the visitor and the theme).": "Esquema de color: claro, oscuro o automático (sigue al visitante y al tema).",
+"Color scheme": "Esquema de color",
+"From the chart (light by default)": "El del gráfico (claro por defecto)",
+"Light": "Claro",
+"Dark": "Oscuro",
+"Automatic (follows the visitor and the theme)": "Automático (sigue al visitante y al tema)",
+"Dark mode colors": "Colores del modo oscuro",
+"Background": "Fondo",
+"Padding with a background": "Relleno con fondo",
+"Preview colour scheme": "Esquema de color de la vista previa",
+"Used when the chart is dark, or in automatic mode when the visitor or the theme uses dark mode. Set the background to transparent on a dark site.": "Se usan cuando el gráfico es oscuro, o en modo automático cuando el visitante o el tema usan el modo oscuro. En un sitio oscuro, pon el fondo transparente."
 }

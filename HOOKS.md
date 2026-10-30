@@ -71,6 +71,8 @@ Since 1.0.0.
 | `lazy` | draw the chart only when it scrolls near (the data table is always in the HTML) |
 | `type` | `bars`, `compare`, `ring`, `timeline`, `bullet`, `stacked`, `rating` — each item's `max` is its second value (range end, second series, goal, finish, target) |
 | `series_a`, `series_b`, `bands` | comparison series names; bullet band limits (list of numbers) |
+| `scheme` | `light`, `dark` or `auto`; root class `qec-scheme-*` |
+| `bg_color`, `dark_*_color`, `dark_bg_color` | light background; dark mode colours (bar, range, track, label, value, axis, background) → `--qec-bg`, `--qec-dark-primary`, … |
 | `tooltips`, `patterns`, `export` | keyboard-accessible tooltips, colour-blind patterns, PNG / SVG download buttons |
 | `bar_color`, `range_color`, `track_color`, `label_color`, `value_color`, `axis_color`, `font_family`, `bar_size`, `chart_height`, `radius` | style |
 

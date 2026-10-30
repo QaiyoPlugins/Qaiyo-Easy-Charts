@@ -112,6 +112,7 @@ final class Renderer {
 				array(
 					'qec-chart',
 					'qec-type-' . $config['type'],
+					'qec-scheme-' . $config['scheme'],
 					in_array( $config['type'], ChartConfig::ROW_TYPES, true ) ? 'qec-bars' : '',
 					$config['patterns'] ? 'qec-patterns' : '',
 					$config['tooltips'] ? 'qec-tooltips' : '',
@@ -143,6 +144,9 @@ final class Renderer {
 		if ( 'ring' === $config['type'] ) {
 			$vars['--qec-ring-size'] = $config['chart_height'];
 		}
+		// A background makes the chart a card with some padding; transparent means none.
+		$vars['--qec-pad']      = '' !== $config['bg_color'] && 'transparent' !== $config['bg_color'] ? '24px' : '';
+		$vars['--qec-dark-pad'] = 'transparent' === $config['dark_bg_color'] ? '0px' : '';
 		return Css::inline( $vars );
 	}
 
@@ -191,6 +195,10 @@ final class Renderer {
 		}
 		if ( Views::should_track( $config['chart_id'] ) ) {
 			$data['data-qec-view'] = (string) $config['chart_id'];
+		}
+		// Lets dark mode styles of the theme or other plugins leave the chart alone.
+		if ( 'light' !== $config['scheme'] ) {
+			$data['data-qec-scheme'] = $config['scheme'];
 		}
 		return $data;
 	}

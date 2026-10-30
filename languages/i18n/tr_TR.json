@@ -296,5 +296,18 @@
 "%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s beyaz arka planda %2$s:1 kontrasta sahip. WCAG AA için metin en az 4,5:1 olmalıdır.",
 "All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Tüm metin renkleri beyaz arka planda WCAG AA 4,5:1 kontrastını karşılıyor.",
 "Busiest day in the last 30 days: %1$s, %2$s views.": "Son 30 günün en yoğun günü: %1$s, %2$s görüntülenme.",
-"No views in the last 30 days.": "Son 30 günde görüntülenme yok."
+"No views in the last 30 days.": "Son 30 günde görüntülenme yok.",
+"Dark mode: %1$s has a contrast of %2$s:1 on the dark background. Text needs at least 4.5:1 to meet WCAG AA.": "Koyu mod: %1$s koyu arka planda %2$s:1 kontrasta sahip. WCAG AA için metin en az 4,5:1 olmalıdır.",
+"Dark mode: all text colours meet the WCAG AA contrast of 4.5:1 on the dark background.": "Koyu mod: tüm metin renkleri koyu arka planda WCAG AA 4,5:1 kontrastını karşılıyor.",
+"Colour scheme: light, dark, or auto (follows the visitor and the theme).": "Renk şeması: açık, koyu veya otomatik (ziyaretçiyi ve temayı izler).",
+"Color scheme": "Renk şeması",
+"From the chart (light by default)": "Grafikteki (varsayılan açık)",
+"Light": "Açık",
+"Dark": "Koyu",
+"Automatic (follows the visitor and the theme)": "Otomatik (ziyaretçiyi ve temayı izler)",
+"Dark mode colors": "Koyu mod renkleri",
+"Background": "Arka plan",
+"Padding with a background": "Arka planla iç boşluk",
+"Preview colour scheme": "Önizleme renk şeması",
+"Used when the chart is dark, or in automatic mode when the visitor or the theme uses dark mode. Set the background to transparent on a dark site.": "Grafik koyu olduğunda veya otomatik modda ziyaretçi ya da tema koyu modu kullandığında kullanılır. Koyu bir sitede arka planı saydam yapın."
 }

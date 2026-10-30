@@ -66,7 +66,7 @@ final class ChartTypesTest extends TestCase {
 			)
 		);
 
-		$this->assertStringContainsString( 'qec-type-compare qec-bars', $html );
+		$this->assertStringContainsString( 'qec-type-compare qec-scheme-light qec-bars', $html );
 		$this->assertStringContainsString( 'qec-seg--a', $html );
 		$this->assertStringContainsString( 'qec-seg--b', $html );
 		$this->assertStringContainsString( '<div class="qec-legend" aria-hidden="true">', $html );
@@ -185,5 +185,34 @@ final class ChartTypesTest extends TestCase {
 
 		// The longest duration still leaves room for counting up.
 		$this->assertLessThanOrEqual( 5000, 1.4 * ChartConfig::sanitize( array( 'duration' => 99999 ) )['duration'] );
+	}
+
+	public function test_colour_scheme_and_dark_colours(): void {
+		$this->assertSame( 'light', ChartConfig::sanitize( array( 'scheme' => 'neon' ) )['scheme'] );
+
+		$html = $this->render(
+			'bars',
+			'A;5',
+			array(
+				'scheme'         => 'auto',
+				'dark_bar_color' => '#ffcc00',
+				'bg_color'       => '#fafafa',
+				'dark_bg_color'  => 'transparent',
+			)
+		);
+
+		$this->assertStringContainsString( 'qec-scheme-auto', $html );
+		$this->assertStringContainsString( 'data-qec-scheme="auto"', $html );
+		$this->assertStringContainsString( '--qec-dark-primary:#ffcc00;', $html );
+		$this->assertStringContainsString( '--qec-bg:#fafafa;', $html );
+		$this->assertStringContainsString( '--qec-pad:24px;', $html );
+		$this->assertStringContainsString( '--qec-dark-pad:0px;', $html );
+	}
+
+	public function test_item_colours_use_their_own_variables(): void {
+		$config          = ChartConfig::sanitize( array( 'items' => array( array( 'label' => 'A', 'value' => 1, 'color' => '#ff0000' ) ), 'lazy' => false ) );
+		$html            = Renderer::render( $config, array(), false );
+
+		$this->assertStringContainsString( '--qec-item-primary:#ff0000;', $html );
 	}
 }

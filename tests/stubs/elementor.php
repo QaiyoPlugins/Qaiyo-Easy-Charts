@@ -19,6 +19,7 @@ class Controls_Manager {
 	const SELECT      = 'select';
 	const SWITCHER    = 'switcher';
 	const COLOR       = 'color';
+	const HEADING = 'heading';
 	const SLIDER      = 'slider';
 	const REPEATER    = 'repeater';
 }
