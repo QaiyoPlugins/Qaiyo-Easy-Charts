@@ -7,7 +7,7 @@ contract across minor releases.
 
 ### `qaiyo_easy_charts_default_config`
 
-Filters the default chart configuration (seeded from **Easy Charts → Settings**)
+Filters the default chart configuration (behaviour defaults come from **Easy Charts → Settings**)
 before any chart, shortcode, block or builder element is built.
 
 ```php

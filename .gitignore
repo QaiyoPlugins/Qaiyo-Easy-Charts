@@ -3,3 +3,6 @@ __pycache__/
 /vendor/
 /node_modules/
 .DS_Store
+/build/
+.phpunit.result.cache
+composer.lock

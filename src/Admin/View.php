@@ -13,10 +13,13 @@ namespace Qaiyo\EasyCharts\Admin;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Renders admin templates.
+ */
 final class View {
 
 	/**
-	 * Echo a template. Variables must be prefixed "qec_" to keep the template
+	 * Echo a template. Variables must be prefixed "qaiyo_ec_" to keep the template
 	 * scope readable and collision-free.
 	 *
 	 * @param string               $name Template name, e.g. "settings".
@@ -28,23 +31,28 @@ final class View {
 			return;
 		}
 
-		foreach ( $vars as $qec_key => $qec_value ) {
-			if ( is_string( $qec_key ) && preg_match( '/^qec_[a-z0-9_]+$/', $qec_key ) ) {
-				${$qec_key} = $qec_value;
+		foreach ( $vars as $qaiyo_ec_key => $qaiyo_ec_value ) {
+			if ( preg_match( '/^qaiyo_ec_[a-z0-9_]+$/', $qaiyo_ec_key ) ) {
+				${$qaiyo_ec_key} = $qaiyo_ec_value;
 			}
 		}
-		unset( $vars, $qec_key, $qec_value );
+		unset( $vars, $qaiyo_ec_key, $qaiyo_ec_value );
 
 		require $path;
 	}
 
+	/**
+	 * Resolve a template name to a file inside templates/admin/.
+	 *
+	 * @param string $name Name.
+	 */
 	private static function path( string $name ): string {
 		if ( ! preg_match( '/^[a-z0-9]+(-[a-z0-9]+)*$/', $name ) ) {
 			return '';
 		}
 
-		$base = realpath( QEC_PLUGIN_DIR . 'templates/admin' );
-		$file = realpath( QEC_PLUGIN_DIR . 'templates/admin/' . $name . '.php' );
+		$base = realpath( QAIYO_EC_PLUGIN_DIR . 'templates/admin' );
+		$file = realpath( QAIYO_EC_PLUGIN_DIR . 'templates/admin/' . $name . '.php' );
 
 		if ( false === $base || false === $file || 0 !== strpos( $file, $base . DIRECTORY_SEPARATOR ) || ! is_readable( $file ) ) {
 			return '';

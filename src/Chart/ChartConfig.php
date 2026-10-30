@@ -18,6 +18,12 @@ use Qaiyo\EasyCharts\Support\Css;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Defaults, validation and parsing of chart configurations.
+ *
+ * @phpstan-type QecItem array{label: string, value: float, max: float|string, text: string, color: string, range_color: string}
+ * @phpstan-type QecConfig array{orientation: string, items: list<QecItem>, title: string, description: string, show_caption: bool, scale_min: float, scale_max: float|string, step: float|string, unit: string, unit_position: string, show_axis: bool, show_values: bool, separator: string, prefix: string, suffix: string, layout: string, animate: bool, hover_focus: bool, data_table: bool, bar_color: string, range_color: string, track_color: string, label_color: string, value_color: string, axis_color: string, font_family: string, bar_size: string, chart_height: string, radius: string}
+ */
 final class ChartConfig {
 
 	const ORIENTATIONS   = array( 'horizontal', 'vertical', 'auto' );
@@ -26,6 +32,20 @@ final class ChartConfig {
 
 	/** Hard cap on rows, so a single chart can never become unbounded work. */
 	const MAX_ITEMS = 100;
+
+	/**
+	 * The default look of a chart. Every chart, block and builder element shows
+	 * these as its own editable values; there is no site-wide colour setting,
+	 * because each chart is styled on its own. Mirrors the defaults in chart.css.
+	 */
+	const DEFAULT_STYLE = array(
+		'bar_color'   => '#0f0c24',
+		'range_color' => '#95e6d8',
+		'track_color' => '#ecebf1',
+		'label_color' => '#0f0c24',
+		'value_color' => '#0f0c24',
+		'axis_color'  => '#6b6880',
+	);
 
 	/** Style keys that become CSS custom properties on the chart root. */
 	const STYLE_VARS = array(
@@ -44,13 +64,13 @@ final class ChartConfig {
 	/**
 	 * Defaults, seeded from the global settings.
 	 *
-	 * @return array<string,mixed>
+	 * @return array<mixed>
 	 */
 	public static function defaults(): array {
 		$settings = Settings::get();
 
 		$defaults = array(
-			'orientation'   => $settings['orientation'],
+			'orientation'   => 'horizontal',
 			'items'         => array(),
 			'title'         => '',
 			'description'   => '',
@@ -88,9 +108,10 @@ final class ChartConfig {
 		 *
 		 * @param array<string,mixed> $defaults Default configuration.
 		 */
-		$filtered = apply_filters( Schema::FILTER_DEFAULTS, $defaults );
+		$filtered = apply_filters( 'qaiyo_easy_charts_default_config', $defaults );
 
-		return is_array( $filtered ) ? array_merge( $defaults, $filtered ) : $defaults;
+		// Callbacks are third-party code: narrow the result instead of trusting it.
+		return array_merge( $defaults, Cast::arr( $filtered ) );
 	}
 
 	/**
@@ -124,13 +145,16 @@ final class ChartConfig {
 	/**
 	 * Example configuration for new charts and freshly dropped widgets.
 	 *
-	 * @return array<string,mixed>
+	 * @return QecConfig
 	 */
 	public static function demo(): array {
 		return self::sanitize(
-			array(
-				'items' => self::demo_items(),
-				'unit'  => 'munkanap',
+			array_merge(
+				self::DEFAULT_STYLE,
+				array(
+					'items' => self::demo_items(),
+					'unit'  => 'munkanap',
+				)
 			)
 		);
 	}
@@ -140,14 +164,14 @@ final class ChartConfig {
 	 * dropped; missing keys take their default.
 	 *
 	 * @param array<mixed> $raw Raw configuration.
-	 * @return array<string,mixed>
+	 * @return QecConfig
 	 */
 	public static function sanitize( array $raw ): array {
 		$defaults = self::defaults();
 		$raw      = array_merge( $defaults, $raw );
 
 		$config = array(
-			'orientation'   => Cast::choice( $raw['orientation'], self::ORIENTATIONS, $defaults['orientation'] ),
+			'orientation'   => Cast::choice( $raw['orientation'], self::ORIENTATIONS, 'horizontal' ),
 			'items'         => self::sanitize_items( Cast::arr( $raw['items'] ) ),
 			'title'         => self::text( $raw['title'], 200 ),
 			'description'   => self::text( $raw['description'], 500 ),
@@ -182,8 +206,10 @@ final class ChartConfig {
 	}
 
 	/**
+	 * Sanitize items.
+	 *
 	 * @param array<mixed> $items Raw rows.
-	 * @return list<array<string,mixed>>
+	 * @return list<QecItem>
 	 */
 	public static function sanitize_items( array $items ): array {
 		$clean = array();
@@ -216,18 +242,20 @@ final class ChartConfig {
 	 * Parse the shortcode's compact data format:
 	 * rows separated by "|" or new lines, fields by ";" — label;value;range end;text.
 	 *
-	 * @return list<array<string,mixed>>
+	 * @param string $data Rows separated by "|" or new lines, fields by ";".
+	 * @return list<array{label: string, value: string, max: string, text: string}>
 	 */
 	public static function parse_data_string( string $data ): array {
 		$items = array();
-		foreach ( preg_split( '/\||\r\n|\n/', $data ) ?: array() as $row ) {
+		$rows  = preg_split( '/\||\r\n|\n/', $data );
+		foreach ( false === $rows ? array() : $rows as $row ) {
 			$row = trim( $row );
 			if ( '' === $row ) {
 				continue;
 			}
 			$fields  = array_map( 'trim', explode( ';', $row ) );
 			$items[] = array(
-				'label' => $fields[0] ?? '',
+				'label' => $fields[0],
 				'value' => $fields[1] ?? '',
 				'max'   => $fields[2] ?? '',
 				'text'  => $fields[3] ?? '',
@@ -237,7 +265,11 @@ final class ChartConfig {
 	}
 
 	/**
-	 * @param mixed $value Any value.
+	 * Sanitize a text value and cap its length.
+	 *
+	 * @param mixed  $value Any value.
+	 * @param int    $max_length Max length.
+	 * @param string $fallback Fallback.
 	 */
 	private static function text( $value, int $max_length, string $fallback = '' ): string {
 		$text = sanitize_text_field( Cast::string( $value ) );
@@ -248,6 +280,8 @@ final class ChartConfig {
 	}
 
 	/**
+	 * A number, or an empty string.
+	 *
 	 * @param mixed $value Any value.
 	 * @return float|string Number, or '' when empty/invalid.
 	 */
@@ -257,10 +291,13 @@ final class ChartConfig {
 	}
 
 	/**
+	 * A number, or the default.
+	 *
 	 * @param mixed $value Any value.
+	 * @param float $fallback Value used when $value is not a number.
 	 */
-	private static function number_or_default( $value, float $default ): float {
+	private static function number_or_default( $value, float $fallback ): float {
 		$number = Cast::number( $value );
-		return null === $number ? $default : $number;
+		return null === $number ? $fallback : $number;
 	}
 }

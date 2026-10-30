@@ -20,10 +20,10 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  *
  * @return void
  */
-function qec_uninstall_site() {
-	delete_transient( 'qec_more_plugins_wporg' );
+function qaiyo_ec_uninstall_site() {
+	delete_transient( 'qaiyo_ec_more_plugins_wporg' );
 
-	$settings = get_option( 'qec_settings', array() );
+	$settings = get_option( 'qaiyo_ec_settings', array() );
 	if ( ! is_array( $settings ) || empty( $settings['delete_on_uninstall'] ) ) {
 		return;
 	}
@@ -31,12 +31,11 @@ function qec_uninstall_site() {
 	do {
 		$chart_ids = get_posts(
 			array(
-				'post_type'        => 'qec_chart',
-				'post_status'      => 'any',
-				'posts_per_page'   => 200,
-				'fields'           => 'ids',
-				'no_found_rows'    => true,
-				'suppress_filters' => true,
+				'post_type'      => 'qaiyo_ec_chart',
+				'post_status'    => 'any',
+				'posts_per_page' => 100,
+				'fields'         => 'ids',
+				'no_found_rows'  => true,
 			)
 		);
 		foreach ( $chart_ids as $chart_id ) {
@@ -44,22 +43,22 @@ function qec_uninstall_site() {
 		}
 	} while ( ! empty( $chart_ids ) );
 
-	delete_option( 'qec_settings' );
+	delete_option( 'qaiyo_ec_settings' );
 }
 
 if ( is_multisite() ) {
-	$qec_sites = get_sites(
+	$qaiyo_ec_sites = get_sites(
 		array(
 			'fields' => 'ids',
 			'number' => 0,
 		)
 	);
-	foreach ( $qec_sites as $qec_site_id ) {
-		switch_to_blog( (int) $qec_site_id );
-		qec_uninstall_site();
+	foreach ( $qaiyo_ec_sites as $qaiyo_ec_site_id ) {
+		switch_to_blog( (int) $qaiyo_ec_site_id );
+		qaiyo_ec_uninstall_site();
 		restore_current_blog();
 	}
-	unset( $qec_sites, $qec_site_id );
+	unset( $qaiyo_ec_sites, $qaiyo_ec_site_id );
 } else {
-	qec_uninstall_site();
+	qaiyo_ec_uninstall_site();
 }

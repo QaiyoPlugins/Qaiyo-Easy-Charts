@@ -17,6 +17,9 @@ use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Registers and renders the Gutenberg block.
+ */
 final class ChartBlock {
 
 	/** Block attribute => configuration key (inline source). */
@@ -49,24 +52,30 @@ final class ChartBlock {
 		'radius'      => 'radius',
 	);
 
+	/**
+	 * Hook this component into WordPress.
+	 */
 	public function register(): void {
 		add_action( 'init', array( $this, 'register_block' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_data' ) );
 	}
 
+	/**
+	 * Register the block and its editor script.
+	 */
 	public function register_block(): void {
 		Assets::register_handles();
 
 		wp_register_script(
 			Schema::HANDLE_BLOCK,
-			QEC_PLUGIN_URL . 'assets/js/block.js',
+			QAIYO_EC_PLUGIN_URL . 'assets/js/block.js',
 			array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-server-side-render' ),
 			Assets::version( 'assets/js/block.js' ),
 			array( 'in_footer' => true )
 		);
 
 		register_block_type(
-			QEC_PLUGIN_DIR . 'blocks/chart',
+			QAIYO_EC_PLUGIN_DIR . 'blocks/chart',
 			array( 'render_callback' => array( self::class, 'render' ) )
 		);
 	}
@@ -87,9 +96,10 @@ final class ChartBlock {
 
 		wp_add_inline_script(
 			Schema::HANDLE_BLOCK,
-			'window.qecBlock = ' . wp_json_encode(
+			'window.qaiyoEcBlock = ' . wp_json_encode(
 				array(
 					'charts'    => $charts,
+					'defaults'  => ChartConfig::DEFAULT_STYLE,
 					'manageUrl' => admin_url( PostType::MENU_SLUG ),
 					'i18n'      => self::strings(),
 				)
@@ -99,6 +109,8 @@ final class ChartBlock {
 	}
 
 	/**
+	 * UI strings for the block editor.
+	 *
 	 * @return array<string,string>
 	 */
 	private static function strings(): array {
@@ -162,6 +174,8 @@ final class ChartBlock {
 	}
 
 	/**
+	 * Render the output.
+	 *
 	 * @param mixed $attributes Block attributes.
 	 */
 	public static function render( $attributes ): string {

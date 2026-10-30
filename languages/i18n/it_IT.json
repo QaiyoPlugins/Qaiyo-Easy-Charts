@@ -162,7 +162,6 @@
 "Actions": "Azioni",
 "Defaults to the chart name. Used as the accessible name of the chart.": "Per impostazione predefinita è il nome del grafico. Usato come nome accessibile del grafico.",
 "e.g. days": "ad es. giorni",
-"Empty fields use the colors from Easy Charts → Settings.": "I campi vuoti usano i colori di Easy Charts → Impostazioni.",
 "Typography & size": "Tipografia e dimensioni",
 "Font family": "Famiglia di caratteri",
 "Empty: the font of your theme or builder.": "Vuoto: il carattere del tuo tema o builder.",
@@ -187,9 +186,6 @@
 "Free plugins are listed from WordPress.org. This page makes no request to any Qaiyo server.": "I plugin gratuiti provengono da WordPress.org. Questa pagina non invia richieste ad alcun server Qaiyo.",
 "Animate charts when they scroll into view": "Anima i grafici quando appaiono scorrendo",
 "Add an accessible data table to every chart (screen readers, SEO, AI)": "Aggiungi una tabella dati accessibile a ogni grafico (screen reader, SEO, IA)",
-"Site-wide defaults for every chart. Each chart, block and builder element can override them.": "Valori predefiniti del sito per tutti i grafici. Ogni grafico, blocco ed elemento del builder può sovrascriverli.",
-"Colors & font": "Colori e carattere",
-"Empty: charts use the font of your theme or page builder. The font itself must be loaded by your theme.": "Vuoto: i grafici usano il carattere del tuo tema o page builder. Il carattere deve essere caricato dal tema.",
 "Defaults for new charts": "Valori predefiniti per i nuovi grafici",
 "Uninstall": "Disinstallazione",
 "Delete all charts and settings when the plugin is deleted": "Elimina tutti i grafici e le impostazioni quando il plugin viene eliminato",
@@ -202,5 +198,7 @@
 "block keyword\u0004bar": "barra",
 "block keyword\u0004column": "colonna",
 "block keyword\u0004graph": "diagramma",
-"block keyword\u0004qaiyo": "qaiyo"
+"block keyword\u0004qaiyo": "qaiyo",
+"Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Comportamento predefinito dei nuovi grafici. Colori, caratteri e dimensioni si impostano in ogni grafico, blocco o elemento del builder.",
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Questi colori appartengono solo a questo grafico. Le singole barre possono avere colori propri nella tabella sopra."
 }

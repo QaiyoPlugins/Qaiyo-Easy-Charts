@@ -17,28 +17,43 @@ use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Groups Qaiyo plugins in the admin sidebar under one brand chip.
+ */
 final class BrandMenu {
 
-	const TOP_SLUG	= 'qaiyo-brand-separator-top';
+	const TOP_SLUG    = 'qaiyo-brand-separator-top';
 	const BOTTOM_SLUG = 'qaiyo-brand-separator-bottom';
 
 	/** Hint position used if the plugin doesn't have a strong opinion. */
 	const HINT_POSITION = 25.99;
 
-	/** @var int */
+	/**
+	 * Plugin count.
+	 *
+	 * @var int
+	 */
 	private static $plugin_count = 0;
 
-	/** @var list<string> */
+	/**
+	 * Brand slugs.
+	 *
+	 * @var list<string>
+	 */
 	private static $brand_slugs = array();
 
-	/** @var bool */
+	/**
+	 * Brand filter added.
+	 *
+	 * @var bool
+	 */
 	private static $brand_filter_added = false;
 
 	/**
 	 * Registers this plugin's top-level menu slug, so the brand separator can
 	 * locate the menu at admin_menu time regardless of where WordPress placed it.
 	 *
-	 * @param string $slug e.g. "edit.php?post_type=qec_chart".
+	 * @param string $slug e.g. "edit.php?post_type=qaiyo_ec_chart".
 	 */
 	public static function register_plugin_slug( string $slug ): void {
 		if ( '' !== $slug && ! in_array( $slug, self::$brand_slugs, true ) ) {
@@ -68,10 +83,13 @@ final class BrandMenu {
 	 * dynamically by inject_separators().
 	 */
 	public static function plugin_position(): float {
-		self::$plugin_count++;
+		++self::$plugin_count;
 		return self::HINT_POSITION + ( 0.0001 * self::$plugin_count );
 	}
 
+	/**
+	 * Hook the brand menu into the admin.
+	 */
 	public static function init(): void {
 		add_action( 'admin_menu', array( __CLASS__, 'inject_separators' ), 999 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_css' ), 999 );
@@ -95,7 +113,7 @@ final class BrandMenu {
 		}
 		foreach ( $active as $plugin ) {
 			$plugin = Cast::string( $plugin );
-			if ( 0 !== strpos( $plugin, 'qaiyo-' ) || QEC_BASENAME === $plugin ) {
+			if ( 0 !== strpos( $plugin, 'qaiyo-' ) || QAIYO_EC_BASENAME === $plugin ) {
 				continue;
 			}
 			if ( 0 === strpos( $plugin, 'qaiyo-easy-charts-pro/' ) ) {
@@ -106,6 +124,9 @@ final class BrandMenu {
 		return false;
 	}
 
+	/**
+	 * Place the brand separators around the Qaiyo menu items.
+	 */
 	public static function inject_separators(): void {
 		global $menu;
 		if ( ! is_array( $menu ) ) {
@@ -122,14 +143,16 @@ final class BrandMenu {
 			return;
 		}
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Shared by every Qaiyo plugin on purpose.
 		$slugs = array_values( array_unique( array_map( array( Cast::class, 'string' ), Cast::arr( apply_filters( 'qaiyo_brand_menu_slugs', array() ) ) ) ) );
 		if ( empty( $slugs ) ) {
 			return;
 		}
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Shared by every Qaiyo plugin on purpose.
 		do_action( 'qaiyo_brand_menu_injected' );
 
-		$has_top	= false;
+		$has_top    = false;
 		$has_bottom = false;
 		$found_keys = array();
 
@@ -169,17 +192,17 @@ final class BrandMenu {
 		}
 
 		$found_keys = array();
-		$slot	   = $group_base;
+		$slot       = $group_base;
 		foreach ( $group as $group_item ) {
 			$guard = 0;
 			while ( isset( $menu[ (string) $slot ] ) && $guard < 500 ) {
 				$slot += 0.00001;
-				$guard++;
+				++$guard;
 			}
 			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Placing the brand separators in the admin menu is what this class is for.
-			$menu[ (string) $slot ]  = $group_item;
-			$found_keys[]			= (float) $slot;
-			$slot				   += 0.00001;
+			$menu[ (string) $slot ] = $group_item;
+			$found_keys[]           = (float) $slot;
+			$slot                  += 0.00001;
 		}
 
 		if ( empty( $found_keys ) ) {
@@ -193,7 +216,7 @@ final class BrandMenu {
 			$guard = 0;
 			while ( isset( $menu[ (string) $pos ] ) && $guard < 200 ) {
 				$pos -= 0.00001;
-				$guard++;
+				++$guard;
 			}
 			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Placing the brand separators in the admin menu is what this class is for.
 			$menu[ (string) $pos ] = array(
@@ -210,7 +233,7 @@ final class BrandMenu {
 			$guard = 0;
 			while ( isset( $menu[ (string) $pos ] ) && $guard < 200 ) {
 				$pos += 0.00001;
-				$guard++;
+				++$guard;
 			}
 			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Placing the brand separators in the admin menu is what this class is for.
 			$menu[ (string) $pos ] = array(
@@ -224,14 +247,17 @@ final class BrandMenu {
 	}
 
 	/** Build the chip as a base64 SVG data URI (with localized label baked in). */
+	/**
+	 * Chip data uri.
+	 */
 	private static function chip_data_uri(): string {
-		$label	   = (string) __( 'Qaiyo Plugins', 'qaiyo-easy-charts' );
+		$label       = (string) __( 'Qaiyo Plugins', 'qaiyo-easy-charts' );
 		$label_upper = function_exists( 'mb_strtoupper' ) ? mb_strtoupper( $label, 'UTF-8' ) : strtoupper( $label );
 		$label_xml   = htmlspecialchars( $label_upper, ENT_XML1 | ENT_QUOTES, 'UTF-8' );
 
 		$char_count = function_exists( 'mb_strlen' ) ? mb_strlen( $label_upper ) : strlen( $label_upper );
-		$width	  = max( 78, (int) ( $char_count * 6.4 ) + 18 );
-		$height	 = 18;
+		$width      = max( 78, (int) ( $char_count * 6.4 ) + 18 );
+		$height     = 18;
 
 		$svg = sprintf(
 			'<svg xmlns="http://www.w3.org/2000/svg" width="%1$d" height="%2$d" viewBox="0 0 %1$d %2$d">' .
@@ -254,6 +280,9 @@ final class BrandMenu {
 		return 'data:image/svg+xml;base64,' . base64_encode( $svg );
 	}
 
+	/**
+	 * Print the brand menu styles once.
+	 */
 	public static function enqueue_css(): void {
 		// No separator is drawn when another Qaiyo plugin owns the chip, so skip its CSS too.
 		if ( self::another_qaiyo_plugin_active() ) {
@@ -262,11 +291,12 @@ final class BrandMenu {
 		if ( did_action( 'qaiyo_brand_menu_css' ) ) {
 			return;
 		}
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Shared by every Qaiyo plugin on purpose.
 		do_action( 'qaiyo_brand_menu_css' );
 
-		wp_register_style( 'qec-brand-menu', false, array(), '1.0.0' );
-		wp_enqueue_style( 'qec-brand-menu' );
-		wp_add_inline_style( 'qec-brand-menu', self::build_css() );
+		wp_register_style( 'qaiyo-ec-brand-menu', false, array(), '1.0.0' );
+		wp_enqueue_style( 'qaiyo-ec-brand-menu' );
+		wp_add_inline_style( 'qaiyo-ec-brand-menu', self::build_css() );
 	}
 
 	/**

@@ -162,7 +162,6 @@
 "Actions": "Acciones",
 "Defaults to the chart name. Used as the accessible name of the chart.": "Por defecto, el nombre del gráfico. Se usa como nombre accesible del gráfico.",
 "e.g. days": "p. ej. días",
-"Empty fields use the colors from Easy Charts → Settings.": "Los campos vacíos usan los colores de Easy Charts → Ajustes.",
 "Typography & size": "Tipografía y tamaño",
 "Font family": "Familia tipográfica",
 "Empty: the font of your theme or builder.": "Vacío: la fuente de tu tema o constructor.",
@@ -187,9 +186,6 @@
 "Free plugins are listed from WordPress.org. This page makes no request to any Qaiyo server.": "Los plugins gratuitos se obtienen de WordPress.org. Esta página no realiza ninguna petición a servidores de Qaiyo.",
 "Animate charts when they scroll into view": "Animar los gráficos al aparecer al desplazarse",
 "Add an accessible data table to every chart (screen readers, SEO, AI)": "Añadir una tabla de datos accesible a cada gráfico (lectores de pantalla, SEO, IA)",
-"Site-wide defaults for every chart. Each chart, block and builder element can override them.": "Valores predeterminados del sitio para todos los gráficos. Cada gráfico, bloque y elemento del constructor puede sobrescribirlos.",
-"Colors & font": "Colores y fuente",
-"Empty: charts use the font of your theme or page builder. The font itself must be loaded by your theme.": "Vacío: los gráficos usan la fuente de tu tema o constructor de páginas. La fuente debe cargarla tu tema.",
 "Defaults for new charts": "Valores predeterminados de los gráficos nuevos",
 "Uninstall": "Desinstalación",
 "Delete all charts and settings when the plugin is deleted": "Eliminar todos los gráficos y ajustes al borrar el plugin",
@@ -202,5 +198,7 @@
 "block keyword\u0004bar": "barra",
 "block keyword\u0004column": "columna",
 "block keyword\u0004graph": "diagrama",
-"block keyword\u0004qaiyo": "qaiyo"
+"block keyword\u0004qaiyo": "qaiyo",
+"Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Comportamiento predeterminado de los gráficos nuevos. Los colores, fuentes y tamaños se ajustan en cada gráfico, bloque o elemento del constructor.",
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Estos colores pertenecen solo a este gráfico. Cada barra puede tener sus propios colores en la tabla de arriba."
 }

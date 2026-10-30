@@ -4,7 +4,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	var config = window.qecEditor || {};
+	var config = window.qaiyoEcEditor || {};
 	var i18n = config.i18n || {};
 	var builder = document.querySelector( '.qec-builder' );
 

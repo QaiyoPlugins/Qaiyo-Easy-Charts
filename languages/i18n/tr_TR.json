@@ -162,7 +162,6 @@
 "Actions": "İşlemler",
 "Defaults to the chart name. Used as the accessible name of the chart.": "Varsayılan olarak grafik adıdır. Grafiğin erişilebilir adı olarak kullanılır.",
 "e.g. days": "ör. gün",
-"Empty fields use the colors from Easy Charts → Settings.": "Boş alanlar Easy Charts → Ayarlar'daki renkleri kullanır.",
 "Typography & size": "Tipografi ve boyut",
 "Font family": "Yazı tipi ailesi",
 "Empty: the font of your theme or builder.": "Boş: temanızın veya oluşturucunuzun yazı tipi.",
@@ -187,9 +186,6 @@
 "Free plugins are listed from WordPress.org. This page makes no request to any Qaiyo server.": "Ücretsiz eklentiler WordPress.org'dan listelenir. Bu sayfa hiçbir Qaiyo sunucusuna istek göndermez.",
 "Animate charts when they scroll into view": "Grafikleri kaydırınca göründüklerinde canlandır",
 "Add an accessible data table to every chart (screen readers, SEO, AI)": "Her grafiğe erişilebilir veri tablosu ekle (ekran okuyucular, SEO, yapay zeka)",
-"Site-wide defaults for every chart. Each chart, block and builder element can override them.": "Tüm grafikler için site genelindeki varsayılanlar. Her grafik, blok ve oluşturucu öğesi bunları geçersiz kılabilir.",
-"Colors & font": "Renkler ve yazı tipi",
-"Empty: charts use the font of your theme or page builder. The font itself must be loaded by your theme.": "Boş: grafikler temanızın veya sayfa oluşturucunuzun yazı tipini kullanır. Yazı tipinin kendisi temanız tarafından yüklenmelidir.",
 "Defaults for new charts": "Yeni grafikler için varsayılanlar",
 "Uninstall": "Kaldırma",
 "Delete all charts and settings when the plugin is deleted": "Eklenti silindiğinde tüm grafikleri ve ayarları sil",
@@ -202,5 +198,7 @@
 "block keyword\u0004bar": "çubuk",
 "block keyword\u0004column": "sütun",
 "block keyword\u0004graph": "diyagram",
-"block keyword\u0004qaiyo": "qaiyo"
+"block keyword\u0004qaiyo": "qaiyo",
+"Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Yeni grafikler için varsayılan davranış. Renkler, yazı tipleri ve boyutlar her grafikte, blokta veya oluşturucu öğesinde ayarlanır.",
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Bu renkler yalnızca bu grafiğe aittir. Tek tek çubuklara yukarıdaki tabloda kendi renkleri verilebilir."
 }

@@ -21,8 +21,14 @@ use Qaiyo\EasyCharts\Integrations\Elementor\ElementorIntegration;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Wires every component of the plugin.
+ */
 final class Plugin {
 
+	/**
+	 * Hook this component into WordPress.
+	 */
 	public function register(): void {
 		( new PostType() )->register();
 		( new Assets() )->register();
@@ -37,7 +43,7 @@ final class Plugin {
 			( new ChartEditor() )->register();
 			( new SettingsPage() )->register();
 			MorePlugins::register( PostType::MENU_SLUG );
-			add_filter( 'plugin_action_links_' . QEC_BASENAME, array( $this, 'action_links' ) );
+			add_filter( 'plugin_action_links_' . QAIYO_EC_BASENAME, array( $this, 'action_links' ) );
 		}
 	}
 

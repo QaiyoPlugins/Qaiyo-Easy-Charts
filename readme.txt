@@ -27,7 +27,7 @@ The first chart type is a **bar / column chart with ranges**: every bar has a so
 * **Animated** — bars grow when they scroll into view. Respects reduced-motion preferences; works without JavaScript.
 * **Accessible** — a figure with an accessible name and a visually hidden data table for screen readers, forced-colours support, WCAG 2.2 AA admin screens.
 * **SEO and AI friendly** — real HTML text and a semantic data table instead of an image; WordPress Abilities API support so AI agents can list, read and create charts.
-* **Site-wide defaults** — colours, font, orientation and behaviour in Easy Charts → Settings, overridable per chart.
+* **Every chart styled on its own** — colours, font and sizes are set per chart, block or builder element, starting from a clean default palette.
 * **Translation ready** — ships with English, Hungarian, German, French, Spanish, Japanese, Portuguese, Italian, Russian, Turkish and Polish.
 * **WordPress standards** — nonces, capability checks, strict sanitization, escaped output, no external requests on the front end.
 
@@ -42,7 +42,7 @@ The first chart type is a **bar / column chart with ranges**: every bar has a so
 
 = Can I change the colours and the font? =
 
-Yes. Site-wide in Easy Charts → Settings, per chart in the chart builder, and in the block, Elementor and Bricks style controls.
+Yes, for every chart separately: in the chart builder, in the block's colour and typography panels, and in the Elementor and Bricks style controls. Single bars can have their own colours too.
 
 = Can I use it without a page builder? =
 

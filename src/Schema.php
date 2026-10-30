@@ -9,23 +9,26 @@ namespace Qaiyo\EasyCharts;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Central list of identifiers (post type, meta, options, handles, hooks).
+ */
 final class Schema {
 
 	/** Text domain / plugin slug. */
 	const SLUG = 'qaiyo-easy-charts';
 
 	/** Saved charts. */
-	const POST_TYPE = 'qec_chart';
+	const POST_TYPE = 'qaiyo_ec_chart';
 
 	/** Post meta holding a saved chart's configuration (array). */
-	const META_CONFIG = '_qec_config';
+	const META_CONFIG = '_qaiyo_ec_config';
 
 	/** Global settings option (array). */
-	const OPTION_SETTINGS = 'qec_settings';
+	const OPTION_SETTINGS = 'qaiyo_ec_settings';
 
 	/** Settings API group / page. */
-	const SETTINGS_GROUP = 'qec_settings_group';
-	const SETTINGS_PAGE  = 'qec-settings';
+	const SETTINGS_GROUP = 'qaiyo_ec_settings_group';
+	const SETTINGS_PAGE  = 'qaiyo-ec-settings';
 
 	/** Shortcode tag. */
 	const SHORTCODE = 'qaiyo_chart';
@@ -37,32 +40,30 @@ final class Schema {
 	const ELEMENT = 'qaiyo-easy-chart';
 
 	/** Asset handles. */
-	const HANDLE_CHART        = 'qec-chart';
-	const HANDLE_ADMIN        = 'qec-admin';
-	const HANDLE_EDITOR       = 'qec-chart-editor';
-	const HANDLE_BLOCK        = 'qec-block-editor';
-	const HANDLE_MORE_PLUGINS = 'qec-more-plugins';
+	const HANDLE_CHART        = 'qaiyo-ec-chart';
+	const HANDLE_ADMIN        = 'qaiyo-ec-admin';
+	const HANDLE_EDITOR       = 'qaiyo-ec-chart-editor';
+	const HANDLE_BLOCK        = 'qaiyo-ec-block-editor';
+	const HANDLE_MORE_PLUGINS = 'qaiyo-ec-more-plugins';
 
 	/** Admin-ajax action for the live preview in the chart editor. */
-	const AJAX_PREVIEW = 'qec_preview';
+	const AJAX_PREVIEW = 'qaiyo_ec_preview';
 
 	/** Nonces. */
-	const NONCE_EDITOR  = 'qec_save_chart';
-	const NONCE_PREVIEW = 'qec_preview';
+	const NONCE_EDITOR  = 'qaiyo_ec_save_chart';
+	const NONCE_PREVIEW = 'qaiyo_ec_preview';
 
 	/** Required capability for the settings screen. */
 	const CAP_SETTINGS = 'manage_options';
-
-	/** Public filter hooks. See HOOKS.md. */
-	const FILTER_DEFAULTS = 'qaiyo_easy_charts_default_config';
-	const FILTER_CONFIG   = 'qaiyo_easy_charts_config';
-	const FILTER_HTML     = 'qaiyo_easy_charts_chart_html';
 
 	/** Abilities API category. */
 	const ABILITY_CATEGORY = 'qaiyo-easy-charts';
 
 	/** Transient used by the "Discover Qaiyo" page. */
-	const TRANSIENT_MORE_PLUGINS = 'qec_more_plugins_wporg';
+	const TRANSIENT_MORE_PLUGINS = 'qaiyo_ec_more_plugins_wporg';
 
+	/**
+	 * Not instantiable.
+	 */
 	private function __construct() {}
 }

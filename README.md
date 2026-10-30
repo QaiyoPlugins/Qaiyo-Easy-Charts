@@ -37,7 +37,7 @@ More chart types will follow.
   - Elementor widget and Bricks element — saved chart or inline repeater, full Style tab: chart font and per-text typography, colours, bar thickness, column height, radius, gaps, animation timing.
 - **Responsive by the chart's own width** (container queries) — works in columns and sidebars, not only on phones. Colliding axis ticks are thinned out automatically.
 - **Animated** — bars grow when scrolled into view, ranges follow; respects `prefers-reduced-motion`; static without JavaScript.
-- **Adjustable everything** — colours, font, sizes and defaults in **Easy Charts → Settings**; every chart, block and builder element can override them. All styling is CSS custom properties.
+- **Every chart styled on its own** — colours, font and sizes live in each chart, block and builder element (there is no site-wide colour setting, so many different charts can sit side by side). New charts start from the default palette and show it as editable values. All styling is CSS custom properties.
 
 ## Accessibility
 
@@ -83,6 +83,23 @@ languages/                     .pot, .po, .mo and the build script
 ```
 
 No build step and no runtime dependencies. Hooks: [HOOKS.md](HOOKS.md). Security: [SECURITY.md](SECURITY.md).
+
+### Quality checks
+
+```bash
+composer install
+composer check      # PHPCS (WPCS + PHPCompatibility), PHPStan level max, PHPUnit + Brain Monkey, translation completeness
+composer build      # release zip in build/ (development files from .distignore left out)
+```
+
+| Tool | Configuration | Status |
+|---|---|---|
+| PHP_CodeSniffer + WordPress Coding Standards 3 + PHPCompatibilityWP (PHP 7.4+) | `phpcs.xml.dist` | 0 errors, 0 warnings |
+| PHPStan 2 + `szepeviktor/phpstan-wordpress`, **level max** | `phpstan.neon.dist` | 0 errors |
+| PHPUnit 9 + Brain Monkey (unit tests without WordPress) | `phpunit.xml.dist`, `tests/` | passing |
+| Plugin Check (WordPress.org), `--mode=new`, static + runtime, experimental and low-severity checks | release build | no errors, no warnings |
+
+Elementor and Bricks are analysed against minimal stubs in `tests/stubs/`.
 
 ## License
 

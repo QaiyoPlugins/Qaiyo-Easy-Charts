@@ -22,43 +22,91 @@ use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Elementor widget that renders a chart.
+ *
+ * @phpstan-import-type QecConfig from ChartConfig
+ */
 class ChartWidget extends Widget_Base {
 
 	const ROOT = '{{WRAPPER}} .qec-chart';
 
+	/**
+	 * Widget name (stored in page data).
+	 *
+	 * @return string
+	 */
 	public function get_name() {
 		return Schema::ELEMENT;
 	}
 
+	/**
+	 * Widget title.
+	 *
+	 * @return string
+	 */
 	public function get_title() {
 		return esc_html__( 'Qaiyo Easy Chart', 'qaiyo-easy-charts' );
 	}
 
+	/**
+	 * Widget icon.
+	 *
+	 * @return string
+	 */
 	public function get_icon() {
 		return 'eicon-skill-bar';
 	}
 
+	/**
+	 * Widget categories.
+	 *
+	 * @return string[]
+	 */
 	public function get_categories() {
 		return array( 'qaiyo', 'general' );
 	}
 
+	/**
+	 * Search keywords.
+	 *
+	 * @return string[]
+	 */
 	public function get_keywords() {
 		return array( 'qaiyo', 'chart', 'bar', 'column', 'range', 'graph' );
 	}
 
+	/**
+	 * Style handles the widget needs.
+	 *
+	 * @return string[]
+	 */
 	public function get_style_depends() {
 		return array( Schema::HANDLE_CHART );
 	}
 
+	/**
+	 * Script handles the widget needs.
+	 *
+	 * @return string[]
+	 */
 	public function get_script_depends() {
 		return array( Schema::HANDLE_CHART );
 	}
 
+	/**
+	 * Register the widget controls.
+	 *
+	 * @return void
+	 */
 	protected function register_controls() {
 		$this->content_controls();
 		$this->style_controls();
 	}
 
+	/**
+	 * Register the Content tab controls.
+	 */
 	private function content_controls(): void {
 		/* Data ------------------------------------------------------------ */
 		$this->start_controls_section( 'section_data', array( 'label' => esc_html__( 'Bars', 'qaiyo-easy-charts' ) ) );
@@ -367,6 +415,9 @@ class ChartWidget extends Widget_Base {
 		$this->end_controls_section();
 	}
 
+	/**
+	 * Register the Style tab controls.
+	 */
 	private function style_controls(): void {
 		/* Chart ----------------------------------------------------------- */
 		$this->start_controls_section(
@@ -451,7 +502,13 @@ class ChartWidget extends Widget_Base {
 				'label'      => esc_html__( 'Duration (ms)', 'qaiyo-easy-charts' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'ms' ),
-				'range'      => array( 'ms' => array( 'min' => 200, 'max' => 4000, 'step' => 50 ) ),
+				'range'      => array(
+					'ms' => array(
+						'min'  => 200,
+						'max'  => 4000,
+						'step' => 50,
+					),
+				),
 				'selectors'  => array( self::ROOT => '--qec-duration: {{SIZE}}ms;' ),
 			)
 		);
@@ -461,33 +518,62 @@ class ChartWidget extends Widget_Base {
 				'label'      => esc_html__( 'Delay between bars (ms)', 'qaiyo-easy-charts' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'ms' ),
-				'range'      => array( 'ms' => array( 'min' => 0, 'max' => 1000, 'step' => 10 ) ),
+				'range'      => array(
+					'ms' => array(
+						'min'  => 0,
+						'max'  => 1000,
+						'step' => 10,
+					),
+				),
 				'selectors'  => array( self::ROOT => '--qec-stagger: {{SIZE}}ms;' ),
 			)
 		);
 		$this->end_controls_section();
 	}
 
+	/**
+	 * Add a colour control bound to a CSS custom property.
+	 *
+	 * @param string $id Id.
+	 * @param string $label Label.
+	 * @param string $variable Variable.
+	 */
 	private function color( string $id, string $label, string $variable ): void {
 		$this->add_control(
 			$id,
 			array(
 				'label'     => $label,
 				'type'      => Controls_Manager::COLOR,
+				'default'   => ChartConfig::DEFAULT_STYLE[ $id ] ?? '',
 				'selectors' => array( self::ROOT => $variable . ': {{VALUE}};' ),
 			)
 		);
 	}
 
 	/**
-	 * @param string[] $units Size units.
+	 * Add a size control bound to a CSS custom property.
+	 *
+	 * @param string   $id        Control ID.
+	 * @param string   $label     Control label.
+	 * @param string   $variable  CSS custom property.
+	 * @param int      $min       Minimum in px.
+	 * @param int      $max       Maximum in px.
+	 * @param string   $separator Elementor separator position.
+	 * @param string[] $units     Size units.
 	 */
 	private function size( string $id, string $label, string $variable, int $min, int $max, string $separator = 'default', array $units = array( 'px', 'em' ) ): void {
 		$range = array();
 		foreach ( $units as $unit ) {
 			$range[ $unit ] = 'px' === $unit
-				? array( 'min' => $min, 'max' => $max )
-				: array( 'min' => 0, 'max' => 'em' === $unit ? 20 : 100, 'step' => 'em' === $unit ? 0.1 : 1 );
+				? array(
+					'min' => $min,
+					'max' => $max,
+				)
+				: array(
+					'min'  => 0,
+					'max'  => 'em' === $unit ? 20 : 100,
+					'step' => 'em' === $unit ? 0.1 : 1,
+				);
 		}
 
 		$this->add_responsive_control(
@@ -506,7 +592,7 @@ class ChartWidget extends Widget_Base {
 	/**
 	 * Settings → shared chart configuration.
 	 *
-	 * @return array<string,mixed>|null
+	 * @return QecConfig|null
 	 */
 	private function config(): ?array {
 		$s = $this->get_settings_for_display();
@@ -516,7 +602,7 @@ class ChartWidget extends Widget_Base {
 			if ( null === $config ) {
 				return null;
 			}
-			// The saved chart keeps its own look, except where the Style tab sets a value:
+			// The saved chart keeps its own look, except where the Style tab was changed:
 			// inline variables on the root would otherwise override the Style tab.
 			$overrides = array(
 				'bar_color'                    => 'bar_color',
@@ -531,8 +617,9 @@ class ChartWidget extends Widget_Base {
 				'bar_radius'                   => 'radius',
 			);
 			foreach ( $overrides as $control => $key ) {
-				$value = $s[ $control ] ?? '';
-				if ( ( is_array( $value ) && '' !== Cast::string( $value['size'] ?? '' ) ) || ( is_string( $value ) && '' !== $value ) ) {
+				$value   = $s[ $control ] ?? '';
+				$default = ChartConfig::DEFAULT_STYLE[ $control ] ?? '';
+				if ( ( is_array( $value ) && '' !== Cast::string( $value['size'] ?? '' ) ) || ( is_string( $value ) && '' !== $value && strtolower( $value ) !== $default ) ) {
 					$config[ $key ] = '';
 				}
 			}
@@ -568,6 +655,11 @@ class ChartWidget extends Widget_Base {
 		);
 	}
 
+	/**
+	 * Render the output.
+	 *
+	 * @return void
+	 */
 	protected function render() {
 		$config = $this->config();
 		if ( null === $config || array() === $config['items'] ) {
@@ -582,6 +674,8 @@ class ChartWidget extends Widget_Base {
 
 	/**
 	 * Meaningful plain text for search, feeds and when Elementor is deactivated.
+	 *
+	 * @return void
 	 */
 	public function render_plain_content() {
 		$config = $this->config();

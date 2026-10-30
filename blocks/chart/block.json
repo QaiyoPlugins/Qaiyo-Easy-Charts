@@ -59,7 +59,7 @@
 		"spacing": { "margin": true, "padding": true },
 		"typography": { "fontSize": true, "lineHeight": true, "__experimentalFontFamily": true }
 	},
-	"editorScript": "qec-block-editor",
-	"style": "qec-chart",
-	"viewScript": "qec-chart"
+	"editorScript": "qaiyo-ec-block-editor",
+	"style": "qaiyo-ec-chart",
+	"viewScript": "qaiyo-ec-chart"
 }

@@ -162,7 +162,6 @@
 "Actions": "Műveletek",
 "Defaults to the chart name. Used as the accessible name of the chart.": "Alapértelmezés szerint a chart neve. A chart akadálymentes neveként szolgál.",
 "e.g. days": "pl. nap",
-"Empty fields use the colors from Easy Charts → Settings.": "Az üres mezők az Easy Charts → Beállítások színeit használják.",
 "Typography & size": "Tipográfia és méret",
 "Font family": "Betűcsalád",
 "Empty: the font of your theme or builder.": "Üresen: a téma vagy a builder betűtípusa.",
@@ -187,9 +186,6 @@
 "Free plugins are listed from WordPress.org. This page makes no request to any Qaiyo server.": "Az ingyenes pluginok a WordPress.org-ról jönnek. Ez az oldal nem küld kérést egyetlen Qaiyo szervernek sem.",
 "Animate charts when they scroll into view": "Chartok animálása, amikor görgetéssel láthatóvá válnak",
 "Add an accessible data table to every chart (screen readers, SEO, AI)": "Akadálymentes adattábla minden charthoz (képernyőolvasók, SEO, AI)",
-"Site-wide defaults for every chart. Each chart, block and builder element can override them.": "Webhelyszintű alapértékek minden charthoz. Minden chart, blokk és builder elem felülírhatja őket.",
-"Colors & font": "Színek és betűtípus",
-"Empty: charts use the font of your theme or page builder. The font itself must be loaded by your theme.": "Üresen: a chartok a téma vagy az oldalépítő betűtípusát használják. Magát a betűtípust a témának kell betöltenie.",
 "Defaults for new charts": "Új chartok alapértékei",
 "Uninstall": "Eltávolítás",
 "Delete all charts and settings when the plugin is deleted": "Minden chart és beállítás törlése a plugin törlésekor",
@@ -202,5 +198,7 @@
 "block keyword\u0004bar": "sáv",
 "block keyword\u0004column": "oszlop",
 "block keyword\u0004graph": "grafikon",
-"block keyword\u0004qaiyo": "qaiyo"
+"block keyword\u0004qaiyo": "qaiyo",
+"Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Új chartok működési alapértékei. A színeket, betűtípusokat és méreteket minden chartban, blokkban vagy builder elemben külön állítod be.",
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Ezek a színek csak ehhez a charthoz tartoznak. Egyes sávoknak saját színt is adhatsz a fenti táblázatban."
 }

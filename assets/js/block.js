@@ -13,8 +13,15 @@
 	var components = wp.components;
 	var ServerSideRender = wp.serverSideRender;
 
-	var data = window.qecBlock || { charts: [], i18n: {}, manageUrl: '' };
+	var data = window.qaiyoEcBlock || { charts: [], i18n: {}, manageUrl: '', defaults: {} };
 	var t = data.i18n || {};
+	var defaults = data.defaults || {};
+
+	// Shows the chart's default colour when the attribute is empty, so every
+	// block displays (and can change) its own colours.
+	function colorValue( value, key ) {
+		return value || defaults[ key ] || undefined;
+	}
 
 	function text( key ) {
 		return t[ key ] || key;
@@ -188,12 +195,12 @@
 				title: text( 'colors' ),
 				initialOpen: false,
 				colorSettings: [
-					{ label: text( 'barColor' ), value: a.barColor, onChange: function ( v ) { set( { barColor: v || '' } ); } },
-					{ label: text( 'rangeColor' ), value: a.rangeColor, onChange: function ( v ) { set( { rangeColor: v || '' } ); } },
-					{ label: text( 'trackColor' ), value: a.trackColor, onChange: function ( v ) { set( { trackColor: v || '' } ); } },
-					{ label: text( 'labelColor' ), value: a.labelColor, onChange: function ( v ) { set( { labelColor: v || '' } ); } },
-					{ label: text( 'valueColor' ), value: a.valueColor, onChange: function ( v ) { set( { valueColor: v || '' } ); } },
-					{ label: text( 'axisColor' ), value: a.axisColor, onChange: function ( v ) { set( { axisColor: v || '' } ); } }
+					{ label: text( 'barColor' ), value: colorValue( a.barColor, 'bar_color' ), onChange: function ( v ) { set( { barColor: v || '' } ); } },
+					{ label: text( 'rangeColor' ), value: colorValue( a.rangeColor, 'range_color' ), onChange: function ( v ) { set( { rangeColor: v || '' } ); } },
+					{ label: text( 'trackColor' ), value: colorValue( a.trackColor, 'track_color' ), onChange: function ( v ) { set( { trackColor: v || '' } ); } },
+					{ label: text( 'labelColor' ), value: colorValue( a.labelColor, 'label_color' ), onChange: function ( v ) { set( { labelColor: v || '' } ); } },
+					{ label: text( 'valueColor' ), value: colorValue( a.valueColor, 'value_color' ), onChange: function ( v ) { set( { valueColor: v || '' } ); } },
+					{ label: text( 'axisColor' ), value: colorValue( a.axisColor, 'axis_color' ), onChange: function ( v ) { set( { axisColor: v || '' } ); } }
 				]
 			} ),
 			el(

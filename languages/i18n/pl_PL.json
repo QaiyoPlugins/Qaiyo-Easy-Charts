@@ -162,7 +162,6 @@
 "Actions": "Działania",
 "Defaults to the chart name. Used as the accessible name of the chart.": "Domyślnie nazwa wykresu. Używany jako dostępna nazwa wykresu.",
 "e.g. days": "np. dni",
-"Empty fields use the colors from Easy Charts → Settings.": "Puste pola używają kolorów z Easy Charts → Ustawienia.",
 "Typography & size": "Typografia i rozmiar",
 "Font family": "Rodzina czcionek",
 "Empty: the font of your theme or builder.": "Puste: czcionka motywu lub kreatora.",
@@ -187,9 +186,6 @@
 "Free plugins are listed from WordPress.org. This page makes no request to any Qaiyo server.": "Bezpłatne wtyczki pochodzą z WordPress.org. Ta strona nie wysyła żądań do żadnego serwera Qaiyo.",
 "Animate charts when they scroll into view": "Animuj wykresy po przewinięciu do widoku",
 "Add an accessible data table to every chart (screen readers, SEO, AI)": "Dodaj dostępną tabelę danych do każdego wykresu (czytniki ekranu, SEO, AI)",
-"Site-wide defaults for every chart. Each chart, block and builder element can override them.": "Domyślne ustawienia całej witryny dla wszystkich wykresów. Każdy wykres, blok i element kreatora może je nadpisać.",
-"Colors & font": "Kolory i czcionka",
-"Empty: charts use the font of your theme or page builder. The font itself must be loaded by your theme.": "Puste: wykresy używają czcionki motywu lub kreatora stron. Samą czcionkę musi wczytać motyw.",
 "Defaults for new charts": "Ustawienia domyślne nowych wykresów",
 "Uninstall": "Odinstalowanie",
 "Delete all charts and settings when the plugin is deleted": "Usuń wszystkie wykresy i ustawienia po usunięciu wtyczki",
@@ -202,5 +198,7 @@
 "block keyword\u0004bar": "słupek",
 "block keyword\u0004column": "kolumna",
 "block keyword\u0004graph": "diagram",
-"block keyword\u0004qaiyo": "qaiyo"
+"block keyword\u0004qaiyo": "qaiyo",
+"Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Domyślne zachowanie nowych wykresów. Kolory, czcionki i rozmiary ustawia się w każdym wykresie, bloku lub elemencie kreatora.",
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Te kolory należą tylko do tego wykresu. Pojedyncze słupki mogą mieć własne kolory w tabeli powyżej."
 }

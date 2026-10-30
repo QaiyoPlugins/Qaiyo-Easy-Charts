@@ -18,25 +18,25 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'QEC_VERSION', '1.0.0' );
-define( 'QEC_PLUGIN_FILE', __FILE__ );
-define( 'QEC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'QEC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'QEC_BASENAME', plugin_basename( __FILE__ ) );
-define( 'QEC_MIN_PHP', '7.4' );
-define( 'QEC_MIN_WP', '6.2' );
+define( 'QAIYO_EC_VERSION', '1.0.0' );
+define( 'QAIYO_EC_PLUGIN_FILE', __FILE__ );
+define( 'QAIYO_EC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'QAIYO_EC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'QAIYO_EC_BASENAME', plugin_basename( __FILE__ ) );
+define( 'QAIYO_EC_MIN_PHP', '7.4' );
+define( 'QAIYO_EC_MIN_WP', '6.2' );
 
 /*
  * PSR-4 autoloader for the plugin's own namespace, mapped to src/.
  * Composer is optional: the plugin has no third-party dependencies.
  */
 spl_autoload_register(
-	static function ( $class ) {
+	static function ( $class_name ) {
 		$prefix = 'Qaiyo\\EasyCharts\\';
-		if ( 0 !== strpos( $class, $prefix ) ) {
+		if ( 0 !== strpos( $class_name, $prefix ) ) {
 			return;
 		}
-		$file = QEC_PLUGIN_DIR . 'src/' . str_replace( '\\', '/', substr( $class, strlen( $prefix ) ) ) . '.php';
+		$file = QAIYO_EC_PLUGIN_DIR . 'src/' . str_replace( '\\', '/', substr( $class_name, strlen( $prefix ) ) ) . '.php';
 		if ( is_readable( $file ) ) {
 			require $file;
 		}
@@ -48,13 +48,13 @@ spl_autoload_register(
  *
  * @return string[]
  */
-function qec_requirement_errors() {
+function qaiyo_ec_requirement_errors() {
 	$errors = array();
-	if ( version_compare( PHP_VERSION, QEC_MIN_PHP, '<' ) ) {
-		$errors[] = sprintf( 'Qaiyo Easy Charts requires PHP %1$s or higher. This site runs PHP %2$s.', QEC_MIN_PHP, PHP_VERSION );
+	if ( version_compare( PHP_VERSION, QAIYO_EC_MIN_PHP, '<' ) ) {
+		$errors[] = sprintf( 'Qaiyo Easy Charts requires PHP %1$s or higher. This site runs PHP %2$s.', QAIYO_EC_MIN_PHP, PHP_VERSION );
 	}
-	if ( version_compare( get_bloginfo( 'version' ), QEC_MIN_WP, '<' ) ) {
-		$errors[] = sprintf( 'Qaiyo Easy Charts requires WordPress %s or higher.', QEC_MIN_WP );
+	if ( version_compare( get_bloginfo( 'version' ), QAIYO_EC_MIN_WP, '<' ) ) {
+		$errors[] = sprintf( 'Qaiyo Easy Charts requires WordPress %s or higher.', QAIYO_EC_MIN_WP );
 	}
 	return $errors;
 }
@@ -62,10 +62,10 @@ function qec_requirement_errors() {
 register_activation_hook(
 	__FILE__,
 	static function () {
-		$errors = qec_requirement_errors();
+		$errors = qaiyo_ec_requirement_errors();
 		if ( array() !== $errors ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
-			deactivate_plugins( QEC_BASENAME );
+			deactivate_plugins( QAIYO_EC_BASENAME );
 			wp_die( esc_html( implode( ' ', $errors ) ), 'Qaiyo Easy Charts', array( 'back_link' => true ) );
 		}
 		\Qaiyo\EasyCharts\Plugin::activate();
@@ -78,7 +78,7 @@ register_activation_hook(
  *
  * @return void
  */
-function qec_load_translations() {
+function qaiyo_ec_load_translations() {
 	$locale = determine_locale();
 
 	$locale_map = array(
@@ -113,17 +113,17 @@ function qec_load_translations() {
 		return;
 	}
 
-	$mofile = QEC_PLUGIN_DIR . 'languages/qaiyo-easy-charts-' . $locale . '.mo';
+	$mofile = QAIYO_EC_PLUGIN_DIR . 'languages/qaiyo-easy-charts-' . $locale . '.mo';
 	if ( is_readable( $mofile ) ) {
 		load_textdomain( 'qaiyo-easy-charts', $mofile );
 	}
 }
-add_action( 'init', 'qec_load_translations', 1 );
+add_action( 'init', 'qaiyo_ec_load_translations', 1 );
 
 add_action(
 	'plugins_loaded',
 	static function () {
-		if ( array() !== qec_requirement_errors() ) {
+		if ( array() !== qaiyo_ec_requirement_errors() ) {
 			return;
 		}
 		( new \Qaiyo\EasyCharts\Plugin() )->register();

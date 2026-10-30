@@ -9,11 +9,17 @@ namespace Qaiyo\EasyCharts\Integrations\Elementor;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Registers the Qaiyo category and the chart widget with Elementor.
+ */
 final class ElementorIntegration {
 
 	/** Oldest Elementor with the elementor/widgets/register contract. */
 	const MIN_VERSION = '3.5.0';
 
+	/**
+	 * Hook this component into WordPress.
+	 */
 	public function register(): void {
 		add_action( 'elementor/loaded', array( $this, 'boot' ) );
 		if ( did_action( 'elementor/loaded' ) ) {
@@ -21,6 +27,9 @@ final class ElementorIntegration {
 		}
 	}
 
+	/**
+	 * Register the Elementor hooks once Elementor is loaded and compatible.
+	 */
 	public function boot(): void {
 		static $booted = false;
 		if ( $booted || ! defined( 'ELEMENTOR_VERSION' ) || version_compare( ELEMENTOR_VERSION, self::MIN_VERSION, '<' ) ) {
@@ -33,6 +42,8 @@ final class ElementorIntegration {
 	}
 
 	/**
+	 * Register the "Qaiyo" widget category.
+	 *
 	 * @param \Elementor\Elements_Manager $elements_manager Elements manager.
 	 */
 	public function category( $elements_manager ): void {
@@ -46,6 +57,8 @@ final class ElementorIntegration {
 	}
 
 	/**
+	 * Register the widget.
+	 *
 	 * @param \Elementor\Widgets_Manager $widgets_manager Widgets manager.
 	 */
 	public function widgets( $widgets_manager ): void {

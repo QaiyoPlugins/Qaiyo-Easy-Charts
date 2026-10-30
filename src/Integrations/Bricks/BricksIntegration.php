@@ -11,20 +11,29 @@ use Qaiyo\EasyCharts\Schema;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Registers the chart element with Bricks Builder.
+ */
 final class BricksIntegration {
 
+	/**
+	 * Hook this component into WordPress.
+	 */
 	public function register(): void {
 		// Bricks (a theme) loads before init; elements must be registered after priority 10.
 		add_action( 'init', array( $this, 'element' ), 11 );
 		add_filter( 'bricks/builder/i18n', array( $this, 'i18n' ) );
 	}
 
+	/**
+	 * Register the element with Bricks.
+	 */
 	public function element(): void {
 		if ( ! class_exists( '\Bricks\Elements' ) ) {
 			return;
 		}
 		\Bricks\Elements::register_element(
-			QEC_PLUGIN_DIR . 'src/Integrations/Bricks/ChartElement.php',
+			QAIYO_EC_PLUGIN_DIR . 'src/Integrations/Bricks/ChartElement.php',
 			Schema::ELEMENT,
 			ChartElement::class
 		);

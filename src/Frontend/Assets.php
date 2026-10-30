@@ -7,13 +7,18 @@
 
 namespace Qaiyo\EasyCharts\Frontend;
 
-use Qaiyo\EasyCharts\Admin\Settings;
 use Qaiyo\EasyCharts\Schema;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Registers and enqueues the front-end chart assets.
+ */
 final class Assets {
 
+	/**
+	 * Hook this component into WordPress.
+	 */
 	public function register(): void {
 		add_action( 'init', array( self::class, 'register_handles' ), 5 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_early' ) );
@@ -21,29 +26,29 @@ final class Assets {
 
 	/**
 	 * Cache-busting version: plugin version plus file modification time.
+	 *
+	 * @param string $relative Relative.
 	 */
 	public static function version( string $relative ): string {
-		$path  = QEC_PLUGIN_DIR . $relative;
+		$path  = QAIYO_EC_PLUGIN_DIR . $relative;
 		$mtime = is_readable( $path ) ? filemtime( $path ) : false;
-		return QEC_VERSION . ( false !== $mtime ? '.' . $mtime : '' );
+		return QAIYO_EC_VERSION . ( false !== $mtime ? '.' . $mtime : '' );
 	}
 
+	/**
+	 * Register the chart stylesheet and script.
+	 */
 	public static function register_handles(): void {
 		wp_register_style(
 			Schema::HANDLE_CHART,
-			QEC_PLUGIN_URL . 'assets/css/chart.css',
+			QAIYO_EC_PLUGIN_URL . 'assets/css/chart.css',
 			array(),
 			self::version( 'assets/css/chart.css' )
 		);
 
-		$css = Settings::inline_css();
-		if ( '' !== $css ) {
-			wp_add_inline_style( Schema::HANDLE_CHART, $css );
-		}
-
 		wp_register_script(
 			Schema::HANDLE_CHART,
-			QEC_PLUGIN_URL . 'assets/js/chart.js',
+			QAIYO_EC_PLUGIN_URL . 'assets/js/chart.js',
 			array(),
 			self::version( 'assets/js/chart.js' ),
 			array(

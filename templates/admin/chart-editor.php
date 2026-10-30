@@ -4,48 +4,57 @@
  *
  * @package qaiyo-easy-charts
  *
- * @var array<string,mixed> $qec_config  Current configuration.
- * @var string              $qec_field   Form field name.
- * @var string              $qec_preview Rendered preview (escaped by the renderer).
+ * @var array{items: list<array{label: string, value: float, max: float|string, text: string, color: string, range_color: string}>}&array<string, mixed> $qaiyo_ec_config  Current configuration.
+ * @var string $qaiyo_ec_field   Form field name.
+ * @var string $qaiyo_ec_preview Rendered preview (escaped by the renderer).
  */
 
+use Qaiyo\EasyCharts\Chart\ChartConfig;
 use Qaiyo\EasyCharts\Schema;
+use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
 
-$qec_num = static function ( $value ): string {
-	if ( '' === $value || null === $value ) {
+$qaiyo_ec_num = static function ( $value ): string {
+	$value = Cast::number( $value );
+	if ( null === $value ) {
 		return '';
 	}
-	$number = rtrim( rtrim( sprintf( '%.6F', (float) $value ), '0' ), '.' );
+	$number = rtrim( rtrim( sprintf( '%.6F', $value ), '0' ), '.' );
 	return '' === $number || '-0' === $number ? '0' : $number;
 };
 
-$qec_name = static function ( string $key ) use ( $qec_field ): string {
-	return $qec_field . '[' . $key . ']';
+$qaiyo_ec_name = static function ( string $key ) use ( $qaiyo_ec_field ): string {
+	return $qaiyo_ec_field . '[' . $key . ']';
 };
 
-$qec_row = static function ( string $index, array $item ) use ( $qec_field, $qec_num ): void {
-	$base = $qec_field . '[items][' . $index . ']';
+/**
+ * One editable bar row.
+ *
+ * @param string       $index Row key in the form.
+ * @param array<mixed> $item  Bar.
+ */
+$qaiyo_ec_row = static function ( string $index, array $item ) use ( $qaiyo_ec_field, $qaiyo_ec_num ): void {
+	$base = $qaiyo_ec_field . '[items][' . $index . ']';
 	?>
 	<tr class="qec-row-edit">
 		<td data-label="<?php esc_attr_e( 'Label', 'qaiyo-easy-charts' ); ?>">
-			<input type="text" class="widefat" name="<?php echo esc_attr( $base . '[label]' ); ?>" value="<?php echo esc_attr( $item['label'] ); ?>" aria-label="<?php esc_attr_e( 'Label', 'qaiyo-easy-charts' ); ?>" />
+			<input type="text" class="widefat" name="<?php echo esc_attr( $base . '[label]' ); ?>" value="<?php echo esc_attr( Cast::string( $item['label'] ) ); ?>" aria-label="<?php esc_attr_e( 'Label', 'qaiyo-easy-charts' ); ?>" />
 		</td>
 		<td data-label="<?php esc_attr_e( 'Value', 'qaiyo-easy-charts' ); ?>">
-			<input type="number" step="any" class="small-text" name="<?php echo esc_attr( $base . '[value]' ); ?>" value="<?php echo esc_attr( $qec_num( $item['value'] ) ); ?>" aria-label="<?php esc_attr_e( 'Value', 'qaiyo-easy-charts' ); ?>" />
+			<input type="number" step="any" class="small-text" name="<?php echo esc_attr( $base . '[value]' ); ?>" value="<?php echo esc_attr( $qaiyo_ec_num( $item['value'] ) ); ?>" aria-label="<?php esc_attr_e( 'Value', 'qaiyo-easy-charts' ); ?>" />
 		</td>
 		<td data-label="<?php esc_attr_e( 'Range end', 'qaiyo-easy-charts' ); ?>">
-			<input type="number" step="any" class="small-text" name="<?php echo esc_attr( $base . '[max]' ); ?>" value="<?php echo esc_attr( $qec_num( $item['max'] ) ); ?>" aria-label="<?php esc_attr_e( 'Range end', 'qaiyo-easy-charts' ); ?>" />
+			<input type="number" step="any" class="small-text" name="<?php echo esc_attr( $base . '[max]' ); ?>" value="<?php echo esc_attr( $qaiyo_ec_num( $item['max'] ) ); ?>" aria-label="<?php esc_attr_e( 'Range end', 'qaiyo-easy-charts' ); ?>" />
 		</td>
 		<td data-label="<?php esc_attr_e( 'Value text', 'qaiyo-easy-charts' ); ?>">
-			<input type="text" class="widefat" name="<?php echo esc_attr( $base . '[text]' ); ?>" value="<?php echo esc_attr( $item['text'] ); ?>" placeholder="<?php esc_attr_e( 'Automatic', 'qaiyo-easy-charts' ); ?>" aria-label="<?php esc_attr_e( 'Value text', 'qaiyo-easy-charts' ); ?>" />
+			<input type="text" class="widefat" name="<?php echo esc_attr( $base . '[text]' ); ?>" value="<?php echo esc_attr( Cast::string( $item['text'] ) ); ?>" placeholder="<?php esc_attr_e( 'Automatic', 'qaiyo-easy-charts' ); ?>" aria-label="<?php esc_attr_e( 'Value text', 'qaiyo-easy-charts' ); ?>" />
 		</td>
 		<td data-label="<?php esc_attr_e( 'Bar color', 'qaiyo-easy-charts' ); ?>">
-			<input type="text" class="qec-color" name="<?php echo esc_attr( $base . '[color]' ); ?>" value="<?php echo esc_attr( $item['color'] ); ?>" aria-label="<?php esc_attr_e( 'Bar color', 'qaiyo-easy-charts' ); ?>" />
+			<input type="text" class="qec-color" name="<?php echo esc_attr( $base . '[color]' ); ?>" value="<?php echo esc_attr( Cast::string( $item['color'] ) ); ?>" aria-label="<?php esc_attr_e( 'Bar color', 'qaiyo-easy-charts' ); ?>" />
 		</td>
 		<td data-label="<?php esc_attr_e( 'Range color', 'qaiyo-easy-charts' ); ?>">
-			<input type="text" class="qec-color" name="<?php echo esc_attr( $base . '[range_color]' ); ?>" value="<?php echo esc_attr( $item['range_color'] ); ?>" aria-label="<?php esc_attr_e( 'Range color', 'qaiyo-easy-charts' ); ?>" />
+			<input type="text" class="qec-color" name="<?php echo esc_attr( $base . '[range_color]' ); ?>" value="<?php echo esc_attr( Cast::string( $item['range_color'] ) ); ?>" aria-label="<?php esc_attr_e( 'Range color', 'qaiyo-easy-charts' ); ?>" />
 		</td>
 		<td class="qec-row-actions">
 			<button type="button" class="button-link qec-move" data-qec-move="up" aria-label="<?php esc_attr_e( 'Move bar up', 'qaiyo-easy-charts' ); ?>"><span class="dashicons dashicons-arrow-up-alt2" aria-hidden="true"></span></button>
@@ -56,27 +65,27 @@ $qec_row = static function ( string $index, array $item ) use ( $qec_field, $qec
 	<?php
 };
 
-$qec_select = static function ( string $key, string $label, array $options ) use ( $qec_config, $qec_name ): void {
+$qaiyo_ec_select = static function ( string $key, string $label, array $options ) use ( $qaiyo_ec_config, $qaiyo_ec_name ): void {
 	$id = 'qec-' . str_replace( '_', '-', $key );
 	?>
 	<div class="qec-field">
 		<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label>
-		<select id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $qec_name( $key ) ); ?>">
+		<select id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $qaiyo_ec_name( $key ) ); ?>">
 			<?php foreach ( $options as $value => $text ) : ?>
-				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( (string) $qec_config[ $key ], (string) $value ); ?>><?php echo esc_html( $text ); ?></option>
+				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( Cast::string( $qaiyo_ec_config[ $key ] ?? '' ), (string) $value ); ?>><?php echo esc_html( Cast::string( $text ) ); ?></option>
 			<?php endforeach; ?>
 		</select>
 	</div>
 	<?php
 };
 
-$qec_input = static function ( string $key, string $label, string $type = 'text', string $help = '', string $placeholder = '' ) use ( $qec_config, $qec_name, $qec_num ): void {
+$qaiyo_ec_input = static function ( string $key, string $label, string $type = 'text', string $help = '', string $placeholder = '' ) use ( $qaiyo_ec_config, $qaiyo_ec_name, $qaiyo_ec_num ): void {
 	$id    = 'qec-' . str_replace( '_', '-', $key );
-	$value = 'number' === $type ? $qec_num( $qec_config[ $key ] ) : (string) $qec_config[ $key ];
+	$value = 'number' === $type ? $qaiyo_ec_num( $qaiyo_ec_config[ $key ] ?? '' ) : Cast::string( $qaiyo_ec_config[ $key ] ?? '' );
 	?>
 	<div class="qec-field">
 		<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label>
-		<input type="<?php echo esc_attr( $type ); ?>" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $qec_name( $key ) ); ?>" value="<?php echo esc_attr( $value ); ?>"
+		<input type="<?php echo esc_attr( $type ); ?>" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $qaiyo_ec_name( $key ) ); ?>" value="<?php echo esc_attr( $value ); ?>"
 			<?php echo 'number' === $type ? 'step="any"' : ''; ?>
 			<?php echo '' !== $placeholder ? 'placeholder="' . esc_attr( $placeholder ) . '"' : ''; ?>
 			<?php echo '' !== $help ? 'aria-describedby="' . esc_attr( $id . '-help' ) . '"' : ''; ?> />
@@ -87,28 +96,31 @@ $qec_input = static function ( string $key, string $label, string $type = 'text'
 	<?php
 };
 
-$qec_color = static function ( string $key, string $label ) use ( $qec_config, $qec_name ): void {
-	$id = 'qec-' . str_replace( '_', '-', $key );
+$qaiyo_ec_color = static function ( string $key, string $label ) use ( $qaiyo_ec_config, $qaiyo_ec_name ): void {
+	$id      = 'qec-' . str_replace( '_', '-', $key );
+	$default = ChartConfig::DEFAULT_STYLE[ $key ] ?? '';
+	$value   = Cast::string( $qaiyo_ec_config[ $key ] ?? '' );
+	$value   = '' !== $value ? $value : $default;
 	?>
 	<div class="qec-field qec-field--color">
 		<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label>
-		<input type="text" class="qec-color" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $qec_name( $key ) ); ?>" value="<?php echo esc_attr( (string) $qec_config[ $key ] ); ?>" />
+		<input type="text" class="qec-color" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $qaiyo_ec_name( $key ) ); ?>" value="<?php echo esc_attr( $value ); ?>" data-default-color="<?php echo esc_attr( $default ); ?>" />
 	</div>
 	<?php
 };
 
-$qec_check = static function ( string $key, string $label ) use ( $qec_config, $qec_name ): void {
+$qaiyo_ec_check = static function ( string $key, string $label ) use ( $qaiyo_ec_config, $qaiyo_ec_name ): void {
 	?>
 	<div class="qec-field qec-field--check">
 		<label>
-			<input type="checkbox" name="<?php echo esc_attr( $qec_name( $key ) ); ?>" value="1" <?php checked( (bool) $qec_config[ $key ] ); ?> />
+			<input type="checkbox" name="<?php echo esc_attr( $qaiyo_ec_name( $key ) ); ?>" value="1" <?php checked( (bool) $qaiyo_ec_config[ $key ] ); ?> />
 			<?php echo esc_html( $label ); ?>
 		</label>
 	</div>
 	<?php
 };
 
-wp_nonce_field( Schema::NONCE_EDITOR, 'qec_editor_nonce' );
+wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 ?>
 <div class="qec-builder">
 
@@ -125,7 +137,7 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qec_editor_nonce' );
 		</div>
 		<div class="qec-preview-stage">
 			<div class="qec-preview" id="qec-preview" data-device="desktop">
-				<?php echo $qec_preview; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inside the renderer. ?>
+				<?php echo $qaiyo_ec_preview; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inside the renderer. ?>
 			</div>
 		</div>
 	</section>
@@ -151,15 +163,15 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qec_editor_nonce' );
 			</thead>
 			<tbody id="qec-rows">
 				<?php
-				foreach ( array_values( $qec_config['items'] ) as $qec_index => $qec_item ) {
-					$qec_row( (string) $qec_index, $qec_item );
+				foreach ( $qaiyo_ec_config['items'] as $qaiyo_ec_index => $qaiyo_ec_item ) {
+					$qaiyo_ec_row( (string) $qaiyo_ec_index, $qaiyo_ec_item );
 				}
 				?>
 			</tbody>
 		</table>
 		<template id="qec-row-template">
 			<?php
-			$qec_row(
+			$qaiyo_ec_row(
 				'__i__',
 				array(
 					'label'       => '',
@@ -187,7 +199,7 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qec_editor_nonce' );
 			<fieldset class="qec-fieldset">
 				<legend><?php esc_html_e( 'Layout', 'qaiyo-easy-charts' ); ?></legend>
 				<?php
-				$qec_select(
+				$qaiyo_ec_select(
 					'orientation',
 					__( 'Orientation', 'qaiyo-easy-charts' ),
 					array(
@@ -196,7 +208,7 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qec_editor_nonce' );
 						'auto'       => __( 'Columns, bars on narrow screens', 'qaiyo-easy-charts' ),
 					)
 				);
-				$qec_select(
+				$qaiyo_ec_select(
 					'layout',
 					__( 'Labels of horizontal bars', 'qaiyo-easy-charts' ),
 					array(
@@ -205,20 +217,20 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qec_editor_nonce' );
 						'stacked' => __( 'Always above the bar', 'qaiyo-easy-charts' ),
 					)
 				);
-				$qec_input( 'title', __( 'Title', 'qaiyo-easy-charts' ), 'text', __( 'Defaults to the chart name. Used as the accessible name of the chart.', 'qaiyo-easy-charts' ) );
-				$qec_input( 'description', __( 'Description', 'qaiyo-easy-charts' ) );
-				$qec_check( 'show_caption', __( 'Show title and description above the chart', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_input( 'title', __( 'Title', 'qaiyo-easy-charts' ), 'text', __( 'Defaults to the chart name. Used as the accessible name of the chart.', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_input( 'description', __( 'Description', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'show_caption', __( 'Show title and description above the chart', 'qaiyo-easy-charts' ) );
 				?>
 			</fieldset>
 
 			<fieldset class="qec-fieldset">
 				<legend><?php esc_html_e( 'Scale & axis', 'qaiyo-easy-charts' ); ?></legend>
 				<?php
-				$qec_input( 'scale_min', __( 'Minimum', 'qaiyo-easy-charts' ), 'number' );
-				$qec_input( 'scale_max', __( 'Maximum', 'qaiyo-easy-charts' ), 'number', __( 'Leave empty to calculate from the data.', 'qaiyo-easy-charts' ), __( 'Auto', 'qaiyo-easy-charts' ) );
-				$qec_input( 'step', __( 'Axis step', 'qaiyo-easy-charts' ), 'number' );
-				$qec_input( 'unit', __( 'Unit', 'qaiyo-easy-charts' ), 'text', '', __( 'e.g. days', 'qaiyo-easy-charts' ) );
-				$qec_select(
+				$qaiyo_ec_input( 'scale_min', __( 'Minimum', 'qaiyo-easy-charts' ), 'number' );
+				$qaiyo_ec_input( 'scale_max', __( 'Maximum', 'qaiyo-easy-charts' ), 'number', __( 'Leave empty to calculate from the data.', 'qaiyo-easy-charts' ), __( 'Auto', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_input( 'step', __( 'Axis step', 'qaiyo-easy-charts' ), 'number' );
+				$qaiyo_ec_input( 'unit', __( 'Unit', 'qaiyo-easy-charts' ), 'text', '', __( 'e.g. days', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_select(
 					'unit_position',
 					__( 'Show unit on', 'qaiyo-easy-charts' ),
 					array(
@@ -227,49 +239,49 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qec_editor_nonce' );
 						'none' => __( 'Hidden', 'qaiyo-easy-charts' ),
 					)
 				);
-				$qec_check( 'show_axis', __( 'Show axis', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'show_axis', __( 'Show axis', 'qaiyo-easy-charts' ) );
 				?>
 			</fieldset>
 
 			<fieldset class="qec-fieldset">
 				<legend><?php esc_html_e( 'Values', 'qaiyo-easy-charts' ); ?></legend>
 				<?php
-				$qec_check( 'show_values', __( 'Show values', 'qaiyo-easy-charts' ) );
-				$qec_input( 'separator', __( 'Range separator', 'qaiyo-easy-charts' ) );
-				$qec_input( 'prefix', __( 'Prefix', 'qaiyo-easy-charts' ) );
-				$qec_input( 'suffix', __( 'Suffix', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'show_values', __( 'Show values', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_input( 'separator', __( 'Range separator', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_input( 'prefix', __( 'Prefix', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_input( 'suffix', __( 'Suffix', 'qaiyo-easy-charts' ) );
 				?>
 			</fieldset>
 
 			<fieldset class="qec-fieldset">
 				<legend><?php esc_html_e( 'Colors', 'qaiyo-easy-charts' ); ?></legend>
-				<p class="description"><?php esc_html_e( 'Empty fields use the colors from Easy Charts → Settings.', 'qaiyo-easy-charts' ); ?></p>
+				<p class="description"><?php esc_html_e( 'These colors belong to this chart only. Single bars can have their own colors in the table above.', 'qaiyo-easy-charts' ); ?></p>
 				<?php
-				$qec_color( 'bar_color', __( 'Bar color', 'qaiyo-easy-charts' ) );
-				$qec_color( 'range_color', __( 'Range color', 'qaiyo-easy-charts' ) );
-				$qec_color( 'track_color', __( 'Track color', 'qaiyo-easy-charts' ) );
-				$qec_color( 'label_color', __( 'Label color', 'qaiyo-easy-charts' ) );
-				$qec_color( 'value_color', __( 'Value color', 'qaiyo-easy-charts' ) );
-				$qec_color( 'axis_color', __( 'Axis color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'bar_color', __( 'Bar color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'range_color', __( 'Range color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'track_color', __( 'Track color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'label_color', __( 'Label color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'value_color', __( 'Value color', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_color( 'axis_color', __( 'Axis color', 'qaiyo-easy-charts' ) );
 				?>
 			</fieldset>
 
 			<fieldset class="qec-fieldset">
 				<legend><?php esc_html_e( 'Typography & size', 'qaiyo-easy-charts' ); ?></legend>
 				<?php
-				$qec_input( 'font_family', __( 'Font family', 'qaiyo-easy-charts' ), 'text', __( 'Empty: the font of your theme or builder.', 'qaiyo-easy-charts' ), 'DM Sans, sans-serif' );
-				$qec_input( 'bar_size', __( 'Bar thickness', 'qaiyo-easy-charts' ), 'text', '', '28px' );
-				$qec_input( 'chart_height', __( 'Column chart height', 'qaiyo-easy-charts' ), 'text', '', '280px' );
-				$qec_input( 'radius', __( 'Corner radius', 'qaiyo-easy-charts' ), 'text', '', '0px' );
+				$qaiyo_ec_input( 'font_family', __( 'Font family', 'qaiyo-easy-charts' ), 'text', __( 'Empty: the font of your theme or builder.', 'qaiyo-easy-charts' ), 'DM Sans, sans-serif' );
+				$qaiyo_ec_input( 'bar_size', __( 'Bar thickness', 'qaiyo-easy-charts' ), 'text', '', '28px' );
+				$qaiyo_ec_input( 'chart_height', __( 'Column chart height', 'qaiyo-easy-charts' ), 'text', '', '280px' );
+				$qaiyo_ec_input( 'radius', __( 'Corner radius', 'qaiyo-easy-charts' ), 'text', '', '0px' );
 				?>
 			</fieldset>
 
 			<fieldset class="qec-fieldset">
 				<legend><?php esc_html_e( 'Behaviour & accessibility', 'qaiyo-easy-charts' ); ?></legend>
 				<?php
-				$qec_check( 'animate', __( 'Animate when scrolled into view', 'qaiyo-easy-charts' ) );
-				$qec_check( 'hover_focus', __( 'Highlight the hovered bar', 'qaiyo-easy-charts' ) );
-				$qec_check( 'data_table', __( 'Add an accessible data table (screen readers, SEO, AI)', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'animate', __( 'Animate when scrolled into view', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'hover_focus', __( 'Highlight the hovered bar', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'data_table', __( 'Add an accessible data table (screen readers, SEO, AI)', 'qaiyo-easy-charts' ) );
 				?>
 			</fieldset>
 		</div>

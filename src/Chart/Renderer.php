@@ -17,10 +17,17 @@ namespace Qaiyo\EasyCharts\Chart;
 
 use Qaiyo\EasyCharts\Frontend\Assets;
 use Qaiyo\EasyCharts\Schema;
+use Qaiyo\EasyCharts\Support\Cast;
 use Qaiyo\EasyCharts\Support\Css;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Builds the chart markup.
+ *
+ * @phpstan-import-type QecConfig from ChartConfig
+ * @phpstan-import-type QecItem from ChartConfig
+ */
 final class Renderer {
 
 	const MAX_TICKS = 50;
@@ -28,7 +35,8 @@ final class Renderer {
 	/**
 	 * Render a chart.
 	 *
-	 * @param array<string,mixed>  $config     Sanitized configuration (ChartConfig::sanitize()).
+	 * @param array                $config     Sanitized configuration (ChartConfig::sanitize()).
+	 * @phpstan-param QecConfig $config
 	 * @param array<string,string> $root_attrs Extra root attributes: 'id', 'class', 'style'.
 	 * @param bool                 $enqueue    Whether to enqueue the front-end assets.
 	 */
@@ -47,18 +55,20 @@ final class Renderer {
 		 * @since 1.0.0
 		 *
 		 * @param string              $html   Chart markup.
-		 * @param array<string,mixed> $config Chart configuration.
+		 * @param QecConfig $config Chart configuration.
 		 */
-		$filtered_html = apply_filters( Schema::FILTER_HTML, $html, $config );
+		$filtered_html = apply_filters( 'qaiyo_easy_charts_chart_html', $html, $config );
 
-		return is_string( $filtered_html ) ? $filtered_html : $html;
+		// Callbacks are third-party code: narrow the result instead of trusting it.
+		return Cast::string( $filtered_html );
 	}
 
 	/**
 	 * Apply the public configuration filter (and re-validate its result).
 	 *
-	 * @param array<string,mixed> $config Sanitized configuration.
-	 * @return array<string,mixed>
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @return QecConfig
 	 */
 	public static function filter_config( array $config ): array {
 		/**
@@ -66,16 +76,19 @@ final class Renderer {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param array<string,mixed> $config Chart configuration.
+		 * @param QecConfig $config Chart configuration.
 		 */
-		$filtered = apply_filters( Schema::FILTER_CONFIG, $config );
-		return is_array( $filtered ) ? ChartConfig::sanitize( $filtered ) : $config;
+		$filtered = apply_filters( 'qaiyo_easy_charts_config', $config );
+
+		// Callbacks are third-party code: validate whatever comes back.
+		return ChartConfig::sanitize( Cast::arr( $filtered ) );
 	}
 
 	/**
 	 * Root classes, also used by builders that print their own root element.
 	 *
-	 * @param array<string,mixed> $config Sanitized configuration.
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
 	 * @return string[]
 	 */
 	public static function root_classes( array $config ): array {
@@ -97,7 +110,8 @@ final class Renderer {
 	/**
 	 * Inline CSS variables from the per-chart style settings.
 	 *
-	 * @param array<string,mixed> $config Sanitized configuration.
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
 	 */
 	public static function root_style( array $config ): string {
 		$vars = array();
@@ -110,7 +124,8 @@ final class Renderer {
 	/**
 	 * Everything inside the root element.
 	 *
-	 * @param array<string,mixed> $config Sanitized configuration.
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
 	 */
 	public static function inner( array $config ): string {
 		$scale = self::scale( $config );
@@ -146,7 +161,8 @@ final class Renderer {
 	/**
 	 * Plain-text version of a chart (search indexes, feeds, AI extraction).
 	 *
-	 * @param array<string,mixed> $config Sanitized configuration.
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
 	 */
 	public static function plain_text( array $config ): string {
 		$lines = array();
@@ -163,13 +179,17 @@ final class Renderer {
 	}
 
 	/**
-	 * @param array<string,mixed>  $config     Sanitized configuration.
+	 * Full chart markup including the root element.
+	 *
+	 * @param array                $config     Sanitized configuration.
+	 * @phpstan-param QecConfig $config
 	 * @param array<string,string> $root_attrs Extra root attributes.
 	 */
 	private static function build( array $config, array $root_attrs ): string {
 		$classes = self::root_classes( $config );
 		if ( ! empty( $root_attrs['class'] ) ) {
-			$classes = array_merge( $classes, preg_split( '/\s+/', $root_attrs['class'] ) ?: array() );
+			$extra   = preg_split( '/\s+/', $root_attrs['class'] );
+			$classes = array_merge( $classes, false === $extra ? array() : $extra );
 		}
 
 		$style = self::root_style( $config ) . ( $root_attrs['style'] ?? '' );
@@ -192,7 +212,10 @@ final class Renderer {
 	}
 
 	/**
-	 * @param array<string,mixed> $config Sanitized configuration.
+	 * Visible figure caption.
+	 *
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
 	 */
 	private static function caption( array $config ): string {
 		if ( ! $config['show_caption'] || ( '' === $config['title'] && '' === $config['description'] ) ) {
@@ -210,9 +233,15 @@ final class Renderer {
 	}
 
 	/**
-	 * @param array<string,mixed> $config Sanitized configuration.
-	 * @param array<string,float> $scale  Scale.
-	 * @param array<string,mixed> $item   Row.
+	 * Markup of one bar.
+	 *
+	 * @param array                                      $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @param array{min: float, max: float, step: float} $scale  Scale.
+	 * @param array                                      $item   Row.
+	 * @phpstan-param QecItem $item
+	 * @param int                                        $index Index.
+	 * @param bool                                       $has_table Has table.
 	 */
 	private static function row( array $config, array $scale, array $item, int $index, bool $has_table ): string {
 		$base_end = self::percent( $scale, (float) $item['value'] );
@@ -254,8 +283,11 @@ final class Renderer {
 	}
 
 	/**
-	 * @param array<string,mixed> $config Sanitized configuration.
-	 * @param array<string,float> $scale  Scale.
+	 * Markup of the value axis.
+	 *
+	 * @param array                                      $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @param array{min: float, max: float, step: float} $scale  Scale.
 	 */
 	private static function axis( array $config, array $scale ): string {
 		$ticks = self::ticks( $scale );
@@ -283,7 +315,10 @@ final class Renderer {
 	}
 
 	/**
-	 * @param array<string,mixed> $config Sanitized configuration.
+	 * Visually hidden data table for screen readers, search and AI.
+	 *
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
 	 */
 	private static function data_table( array $config ): string {
 		$caption = '' !== $config['title'] ? $config['title'] : __( 'Chart data', 'qaiyo-easy-charts' );
@@ -302,8 +337,10 @@ final class Renderer {
 	/**
 	 * Value shown next to / above the bar.
 	 *
-	 * @param array<string,mixed> $config Sanitized configuration.
-	 * @param array<string,mixed> $item   Row.
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @param array $item   Row.
+	 * @phpstan-param QecItem $item
 	 */
 	private static function value_text( array $config, array $item ): string {
 		if ( '' !== $item['text'] ) {
@@ -321,8 +358,10 @@ final class Renderer {
 	/**
 	 * Value for the data table / plain text: always with the unit.
 	 *
-	 * @param array<string,mixed> $config Sanitized configuration.
-	 * @param array<string,mixed> $item   Row.
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @param array $item   Row.
+	 * @phpstan-param QecItem $item
 	 */
 	private static function table_value( array $config, array $item ): string {
 		$text = self::value_text( $config, $item );
@@ -332,7 +371,8 @@ final class Renderer {
 	/**
 	 * Resolved axis range and step.
 	 *
-	 * @param array<string,mixed> $config Sanitized configuration.
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
 	 * @return array{min: float, max: float, step: float}
 	 */
 	public static function scale( array $config ): array {
@@ -365,6 +405,8 @@ final class Renderer {
 	}
 
 	/**
+	 * Axis tick values.
+	 *
 	 * @param array{min: float, max: float, step: float} $scale Scale.
 	 * @return float[]
 	 */
@@ -382,7 +424,10 @@ final class Renderer {
 	}
 
 	/**
+	 * Position of a value on the scale, in percent (0–100).
+	 *
 	 * @param array{min: float, max: float, step: float} $scale Scale.
+	 * @param float                                      $value Value to place.
 	 */
 	private static function percent( array $scale, float $value ): float {
 		$percent = ( $value - $scale['min'] ) / ( $scale['max'] - $scale['min'] ) * 100;
@@ -391,6 +436,8 @@ final class Renderer {
 
 	/**
 	 * Number in the site locale, without trailing zeros.
+	 *
+	 * @param float $number Number.
 	 */
 	public static function format_number( float $number ): string {
 		if ( floor( $number ) === $number ) {
@@ -398,7 +445,8 @@ final class Renderer {
 		}
 
 		global $wp_locale;
-		$decimal_point = isset( $wp_locale->number_format['decimal_point'] ) ? $wp_locale->number_format['decimal_point'] : '.';
+		$decimal_point = $wp_locale instanceof \WP_Locale ? Cast::string( $wp_locale->number_format['decimal_point'] ?? '.' ) : '.';
+		$decimal_point = '' !== $decimal_point ? $decimal_point : '.';
 
 		return rtrim( rtrim( number_format_i18n( $number, 2 ), '0' ), $decimal_point );
 	}

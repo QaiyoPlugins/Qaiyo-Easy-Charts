@@ -18,11 +18,17 @@ use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Registers the chart post type and its admin list columns.
+ */
 final class PostType {
 
 	/** Top-level admin menu slug (the post type list). */
 	const MENU_SLUG = 'edit.php?post_type=' . Schema::POST_TYPE;
 
+	/**
+	 * Hook this component into WordPress.
+	 */
 	public function register(): void {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_filter( 'manage_' . Schema::POST_TYPE . '_posts_columns', array( $this, 'columns' ) );
@@ -31,6 +37,9 @@ final class PostType {
 		add_filter( 'post_updated_messages', array( $this, 'messages' ) );
 	}
 
+	/**
+	 * Register the chart post type.
+	 */
 	public function register_post_type(): void {
 		register_post_type(
 			Schema::POST_TYPE,
@@ -54,7 +63,7 @@ final class PostType {
 				'show_in_rest'        => true,
 				'rest_base'           => 'qaiyo-charts',
 				'menu_icon'           => 'dashicons-chart-bar',
-				'menu_position'       => BrandMenu::plugin_position(),
+				'menu_position'       => (int) BrandMenu::plugin_position(),
 				'supports'            => array( 'title', 'revisions' ),
 				'capability_type'     => 'post',
 				'map_meta_cap'        => true,
@@ -67,11 +76,16 @@ final class PostType {
 		);
 	}
 
+	/**
+	 * Add the chart menu to the Qaiyo brand group.
+	 */
 	public function brand_menu(): void {
 		BrandMenu::register_plugin_slug( self::MENU_SLUG );
 	}
 
 	/**
+	 * Add the list table columns.
+	 *
 	 * @param mixed $columns Columns.
 	 * @return mixed
 	 */
@@ -81,8 +95,8 @@ final class PostType {
 		}
 		$date = $columns['date'] ?? null;
 		unset( $columns['date'] );
-		$columns['qec_shortcode'] = __( 'Shortcode', 'qaiyo-easy-charts' );
-		$columns['qec_rows']      = __( 'Bars', 'qaiyo-easy-charts' );
+		$columns['qaiyo_ec_shortcode'] = __( 'Shortcode', 'qaiyo-easy-charts' );
+		$columns['qaiyo_ec_rows']      = __( 'Bars', 'qaiyo-easy-charts' );
 		if ( null !== $date ) {
 			$columns['date'] = $date;
 		}
@@ -90,17 +104,19 @@ final class PostType {
 	}
 
 	/**
+	 * Print one list table cell.
+	 *
 	 * @param mixed $column  Column key.
 	 * @param mixed $post_id Post ID.
 	 */
 	public function cell( $column, $post_id ): void {
 		$post_id = Cast::int( $post_id );
-		if ( 'qec_shortcode' === $column ) {
+		if ( 'qaiyo_ec_shortcode' === $column ) {
 			printf(
 				'<code class="qec-shortcode-cell">%s</code>',
 				esc_html( Repository::shortcode( $post_id ) )
 			);
-		} elseif ( 'qec_rows' === $column ) {
+		} elseif ( 'qaiyo_ec_rows' === $column ) {
 			$config = Repository::find( $post_id, false );
 			echo esc_html( number_format_i18n( null === $config ? 0 : count( $config['items'] ) ) );
 		}

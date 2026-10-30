@@ -17,13 +17,22 @@ use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Registers the chart abilities for AI agents.
+ */
 final class Abilities {
 
+	/**
+	 * Hook this component into WordPress.
+	 */
 	public function register(): void {
 		add_action( 'wp_abilities_api_categories_init', array( $this, 'category' ) );
 		add_action( 'wp_abilities_api_init', array( $this, 'abilities' ) );
 	}
 
+	/**
+	 * Register the ability category.
+	 */
 	public function category(): void {
 		if ( ! function_exists( 'wp_register_ability_category' ) ) {
 			return;
@@ -37,6 +46,9 @@ final class Abilities {
 		);
 	}
 
+	/**
+	 * Register the abilities.
+	 */
 	public function abilities(): void {
 		if ( ! function_exists( 'wp_register_ability' ) ) {
 			return;
@@ -210,6 +222,8 @@ final class Abilities {
 	}
 
 	/**
+	 * Execute: list charts.
+	 *
 	 * @return list<array<string,mixed>>
 	 */
 	public static function list_charts(): array {
@@ -222,6 +236,8 @@ final class Abilities {
 	}
 
 	/**
+	 * Execute: get one chart.
+	 *
 	 * @param mixed $input Validated input.
 	 * @return array<string,mixed>|\WP_Error
 	 */
@@ -229,25 +245,23 @@ final class Abilities {
 		$id     = Cast::int( Cast::arr( $input )['id'] ?? 0 );
 		$config = Repository::find( $id, false );
 		if ( null === $config ) {
-			return new \WP_Error( 'qec_not_found', __( 'Chart not found.', 'qaiyo-easy-charts' ) );
+			return new \WP_Error( 'qaiyo_ec_not_found', __( 'Chart not found.', 'qaiyo-easy-charts' ) );
 		}
 
-		$items = array_map(
-			static function ( array $item ): array {
-				$out = array(
-					'label' => $item['label'],
-					'value' => (float) $item['value'],
-				);
-				if ( '' !== $item['max'] ) {
-					$out['max'] = (float) $item['max'];
-				}
-				if ( '' !== $item['text'] ) {
-					$out['text'] = $item['text'];
-				}
-				return $out;
-			},
-			$config['items']
-		);
+		$items = array();
+		foreach ( $config['items'] as $item ) {
+			$out = array(
+				'label' => $item['label'],
+				'value' => $item['value'],
+			);
+			if ( '' !== $item['max'] ) {
+				$out['max'] = (float) $item['max'];
+			}
+			if ( '' !== $item['text'] ) {
+				$out['text'] = $item['text'];
+			}
+			$items[] = $out;
+		}
 
 		return array(
 			'id'          => $id,
@@ -260,6 +274,8 @@ final class Abilities {
 	}
 
 	/**
+	 * Execute: create a chart.
+	 *
 	 * @param mixed $input Validated input.
 	 * @return array<string,mixed>|\WP_Error
 	 */
@@ -274,7 +290,7 @@ final class Abilities {
 			'title'       => $title,
 		);
 		if ( array() === ChartConfig::sanitize_items( $config['items'] ) ) {
-			return new \WP_Error( 'qec_no_items', __( 'At least one bar with a label and a value is required.', 'qaiyo-easy-charts' ) );
+			return new \WP_Error( 'qaiyo_ec_no_items', __( 'At least one bar with a label and a value is required.', 'qaiyo-easy-charts' ) );
 		}
 
 		$status = Cast::bool( $input['publish'] ?? false ) ? 'publish' : 'draft';

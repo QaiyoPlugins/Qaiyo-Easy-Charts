@@ -1,6 +1,6 @@
 <?php
 /**
- * Saved charts: the qec_chart post type plus its configuration meta.
+ * Saved charts: the qaiyo_ec_chart post type plus its configuration meta.
  *
  * @package qaiyo-easy-charts
  */
@@ -12,6 +12,11 @@ use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Loads, saves and lists saved charts.
+ *
+ * @phpstan-import-type QecConfig from ChartConfig
+ */
 final class Repository {
 
 	/**
@@ -19,7 +24,9 @@ final class Repository {
 	 * be shown to the current visitor (unpublished charts render only for users
 	 * who can edit them).
 	 *
-	 * @return array<string,mixed>|null
+	 * @param int  $chart_id Chart id.
+	 * @param bool $check_visibility Check visibility.
+	 * @return QecConfig|null
 	 */
 	public static function find( int $chart_id, bool $check_visibility = true ): ?array {
 		$post = $chart_id > 0 ? get_post( $chart_id ) : null;
@@ -38,7 +45,10 @@ final class Repository {
 	}
 
 	/**
-	 * @param array<mixed> $config Raw configuration; sanitized here.
+	 * Save the chart configuration.
+	 *
+	 * @param int          $chart_id Chart ID.
+	 * @param array<mixed> $config   Raw configuration; sanitized here.
 	 */
 	public static function save( int $chart_id, array $config ): void {
 		update_post_meta( $chart_id, Schema::META_CONFIG, ChartConfig::sanitize( $config ) );
@@ -47,7 +57,9 @@ final class Repository {
 	/**
 	 * Create a chart. Returns the new ID or a WP_Error.
 	 *
+	 * @param string       $title  Chart title.
 	 * @param array<mixed> $config Raw configuration.
+	 * @param string       $status "publish" or "draft".
 	 * @return int|\WP_Error
 	 */
 	public static function create( string $title, array $config, string $status ) {
@@ -69,6 +81,7 @@ final class Repository {
 	/**
 	 * Published and draft charts for pickers (bounded).
 	 *
+	 * @param int $limit Limit.
 	 * @return list<array{id: int, title: string, status: string}>
 	 */
 	public static function list( int $limit = 200 ): array {
@@ -95,6 +108,11 @@ final class Repository {
 		return $list;
 	}
 
+	/**
+	 * Shortcode that embeds a saved chart.
+	 *
+	 * @param int $chart_id Chart id.
+	 */
 	public static function shortcode( int $chart_id ): string {
 		return sprintf( '[%s id="%d"]', Schema::SHORTCODE, $chart_id );
 	}

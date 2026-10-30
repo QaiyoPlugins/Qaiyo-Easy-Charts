@@ -16,37 +16,92 @@ use Qaiyo\EasyCharts\Chart\Repository;
 use Qaiyo\EasyCharts\Frontend\Assets;
 use Qaiyo\EasyCharts\Schema;
 use Qaiyo\EasyCharts\Support\Cast;
+use Qaiyo\EasyCharts\Support\Css;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Bricks Builder element that renders a chart.
+ *
+ * @phpstan-import-type QecConfig from ChartConfig
+ */
 class ChartElement extends \Bricks\Element {
 
-	public $category     = 'qaiyo';
-	public $name         = Schema::ELEMENT;
-	public $icon         = 'ti-bar-chart';
-	public $css_selector = '';
-	public $scripts      = array( 'qaiyoEasyChartsInit' );
+	/**
+	 * Panel category.
+	 *
+	 * @var string
+	 */
+	public $category = 'qaiyo';
 
+	/**
+	 * Element name, stored in page data.
+	 *
+	 * @var string
+	 */
+	public $name = Schema::ELEMENT;
+
+	/**
+	 * Panel icon.
+	 *
+	 * @var string
+	 */
+	public $icon = 'ti-bar-chart';
+
+	/**
+	 * Styles apply to the element root.
+	 *
+	 * @var string
+	 */
+	public $css_selector = '';
+
+	/**
+	 * Functions Bricks calls after rendering the element in the builder.
+	 *
+	 * @var string[]
+	 */
+	public $scripts = array( 'qaiyoEasyChartsInit' );
+
+	/**
+	 * Element label.
+	 *
+	 * @return string
+	 */
 	public function get_label() {
 		return esc_html__( 'Qaiyo Easy Chart', 'qaiyo-easy-charts' );
 	}
 
+	/**
+	 * Search keywords.
+	 *
+	 * @return string[]
+	 */
 	public function get_keywords() {
 		return array( 'qaiyo', 'chart', 'bar', 'column', 'range', 'graph' );
 	}
 
+	/**
+	 * Enqueue the chart assets.
+	 *
+	 * @return void
+	 */
 	public function enqueue_scripts() {
 		Assets::enqueue();
 	}
 
+	/**
+	 * Define the control groups.
+	 *
+	 * @return void
+	 */
 	public function set_control_groups() {
 		$groups = array(
-			'data'      => esc_html__( 'Bars', 'qaiyo-easy-charts' ),
-			'layout'    => esc_html__( 'Layout', 'qaiyo-easy-charts' ),
-			'scale'     => esc_html__( 'Scale & axis', 'qaiyo-easy-charts' ),
-			'values'    => esc_html__( 'Values & behaviour', 'qaiyo-easy-charts' ),
-			'style'     => esc_html__( 'Chart style', 'qaiyo-easy-charts' ),
-			'texts'     => esc_html__( 'Typography', 'qaiyo-easy-charts' ),
+			'data'   => esc_html__( 'Bars', 'qaiyo-easy-charts' ),
+			'layout' => esc_html__( 'Layout', 'qaiyo-easy-charts' ),
+			'scale'  => esc_html__( 'Scale & axis', 'qaiyo-easy-charts' ),
+			'values' => esc_html__( 'Values & behaviour', 'qaiyo-easy-charts' ),
+			'style'  => esc_html__( 'Chart style', 'qaiyo-easy-charts' ),
+			'texts'  => esc_html__( 'Typography', 'qaiyo-easy-charts' ),
 		);
 		foreach ( $groups as $key => $title ) {
 			$this->control_groups[ $key ] = array(
@@ -56,6 +111,11 @@ class ChartElement extends \Bricks\Element {
 		}
 	}
 
+	/**
+	 * Define the controls.
+	 *
+	 * @return void
+	 */
 	public function set_controls() {
 		$inline = array( 'source', '!=', 'saved' );
 
@@ -124,7 +184,7 @@ class ChartElement extends \Bricks\Element {
 		);
 
 		/* Layout ---------------------------------------------------------- */
-		$this->controls['orientation'] = array(
+		$this->controls['orientation']  = array(
 			'tab'         => 'content',
 			'group'       => 'layout',
 			'label'       => esc_html__( 'Orientation', 'qaiyo-easy-charts' ),
@@ -137,7 +197,7 @@ class ChartElement extends \Bricks\Element {
 			'placeholder' => esc_html__( 'Horizontal bars', 'qaiyo-easy-charts' ),
 			'required'    => $inline,
 		);
-		$this->controls['layout'] = array(
+		$this->controls['layout']       = array(
 			'tab'         => 'content',
 			'group'       => 'layout',
 			'label'       => esc_html__( 'Labels of horizontal bars', 'qaiyo-easy-charts' ),
@@ -150,7 +210,7 @@ class ChartElement extends \Bricks\Element {
 			'placeholder' => esc_html__( 'Auto (stack when narrow)', 'qaiyo-easy-charts' ),
 			'required'    => $inline,
 		);
-		$this->controls['title'] = array(
+		$this->controls['title']        = array(
 			'tab'         => 'content',
 			'group'       => 'layout',
 			'label'       => esc_html__( 'Title', 'qaiyo-easy-charts' ),
@@ -158,7 +218,7 @@ class ChartElement extends \Bricks\Element {
 			'description' => esc_html__( 'Used as the accessible name of the chart.', 'qaiyo-easy-charts' ),
 			'required'    => $inline,
 		);
-		$this->controls['description'] = array(
+		$this->controls['description']  = array(
 			'tab'      => 'content',
 			'group'    => 'layout',
 			'label'    => esc_html__( 'Description', 'qaiyo-easy-charts' ),
@@ -174,7 +234,7 @@ class ChartElement extends \Bricks\Element {
 		);
 
 		/* Scale ----------------------------------------------------------- */
-		$this->controls['scale_min'] = array(
+		$this->controls['scale_min']     = array(
 			'tab'      => 'content',
 			'group'    => 'scale',
 			'label'    => esc_html__( 'Minimum', 'qaiyo-easy-charts' ),
@@ -182,7 +242,7 @@ class ChartElement extends \Bricks\Element {
 			'default'  => 0,
 			'required' => $inline,
 		);
-		$this->controls['scale_max'] = array(
+		$this->controls['scale_max']     = array(
 			'tab'         => 'content',
 			'group'       => 'scale',
 			'label'       => esc_html__( 'Maximum', 'qaiyo-easy-charts' ),
@@ -191,7 +251,7 @@ class ChartElement extends \Bricks\Element {
 			'description' => esc_html__( 'Leave empty to calculate from the data.', 'qaiyo-easy-charts' ),
 			'required'    => $inline,
 		);
-		$this->controls['step'] = array(
+		$this->controls['step']          = array(
 			'tab'      => 'content',
 			'group'    => 'scale',
 			'label'    => esc_html__( 'Axis step', 'qaiyo-easy-charts' ),
@@ -200,14 +260,14 @@ class ChartElement extends \Bricks\Element {
 			'default'  => 5,
 			'required' => $inline,
 		);
-		$this->controls['hide_axis'] = array(
+		$this->controls['hide_axis']     = array(
 			'tab'      => 'content',
 			'group'    => 'scale',
 			'label'    => esc_html__( 'Hide axis', 'qaiyo-easy-charts' ),
 			'type'     => 'checkbox',
 			'required' => $inline,
 		);
-		$this->controls['unit'] = array(
+		$this->controls['unit']          = array(
 			'tab'      => 'content',
 			'group'    => 'scale',
 			'label'    => esc_html__( 'Unit', 'qaiyo-easy-charts' ),
@@ -327,16 +387,32 @@ class ChartElement extends \Bricks\Element {
 		}
 	}
 
+	/**
+	 * Add a colour control bound to a CSS custom property.
+	 *
+	 * @param string $id Id.
+	 * @param string $label Label.
+	 * @param string $variable Variable.
+	 */
 	private function color( string $id, string $label, string $variable ): void {
 		$this->controls[ $id ] = array(
-			'tab'   => 'content',
-			'group' => 'style',
-			'label' => $label,
-			'type'  => 'color',
-			'css'   => array( array( 'property' => $variable ) ),
+			'tab'     => 'content',
+			'group'   => 'style',
+			'label'   => $label,
+			'type'    => 'color',
+			'default' => array( 'hex' => ChartConfig::DEFAULT_STYLE[ $id ] ?? '' ),
+			'css'     => array( array( 'property' => $variable ) ),
 		);
 	}
 
+	/**
+	 * Add a size control bound to a CSS custom property.
+	 *
+	 * @param string $id Id.
+	 * @param string $label Label.
+	 * @param string $variable Variable.
+	 * @param string $placeholder Placeholder.
+	 */
 	private function size( string $id, string $label, string $variable, string $placeholder ): void {
 		$this->controls[ $id ] = array(
 			'tab'         => 'content',
@@ -350,7 +426,9 @@ class ChartElement extends \Bricks\Element {
 	}
 
 	/**
-	 * @return array<string,mixed>|null
+	 * Convert the settings into a chart configuration.
+	 *
+	 * @return QecConfig|null
 	 */
 	private function config(): ?array {
 		$s = Cast::arr( $this->settings );
@@ -360,8 +438,14 @@ class ChartElement extends \Bricks\Element {
 			if ( null === $config ) {
 				return null;
 			}
-			// Values set in the Bricks style controls win over the saved chart's look.
-			foreach ( array( 'bar_color', 'range_color', 'track_color', 'label_color', 'value_color', 'axis_color', 'bar_size', 'chart_height' ) as $key ) {
+			// Values changed in the Bricks style controls win over the saved chart's look.
+			foreach ( ChartConfig::DEFAULT_STYLE as $key => $default ) {
+				$color = Css::color( $s[ $key ] ?? '' );
+				if ( '' !== $color && $color !== $default ) {
+					$config[ $key ] = '';
+				}
+			}
+			foreach ( array( 'bar_size', 'chart_height' ) as $key ) {
 				if ( ! empty( $s[ $key ] ) ) {
 					$config[ $key ] = '';
 				}
@@ -369,7 +453,7 @@ class ChartElement extends \Bricks\Element {
 			if ( ! empty( $s['bar_radius'] ) ) {
 				$config['radius'] = '';
 			}
-			if ( ! empty( $s['chart_typography']['font-family'] ) ) {
+			if ( '' !== Cast::string( Cast::arr( $s['chart_typography'] ?? null )['font-family'] ?? '' ) ) {
 				$config['font_family'] = '';
 			}
 			return $config;
@@ -400,13 +484,20 @@ class ChartElement extends \Bricks\Element {
 		);
 	}
 
+	/**
+	 * Render the output.
+	 *
+	 * @return void
+	 */
 	public function render() {
 		$config = $this->config();
 		$config = null === $config ? null : Renderer::filter_config( $config );
 		if ( null === $config || array() === $config['items'] ) {
-			return $this->render_element_placeholder(
+			// Bricks builds this placeholder markup itself.
+			echo $this->render_element_placeholder( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				array( 'title' => esc_html__( 'Select a saved chart or add at least one bar.', 'qaiyo-easy-charts' ) )
 			);
+			return;
 		}
 
 		Assets::enqueue();

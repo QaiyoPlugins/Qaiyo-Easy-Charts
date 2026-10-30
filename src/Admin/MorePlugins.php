@@ -5,10 +5,10 @@
  * Makes NO calls to qaiyo-plugins.com:
  *
  *   - Live section: the official WordPress.org plugin API (plugins_api,
- *	 author=qaiyo) — WordPress's own infrastructure, cached in a transient,
- *	 queried only when an admin opens this page.
+ *   author=qaiyo) — WordPress's own infrastructure, cached in a transient,
+ *   queried only when an admin opens this page.
  *   - Pro section: a small static, bundled list of paid extensions (plain
- *	 links to qaiyo-plugins.com — no remote request is made by the plugin).
+ *   links to qaiyo-plugins.com — no remote request is made by the plugin).
  *
  * @package qaiyo-easy-charts
  */
@@ -21,28 +21,48 @@ use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * The "Discover Qaiyo" admin page.
+ *
+ * @phpstan-type QecWporgPlugin array{slug: string, name: string, description: string, icon: string, version: string}
+ * @phpstan-type QecProPlugin array{name: string, desc: string, url: string}
+ */
 final class MorePlugins {
 
-	const PAGE_SLUG	 = 'qec-more-plugins';
+	const PAGE_SLUG     = 'qaiyo-ec-more-plugins';
 	const TRANSIENT_KEY = Schema::TRANSIENT_MORE_PLUGINS;
 	const WPORG_AUTHOR  = 'qaiyo';
-	const CACHE_TTL	 = 12 * HOUR_IN_SECONDS;
+	const CACHE_TTL     = 12 * HOUR_IN_SECONDS;
 
-	/** @var bool */
+	/**
+	 * Booted.
+	 *
+	 * @var bool
+	 */
 	private static $booted = false;
 
-	/** @var list<string> Parent menu slugs the submenu is attached to. */
+	/**
+	 * Parents.
+	 *
+	 * @var list<string> Parent menu slugs the submenu is attached to.
+	 */
 	private static $parents = array();
 
-	/** @var list<string> */
+	/**
+	 * Page hooks.
+	 *
+	 * @var list<string>
+	 */
 	private static $page_hooks = array();
 
 	/**
-	 * @param string $parent Top-level menu slug to attach the submenu to.
+	 * Hook this component into WordPress.
+	 *
+	 * @param string $parent_slug Top-level menu slug to attach the submenu to.
 	 */
-	public static function register( string $parent ): void {
-		if ( '' !== $parent && ! in_array( $parent, self::$parents, true ) ) {
-			self::$parents[] = $parent;
+	public static function register( string $parent_slug ): void {
+		if ( '' !== $parent_slug && ! in_array( $parent_slug, self::$parents, true ) ) {
+			self::$parents[] = $parent_slug;
 		}
 
 		if ( self::$booted ) {
@@ -54,6 +74,9 @@ final class MorePlugins {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
 	}
 
+	/**
+	 * Add the "Discover Qaiyo" submenu.
+	 */
 	public static function register_submenus(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
@@ -73,15 +96,13 @@ final class MorePlugins {
 		}
 	}
 
-	/* -----------------------------------------------------------------
-	 * Data — WordPress.org plugin directory (no call to our own server)
-	 * ----------------------------------------------------------------- */
+	// Data — WordPress.org plugin directory (no call to our own server).
 
 	/**
 	 * This author's plugins from the official WordPress.org API. Cached in a
 	 * transient; queried only on this admin page.
 	 *
-	 * @return list<Qec_Wporg_Plugin>
+	 * @return list<QecWporgPlugin>
 	 */
 	public static function wporg_plugins(): array {
 		$cached = get_transient( self::TRANSIENT_KEY );
@@ -100,8 +121,8 @@ final class MorePlugins {
 				'per_page' => 24,
 				'fields'   => array(
 					'short_description' => true,
-					'icons'			 => true,
-					'version'		   => true,
+					'icons'             => true,
+					'version'           => true,
 				),
 			)
 		);
@@ -121,7 +142,7 @@ final class MorePlugins {
 	 * Shape the API's plugin objects (or a cached list) into flat records.
 	 *
 	 * @param array<mixed> $raw Plugin objects or arrays.
-	 * @return list<Qec_Wporg_Plugin>
+	 * @return list<QecWporgPlugin>
 	 */
 	public static function normalize_list( array $raw ): array {
 		$list = array();
@@ -145,11 +166,11 @@ final class MorePlugins {
 			}
 
 			$list[] = array(
-				'slug'		=> $slug,
-				'name'		=> wp_strip_all_tags( Cast::string( $plugin['name'] ?? '' ) ),
+				'slug'        => $slug,
+				'name'        => wp_strip_all_tags( Cast::string( $plugin['name'] ?? '' ) ),
 				'description' => wp_strip_all_tags( Cast::string( $plugin['short_description'] ?? ( $plugin['description'] ?? '' ) ) ),
-				'icon'		=> $icon,
-				'version'	 => Cast::string( $plugin['version'] ?? '' ),
+				'icon'        => $icon,
+				'version'     => Cast::string( $plugin['version'] ?? '' ),
 			);
 		}
 		return $list;
@@ -159,7 +180,7 @@ final class MorePlugins {
 	 * Static, bundled list of paid Qaiyo extensions (no remote call).
 	 * Update this list when shipping a new Pro plugin.
 	 *
-	 * @return list<Qec_Pro_Plugin>
+	 * @return list<QecProPlugin>
 	 */
 	public static function pro_plugins(): array {
 		$base = 'https://qaiyo-plugins.com/';
@@ -202,14 +223,12 @@ final class MorePlugins {
 		);
 	}
 
-	/* -----------------------------------------------------------------
-	 * Local install/active detection (no remote call)
-	 * ----------------------------------------------------------------- */
+	// Local install/active detection (no remote call).
 
 	/**
 	 * 'active', 'installed' or 'none' for a WordPress.org slug.
 	 *
-	 * @param string						  $slug	  Plugin slug.
+	 * @param string            $slug   Plugin slug.
 	 * @param array<mixed>|null $installed get_plugins() result, if already loaded.
 	 */
 	public static function status( string $slug, ?array $installed = null ): string {
@@ -228,10 +247,11 @@ final class MorePlugins {
 		return 'none';
 	}
 
-	/* -----------------------------------------------------------------
-	 * Render
-	 * ----------------------------------------------------------------- */
+	// Render.
 
+	/**
+	 * Render the "Discover Qaiyo" page.
+	 */
 	public static function render_page(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
@@ -247,11 +267,11 @@ final class MorePlugins {
 		foreach ( self::wporg_plugins() as $plugin ) {
 			$status  = self::status( $plugin['slug'], $installed );
 			$cards[] = array(
-				'name'		=> $plugin['name'],
+				'name'        => $plugin['name'],
 				'description' => $plugin['description'],
-				'icon'		=> $plugin['icon'],
-				'monogram'	=> self::monogram( $plugin['name'] ),
-				'status'	  => $status,
+				'icon'        => $plugin['icon'],
+				'monogram'    => self::monogram( $plugin['name'] ),
+				'status'      => $status,
 				'install_url' => ( 'none' === $status && $can_install )
 					? wp_nonce_url(
 						self_admin_url( 'update.php?action=install-plugin&plugin=' . rawurlencode( $plugin['slug'] ) ),
@@ -265,21 +285,19 @@ final class MorePlugins {
 		$pro = array();
 		foreach ( self::pro_plugins() as $plugin ) {
 			$plugin['monogram'] = self::monogram( $plugin['name'] );
-			$pro[]			  = $plugin;
+			$pro[]              = $plugin;
 		}
 
 		View::output(
 			'more-plugins',
 			array(
-				'qec_cards' => $cards,
-				'qec_pro'   => $pro,
+				'qaiyo_ec_cards' => $cards,
+				'qaiyo_ec_pro'   => $pro,
 			)
 		);
 	}
 
-	/* -----------------------------------------------------------------
-	 * Assets
-	 * ----------------------------------------------------------------- */
+	// Assets.
 
 	/**
 	 * Action callback: WordPress passes the hook suffix, untyped on purpose.
@@ -292,16 +310,19 @@ final class MorePlugins {
 		}
 		wp_enqueue_style(
 			Schema::HANDLE_MORE_PLUGINS,
-			QEC_PLUGIN_URL . 'assets/css/more-plugins.css',
+			QAIYO_EC_PLUGIN_URL . 'assets/css/more-plugins.css',
 			array( 'dashicons' ),
 			Assets::version( 'assets/css/more-plugins.css' )
 		);
 	}
 
-	/* -----------------------------------------------------------------
-	 * Helpers
-	 * ----------------------------------------------------------------- */
+	// Helpers.
 
+	/**
+	 * Monogram.
+	 *
+	 * @param string $name Name.
+	 */
 	public static function monogram( string $name ): string {
 		$name = trim( wp_strip_all_tags( $name ) );
 		if ( '' === $name ) {

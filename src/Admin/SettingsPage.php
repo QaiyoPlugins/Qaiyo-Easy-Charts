@@ -14,11 +14,21 @@ use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * The Easy Charts settings screen.
+ */
 final class SettingsPage {
 
-	/** @var string */
+	/**
+	 * Hook.
+	 *
+	 * @var string
+	 */
 	private static $hook = '';
 
+	/**
+	 * Hook this component into WordPress.
+	 */
 	public function register(): void {
 		add_action( 'admin_init', array( $this, 'register_setting' ) );
 		add_action( 'admin_menu', array( $this, 'menu' ), 20 );
@@ -26,10 +36,16 @@ final class SettingsPage {
 		add_action( 'update_option_' . Schema::OPTION_SETTINGS, array( Settings::class, 'flush_cache' ) );
 	}
 
+	/**
+	 * URL of the settings screen.
+	 */
 	public static function url(): string {
 		return admin_url( PostType::MENU_SLUG . '&page=' . Schema::SETTINGS_PAGE );
 	}
 
+	/**
+	 * Register the settings option with the Settings API.
+	 */
 	public function register_setting(): void {
 		register_setting(
 			Schema::SETTINGS_GROUP,
@@ -43,8 +59,11 @@ final class SettingsPage {
 		);
 	}
 
+	/**
+	 * Add the settings submenu.
+	 */
 	public function menu(): void {
-		$hook = add_submenu_page(
+		$hook       = add_submenu_page(
 			PostType::MENU_SLUG,
 			__( 'Easy Charts settings', 'qaiyo-easy-charts' ),
 			__( 'Settings', 'qaiyo-easy-charts' ),
@@ -56,18 +75,20 @@ final class SettingsPage {
 	}
 
 	/**
+	 * Enqueue the assets.
+	 *
 	 * @param mixed $hook_suffix Current admin page.
 	 */
 	public function enqueue( $hook_suffix ): void {
 		if ( '' === self::$hook || Cast::string( $hook_suffix ) !== self::$hook ) {
 			return;
 		}
-		wp_enqueue_style( Schema::HANDLE_ADMIN, QEC_PLUGIN_URL . 'assets/css/admin.css', array(), Assets::version( 'assets/css/admin.css' ) );
-		wp_enqueue_style( 'wp-color-picker' );
-		wp_enqueue_script( 'wp-color-picker' );
-		wp_add_inline_script( 'wp-color-picker', 'jQuery(function($){$(".qec-settings-wrap input.qec-color").wpColorPicker();});' );
+		wp_enqueue_style( Schema::HANDLE_ADMIN, QAIYO_EC_PLUGIN_URL . 'assets/css/admin.css', array(), Assets::version( 'assets/css/admin.css' ) );
 	}
 
+	/**
+	 * Render the output.
+	 */
 	public function render(): void {
 		if ( ! current_user_can( Schema::CAP_SETTINGS ) ) {
 			wp_die( esc_html__( 'You do not have permission to access this page.', 'qaiyo-easy-charts' ) );
@@ -76,10 +97,9 @@ final class SettingsPage {
 		View::output(
 			'settings',
 			array(
-				'qec_settings'      => Settings::get(),
-				'qec_defaults'      => Settings::defaults(),
-				'qec_greeting_name' => View::greeting_name(),
-				'qec_attributes'    => self::shortcode_reference(),
+				'qaiyo_ec_settings'      => Settings::get(),
+				'qaiyo_ec_greeting_name' => View::greeting_name(),
+				'qaiyo_ec_attributes'    => self::shortcode_reference(),
 			)
 		);
 	}
@@ -91,15 +111,15 @@ final class SettingsPage {
 	 */
 	private static function shortcode_reference(): array {
 		$reference = array(
-			'id'          => __( 'ID of a saved chart. Any other attribute overrides its settings.', 'qaiyo-easy-charts' ),
-			'data'        => __( 'Inline bars: rows separated by "|", fields by ";" — label;value;range end;value text.', 'qaiyo-easy-charts' ),
-			'orientation' => 'horizontal | vertical | auto',
-			'title'       => __( 'Title (accessible name; shown with show_title="yes").', 'qaiyo-easy-charts' ),
-			'unit'        => __( 'Unit, e.g. days.', 'qaiyo-easy-charts' ),
-			'min / max / step' => __( 'Axis range and step. Empty max: automatic.', 'qaiyo-easy-charts' ),
-			'color / range_color / track_color' => __( 'Colors, e.g. #0f0c24.', 'qaiyo-easy-charts' ),
-			'font'        => __( 'Font family, e.g. "DM Sans, sans-serif".', 'qaiyo-easy-charts' ),
-			'bar_size / height / radius' => __( 'Bar thickness, column chart height, corner radius, e.g. 28px.', 'qaiyo-easy-charts' ),
+			'id'                                      => __( 'ID of a saved chart. Any other attribute overrides its settings.', 'qaiyo-easy-charts' ),
+			'data'                                    => __( 'Inline bars: rows separated by "|", fields by ";" — label;value;range end;value text.', 'qaiyo-easy-charts' ),
+			'orientation'                             => 'horizontal | vertical | auto',
+			'title'                                   => __( 'Title (accessible name; shown with show_title="yes").', 'qaiyo-easy-charts' ),
+			'unit'                                    => __( 'Unit, e.g. days.', 'qaiyo-easy-charts' ),
+			'min / max / step'                        => __( 'Axis range and step. Empty max: automatic.', 'qaiyo-easy-charts' ),
+			'color / range_color / track_color'       => __( 'Colors, e.g. #0f0c24.', 'qaiyo-easy-charts' ),
+			'font'                                    => __( 'Font family, e.g. "DM Sans, sans-serif".', 'qaiyo-easy-charts' ),
+			'bar_size / height / radius'              => __( 'Bar thickness, column chart height, corner radius, e.g. 28px.', 'qaiyo-easy-charts' ),
 			'animate / hover / table / axis / values' => 'yes | no',
 		);
 

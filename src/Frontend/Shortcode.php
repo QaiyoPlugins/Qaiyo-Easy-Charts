@@ -20,6 +20,9 @@ use Qaiyo\EasyCharts\Support\Cast;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * The [qaiyo_chart] shortcode.
+ */
 final class Shortcode {
 
 	/** Shortcode attribute => configuration key. */
@@ -54,15 +57,23 @@ final class Shortcode {
 		'radius'        => 'radius',
 	);
 
+	/**
+	 * Hook this component into WordPress.
+	 */
 	public function register(): void {
 		add_action( 'init', array( $this, 'add' ) );
 	}
 
+	/**
+	 * Register the shortcode.
+	 */
 	public function add(): void {
 		add_shortcode( Schema::SHORTCODE, array( self::class, 'render' ) );
 	}
 
 	/**
+	 * Render the output.
+	 *
 	 * @param mixed $atts Shortcode attributes.
 	 */
 	public static function render( $atts ): string {

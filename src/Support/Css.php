@@ -11,6 +11,9 @@ namespace Qaiyo\EasyCharts\Support;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Strict validators for user-supplied CSS values.
+ */
 final class Css {
 
 	/**
@@ -98,6 +101,8 @@ final class Css {
 
 	/**
 	 * Locale-independent percentage for CSS.
+	 *
+	 * @param float $percent Percent.
 	 */
 	public static function percent( float $percent ): string {
 		$number = rtrim( rtrim( sprintf( '%.4F', $percent ), '0' ), '.' );

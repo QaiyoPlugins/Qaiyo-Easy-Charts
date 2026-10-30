@@ -9,9 +9,14 @@ namespace Qaiyo\EasyCharts\Support;
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Type-safe narrowing helpers.
+ */
 final class Cast {
 
 	/**
+	 * Any value as a string; arrays and objects become ''.
+	 *
 	 * @param mixed $value Any value.
 	 */
 	public static function string( $value ): string {
@@ -22,6 +27,8 @@ final class Cast {
 	}
 
 	/**
+	 * Any value as an integer; non-scalars become 0.
+	 *
 	 * @param mixed $value Any value.
 	 */
 	public static function int( $value ): int {
@@ -44,6 +51,8 @@ final class Cast {
 	}
 
 	/**
+	 * The value if it is an array, otherwise an empty array.
+	 *
 	 * @param mixed $value Any value.
 	 * @return array<mixed>
 	 */

@@ -162,7 +162,6 @@
 "Actions": "Ações",
 "Defaults to the chart name. Used as the accessible name of the chart.": "Por predefinição, o nome do gráfico. Usado como nome acessível do gráfico.",
 "e.g. days": "p. ex. dias",
-"Empty fields use the colors from Easy Charts → Settings.": "Os campos vazios usam as cores de Easy Charts → Definições.",
 "Typography & size": "Tipografia e tamanho",
 "Font family": "Família de letra",
 "Empty: the font of your theme or builder.": "Vazio: a letra do seu tema ou construtor.",
@@ -187,9 +186,6 @@
 "Free plugins are listed from WordPress.org. This page makes no request to any Qaiyo server.": "Os plugins gratuitos vêm do WordPress.org. Esta página não faz pedidos a nenhum servidor da Qaiyo.",
 "Animate charts when they scroll into view": "Animar os gráficos quando surgem com o deslocamento",
 "Add an accessible data table to every chart (screen readers, SEO, AI)": "Adicionar uma tabela de dados acessível a cada gráfico (leitores de ecrã, SEO, IA)",
-"Site-wide defaults for every chart. Each chart, block and builder element can override them.": "Predefinições do site para todos os gráficos. Cada gráfico, bloco e elemento de construtor pode substituí-las.",
-"Colors & font": "Cores e letra",
-"Empty: charts use the font of your theme or page builder. The font itself must be loaded by your theme.": "Vazio: os gráficos usam a letra do seu tema ou construtor de páginas. A letra tem de ser carregada pelo tema.",
 "Defaults for new charts": "Predefinições para novos gráficos",
 "Uninstall": "Desinstalação",
 "Delete all charts and settings when the plugin is deleted": "Eliminar todos os gráficos e definições ao apagar o plugin",
@@ -202,5 +198,7 @@
 "block keyword\u0004bar": "barra",
 "block keyword\u0004column": "coluna",
 "block keyword\u0004graph": "diagrama",
-"block keyword\u0004qaiyo": "qaiyo"
+"block keyword\u0004qaiyo": "qaiyo",
+"Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Comportamento predefinido dos novos gráficos. Cores, letras e tamanhos definem-se em cada gráfico, bloco ou elemento do construtor.",
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Estas cores pertencem apenas a este gráfico. Cada barra pode ter as suas próprias cores na tabela acima."
 }

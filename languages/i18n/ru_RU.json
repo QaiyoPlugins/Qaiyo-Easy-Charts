@@ -162,7 +162,6 @@
 "Actions": "Действия",
 "Defaults to the chart name. Used as the accessible name of the chart.": "По умолчанию — название диаграммы. Используется как её доступное имя.",
 "e.g. days": "например, дни",
-"Empty fields use the colors from Easy Charts → Settings.": "Пустые поля используют цвета из Easy Charts → Настройки.",
 "Typography & size": "Типографика и размер",
 "Font family": "Семейство шрифтов",
 "Empty: the font of your theme or builder.": "Пусто: шрифт вашей темы или конструктора.",
@@ -187,9 +186,6 @@
 "Free plugins are listed from WordPress.org. This page makes no request to any Qaiyo server.": "Бесплатные плагины загружаются с WordPress.org. Эта страница не отправляет запросов на серверы Qaiyo.",
 "Animate charts when they scroll into view": "Анимировать диаграммы при появлении при прокрутке",
 "Add an accessible data table to every chart (screen readers, SEO, AI)": "Добавлять доступную таблицу данных к каждой диаграмме (экранные дикторы, SEO, ИИ)",
-"Site-wide defaults for every chart. Each chart, block and builder element can override them.": "Общие значения по умолчанию для всех диаграмм сайта. Любая диаграмма, блок или элемент конструктора может их переопределить.",
-"Colors & font": "Цвета и шрифт",
-"Empty: charts use the font of your theme or page builder. The font itself must be loaded by your theme.": "Пусто: диаграммы используют шрифт темы или конструктора страниц. Сам шрифт должна загружать тема.",
 "Defaults for new charts": "Значения по умолчанию для новых диаграмм",
 "Uninstall": "Удаление",
 "Delete all charts and settings when the plugin is deleted": "Удалять все диаграммы и настройки при удалении плагина",
@@ -202,5 +198,7 @@
 "block keyword\u0004bar": "полоса",
 "block keyword\u0004column": "столбец",
 "block keyword\u0004graph": "график",
-"block keyword\u0004qaiyo": "qaiyo"
+"block keyword\u0004qaiyo": "qaiyo",
+"Behaviour defaults for new charts. Colors, fonts and sizes are set in each chart, block or builder element.": "Поведение новых диаграмм по умолчанию. Цвета, шрифты и размеры задаются в каждой диаграмме, блоке или элементе конструктора.",
+"These colors belong to this chart only. Single bars can have their own colors in the table above.": "Эти цвета относятся только к этой диаграмме. Отдельным полосам можно задать свои цвета в таблице выше."
 }
