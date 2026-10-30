@@ -292,5 +292,9 @@
 "View counting is switched off in the settings.": "表示回数のカウントは設定でオフになっています。",
 "Reset counter": "カウンターをリセット",
 "Count chart views (anonymous, no cookies)": "チャートの表示回数をカウント（匿名、Cookieなし）",
-"Also count views of people who can edit charts": "チャートを編集できるユーザーの表示もカウント"
+"Also count views of people who can edit charts": "チャートを編集できるユーザーの表示もカウント",
+"%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s の白背景に対するコントラストは %2$s:1 です。WCAG AA を満たすにはテキストに 4.5:1 以上が必要です。",
+"All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "すべての文字色が白背景で WCAG AA のコントラスト 4.5:1 を満たしています。",
+"Busiest day in the last 30 days: %1$s, %2$s views.": "過去30日間で最も表示された日：%1$s、%2$s 回。",
+"No views in the last 30 days.": "過去30日間の表示はありません。"
 }

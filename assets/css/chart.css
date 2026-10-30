@@ -31,10 +31,11 @@
 	--qec-dim-opacity: 0.35;
 
 	/* Palette of the 100% stacked bar, after the primary and secondary colours. */
+	/* At least 3:1 against white (WCAG 1.4.11); every part also carries a pattern. */
 	--qec-c3: #6c5ce7;
-	--qec-c4: #f4a259;
-	--qec-c5: #8d8aa3;
-	--qec-c6: #e76f8a;
+	--qec-c4: #b45309;
+	--qec-c5: #6b6880;
+	--qec-c6: #be185d;
 	--qec-ring-size: 160px;
 	--qec-pattern: rgba(255, 255, 255, 0.6);
 }
@@ -209,7 +210,8 @@
 /* Hover: dim the other rows ---------------------------------------------- */
 
 @media (hover: hover) {
-	.qec-chart.qec-hover-focus :has(> .qec-mark:hover) > .qec-mark:not(:hover) {
+	/* Only the drawing is dimmed: text keeps its full contrast (WCAG 1.4.3). */
+	.qec-chart.qec-hover-focus :has(> .qec-mark:hover) > .qec-mark:not(:hover) :is(.qec-track, .qec-ring-svg, .qec-swatch) {
 		opacity: var(--qec-dim-opacity);
 	}
 }
@@ -594,7 +596,8 @@
 }
 
 .qec-chart .qec-milestone {
-	left: var(--qec-pos);
+	/* Kept inside the track at both ends (WCAG 1.4.10). */
+	left: clamp(calc(var(--qec-bar-size, 28px) * 0.5), var(--qec-pos), calc(100% - var(--qec-bar-size, 28px) * 0.5));
 	top: 50%;
 	bottom: auto;
 	width: calc(var(--qec-bar-size, 28px) * 0.7);
@@ -648,7 +651,8 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 12px;
-	width: min(var(--qec-ring-size), 100%);
+	/* Grows with the text size too (WCAG 1.4.4), never wider than the chart. */
+	width: min(max(var(--qec-ring-size), 8em), 100%);
 	text-align: center;
 	transition: opacity 0.25s ease;
 }
@@ -688,7 +692,7 @@
 .qec-chart .qec-ring .qec-value {
 	position: relative;
 	padding: 0 12%;
-	font-size: calc(var(--qec-ring-size) * 0.16);
+	font-size: 1.6em;
 	line-height: 1.1;
 	white-space: normal;
 }
@@ -823,48 +827,56 @@
 	text-align: right;
 }
 
-@container qec-chart (max-width: 420px) {
+/* In em, so larger text stacks the summary earlier (WCAG 1.4.4). */
+@container qec-chart (max-width: 30em) {
 	.qec-chart .qec-rating {
 		grid-template-columns: minmax(0, 1fr);
 	}
 }
 
-/* Patterns: textures besides colour, for colour-blind readers --------------- */
+/* Patterns: textures besides colour, for colour-blind readers --------------- *
+ * Where colour would be the only way to tell parts apart (the second series of
+ * a comparison, the parts of a stacked bar) patterns are always on (WCAG 1.4.1);
+ * .qec-patterns adds them to ranges and milestones too. */
+
+.qec-type-compare :is(.qec-seg--b, .qec-swatch--b) {
+	background-image: repeating-linear-gradient(45deg, var(--qec-pattern) 0 2px, transparent 2px 7px);
+}
 
 .qec-patterns :is(.qec-seg--secondary, .qec-swatch--b),
 .qec-patterns .qec-milestone {
 	background-image: repeating-linear-gradient(45deg, var(--qec-pattern) 0 2px, transparent 2px 7px);
 }
 
-.qec-patterns :is(.qec-stack-seg, .qec-legend--stack > .qec-mark .qec-swatch) {
+.qec-type-stacked :is(.qec-stack-seg, .qec-legend--stack > .qec-mark .qec-swatch) {
 	background-size: 8px 8px;
 }
 
-.qec-patterns .qec-stack-seg:nth-child(6n + 2),
-.qec-patterns .qec-legend--stack > .qec-mark:nth-child(6n + 2) .qec-swatch {
+.qec-type-stacked .qec-stack-seg:nth-child(6n + 2),
+.qec-type-stacked .qec-legend--stack > .qec-mark:nth-child(6n + 2) .qec-swatch {
 	background-image: repeating-linear-gradient(45deg, var(--qec-pattern) 0 2px, transparent 2px 7px);
 	background-size: auto;
 }
 
-.qec-patterns .qec-stack-seg:nth-child(6n + 3),
-.qec-patterns .qec-legend--stack > .qec-mark:nth-child(6n + 3) .qec-swatch {
+.qec-type-stacked .qec-stack-seg:nth-child(6n + 3),
+.qec-type-stacked .qec-legend--stack > .qec-mark:nth-child(6n + 3) .qec-swatch {
 	background-image: radial-gradient(var(--qec-pattern) 1.5px, transparent 1.6px);
 }
 
-.qec-patterns .qec-stack-seg:nth-child(6n + 4),
-.qec-patterns .qec-legend--stack > .qec-mark:nth-child(6n + 4) .qec-swatch {
+.qec-type-stacked .qec-stack-seg:nth-child(6n + 4),
+.qec-type-stacked .qec-legend--stack > .qec-mark:nth-child(6n + 4) .qec-swatch {
 	background-image: repeating-linear-gradient(0deg, var(--qec-pattern) 0 2px, transparent 2px 6px);
 	background-size: auto;
 }
 
-.qec-patterns .qec-stack-seg:nth-child(6n + 5),
-.qec-patterns .qec-legend--stack > .qec-mark:nth-child(6n + 5) .qec-swatch {
+.qec-type-stacked .qec-stack-seg:nth-child(6n + 5),
+.qec-type-stacked .qec-legend--stack > .qec-mark:nth-child(6n + 5) .qec-swatch {
 	background-image: repeating-linear-gradient(-45deg, var(--qec-pattern) 0 2px, transparent 2px 7px);
 	background-size: auto;
 }
 
-.qec-patterns .qec-stack-seg:nth-child(6n + 6),
-.qec-patterns .qec-legend--stack > .qec-mark:nth-child(6n + 6) .qec-swatch {
+.qec-type-stacked .qec-stack-seg:nth-child(6n + 6),
+.qec-type-stacked .qec-legend--stack > .qec-mark:nth-child(6n + 6) .qec-swatch {
 	background-image: repeating-linear-gradient(90deg, var(--qec-pattern) 0 2px, transparent 2px 6px);
 	background-size: auto;
 }
@@ -878,7 +890,8 @@
 
 .qec-tooltips .qec-mark:focus-visible {
 	border-radius: 4px;
-	box-shadow: 0 0 0 2px var(--qec-track), 0 0 0 4px var(--qec-primary);
+	outline: 2px solid var(--qec-label-color);
+	outline-offset: 3px;
 }
 
 .qec-chart .qec-tip {
@@ -887,10 +900,11 @@
 	left: 50%;
 	z-index: 5;
 	width: max-content;
-	max-width: min(320px, 90vw);
+	max-width: min(320px, 100cqi);
 	padding: 6px 10px;
+	/* Fixed colours, so a light bar colour can never make the tip unreadable (18:1). */
 	color: #fff;
-	background: var(--qec-primary);
+	background: #0f0c24;
 	border-radius: 6px;
 	box-shadow: 0 6px 20px rgba(15, 12, 36, 0.18);
 	font-size: 0.8125em;
@@ -898,17 +912,30 @@
 	line-height: 1.4;
 	text-align: left;
 	white-space: normal;
-	pointer-events: none;
-	opacity: 0;
-	visibility: hidden;
-	transform: translate(-50%, 4px);
-	transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+	/* Hidden tips take no room, so they never widen the page (WCAG 1.4.10). */
+	display: none;
+	transform: translateX(calc(-50% + var(--qec-tip-x, 0px)));
+}
+
+@keyframes qec-tip-in {
+	from {
+		opacity: 0;
+	}
 }
 
 .qec-tooltips .qec-mark:is(:hover, :focus-visible):not(.qec-tip-off) > .qec-tip {
-	opacity: 1;
-	visibility: visible;
-	transform: translate(-50%, 0);
+	display: block;
+	animation: qec-tip-in 0.15s ease;
+}
+
+/* The pointer can move onto the tip without losing it (WCAG 1.4.13, hoverable). */
+.qec-chart .qec-tip::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	right: 0;
+	left: 0;
+	height: 8px;
 }
 
 /* Export ---------------------------------------------------------------------- */
@@ -924,7 +951,7 @@
 	padding: 4px 12px;
 	color: var(--qec-label-color);
 	background: transparent;
-	border: 1px solid var(--qec-track);
+	border: 1px solid var(--qec-axis-color);
 	border-radius: 999px;
 	font: inherit;
 	font-size: 0.8125em;
@@ -933,9 +960,18 @@
 	cursor: pointer;
 }
 
-.qec-chart .qec-export-btn:hover,
+.qec-chart .qec-export-btn {
+	min-width: 44px;
+	min-height: 32px;
+}
+
+.qec-chart .qec-export-btn:hover {
+	border-color: var(--qec-label-color);
+}
+
 .qec-chart .qec-export-btn:focus-visible {
-	border-color: var(--qec-primary);
+	outline: 2px solid var(--qec-label-color);
+	outline-offset: 2px;
 }
 
 html:not(.qec-js) .qec-chart .qec-export,
@@ -1105,6 +1141,7 @@ html:not(.qec-js) .qec-chart .qec-lazy-placeholder {
 	.qec-chart .qec-ring-bar,
 	.qec-chart .qec-tip {
 		transition: none !important;
+		animation: none !important;
 	}
 }
 

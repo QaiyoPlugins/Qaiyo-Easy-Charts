@@ -303,6 +303,7 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 				$qaiyo_ec_color( 'value_color', __( 'Value color', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_color( 'axis_color', __( 'Axis color', 'qaiyo-easy-charts' ) );
 				?>
+				<div class="qec-contrast" id="qec-contrast" role="status" aria-live="polite"></div>
 				<div class="qec-field qec-style-copy">
 					<label for="qec-style-source"><?php esc_html_e( 'Copy the style of another chart', 'qaiyo-easy-charts' ); ?></label>
 					<select id="qec-style-source" aria-describedby="qec-style-source-help">

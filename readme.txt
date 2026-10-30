@@ -40,6 +40,7 @@ Seven chart types, all from the same simple rows:
 * **Copy the style of another chart** in one click.
 * **PNG and SVG export** from the builder and, optionally, from the page.
 * **View statistics** — see how many visitors actually saw each chart (total, 7 and 30 days, daily graph). Anonymous and cookie-free.
+* **WCAG 2.2 AA** — tested with axe-core and for reflow at 320 px, text spacing, 200 % text, keyboard-accessible and dismissible tooltips, animations under 5 seconds, reduced motion, and a live contrast check for chosen colours.
 * **Accessible** — a figure with an accessible name and a visually hidden data table for screen readers, forced-colours support, WCAG 2.2 AA admin screens.
 * **SEO and AI friendly** — real HTML text and a semantic data table instead of an image; WordPress Abilities API support so AI agents can list, read and create charts.
 * **Every chart styled on its own** — colours, font and sizes are set per chart, block or builder element, starting from a clean default palette.

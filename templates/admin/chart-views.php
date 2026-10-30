@@ -17,6 +17,17 @@ defined( 'ABSPATH' ) || exit;
 
 $qaiyo_ec_peak   = max( array_merge( array( 1 ), array_values( $qaiyo_ec_stats['days'] ) ) );
 $qaiyo_ec_format = Cast::string( get_option( 'date_format' ) );
+$qaiyo_ec_most   = max( array_merge( array( 0 ), array_values( $qaiyo_ec_stats['days'] ) ) );
+$qaiyo_ec_best   = (string) array_search( $qaiyo_ec_most, $qaiyo_ec_stats['days'], true );
+
+$qaiyo_ec_summary = $qaiyo_ec_stats['month'] > 0
+	? sprintf(
+		/* translators: 1: busiest day, 2: number of views on that day. */
+		__( 'Busiest day in the last 30 days: %1$s, %2$s views.', 'qaiyo-easy-charts' ),
+		wp_date( $qaiyo_ec_format, (int) strtotime( $qaiyo_ec_best . ' 12:00 UTC' ) ),
+		number_format_i18n( $qaiyo_ec_most )
+	)
+	: __( 'No views in the last 30 days.', 'qaiyo-easy-charts' );
 ?>
 <div class="qec-views">
 	<?php if ( $qaiyo_ec_was_reset ) : ?>
@@ -40,7 +51,7 @@ $qaiyo_ec_format = Cast::string( get_option( 'date_format' ) );
 	</dl>
 
 	<figure class="qec-views-spark">
-		<div class="qec-views-bars" aria-hidden="true">
+		<div class="qec-views-bars" role="img" aria-label="<?php echo esc_attr( $qaiyo_ec_summary ); ?>">
 			<?php foreach ( $qaiyo_ec_stats['days'] as $qaiyo_ec_day => $qaiyo_ec_count ) : ?>
 				<span style="<?php echo esc_attr( '--qec-h:' . round( $qaiyo_ec_count / $qaiyo_ec_peak * 100 ) . '%' ); ?>" title="<?php echo esc_attr( wp_date( $qaiyo_ec_format, (int) strtotime( $qaiyo_ec_day . ' 12:00 UTC' ) ) . ': ' . number_format_i18n( $qaiyo_ec_count ) ); ?>"></span>
 			<?php endforeach; ?>

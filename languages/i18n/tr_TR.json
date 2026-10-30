@@ -292,5 +292,9 @@
 "View counting is switched off in the settings.": "Görüntülenme sayımı ayarlarda kapalı.",
 "Reset counter": "Sayacı sıfırla",
 "Count chart views (anonymous, no cookies)": "Grafik görüntülenmelerini say (anonim, çerezsiz)",
-"Also count views of people who can edit charts": "Grafikleri düzenleyebilen kişilerin görüntülenmelerini de say"
+"Also count views of people who can edit charts": "Grafikleri düzenleyebilen kişilerin görüntülenmelerini de say",
+"%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s beyaz arka planda %2$s:1 kontrasta sahip. WCAG AA için metin en az 4,5:1 olmalıdır.",
+"All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Tüm metin renkleri beyaz arka planda WCAG AA 4,5:1 kontrastını karşılıyor.",
+"Busiest day in the last 30 days: %1$s, %2$s views.": "Son 30 günün en yoğun günü: %1$s, %2$s görüntülenme.",
+"No views in the last 30 days.": "Son 30 günde görüntülenme yok."
 }

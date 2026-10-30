@@ -292,5 +292,9 @@
 "View counting is switched off in the settings.": "A megtekintések számlálása ki van kapcsolva a beállításokban.",
 "Reset counter": "Számláló nullázása",
 "Count chart views (anonymous, no cookies)": "Chart megtekintések számlálása (anonim, süti nélkül)",
-"Also count views of people who can edit charts": "Azok megtekintéseit is számolja, akik szerkeszthetik a chartokat"
+"Also count views of people who can edit charts": "Azok megtekintéseit is számolja, akik szerkeszthetik a chartokat",
+"%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s kontrasztja fehér háttéren %2$s:1. A szövegnek legalább 4,5:1 kell a WCAG AA-hoz.",
+"All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Minden szövegszín teljesíti a WCAG AA 4,5:1-es kontrasztját fehér háttéren.",
+"Busiest day in the last 30 days: %1$s, %2$s views.": "Legforgalmasabb nap az elmúlt 30 napban: %1$s, %2$s megtekintés.",
+"No views in the last 30 days.": "Nem volt megtekintés az elmúlt 30 napban."
 }

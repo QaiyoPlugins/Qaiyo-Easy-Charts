@@ -46,8 +46,11 @@ final class ChartConfig {
 	const ANIMATIONS     = array( 'grow', 'fade', 'rise' );
 	const EASINGS        = array( 'smooth', 'linear', 'spring' );
 
-	/** Animation timing bounds, in milliseconds. 0 = the stylesheet default. */
-	const MAX_DURATION = 5000;
+	/**
+	 * Animation timing bounds, in milliseconds. 0 = the stylesheet default.
+	 * With counting up (1.4 × duration) the longest animation stays under 5 s.
+	 */
+	const MAX_DURATION = 3500;
 	const MAX_STAGGER  = 2000;
 
 	/** Hard cap on rows, so a single chart can never become unbounded work. */

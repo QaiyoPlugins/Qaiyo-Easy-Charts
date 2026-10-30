@@ -171,4 +171,19 @@ final class ChartTypesTest extends TestCase {
 		$this->assertStringContainsString( '5: Count 1, Share 50%', $text );
 		$this->assertStringContainsString( 'Average: 4.5 / 5', $text );
 	}
+
+	public function test_entrance_animation_always_ends_within_five_seconds(): void {
+		$items = str_repeat( 'Row;5|', 40 );
+
+		// 40 rows × the default 140 ms would run for 6.9 s: the delay is shortened.
+		$config = ChartConfig::sanitize( array( 'items' => ChartConfig::parse_data_string( $items ) ) );
+		$this->assertSame( '88ms', Renderer::stagger( $config ) );
+
+		// Few rows keep the stylesheet default; an explicit delay is kept when it fits.
+		$this->assertSame( '', Renderer::stagger( ChartConfig::sanitize( array( 'items' => ChartConfig::parse_data_string( 'A;1|B;2' ) ) ) ) );
+		$this->assertSame( '300ms', Renderer::stagger( ChartConfig::sanitize( array( 'items' => ChartConfig::parse_data_string( 'A;1|B;2' ), 'stagger' => 300 ) ) ) );
+
+		// The longest duration still leaves room for counting up.
+		$this->assertLessThanOrEqual( 5000, 1.4 * ChartConfig::sanitize( array( 'duration' => 99999 ) )['duration'] );
+	}
 }

@@ -228,6 +228,26 @@
 		}
 	}
 
+	// Keep an opening tip inside the chart and the window (WCAG 1.4.10 / 1.4.13).
+	function placeTip( event ) {
+		var mark = event.target && event.target.closest ? event.target.closest( '.qec-tooltips .qec-mark' ) : null;
+		var tip = mark ? mark.querySelector( ':scope > .qec-tip' ) : null;
+		if ( ! tip ) {
+			return;
+		}
+		tip.style.setProperty( '--qec-tip-x', '0px' );
+		window.requestAnimationFrame( function () {
+			var chart = mark.closest( SELECTOR ).getBoundingClientRect();
+			var box = tip.getBoundingClientRect();
+			var left = Math.max( chart.left, 0 );
+			var right = Math.min( chart.right, document.documentElement.clientWidth );
+			var shift = box.right > right ? right - box.right : ( box.left < left ? left - box.left : 0 );
+			tip.style.setProperty( '--qec-tip-x', Math.round( shift ) + 'px' );
+		} );
+	}
+
+	document.addEventListener( 'mouseover', placeTip );
+	document.addEventListener( 'focusin', placeTip );
 	document.addEventListener( 'mouseout', restoreTip );
 	document.addEventListener( 'focusout', restoreTip );
 

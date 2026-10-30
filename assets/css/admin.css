@@ -7,6 +7,8 @@
 .qec-settings-wrap {
 	--qec-a-accent: #6c5ce7;
 	--qec-a-accent-hover: #5a4bd1;
+	/* The accent as text on light tints: 5.8:1 on the accent tint (WCAG 1.4.3). */
+	--qec-a-accent-text: #5847d4;
 	--qec-a-accent-light: rgba(108, 92, 231, 0.08);
 	--qec-a-bg: #f8f6ff;
 	--qec-a-card: #ffffff;
@@ -45,7 +47,7 @@ body.qec-admin-screen #wpbody-content {
 }
 
 .qec-brand {
-	color: var(--qec-a-accent);
+	color: var(--qec-a-accent-text);
 	font-weight: 800;
 }
 
@@ -85,12 +87,21 @@ body.qec-admin-screen #wpbody-content {
 
 .qec-builder {
 	display: grid;
+	/* minmax(0, 1fr): panels may shrink below their content's width (WCAG 1.4.10). */
+	grid-template-columns: minmax(0, 1fr);
 	gap: 0;
 }
 
 .qec-panel {
+	min-width: 0;
 	padding: 22px 24px;
 	border-bottom: 1px solid var(--qec-a-border-soft);
+}
+
+@media (max-width: 480px) {
+	.qec-panel {
+		padding: 16px 12px;
+	}
 }
 
 .qec-panel:last-child {
@@ -130,7 +141,7 @@ body.qec-admin-screen #wpbody-content {
 	height: 30px;
 	border-radius: 9px;
 	background: var(--qec-a-accent-light);
-	color: var(--qec-a-accent);
+	color: var(--qec-a-accent-text);
 }
 
 .qec-panel-desc {
@@ -182,7 +193,7 @@ body.qec-admin-screen #wpbody-content {
 .qec-device-button[aria-pressed="true"] {
 	border-color: var(--qec-a-accent) !important;
 	background: var(--qec-a-accent-light) !important;
-	color: var(--qec-a-accent) !important;
+	color: var(--qec-a-accent-text) !important;
 }
 
 /* Rows table ------------------------------------------------------------- */
@@ -234,6 +245,8 @@ body.qec-admin-screen #wpbody-content {
 }
 
 .qec-row-actions .button-link {
+	min-width: 28px;
+	min-height: 28px;
 	padding: 4px;
 	border-radius: 6px;
 	color: var(--qec-a-muted);
@@ -241,7 +254,7 @@ body.qec-admin-screen #wpbody-content {
 
 .qec-row-actions .button-link:hover,
 .qec-row-actions .button-link:focus {
-	color: var(--qec-a-accent);
+	color: var(--qec-a-accent-text);
 }
 
 .qec-row-actions .qec-remove:hover,
@@ -257,12 +270,16 @@ body.qec-admin-screen #wpbody-content {
 }
 
 @media screen and (max-width: 1100px) {
+	/* Visually hidden (each cell shows its own label); block, so the clipping applies. */
 	.qec-rows-table thead {
 		position: absolute;
+		display: block;
 		width: 1px;
 		height: 1px;
 		overflow: hidden;
 		clip: rect(0, 0, 0, 0);
+		clip-path: inset(50%);
+		white-space: nowrap;
 	}
 
 	.qec-rows-table,
@@ -639,4 +656,19 @@ body.qec-admin-screen #wpbody-content {
 .qec-views-sub {
 	color: #50575e;
 	font-size: 12px;
+}
+
+.qec-contrast {
+	margin-top: 8px;
+	padding: 8px 10px;
+	color: #1e4620;
+	background: #edfaef;
+	border-left: 3px solid #00a32a;
+	font-size: 12px;
+}
+
+.qec-contrast.is-warning {
+	color: #4d3200;
+	background: #fcf9e8;
+	border-left-color: #dba617;
 }

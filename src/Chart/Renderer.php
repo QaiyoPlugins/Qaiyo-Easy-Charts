@@ -37,6 +37,16 @@ final class Renderer {
 
 	const MAX_TICKS = 50;
 
+	/** The stylesheet's default timing (chart.css), in milliseconds. */
+	const DEFAULT_DURATION = 1100;
+	const DEFAULT_STAGGER  = 140;
+
+	/**
+	 * The whole entrance animation, including counting up, ends within this many
+	 * milliseconds (WCAG 2.2.2: moving content under 5 seconds needs no pause button).
+	 */
+	const MAX_MOTION = 5000;
+
 	/**
 	 * Render a chart.
 	 *
@@ -129,11 +139,31 @@ final class Renderer {
 			$vars[ $var ] = (string) $config[ $key ];
 		}
 		$vars['--qec-duration'] = $config['duration'] > 0 ? $config['duration'] . 'ms' : '';
-		$vars['--qec-stagger']  = $config['stagger'] > 0 ? $config['stagger'] . 'ms' : '';
+		$vars['--qec-stagger']  = self::stagger( $config );
 		if ( 'ring' === $config['type'] ) {
 			$vars['--qec-ring-size'] = $config['chart_height'];
 		}
 		return Css::inline( $vars );
+	}
+
+	/**
+	 * Delay between items, shortened when needed so that the last item has
+	 * finished (bars and counting) within MAX_MOTION. '' = the stylesheet default.
+	 *
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 */
+	public static function stagger( array $config ): string {
+		$duration = $config['duration'] > 0 ? $config['duration'] : self::DEFAULT_DURATION;
+		$stagger  = $config['stagger'] > 0 ? $config['stagger'] : self::DEFAULT_STAGGER;
+		$gaps     = count( $config['items'] ) - 1;
+
+		// The value of the last item finishes counting at stagger * gaps + 1.4 * duration.
+		if ( $gaps > 0 ) {
+			$stagger = (int) max( 0, min( $stagger, floor( ( self::MAX_MOTION - 1.4 * $duration ) / $gaps ) ) );
+		}
+
+		return $config['stagger'] > 0 || self::DEFAULT_STAGGER !== $stagger ? $stagger . 'ms' : '';
 	}
 
 	/**
@@ -308,7 +338,8 @@ final class Renderer {
 			$caption .= ' — ' . $table['note'];
 		}
 
-		$html  = '<table class="qec-data-table qec-sr-only">';
+		// Hidden through a wrapper: tables ignore overflow, so a hidden table could still widen the page.
+		$html  = '<div class="qec-sr-only"><table class="qec-data-table">';
 		$html .= '<caption>' . esc_html( $caption ) . '</caption><thead><tr>';
 		foreach ( $table['head'] as $heading ) {
 			$html .= '<th scope="col">' . esc_html( $heading ) . '</th>';
@@ -323,7 +354,7 @@ final class Renderer {
 			$html .= '</tr>';
 		}
 
-		return $html . '</tbody></table>';
+		return $html . '</tbody></table></div>';
 	}
 
 	/**

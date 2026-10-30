@@ -14,7 +14,7 @@ msgstr ""
 msgid "Charts"
 msgstr "Диаграммы"
 
-#: src/Plugin.php:72 src/Admin/SettingsPage.php:69 templates/admin/chart-editor.php:225 templates/admin/chart-views.php:57
+#: src/Plugin.php:72 src/Admin/SettingsPage.php:69 templates/admin/chart-editor.php:225 templates/admin/chart-views.php:68
 msgid "Settings"
 msgstr "Настройки"
 
@@ -81,6 +81,14 @@ msgstr "Тип диаграммы изменён. Поля строк следу
 #: src/Admin/ChartEditor.php:307
 msgid "Reset the view counter of this chart? This cannot be undone."
 msgstr "Сбросить счётчик просмотров этой диаграммы? Это нельзя отменить."
+
+#: src/Admin/ChartEditor.php:309
+msgid "%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA."
+msgstr "Контраст «%1$s» на белом фоне — %2$s:1. Для WCAG AA тексту нужно не менее 4,5:1."
+
+#: src/Admin/ChartEditor.php:310
+msgid "All text colours meet the WCAG AA contrast of 4.5:1 on a white background."
+msgstr "Все цвета текста соответствуют контрасту WCAG AA 4,5:1 на белом фоне."
 
 #: src/Admin/MorePlugins.php:87 templates/admin/more-plugins.php:16
 msgid "More plugins from Qaiyo"
@@ -338,11 +346,11 @@ msgstr "Выберите сохранённую диаграмму в настр
 msgid "Label"
 msgstr "Подпись"
 
-#: src/Blocks/ChartBlock.php:139 src/Chart/ChartConfig.php:98 src/Chart/ChartConfig.php:110 src/Chart/ChartConfig.php:122 src/Chart/ChartConfig.php:128 src/Chart/Types/RingChart.php:89 src/Chart/Types/RowChart.php:77 src/Chart/Types/RowChart.php:78 src/Chart/Types/StackedChart.php:95 src/Integrations/Bricks/ChartElement.php:175 src/Integrations/Elementor/ChartWidget.php:171
+#: src/Blocks/ChartBlock.php:139 src/Chart/ChartConfig.php:101 src/Chart/ChartConfig.php:113 src/Chart/ChartConfig.php:125 src/Chart/ChartConfig.php:131 src/Chart/Types/RingChart.php:89 src/Chart/Types/RowChart.php:77 src/Chart/Types/RowChart.php:78 src/Chart/Types/StackedChart.php:95 src/Integrations/Bricks/ChartElement.php:175 src/Integrations/Elementor/ChartWidget.php:171
 msgid "Value"
 msgstr "Значение"
 
-#: src/Blocks/ChartBlock.php:140 src/Chart/ChartConfig.php:99
+#: src/Blocks/ChartBlock.php:140 src/Chart/ChartConfig.php:102
 msgid "Range end"
 msgstr "Конец диапазона"
 
@@ -478,15 +486,15 @@ msgstr "Цвет оси"
 msgid "Size"
 msgstr "Размер"
 
-#: src/Blocks/ChartBlock.php:174 src/Integrations/Bricks/ChartElement.php:451 src/Integrations/Elementor/ChartWidget.php:569 templates/admin/chart-editor.php:320
+#: src/Blocks/ChartBlock.php:174 src/Integrations/Bricks/ChartElement.php:451 src/Integrations/Elementor/ChartWidget.php:569 templates/admin/chart-editor.php:321
 msgid "Bar thickness"
 msgstr "Толщина полосы"
 
-#: src/Blocks/ChartBlock.php:175 src/Integrations/Bricks/ChartElement.php:452 src/Integrations/Elementor/ChartWidget.php:570 templates/admin/chart-editor.php:321
+#: src/Blocks/ChartBlock.php:175 src/Integrations/Bricks/ChartElement.php:452 src/Integrations/Elementor/ChartWidget.php:570 templates/admin/chart-editor.php:322
 msgid "Column chart height"
 msgstr "Высота столбчатой диаграммы"
 
-#: src/Blocks/ChartBlock.php:176 src/Integrations/Bricks/ChartElement.php:453 src/Integrations/Elementor/ChartWidget.php:571 templates/admin/chart-editor.php:322
+#: src/Blocks/ChartBlock.php:176 src/Integrations/Bricks/ChartElement.php:453 src/Integrations/Elementor/ChartWidget.php:571 templates/admin/chart-editor.php:323
 msgid "Corner radius"
 msgstr "Радиус углов"
 
@@ -494,67 +502,67 @@ msgstr "Радиус углов"
 msgid "Behaviour"
 msgstr "Поведение"
 
-#: src/Blocks/ChartBlock.php:178 src/Integrations/Elementor/ChartWidget.php:433 templates/admin/chart-editor.php:341
+#: src/Blocks/ChartBlock.php:178 src/Integrations/Elementor/ChartWidget.php:433 templates/admin/chart-editor.php:342
 msgid "Animate when scrolled into view"
 msgstr "Анимировать при появлении при прокрутке"
 
-#: src/Blocks/ChartBlock.php:179 src/Integrations/Elementor/ChartWidget.php:524 templates/admin/chart-editor.php:329 templates/admin/settings.php:21
+#: src/Blocks/ChartBlock.php:179 src/Integrations/Elementor/ChartWidget.php:524 templates/admin/chart-editor.php:330 templates/admin/settings.php:21
 msgid "Highlight the hovered bar"
 msgstr "Выделять полосу под курсором"
 
-#: src/Blocks/ChartBlock.php:180 src/Integrations/Elementor/ChartWidget.php:620 templates/admin/chart-editor.php:339
+#: src/Blocks/ChartBlock.php:180 src/Integrations/Elementor/ChartWidget.php:620 templates/admin/chart-editor.php:340
 msgid "Animation"
 msgstr "Анимация"
 
-#: src/Blocks/ChartBlock.php:181 src/Integrations/Bricks/ChartElement.php:341 src/Integrations/Elementor/ChartWidget.php:443 templates/admin/chart-editor.php:344
+#: src/Blocks/ChartBlock.php:181 src/Integrations/Bricks/ChartElement.php:341 src/Integrations/Elementor/ChartWidget.php:443 templates/admin/chart-editor.php:345
 msgid "Effect"
 msgstr "Эффект"
 
-#: src/Blocks/ChartBlock.php:182 src/Integrations/Bricks/ChartElement.php:344 src/Integrations/Bricks/ChartElement.php:348 src/Integrations/Elementor/ChartWidget.php:447 templates/admin/chart-editor.php:346
+#: src/Blocks/ChartBlock.php:182 src/Integrations/Bricks/ChartElement.php:344 src/Integrations/Bricks/ChartElement.php:348 src/Integrations/Elementor/ChartWidget.php:447 templates/admin/chart-editor.php:347
 msgid "Grow from the axis"
 msgstr "Рост от оси"
 
-#: src/Blocks/ChartBlock.php:183 src/Integrations/Bricks/ChartElement.php:345 src/Integrations/Elementor/ChartWidget.php:448 templates/admin/chart-editor.php:347
+#: src/Blocks/ChartBlock.php:183 src/Integrations/Bricks/ChartElement.php:345 src/Integrations/Elementor/ChartWidget.php:448 templates/admin/chart-editor.php:348
 msgid "Fade in"
 msgstr "Проявление"
 
-#: src/Blocks/ChartBlock.php:184 src/Integrations/Bricks/ChartElement.php:346 src/Integrations/Elementor/ChartWidget.php:449 templates/admin/chart-editor.php:348
+#: src/Blocks/ChartBlock.php:184 src/Integrations/Bricks/ChartElement.php:346 src/Integrations/Elementor/ChartWidget.php:449 templates/admin/chart-editor.php:349
 msgid "Rise into place"
 msgstr "Подъём на место"
 
-#: src/Blocks/ChartBlock.php:185 src/Integrations/Bricks/ChartElement.php:354 src/Integrations/Elementor/ChartWidget.php:457 templates/admin/chart-editor.php:353
+#: src/Blocks/ChartBlock.php:185 src/Integrations/Bricks/ChartElement.php:354 src/Integrations/Elementor/ChartWidget.php:457 templates/admin/chart-editor.php:354
 msgid "Motion curve"
 msgstr "Кривая движения"
 
-#: src/Blocks/ChartBlock.php:186 src/Integrations/Bricks/ChartElement.php:357 src/Integrations/Bricks/ChartElement.php:361 src/Integrations/Elementor/ChartWidget.php:461 templates/admin/chart-editor.php:355
+#: src/Blocks/ChartBlock.php:186 src/Integrations/Bricks/ChartElement.php:357 src/Integrations/Bricks/ChartElement.php:361 src/Integrations/Elementor/ChartWidget.php:461 templates/admin/chart-editor.php:356
 msgid "Smooth"
 msgstr "Плавная"
 
-#: src/Blocks/ChartBlock.php:187 src/Integrations/Bricks/ChartElement.php:358 src/Integrations/Elementor/ChartWidget.php:462 templates/admin/chart-editor.php:356
+#: src/Blocks/ChartBlock.php:187 src/Integrations/Bricks/ChartElement.php:358 src/Integrations/Elementor/ChartWidget.php:462 templates/admin/chart-editor.php:357
 msgid "Even"
 msgstr "Равномерная"
 
-#: src/Blocks/ChartBlock.php:188 src/Integrations/Bricks/ChartElement.php:359 src/Integrations/Elementor/ChartWidget.php:463 templates/admin/chart-editor.php:357
+#: src/Blocks/ChartBlock.php:188 src/Integrations/Bricks/ChartElement.php:359 src/Integrations/Elementor/ChartWidget.php:463 templates/admin/chart-editor.php:358
 msgid "Springy"
 msgstr "Пружинная"
 
-#: src/Blocks/ChartBlock.php:189 src/Integrations/Bricks/ChartElement.php:463 src/Integrations/Elementor/ChartWidget.php:627 templates/admin/chart-editor.php:360
+#: src/Blocks/ChartBlock.php:189 src/Integrations/Bricks/ChartElement.php:463 src/Integrations/Elementor/ChartWidget.php:627 templates/admin/chart-editor.php:361
 msgid "Duration (ms)"
 msgstr "Длительность (мс)"
 
-#: src/Blocks/ChartBlock.php:190 src/Integrations/Elementor/ChartWidget.php:643 templates/admin/chart-editor.php:361
+#: src/Blocks/ChartBlock.php:190 src/Integrations/Elementor/ChartWidget.php:643 templates/admin/chart-editor.php:362
 msgid "Delay between bars (ms)"
 msgstr "Задержка между полосами (мс)"
 
-#: src/Blocks/ChartBlock.php:191 src/Integrations/Elementor/ChartWidget.php:471 templates/admin/chart-editor.php:362
+#: src/Blocks/ChartBlock.php:191 src/Integrations/Elementor/ChartWidget.php:471 templates/admin/chart-editor.php:363
 msgid "Count the values up"
 msgstr "Счётчик значений"
 
-#: src/Blocks/ChartBlock.php:192 src/Integrations/Bricks/ChartElement.php:374 src/Integrations/Elementor/ChartWidget.php:481 templates/admin/chart-editor.php:363
+#: src/Blocks/ChartBlock.php:192 src/Integrations/Bricks/ChartElement.php:374 src/Integrations/Elementor/ChartWidget.php:481 templates/admin/chart-editor.php:364
 msgid "Replay every time the chart scrolls into view"
 msgstr "Повторять каждый раз при появлении диаграммы"
 
-#: src/Blocks/ChartBlock.php:193 src/Integrations/Elementor/ChartWidget.php:490 templates/admin/chart-editor.php:331
+#: src/Blocks/ChartBlock.php:193 src/Integrations/Elementor/ChartWidget.php:490 templates/admin/chart-editor.php:332
 msgid "Lazy loading: draw the chart when it scrolls near"
 msgstr "Отложенная загрузка: рисовать диаграмму при приближении прокрутки"
 
@@ -614,111 +622,111 @@ msgstr "Зоны"
 msgid "Upper limits of the shaded ranges, separated by commas, e.g. 50, 75, 100."
 msgstr "Верхние границы закрашенных зон через запятую, например 50, 75, 100."
 
-#: src/Blocks/ChartBlock.php:208 src/Integrations/Bricks/ChartElement.php:403 src/Integrations/Elementor/ChartWidget.php:500 templates/admin/chart-editor.php:332
+#: src/Blocks/ChartBlock.php:208 src/Integrations/Bricks/ChartElement.php:403 src/Integrations/Elementor/ChartWidget.php:500 templates/admin/chart-editor.php:333
 msgid "Tooltips on hover and keyboard focus"
 msgstr "Подсказки при наведении и фокусе с клавиатуры"
 
-#: src/Blocks/ChartBlock.php:209 src/Integrations/Bricks/ChartElement.php:410 src/Integrations/Elementor/ChartWidget.php:508 templates/admin/chart-editor.php:333
+#: src/Blocks/ChartBlock.php:209 src/Integrations/Bricks/ChartElement.php:410 src/Integrations/Elementor/ChartWidget.php:508 templates/admin/chart-editor.php:334
 msgid "Patterns besides colours (colour-blind friendly)"
 msgstr "Узоры в дополнение к цветам (для людей с нарушением цветовосприятия)"
 
-#: src/Blocks/ChartBlock.php:210 src/Integrations/Bricks/ChartElement.php:417 src/Integrations/Elementor/ChartWidget.php:516 templates/admin/chart-editor.php:334
+#: src/Blocks/ChartBlock.php:210 src/Integrations/Bricks/ChartElement.php:417 src/Integrations/Elementor/ChartWidget.php:516 templates/admin/chart-editor.php:335
 msgid "Download buttons (PNG, SVG) under the chart"
 msgstr "Кнопки скачивания (PNG, SVG) под диаграммой"
 
-#: src/Chart/ChartConfig.php:97
+#: src/Chart/ChartConfig.php:100
 msgid "Bars with ranges"
 msgstr "Столбцы с диапазонами"
 
-#: src/Chart/ChartConfig.php:100
+#: src/Chart/ChartConfig.php:103
 msgid "Value is where the solid bar ends. Range end is optional: it adds a highlighted range after the value (e.g. 10–15). Value text replaces the automatic text, e.g. \"up to 5\"."
 msgstr "Значение — это место, где заканчивается сплошная полоса. Конец диапазона необязателен: он добавляет выделенный диапазон после значения (например, 10–15). Текст значения заменяет автоматический текст, например \"до 5\"."
 
-#: src/Chart/ChartConfig.php:103
+#: src/Chart/ChartConfig.php:106
 msgid "Comparison bars"
 msgstr "Сравнительные столбцы"
 
-#: src/Chart/ChartConfig.php:104
+#: src/Chart/ChartConfig.php:107
 msgid "First series"
 msgstr "Первый ряд"
 
-#: src/Chart/ChartConfig.php:105
+#: src/Chart/ChartConfig.php:108
 msgid "Second series"
 msgstr "Второй ряд"
 
-#: src/Chart/ChartConfig.php:106
+#: src/Chart/ChartConfig.php:109
 msgid "Each row compares two values, e.g. your price and the market average. Name the two series under Values."
 msgstr "Каждая строка сравнивает два значения, например вашу цену и среднюю по рынку. Назовите ряды в разделе «Значения»."
 
-#: src/Chart/ChartConfig.php:109
+#: src/Chart/ChartConfig.php:112
 msgid "KPI rings"
 msgstr "KPI-кольца"
 
-#: src/Chart/ChartConfig.php:111 src/Chart/Types/RingChart.php:89
+#: src/Chart/ChartConfig.php:114 src/Chart/Types/RingChart.php:89
 msgid "Goal"
 msgstr "Цель"
 
-#: src/Chart/ChartConfig.php:112
+#: src/Chart/ChartConfig.php:115
 msgid "Each row is a ring filled to value / goal. Without a goal the scale maximum or 100 is used, so percentages need no goal."
 msgstr "Каждая строка — кольцо, заполненное на значение / цель. Без цели используется максимум шкалы или 100, поэтому для процентов цель не нужна."
 
-#: src/Chart/ChartConfig.php:115
+#: src/Chart/ChartConfig.php:118
 msgid "Timeline"
 msgstr "Временная шкала"
 
-#: src/Chart/ChartConfig.php:116 src/Chart/Types/RowChart.php:76
+#: src/Chart/ChartConfig.php:119 src/Chart/Types/RowChart.php:76
 msgid "Start"
 msgstr "Начало"
 
-#: src/Chart/ChartConfig.php:117 src/Chart/Types/RowChart.php:76
+#: src/Chart/ChartConfig.php:120 src/Chart/Types/RowChart.php:76
 msgid "Finish"
 msgstr "Окончание"
 
-#: src/Chart/ChartConfig.php:118
+#: src/Chart/ChartConfig.php:121
 msgid "Each row is a bar from start to finish on the axis, e.g. in weeks. Leave the finish empty for a milestone."
 msgstr "Каждая строка — полоса от начала до окончания на оси, например в неделях. Оставьте окончание пустым для вехи."
 
-#: src/Chart/ChartConfig.php:121
+#: src/Chart/ChartConfig.php:124
 msgid "Bullet chart"
 msgstr "Bullet-диаграмма"
 
-#: src/Chart/ChartConfig.php:123 src/Chart/Types/RowChart.php:77
+#: src/Chart/ChartConfig.php:126 src/Chart/Types/RowChart.php:77
 msgid "Target"
 msgstr "Целевое значение"
 
-#: src/Chart/ChartConfig.php:124
+#: src/Chart/ChartConfig.php:127
 msgid "The bar shows the value, the line the target. Bands (under Values) shade qualitative ranges, e.g. 50, 75, 100."
 msgstr "Полоса показывает значение, линия — цель. Зоны (в разделе «Значения») закрашивают качественные диапазоны, например 50, 75, 100."
 
-#: src/Chart/ChartConfig.php:127
+#: src/Chart/ChartConfig.php:130
 msgid "100% stacked bar"
 msgstr "100% накопительный столбец"
 
-#: src/Chart/ChartConfig.php:130
+#: src/Chart/ChartConfig.php:133
 msgid "One bar split into parts; the shares are calculated from the values."
 msgstr "Один столбец, разделённый на части; доли вычисляются из значений."
 
-#: src/Chart/ChartConfig.php:133
+#: src/Chart/ChartConfig.php:136
 msgid "Rating distribution"
 msgstr "Распределение оценок"
 
-#: src/Chart/ChartConfig.php:134 src/Chart/Types/RatingChart.php:101
+#: src/Chart/ChartConfig.php:137 src/Chart/Types/RatingChart.php:101
 msgid "Count"
 msgstr "Количество"
 
-#: src/Chart/ChartConfig.php:136
+#: src/Chart/ChartConfig.php:139
 msgid "One row per rating level: the label is the level (5, 4, 3…), the value the number of ratings. The average is calculated."
 msgstr "По одной строке на уровень оценки: подпись — уровень (5, 4, 3…), значение — число оценок. Среднее вычисляется."
 
-#: src/Chart/Renderer.php:292
+#: src/Chart/Renderer.php:322
 msgid "Download the chart as PNG"
 msgstr "Скачать диаграмму в PNG"
 
-#: src/Chart/Renderer.php:293
+#: src/Chart/Renderer.php:323
 msgid "Download the chart as SVG"
 msgstr "Скачать диаграмму в SVG"
 
-#: src/Chart/Renderer.php:306
+#: src/Chart/Renderer.php:336
 msgid "Chart data"
 msgstr "Данные диаграммы"
 
@@ -874,7 +882,7 @@ msgstr "Ось"
 msgid "Select a saved chart or add at least one bar."
 msgstr "Выберите сохранённую диаграмму или добавьте хотя бы одну полосу."
 
-#: src/Integrations/Elementor/ChartWidget.php:533 templates/admin/chart-editor.php:330
+#: src/Integrations/Elementor/ChartWidget.php:533 templates/admin/chart-editor.php:331
 msgid "Add an accessible data table (screen readers, SEO, AI)"
 msgstr "Добавить доступную таблицу данных (экранные дикторы, SEO, ИИ)"
 
@@ -966,35 +974,35 @@ msgstr "например, Средняя по рынку"
 msgid "These colors belong to this chart only. Single bars can have their own colors in the table above."
 msgstr "Эти цвета относятся только к этой диаграмме. Отдельным полосам можно задать свои цвета в таблице выше."
 
-#: templates/admin/chart-editor.php:307
+#: templates/admin/chart-editor.php:308
 msgid "Copy the style of another chart"
 msgstr "Скопировать стиль другой диаграммы"
 
-#: templates/admin/chart-editor.php:309
+#: templates/admin/chart-editor.php:310
 msgid "— Choose a chart —"
 msgstr "— Выберите диаграмму —"
 
-#: templates/admin/chart-editor.php:311
+#: templates/admin/chart-editor.php:312
 msgid "Copy style"
 msgstr "Скопировать стиль"
 
-#: templates/admin/chart-editor.php:312
+#: templates/admin/chart-editor.php:313
 msgid "Colours, font, sizes, patterns and animation; the data stays."
 msgstr "Цвета, шрифт, размеры, узоры и анимация; данные остаются."
 
-#: templates/admin/chart-editor.php:317
+#: templates/admin/chart-editor.php:318
 msgid "Typography & size"
 msgstr "Типографика и размер"
 
-#: templates/admin/chart-editor.php:319
+#: templates/admin/chart-editor.php:320
 msgid "Font family"
 msgstr "Семейство шрифтов"
 
-#: templates/admin/chart-editor.php:319
+#: templates/admin/chart-editor.php:320
 msgid "Empty: the font of your theme or builder."
 msgstr "Пусто: шрифт вашей темы или конструктора."
 
-#: templates/admin/chart-editor.php:327 templates/admin/settings.php:54 templates/admin/settings.php:57
+#: templates/admin/chart-editor.php:328 templates/admin/settings.php:54 templates/admin/settings.php:57
 msgid "Behaviour & accessibility"
 msgstr "Поведение и доступность"
 
@@ -1018,35 +1026,43 @@ msgstr "добавьте блок \"Qaiyo Easy Chart\" и выберите эт�
 msgid "add the \"Qaiyo Easy Chart\" element, then choose \"Saved chart\" as the source."
 msgstr "добавьте элемент \"Qaiyo Easy Chart\" и выберите источник \"Сохранённая диаграмма\"."
 
-#: templates/admin/chart-views.php:23
+#: templates/admin/chart-views.php:26
+msgid "Busiest day in the last 30 days: %1$s, %2$s views."
+msgstr "Самый посещаемый день за последние 30 дней: %1$s, просмотров: %2$s."
+
+#: templates/admin/chart-views.php:30
+msgid "No views in the last 30 days."
+msgstr "За последние 30 дней просмотров не было."
+
+#: templates/admin/chart-views.php:34
 msgid "The view counter was reset."
 msgstr "Счётчик просмотров сброшен."
 
-#: templates/admin/chart-views.php:28
+#: templates/admin/chart-views.php:39
 msgid "views in total"
 msgstr "просмотров всего"
 
-#: templates/admin/chart-views.php:33
+#: templates/admin/chart-views.php:44
 msgid "Last 7 days"
 msgstr "Последние 7 дней"
 
-#: templates/admin/chart-views.php:37
+#: templates/admin/chart-views.php:48
 msgid "Last 30 days"
 msgstr "Последние 30 дней"
 
-#: templates/admin/chart-views.php:48
+#: templates/admin/chart-views.php:59
 msgid "Views per day, last 30 days"
 msgstr "Просмотры по дням, последние 30 дней"
 
-#: templates/admin/chart-views.php:54
+#: templates/admin/chart-views.php:65
 msgid "A view is counted when the chart scrolls into view, once per visitor per 30 minutes. Anonymous: no cookies, no personal data. Bots and chart editors are not counted."
 msgstr "Просмотр засчитывается, когда диаграмма появляется на экране, — один раз на посетителя за 30 минут. Анонимно: без cookie и персональных данных. Боты и редакторы диаграмм не учитываются."
 
-#: templates/admin/chart-views.php:55
+#: templates/admin/chart-views.php:66
 msgid "View counting is switched off in the settings."
 msgstr "Подсчёт просмотров отключён в настройках."
 
-#: templates/admin/chart-views.php:61
+#: templates/admin/chart-views.php:72
 msgid "Reset counter"
 msgstr "Сбросить счётчик"
 

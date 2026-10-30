@@ -292,5 +292,9 @@
 "View counting is switched off in the settings.": "Le comptage des vues est désactivé dans les réglages.",
 "Reset counter": "Réinitialiser le compteur",
 "Count chart views (anonymous, no cookies)": "Compter les vues des graphiques (anonyme, sans cookies)",
-"Also count views of people who can edit charts": "Compter aussi les vues des personnes pouvant modifier les graphiques"
+"Also count views of people who can edit charts": "Compter aussi les vues des personnes pouvant modifier les graphiques",
+"%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "%1$s a un contraste de %2$s:1 sur fond blanc. Le texte doit atteindre au moins 4,5:1 pour le niveau WCAG AA.",
+"All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Toutes les couleurs de texte atteignent le contraste WCAG AA de 4,5:1 sur fond blanc.",
+"Busiest day in the last 30 days: %1$s, %2$s views.": "Jour le plus consulté des 30 derniers jours : %1$s, %2$s vues.",
+"No views in the last 30 days.": "Aucune vue au cours des 30 derniers jours."
 }

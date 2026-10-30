@@ -101,6 +101,8 @@
 	/* Preview ------------------------------------------------------------- */
 
 	function schedulePreview() {
+		// The colour picker updates its field after its change event.
+		window.setTimeout( checkContrast, 0 );
 		window.clearTimeout( timer );
 		timer = window.setTimeout( refreshPreview, 350 );
 	}
@@ -384,6 +386,47 @@
 		schedulePreview();
 	}
 
+	/* Contrast check -------------------------------------------------------
+	 * Text colours are checked against white as the user types (WCAG 1.4.3). */
+
+	function luminance( hex ) {
+		var match = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec( String( hex || '' ).trim() );
+		if ( ! match ) {
+			return null;
+		}
+		var value = match[ 1 ].length === 3 ? match[ 1 ].replace( /(.)/g, '$1$1' ) : match[ 1 ];
+		var channels = [ 0, 2, 4 ].map( function ( i ) {
+			var c = parseInt( value.substr( i, 2 ), 16 ) / 255;
+			return c <= 0.03928 ? c / 12.92 : Math.pow( ( c + 0.055 ) / 1.055, 2.4 );
+		} );
+		return 0.2126 * channels[ 0 ] + 0.7152 * channels[ 1 ] + 0.0722 * channels[ 2 ];
+	}
+
+	function checkContrast() {
+		var box = document.getElementById( 'qec-contrast' );
+		if ( ! box ) {
+			return;
+		}
+		var problems = [];
+		[ 'label_color', 'value_color', 'axis_color' ].forEach( function ( key ) {
+			var field = builder.querySelector( '[name="' + fieldName( key ) + '"]' );
+			var lum = field ? luminance( field.value || field.getAttribute( 'data-default-color' ) ) : null;
+			if ( null === lum ) {
+				return;
+			}
+			var ratio = 1.05 / ( lum + 0.05 );
+			if ( ratio < 4.5 ) {
+				var label = builder.querySelector( 'label[for="' + field.id + '"]' );
+				problems.push( ( i18n.lowContrast || '' ).replace( '%1$s', label ? label.textContent.trim() : key ).replace( '%2$s', ratio.toFixed( 1 ) ) );
+			}
+		} );
+		var text = problems.length ? problems.join( ' ' ) : i18n.contrastOk;
+		if ( box.textContent !== text ) {
+			box.textContent = text;
+		}
+		box.classList.toggle( 'is-warning', problems.length > 0 );
+	}
+
 	/* Export ------------------------------------------------------------------ */
 
 	function onExport( event ) {
@@ -411,6 +454,7 @@
 	} );
 	fillStyleSources();
 	applyType( false );
+	checkContrast();
 	document.addEventListener( 'click', onCopy );
 	document.addEventListener( 'click', function ( event ) {
 		var link = event.target.closest( '.qec-reset-views' );

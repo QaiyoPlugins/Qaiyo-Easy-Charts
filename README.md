@@ -72,12 +72,33 @@ Every type uses the same rows (label, value, second value, value text, colours),
 - **View statistics** — like Qaiyo Content Slider: the chart list shows how many visitors saw each chart (sortable), and the chart editor shows the total, the last 7 and 30 days and a 30-day graph, with a reset button. A view is counted only when the chart actually scrolls into view, once per visitor per 30 minutes; bots and chart editors are skipped. Anonymous by design: no cookies, no stored IP (a salted hash lives 30 minutes as a transient), and a suggested privacy-policy text is added to WordPress. Switchable in the settings.
 - **Every chart styled on its own** — colours, font and sizes live in each chart, block and builder element (there is no site-wide colour setting, so many different charts can sit side by side). New charts start from the default palette and show it as editable values. All styling is CSS custom properties.
 
-## Accessibility
+## Accessibility (WCAG 2.2 AA)
 
-- Every chart is a `<figure>` with an accessible name (its title).
-- An accessible, visually hidden **data table** carries the values for screen readers (on by default, switchable).
-- Forced-colours (Windows high contrast) support, reduced-motion support, no information by colour alone (values are always in text).
-- Admin screens: labelled fields, fieldsets with legends, keyboard row reordering, screen-reader announcements (`wp.a11y.speak`), AA contrast.
+Charts and admin screens are built and tested against WCAG 2.2 level AA.
+
+| Criterion | How it is met |
+|---|---|
+| 1.1.1 Non-text content | Every chart is a `<figure>` with an accessible name; the data is in a real (visually hidden) table; decorative drawing is hidden from assistive technology. |
+| 1.3.1 Info and relationships | Data table with caption, column and row headers; with tooltips or without the table the drawing becomes a labelled list. |
+| 1.4.1 Use of colour | Values are always text. Where colour would be the only cue (comparison series, stacked parts) patterns are always drawn; optional patterns for ranges too. |
+| 1.4.3 Contrast (text) | Default colours 5.4:1 and higher; tooltips use fixed 18:1 colours; hover dimming never fades text; the chart builder warns live when a chosen text colour is below 4.5:1. Admin accent text 5.8:1. |
+| 1.4.4 Resize text | Sizes in `em`; rings and the rating summary grow and stack with larger text (container queries in `em`). Tested at 200 %. |
+| 1.4.10 Reflow | No horizontal scrolling at 320 CSS px, front end and chart builder (tested). |
+| 1.4.11 Non-text contrast | Stacked-bar palette at least 3:1, focus outlines in the label colour, export buttons with a 5:1 border. |
+| 1.4.12 Text spacing | No clipping or overflow with WCAG text-spacing overrides (tested). |
+| 1.4.13 Content on hover or focus | Tooltips appear on hover *and* focus, can be hovered, stay until dismissed, close with Escape, and are kept inside the chart and window. |
+| 2.1.1 Keyboard | Every tooltip item, button and builder control is reachable and operable by keyboard; rows reorder with buttons. |
+| 2.2.2 Pause, stop, hide | The entrance animation (counting included) always ends within 5 seconds: long charts shorten the delay automatically. |
+| 2.3.3 Animation from interactions | `prefers-reduced-motion` turns all motion off (charts are drawn at once). |
+| 2.4.7 Focus visible | 2 px outline with offset on chart items and buttons. |
+| 2.5.3 Label in name | Visible button text ("PNG") is part of the accessible name ("Download the chart as PNG"). |
+| 2.5.8 Target size | Buttons at least 24 × 24 px (export buttons 44 × 32 px). |
+| 4.1.2 Name, role, value | Native elements, `aria-pressed` toggles, labelled fields and fieldsets. |
+| 4.1.3 Status messages | Live preview, row changes, imports, style copy and contrast warnings are announced (`wp.a11y.speak`, `role="status"`). |
+
+Also supported: forced colours (Windows high contrast). Verified with axe-core (0 violations on every chart type and on the plugin's admin screens) and scripted checks for reflow, text spacing, 200 % text, hoverable tooltips, focus and reduced motion.
+
+Colours are chosen per chart: the builder's contrast check helps, but contrast against your own page background stays your choice.
 
 ## SEO & AI friendly
 

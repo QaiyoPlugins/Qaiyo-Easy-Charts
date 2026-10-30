@@ -292,5 +292,9 @@
 "View counting is switched off in the settings.": "Подсчёт просмотров отключён в настройках.",
 "Reset counter": "Сбросить счётчик",
 "Count chart views (anonymous, no cookies)": "Считать просмотры диаграмм (анонимно, без cookie)",
-"Also count views of people who can edit charts": "Учитывать также просмотры пользователей, которые могут редактировать диаграммы"
+"Also count views of people who can edit charts": "Учитывать также просмотры пользователей, которые могут редактировать диаграммы",
+"%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.": "Контраст «%1$s» на белом фоне — %2$s:1. Для WCAG AA тексту нужно не менее 4,5:1.",
+"All text colours meet the WCAG AA contrast of 4.5:1 on a white background.": "Все цвета текста соответствуют контрасту WCAG AA 4,5:1 на белом фоне.",
+"Busiest day in the last 30 days: %1$s, %2$s views.": "Самый посещаемый день за последние 30 дней: %1$s, просмотров: %2$s.",
+"No views in the last 30 days.": "За последние 30 дней просмотров не было."
 }

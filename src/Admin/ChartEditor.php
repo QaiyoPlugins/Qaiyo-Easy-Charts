@@ -305,6 +305,9 @@ final class ChartEditor {
 						'noAnimation' => __( 'Animation is switched off for this chart.', 'qaiyo-easy-charts' ),
 						'typeChanged' => __( 'Chart type changed. The row fields follow the new type.', 'qaiyo-easy-charts' ),
 						'resetViews'  => __( 'Reset the view counter of this chart? This cannot be undone.', 'qaiyo-easy-charts' ),
+						/* translators: 1: colour setting name, 2: contrast ratio such as 3.2. */
+						'lowContrast' => __( '%1$s has a contrast of %2$s:1 on a white background. Text needs at least 4.5:1 to meet WCAG AA.', 'qaiyo-easy-charts' ),
+						'contrastOk'  => __( 'All text colours meet the WCAG AA contrast of 4.5:1 on a white background.', 'qaiyo-easy-charts' ),
 					),
 				)
 			) . ';',
