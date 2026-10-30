@@ -41,7 +41,7 @@ final class Abilities {
 			Schema::ABILITY_CATEGORY,
 			array(
 				'label'       => __( 'Qaiyo Easy Charts', 'qaiyo-easy-charts' ),
-				'description' => __( 'Create and read bar and column charts that can be embedded with a shortcode.', 'qaiyo-easy-charts' ),
+				'description' => __( 'Create and read charts (bars with ranges, comparison bars, KPI rings, timelines, bullet charts, 100% stacked bars, rating distributions) that can be embedded with a shortcode.', 'qaiyo-easy-charts' ),
 			)
 		);
 	}
@@ -60,15 +60,15 @@ final class Abilities {
 			'properties' => array(
 				'label' => array(
 					'type'        => 'string',
-					'description' => __( 'Label of the bar.', 'qaiyo-easy-charts' ),
+					'description' => __( 'Label of the row.', 'qaiyo-easy-charts' ),
 				),
 				'value' => array(
 					'type'        => 'number',
-					'description' => __( 'Where the solid bar ends.', 'qaiyo-easy-charts' ),
+					'description' => __( 'The value. Timeline: the start. Rating: the number of ratings.', 'qaiyo-easy-charts' ),
 				),
 				'max'   => array(
 					'type'        => 'number',
-					'description' => __( 'Optional end of a highlighted range after the value, e.g. 15 for "10–15".', 'qaiyo-easy-charts' ),
+					'description' => __( 'Optional second value. Bars: end of a highlighted range (15 for "10–15"). Comparison: the second series. Ring: the goal. Timeline: the finish. Bullet: the target.', 'qaiyo-easy-charts' ),
 				),
 				'text'  => array(
 					'type'        => 'string',
@@ -116,7 +116,7 @@ final class Abilities {
 			'qaiyo-easy-charts/get-chart',
 			array(
 				'label'               => __( 'Get chart', 'qaiyo-easy-charts' ),
-				'description'         => __( 'Returns one saved chart: its bars (label, value, optional range end and text), unit, orientation and shortcode.', 'qaiyo-easy-charts' ),
+				'description'         => __( 'Returns one saved chart: its type, rows (label, value, optional second value and text), unit, orientation and shortcode.', 'qaiyo-easy-charts' ),
 				'category'            => Schema::ABILITY_CATEGORY,
 				'input_schema'        => array(
 					'type'       => 'object',
@@ -135,6 +135,7 @@ final class Abilities {
 						'id'          => array( 'type' => 'integer' ),
 						'title'       => array( 'type' => 'string' ),
 						'shortcode'   => array( 'type' => 'string' ),
+						'type'        => array( 'type' => 'string' ),
 						'orientation' => array( 'type' => 'string' ),
 						'unit'        => array( 'type' => 'string' ),
 						'items'       => array(
@@ -162,7 +163,7 @@ final class Abilities {
 			'qaiyo-easy-charts/create-chart',
 			array(
 				'label'               => __( 'Create chart', 'qaiyo-easy-charts' ),
-				'description'         => __( 'Creates a saved bar or column chart and returns its ID and the shortcode to place it in content. Each bar has a label and a value; an optional range end draws a highlighted range (e.g. 10–15 days).', 'qaiyo-easy-charts' ),
+				'description'         => __( 'Creates a saved chart and returns its ID and the shortcode to place it in content. Each row has a label, a value and an optional second value whose meaning depends on the chart type.', 'qaiyo-easy-charts' ),
 				'category'            => Schema::ABILITY_CATEGORY,
 				'input_schema'        => array(
 					'type'       => 'object',
@@ -179,6 +180,12 @@ final class Abilities {
 							'minItems' => 1,
 							'maxItems' => ChartConfig::MAX_ITEMS,
 							'items'    => $item_schema,
+						),
+						'type'        => array(
+							'type'        => 'string',
+							'enum'        => ChartConfig::TYPES,
+							'default'     => 'bars',
+							'description' => __( 'bars: bars with optional ranges; compare: two series per row; ring: KPI rings; timeline: start–finish bars; bullet: value against a target; stacked: one 100% bar split into parts; rating: rating levels with counts.', 'qaiyo-easy-charts' ),
 						),
 						'orientation' => array(
 							'type'    => 'string',
@@ -267,6 +274,7 @@ final class Abilities {
 			'id'          => $id,
 			'title'       => $config['title'],
 			'shortcode'   => Repository::shortcode( $id ),
+			'type'        => $config['type'],
 			'orientation' => $config['orientation'],
 			'unit'        => $config['unit'],
 			'items'       => $items,
@@ -284,12 +292,13 @@ final class Abilities {
 		$title = Cast::string( $input['title'] ?? '' );
 
 		$config = array(
+			'type'        => $input['type'] ?? 'bars',
 			'items'       => Cast::arr( $input['items'] ?? array() ),
 			'orientation' => $input['orientation'] ?? 'horizontal',
 			'unit'        => $input['unit'] ?? '',
 			'title'       => $title,
 		);
-		if ( array() === ChartConfig::sanitize_items( $config['items'] ) ) {
+		if ( array() === ChartConfig::sanitize_items( $config['items'], Cast::string( $config['type'] ) ) ) {
 			return new \WP_Error( 'qaiyo_ec_no_items', __( 'At least one bar with a label and a value is required.', 'qaiyo-easy-charts' ) );
 		}
 

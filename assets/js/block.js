@@ -27,8 +27,59 @@
 		return t[ key ] || key;
 	}
 
+	function typeLabels( type ) {
+		var types = data.types || {};
+		return types[ type ] || types.bars || { value: text( 'value' ), second: text( 'rangeEnd' ), help: '' };
+	}
+
+	/* Spreadsheet / CSV paste: the same rules as the chart builder. */
+
+	function parseNumber( value ) {
+		var clean = String( value || '' ).replace( /[\s\u00a0\u202f]/g, '' );
+		clean = -1 !== clean.indexOf( ',' ) && -1 === clean.indexOf( '.' ) ? clean.replace( ',', '.' ) : clean.replace( /,/g, '' );
+		return '' !== clean && isFinite( clean ) ? clean : '';
+	}
+
+	function parseRows( source ) {
+		var delimiter = -1 !== source.indexOf( '\t' ) ? '\t' : ( -1 !== source.indexOf( ';' ) ? ';' : ',' );
+		var rows = source.split( /\r\n|\n|\r/ ).filter( function ( line ) {
+			return '' !== line.trim();
+		} ).map( function ( line ) {
+			return line.split( delimiter ).map( function ( cell ) {
+				return cell.trim().replace( /^"(.*)"$/, '$1' ).replace( /""/g, '"' );
+			} );
+		} );
+		if ( rows.length && '' === parseNumber( rows[ 0 ][ 1 ] ) ) {
+			rows.shift();
+		}
+		return rows.map( function ( cells ) {
+			return { label: cells[ 0 ] || '', value: parseNumber( cells[ 1 ] ), max: parseNumber( cells[ 2 ] ), text: cells[ 3 ] || '' };
+		} );
+	}
+
+	function PasteBox( props ) {
+		var state = wp.element.useState( '' );
+		return el(
+			'div',
+			{ style: { marginTop: '16px' } },
+			el( components.TextareaControl, { label: text( 'paste' ), help: text( 'pasteHelp' ), value: state[ 0 ], rows: 4, onChange: state[ 1 ] } ),
+			el( components.Button, {
+				variant: 'secondary',
+				disabled: '' === state[ 0 ].trim(),
+				onClick: function () {
+					var rows = parseRows( state[ 0 ] );
+					if ( rows.length ) {
+						props.onChange( rows );
+						state[ 1 ]( '' );
+					}
+				}
+			}, text( 'replaceRows' ) )
+		);
+	}
+
 	function BarsPanel( props ) {
 		var items = props.items || [];
+		var labels = typeLabels( props.type );
 
 		function update( index, key, value ) {
 			var next = items.map( function ( item, i ) {
@@ -65,25 +116,34 @@
 
 		return el(
 			components.PanelBody,
-			{ title: text( 'bars' ), initialOpen: true },
+			{ title: text( 'data' ), initialOpen: true },
+			el( components.SelectControl, {
+				label: text( 'chartType' ),
+				help: labels.help,
+				value: props.type,
+				options: Object.keys( data.types || {} ).map( function ( key ) {
+					return { value: key, label: data.types[ key ].name };
+				} ),
+				onChange: props.onType
+			} ),
 			items.map( function ( item, index ) {
 				return el(
 					'div',
 					{ key: index, className: 'qec-block-bar', style: { borderBottom: '1px solid #e2e8f0', paddingBottom: '12px', marginBottom: '12px' } },
 					el( components.TextControl, {
-						label: text( 'bar' ) + ' ' + ( index + 1 ) + ' – ' + text( 'label' ),
+						label: text( 'row' ) + ' ' + ( index + 1 ) + ' – ' + text( 'label' ),
 						value: item.label || '',
 						onChange: function ( v ) { update( index, 'label', v ); }
 					} ),
 					el( components.Flex, { align: 'flex-start' },
 						el( components.FlexBlock, null, el( components.TextControl, {
-							label: text( 'value' ),
+							label: labels.value,
 							type: 'number',
 							value: item.value || '',
 							onChange: function ( v ) { update( index, 'value', v ); }
 						} ) ),
-						el( components.FlexBlock, null, el( components.TextControl, {
-							label: text( 'rangeEnd' ),
+						labels.second && el( components.FlexBlock, null, el( components.TextControl, {
+							label: labels.second,
 							type: 'number',
 							value: item.max || '',
 							onChange: function ( v ) { update( index, 'max', v ); }
@@ -95,13 +155,14 @@
 						onChange: function ( v ) { update( index, 'text', v ); }
 					} ),
 					el( components.ButtonGroup, null,
-						el( components.Button, { icon: 'arrow-up-alt2', label: text( 'moveUp' ), disabled: 0 === index, onClick: function () { move( index, -1 ); } } ),
-						el( components.Button, { icon: 'arrow-down-alt2', label: text( 'moveDown' ), disabled: index === items.length - 1, onClick: function () { move( index, 1 ); } } ),
-						el( components.Button, { icon: 'trash', label: text( 'removeBar' ), isDestructive: true, onClick: function () { remove( index ); } } )
+						el( components.Button, { icon: 'arrow-up-alt2', label: text( 'moveRowUp' ), disabled: 0 === index, onClick: function () { move( index, -1 ); } } ),
+						el( components.Button, { icon: 'arrow-down-alt2', label: text( 'moveRowDown' ), disabled: index === items.length - 1, onClick: function () { move( index, 1 ); } } ),
+						el( components.Button, { icon: 'trash', label: text( 'removeRow' ), isDestructive: true, onClick: function () { remove( index ); } } )
 					)
 				);
 			} ),
-			el( components.Button, { variant: 'primary', icon: 'plus-alt2', onClick: add }, text( 'addBar' ) )
+			el( components.Button, { variant: 'primary', icon: 'plus-alt2', onClick: add }, text( 'addRow' ) ),
+			el( PasteBox, { onChange: props.onChange } )
 		);
 	}
 
@@ -110,6 +171,8 @@
 		var set = props.setAttributes;
 		var inline = 'saved' !== a.source;
 		var blockProps = useBlockProps();
+		var type = a.chartType || 'bars';
+		var rowType = -1 !== [ 'bars', 'compare', 'timeline', 'bullet' ].indexOf( type );
 
 		var chartOptions = [ { value: 0, label: text( 'selectChart' ) } ].concat( data.charts || [] );
 
@@ -138,11 +201,17 @@
 
 		if ( inline ) {
 			panels.push(
-				el( BarsPanel, { key: 'bars', items: a.items, onChange: function ( v ) { set( { items: v } ); } } ),
+				el( BarsPanel, {
+					key: 'bars',
+					type: type,
+					items: a.items,
+					onType: function ( v ) { set( { chartType: v } ); },
+					onChange: function ( v ) { set( { items: v } ); }
+				} ),
 				el(
 					components.PanelBody,
 					{ key: 'layout', title: text( 'layoutPanel' ), initialOpen: false },
-					el( components.SelectControl, {
+					'bars' === type && el( components.SelectControl, {
 						label: text( 'orientation' ),
 						value: a.orientation,
 						options: [
@@ -153,7 +222,7 @@
 						],
 						onChange: function ( v ) { set( { orientation: v } ); }
 					} ),
-					el( components.SelectControl, {
+					rowType && el( components.SelectControl, {
 						label: text( 'labels' ),
 						value: a.layout,
 						options: [
@@ -184,7 +253,10 @@
 					el( components.TextControl, { label: text( 'maximum' ), help: text( 'maximumHelp' ), type: 'number', value: a.scaleMax, onChange: function ( v ) { set( { scaleMax: v } ); } } ),
 					el( components.TextControl, { label: text( 'step' ), type: 'number', value: a.step, onChange: function ( v ) { set( { step: v } ); } } ),
 					el( components.ToggleControl, { label: text( 'showAxis' ), checked: a.showAxis, onChange: function ( v ) { set( { showAxis: v } ); } } ),
-					el( components.ToggleControl, { label: text( 'showValues' ), checked: a.showValues, onChange: function ( v ) { set( { showValues: v } ); } } )
+					el( components.ToggleControl, { label: text( 'showValues' ), checked: a.showValues, onChange: function ( v ) { set( { showValues: v } ); } } ),
+					'compare' === type && el( components.TextControl, { label: text( 'seriesA' ), value: a.seriesA, onChange: function ( v ) { set( { seriesA: v } ); } } ),
+					'compare' === type && el( components.TextControl, { label: text( 'seriesB' ), value: a.seriesB, onChange: function ( v ) { set( { seriesB: v } ); } } ),
+					'bullet' === type && el( components.TextControl, { label: text( 'bands' ), help: text( 'bandsHelp' ), value: a.bands, onChange: function ( v ) { set( { bands: v } ); } } )
 				)
 			);
 		}
@@ -247,7 +319,10 @@
 					components.PanelBody,
 					{ key: 'behaviour', title: text( 'behaviour' ), initialOpen: false },
 					el( components.ToggleControl, { label: text( 'lazy' ), checked: a.lazy, onChange: function ( v ) { set( { lazy: v } ); } } ),
-					el( components.ToggleControl, { label: text( 'hoverFocus' ), checked: a.hoverFocus, onChange: function ( v ) { set( { hoverFocus: v } ); } } )
+					el( components.ToggleControl, { label: text( 'hoverFocus' ), checked: a.hoverFocus, onChange: function ( v ) { set( { hoverFocus: v } ); } } ),
+					el( components.ToggleControl, { label: text( 'tooltips' ), checked: a.tooltips, onChange: function ( v ) { set( { tooltips: v } ); } } ),
+					el( components.ToggleControl, { label: text( 'patterns' ), checked: a.patterns, onChange: function ( v ) { set( { patterns: v } ); } } ),
+					el( components.ToggleControl, { label: text( 'export' ), checked: a.export, onChange: function ( v ) { set( { export: v } ); } } )
 				)
 			);
 		}

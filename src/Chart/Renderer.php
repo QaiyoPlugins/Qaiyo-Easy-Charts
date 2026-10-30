@@ -1,10 +1,8 @@
 <?php
 /**
- * Bar chart markup: horizontal bars or vertical columns, each with a solid base
- * value and an optional highlighted range on top (e.g. "10–15 days").
- *
- * One markup serves both orientations; CSS decides the direction, so the "auto"
- * orientation can switch from columns to bars on narrow containers without JS.
+ * Chart markup shared by every chart type: the root figure, caption, lazy
+ * loading, export buttons, data table and the helpers the types draw with.
+ * The drawing itself comes from the type classes in Chart\Types.
  *
  * Accessibility / SEO / AI: the chart is a <figure>. Unless disabled, the data
  * is also emitted as a real, visually hidden <table>, which screen readers,
@@ -15,6 +13,11 @@
 
 namespace Qaiyo\EasyCharts\Chart;
 
+use Qaiyo\EasyCharts\Chart\Types\ChartType;
+use Qaiyo\EasyCharts\Chart\Types\RatingChart;
+use Qaiyo\EasyCharts\Chart\Types\RingChart;
+use Qaiyo\EasyCharts\Chart\Types\RowChart;
+use Qaiyo\EasyCharts\Chart\Types\StackedChart;
 use Qaiyo\EasyCharts\Frontend\Assets;
 use Qaiyo\EasyCharts\Schema;
 use Qaiyo\EasyCharts\Support\Cast;
@@ -27,6 +30,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @phpstan-import-type QecConfig from ChartConfig
  * @phpstan-import-type QecItem from ChartConfig
+ * @phpstan-import-type QecTable from ChartConfig
  */
 final class Renderer {
 
@@ -96,7 +100,10 @@ final class Renderer {
 			array_filter(
 				array(
 					'qec-chart',
-					'qec-bars',
+					'qec-type-' . $config['type'],
+					in_array( $config['type'], ChartConfig::ROW_TYPES, true ) ? 'qec-bars' : '',
+					$config['patterns'] ? 'qec-patterns' : '',
+					$config['tooltips'] ? 'qec-tooltips' : '',
 					'qec-orient-' . $config['orientation'],
 					'qec-layout-' . $config['layout'],
 					$config['hover_focus'] ? 'qec-hover-focus' : '',
@@ -122,6 +129,9 @@ final class Renderer {
 		}
 		$vars['--qec-duration'] = $config['duration'] > 0 ? $config['duration'] . 'ms' : '';
 		$vars['--qec-stagger']  = $config['stagger'] > 0 ? $config['stagger'] . 'ms' : '';
+		if ( 'ring' === $config['type'] ) {
+			$vars['--qec-ring-size'] = $config['chart_height'];
+		}
 		return Css::inline( $vars );
 	}
 
@@ -158,34 +168,19 @@ final class Renderer {
 	 * @phpstan-param QecConfig $config
 	 */
 	public static function inner( array $config ): string {
-		$scale = self::scale( $config );
-		$table = $config['data_table'] && array() !== $config['items'];
+		$type  = self::type_class( $config['type'] );
+		$table = $type::table( $config );
 
-		$visual = '';
+		$visual = $type::visual( $config, self::tips( $table ) );
+		$html   = self::caption( $config ) . ( $config['lazy'] ? self::lazy( $config, $visual ) : $visual );
 
-		// Columns show the unit as an axis title instead of on the top tick.
-		if ( $config['show_axis'] && '' !== $config['unit'] && 'none' !== $config['unit_position'] && 'horizontal' !== $config['orientation'] ) {
-			$visual .= '<div class="qec-axis-title" aria-hidden="true">' . esc_html( $config['unit'] ) . '</div>';
+		if ( $config['export'] && array() !== $config['items'] ) {
+			$html .= self::export_buttons();
 		}
-
-		$visual .= $table
-			? '<div class="qec-grid" aria-hidden="true">'
-			: '<div class="qec-grid" role="list">';
-
-		foreach ( $config['items'] as $index => $item ) {
-			$visual .= self::row( $config, $scale, $item, (int) $index, $table );
-		}
-
-		if ( $config['show_axis'] ) {
-			$visual .= self::axis( $config, $scale );
-		}
-		$visual .= '</div>';
-
-		$html = self::caption( $config ) . ( $config['lazy'] ? self::lazy( $config, $visual ) : $visual );
 
 		// The data table is never deferred: screen readers, search engines and AI read it at once.
-		if ( $table ) {
-			$html .= self::data_table( $config );
+		if ( self::has_table( $config ) ) {
+			$html .= self::data_table( $config, $table );
 		}
 
 		return $html;
@@ -205,8 +200,11 @@ final class Renderer {
 		if ( '' !== $config['description'] ) {
 			$lines[] = $config['description'];
 		}
-		foreach ( $config['items'] as $item ) {
-			$lines[] = $item['label'] . ': ' . self::table_value( $config, $item );
+
+		$table = self::type_class( $config['type'] )::table( $config );
+		$lines = array_merge( $lines, self::tips( $table ) );
+		if ( '' !== $table['note'] ) {
+			$lines[] = $table['note'];
 		}
 		return implode( "\n", $lines );
 	}
@@ -283,84 +281,12 @@ final class Renderer {
 	}
 
 	/**
-	 * Markup of one bar.
-	 *
-	 * @param array                                      $config Sanitized configuration.
-	 * @phpstan-param QecConfig $config
-	 * @param array{min: float, max: float, step: float} $scale  Scale.
-	 * @param array                                      $item   Row.
-	 * @phpstan-param QecItem $item
-	 * @param int                                        $index Index.
-	 * @param bool                                       $has_table Has table.
+	 * Download buttons for the PNG / SVG export (chart.js does the work; hidden without JS).
 	 */
-	private static function row( array $config, array $scale, array $item, int $index, bool $has_table ): string {
-		$base_end = self::percent( $scale, (float) $item['value'] );
-
-		$row_style = Css::inline(
-			array(
-				'--qec-i'         => (string) $index,
-				'--qec-primary'   => $item['color'],
-				'--qec-secondary' => $item['range_color'],
-			)
-		);
-
-		$segments = sprintf(
-			'<span class="qec-seg qec-seg--primary" style="%s"></span>',
-			esc_attr( '--qec-start:0%;--qec-size:' . Css::percent( $base_end ) )
-		);
-
-		if ( '' !== $item['max'] ) {
-			$range_end = self::percent( $scale, (float) $item['max'] );
-			$segments .= sprintf(
-				'<span class="qec-seg qec-seg--secondary" style="%s"></span>',
-				esc_attr( '--qec-start:' . Css::percent( $base_end ) . ';--qec-size:' . Css::percent( max( 0.0, $range_end - $base_end ) ) )
-			);
-		}
-
-		$value = self::value_text( $config, $item );
-
-		$html  = '<div class="qec-row"' . ( $has_table ? '' : ' role="listitem"' ) . ' style="' . esc_attr( $row_style ) . '">';
-		$html .= '<span class="qec-label">' . esc_html( $item['label'] ) . '</span>';
-		$html .= '<span class="qec-track"' . ( $has_table ? '' : ' aria-hidden="true"' ) . '>' . $segments . '</span>';
-
-		if ( $config['show_values'] ) {
-			$html .= '<span class="qec-value">' . esc_html( $value ) . '</span>';
-		} elseif ( ! $has_table ) {
-			$html .= '<span class="qec-sr-only">' . esc_html( self::table_value( $config, $item ) ) . '</span>';
-		}
-
-		return $html . '</div>';
-	}
-
-	/**
-	 * Markup of the value axis.
-	 *
-	 * @param array                                      $config Sanitized configuration.
-	 * @phpstan-param QecConfig $config
-	 * @param array{min: float, max: float, step: float} $scale  Scale.
-	 */
-	private static function axis( array $config, array $scale ): string {
-		$ticks = self::ticks( $scale );
-		$last  = count( $ticks ) - 1;
-
-		$html = '';
-		foreach ( $ticks as $index => $tick ) {
-			$text = esc_html( self::format_number( $tick ) );
-			if ( '' !== $config['unit'] && ( 'all' === $config['unit_position'] || ( 'last' === $config['unit_position'] && $index === $last ) ) ) {
-				$text .= '<span class="qec-unit"> ' . esc_html( $config['unit'] ) . '</span>';
-			}
-
-			$html .= sprintf(
-				'<span class="qec-tick" style="%s">%s</span>',
-				esc_attr( '--qec-pos:' . Css::percent( self::percent( $scale, $tick ) ) ),
-				$text
-			);
-		}
-
-		return '<div class="qec-axis-row" aria-hidden="true">'
-			. '<span class="qec-axis-spacer"></span>'
-			. '<div class="qec-axis">' . $html . '</div>'
-			. '<span class="qec-axis-spacer"></span>'
+	private static function export_buttons(): string {
+		return '<div class="qec-export">'
+			. '<button type="button" class="qec-export-btn" data-qec-export="png" aria-label="' . esc_attr__( 'Download the chart as PNG', 'qaiyo-easy-charts' ) . '">PNG</button>'
+			. '<button type="button" class="qec-export-btn" data-qec-export="svg" aria-label="' . esc_attr__( 'Download the chart as SVG', 'qaiyo-easy-charts' ) . '">SVG</button>'
 			. '</div>';
 	}
 
@@ -369,36 +295,176 @@ final class Renderer {
 	 *
 	 * @param array $config Sanitized configuration.
 	 * @phpstan-param QecConfig $config
+	 * @param array $table  Table contents.
+	 * @phpstan-param QecTable $table
 	 */
-	private static function data_table( array $config ): string {
+	private static function data_table( array $config, array $table ): string {
 		$caption = '' !== $config['title'] ? $config['title'] : __( 'Chart data', 'qaiyo-easy-charts' );
+		if ( '' !== $table['note'] ) {
+			$caption .= ' — ' . $table['note'];
+		}
 
 		$html  = '<table class="qec-data-table qec-sr-only">';
-		$html .= '<caption>' . esc_html( $caption ) . '</caption>';
-		$html .= '<thead><tr><th scope="col">' . esc_html__( 'Item', 'qaiyo-easy-charts' ) . '</th><th scope="col">' . esc_html__( 'Value', 'qaiyo-easy-charts' ) . '</th></tr></thead><tbody>';
+		$html .= '<caption>' . esc_html( $caption ) . '</caption><thead><tr>';
+		foreach ( $table['head'] as $heading ) {
+			$html .= '<th scope="col">' . esc_html( $heading ) . '</th>';
+		}
+		$html .= '</tr></thead><tbody>';
 
-		foreach ( $config['items'] as $item ) {
-			$html .= '<tr><th scope="row">' . esc_html( $item['label'] ) . '</th><td>' . esc_html( self::table_value( $config, $item ) ) . '</td></tr>';
+		foreach ( $table['rows'] as $row ) {
+			$html .= '<tr><th scope="row">' . esc_html( (string) array_shift( $row ) ) . '</th>';
+			foreach ( $row as $cell ) {
+				$html .= '<td>' . esc_html( $cell ) . '</td>';
+			}
+			$html .= '</tr>';
 		}
 
 		return $html . '</tbody></table>';
 	}
 
 	/**
-	 * Value shown next to / above the bar.
+	 * One sentence per item ("Label: value"), used for tooltips, screen-reader
+	 * text and plain text.
+	 *
+	 * @param array $table Table contents.
+	 * @phpstan-param QecTable $table
+	 * @return list<string>
+	 */
+	private static function tips( array $table ): array {
+		$columns = array_slice( $table['head'], 1 );
+		$tips    = array();
+		foreach ( $table['rows'] as $row ) {
+			$label = (string) array_shift( $row );
+			$cells = array();
+			foreach ( $row as $index => $cell ) {
+				// With one value column the heading is obvious; with more, name each value.
+				$cells[] = count( $columns ) > 1 && isset( $columns[ $index ] ) ? $columns[ $index ] . ' ' . $cell : $cell;
+			}
+			$tips[] = $label . ': ' . implode( ', ', $cells );
+		}
+		return $tips;
+	}
+
+	/**
+	 * The class that draws a chart type.
+	 *
+	 * @param string $type Chart type.
+	 * @return class-string<ChartType>
+	 */
+	private static function type_class( string $type ): string {
+		switch ( $type ) {
+			case 'ring':
+				return RingChart::class;
+			case 'stacked':
+				return StackedChart::class;
+			case 'rating':
+				return RatingChart::class;
+			default:
+				return RowChart::class;
+		}
+	}
+
+	/**
+	 * Whether the chart carries the hidden data table.
+	 *
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 */
+	public static function has_table( array $config ): bool {
+		return $config['data_table'] && array() !== $config['items'];
+	}
+
+	/**
+	 * Accessibility of the drawn chart. With the data table (and no tooltips) the
+	 * drawing is decorative and hidden from assistive technology; otherwise it is
+	 * a list whose items carry their own text.
+	 *
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 */
+	public static function is_list( array $config ): bool {
+		return $config['tooltips'] || ! self::has_table( $config );
+	}
+
+	/**
+	 * Attributes of the element that holds the marks.
+	 *
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 */
+	public static function list_attrs( array $config ): string {
+		return self::is_list( $config ) ? ' role="list"' : ' aria-hidden="true"';
+	}
+
+	/**
+	 * Hides a visible part of a mark when the mark speaks through its own text.
+	 *
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 */
+	public static function hidden( array $config ): string {
+		return self::is_list( $config ) ? ' aria-hidden="true"' : '';
+	}
+
+	/**
+	 * Opening tag of a mark: one item of the chart (a row, a ring, a legend entry).
+	 *
+	 * @param array                $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @param string               $tag    Element name.
+	 * @param string               $classes Extra classes.
+	 * @param array<string,string> $vars   CSS custom properties.
+	 */
+	public static function mark_open( array $config, string $tag, string $classes, array $vars ): string {
+		$html = '<' . $tag . ' class="' . esc_attr( trim( 'qec-mark ' . $classes ) ) . '"';
+		$css  = Css::inline( $vars );
+		if ( '' !== $css ) {
+			$html .= ' style="' . esc_attr( $css ) . '"';
+		}
+		if ( self::is_list( $config ) ) {
+			$html .= ' role="listitem"';
+		}
+		if ( $config['tooltips'] ) {
+			$html .= ' tabindex="0"';
+		}
+		return $html . '>';
+	}
+
+	/**
+	 * Closing part of a mark: its text for screen readers and the tooltip.
+	 *
+	 * @param array  $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @param string $tag    Element name.
+	 * @param string $tip    The item as one sentence.
+	 */
+	public static function mark_close( array $config, string $tag, string $tip ): string {
+		$html = '';
+		if ( self::is_list( $config ) ) {
+			$html .= '<span class="qec-sr-only">' . esc_html( $tip ) . '</span>';
+		}
+		if ( $config['tooltips'] ) {
+			$html .= '<span class="qec-tip" aria-hidden="true">' . esc_html( $tip ) . '</span>';
+		}
+		return $html . '</' . $tag . '>';
+	}
+
+	/**
+	 * Value shown on the chart: the custom text, or the formatted number (with
+	 * the range end for bars and timelines).
 	 *
 	 * @param array $config Sanitized configuration.
 	 * @phpstan-param QecConfig $config
 	 * @param array $item   Row.
 	 * @phpstan-param QecItem $item
 	 */
-	private static function value_text( array $config, array $item ): string {
+	public static function value_text( array $config, array $item ): string {
 		if ( '' !== $item['text'] ) {
 			return $item['text'];
 		}
 
 		$text = self::format_number( (float) $item['value'] );
-		if ( '' !== $item['max'] ) {
+		if ( '' !== $item['max'] && in_array( $config['type'], array( 'bars', 'timeline' ), true ) ) {
 			$text .= $config['separator'] . self::format_number( (float) $item['max'] );
 		}
 
@@ -406,16 +472,35 @@ final class Renderer {
 	}
 
 	/**
-	 * Value for the data table / plain text: always with the unit.
+	 * A number with the chart's prefix and suffix.
 	 *
 	 * @param array $config Sanitized configuration.
 	 * @phpstan-param QecConfig $config
-	 * @param array $item   Row.
-	 * @phpstan-param QecItem $item
+	 * @param float $number Number.
 	 */
-	private static function table_value( array $config, array $item ): string {
-		$text = self::value_text( $config, $item );
-		return '' !== $config['unit'] ? $text . ' ' . $config['unit'] : $text;
+	public static function number_text( array $config, float $number ): string {
+		return $config['prefix'] . self::format_number( $number ) . $config['suffix'];
+	}
+
+	/**
+	 * Text with the unit appended (data table, tooltips, plain text).
+	 *
+	 * @param array  $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @param string $text   Value text.
+	 */
+	public static function with_unit( array $config, string $text ): string {
+		return '' !== $config['unit'] && '' !== $text ? $text . ' ' . $config['unit'] : $text;
+	}
+
+	/**
+	 * A share as a percentage ("62%", "12.5%").
+	 *
+	 * @param float $part  Part.
+	 * @param float $total Total.
+	 */
+	public static function share( float $part, float $total ): string {
+		return self::format_number( $total > 0 ? round( $part / $total * 100, 1 ) : 0.0 ) . '%';
 	}
 
 	/**
@@ -433,7 +518,10 @@ final class Renderer {
 		if ( null === $max || $max <= $min ) {
 			$max = $min;
 			foreach ( $config['items'] as $item ) {
-				$max = max( $max, (float) ( '' === $item['max'] ? $item['value'] : $item['max'] ) );
+				$max = max( $max, (float) $item['value'], '' === $item['max'] ? $min : (float) $item['max'] );
+			}
+			foreach ( $config['bands'] as $band ) {
+				$max = max( $max, $band );
 			}
 			if ( $step > 0 ) {
 				$max = $min + ceil( ( $max - $min ) / $step ) * $step;
@@ -460,7 +548,7 @@ final class Renderer {
 	 * @param array{min: float, max: float, step: float} $scale Scale.
 	 * @return float[]
 	 */
-	private static function ticks( array $scale ): array {
+	public static function ticks( array $scale ): array {
 		if ( ( $scale['max'] - $scale['min'] ) / $scale['step'] > self::MAX_TICKS ) {
 			return array( $scale['min'], $scale['max'] );
 		}
@@ -479,7 +567,7 @@ final class Renderer {
 	 * @param array{min: float, max: float, step: float} $scale Scale.
 	 * @param float                                      $value Value to place.
 	 */
-	private static function percent( array $scale, float $value ): float {
+	public static function percent( array $scale, float $value ): float {
 		$percent = ( $value - $scale['min'] ) / ( $scale['max'] - $scale['min'] ) * 100;
 		return min( 100.0, max( 0.0, $percent ) );
 	}

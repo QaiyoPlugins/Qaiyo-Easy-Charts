@@ -26,7 +26,18 @@ Each bar has a solid **value** and an optional **range end** that draws a highli
 | **Vertical columns** | Columns with values on top, labels below and a value axis on the left. |
 | **Columns, bars on narrow screens** | Columns on wide layouts, automatically horizontal bars below 560 px. |
 
-More chart types will follow.
+### More chart types
+
+| Type (`type=`) | What it shows | Second value means |
+|---|---|---|
+| **Comparison bars** (`compare`) | Two series per row with a legend, e.g. your price vs. the market | the second series |
+| **KPI rings** (`ring`) | One progress ring per item with the value in the middle | the goal (default: scale maximum or 100) |
+| **Timeline** (`timeline`) | Bars from start to finish on a shared axis; an empty finish is a milestone | the finish |
+| **Bullet chart** (`bullet`) | The value as a bar, the target as a line, over qualitative bands (`bands="50,75,100"`) | the target |
+| **100% stacked bar** (`stacked`) | One bar split into parts, legend with values and shares | — |
+| **Rating distribution** (`rating`) | Weighted average with stars, total, and the share of every rating level | — |
+
+Every type uses the same rows (label, value, second value, value text, colours), so a chart can switch type without re-entering data.
 
 ## Features
 
@@ -38,7 +49,13 @@ More chart types will follow.
 - **Responsive by the chart's own width** (container queries) — works in columns and sidebars, not only on phones. Colliding axis ticks are thinned out automatically.
 - **Animated, switchable per chart** — effects `grow` / `fade` / `rise`, motion curves smooth / even / springy, duration and delay between bars, values counting up, optional replay on every scroll, a *Play animation* button in the builder preview. Respects `prefers-reduced-motion`; static without JavaScript.
   Shortcode: `effect="rise" easing="spring" duration="900" delay="80" count="1" replay="0" animate="1"`.
+- Shortcode for the other types and features: `type="compare" series_a="Us" series_b="Market"`, `type="bullet" bands="50,75,100"`, `tooltips="1" patterns="1" export="1"`.
 - **Lazy loading** — the chart is drawn when it scrolls within 300 px of the viewport (IntersectionObserver), with a size-matched placeholder so nothing jumps. The data table is always in the HTML, and a `<noscript>` copy keeps it visible without JavaScript. `lazy="0"` turns it off.
+- **Tooltips** — on hover *and* keyboard focus (every item is focusable), dismissible with Escape (WCAG 1.4.13).
+- **Patterns besides colours** — stripes, dots and lines on second series, ranges and stacked parts, for colour-blind readers and greyscale prints.
+- **Paste from a spreadsheet** — copy rows from Excel / Google Sheets or paste CSV into the chart builder or the block; tabs, semicolons and commas are detected, header rows skipped, `1 200,5` style numbers understood.
+- **Copy the style of another chart** — colours, font, sizes, patterns and animation in one click; the data stays.
+- **PNG / SVG export** — download buttons in the builder preview, and optionally under the chart on the site. The export embeds the chart's stylesheet and fonts, so it looks exactly like the page, in its final drawn state.
 - **Every chart styled on its own** — colours, font and sizes live in each chart, block and builder element (there is no site-wide colour setting, so many different charts can sit side by side). New charts start from the default palette and show it as editable values. All styling is CSS custom properties.
 
 ## Accessibility

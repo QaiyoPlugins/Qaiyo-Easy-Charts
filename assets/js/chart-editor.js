@@ -1,5 +1,6 @@
 /**
- * Qaiyo Easy Charts — chart edit screen: bar rows, colour pickers, live preview.
+ * Qaiyo Easy Charts — chart edit screen: chart type, rows, spreadsheet paste,
+ * colour pickers, style copy, live preview and export.
  */
 ( function ( $ ) {
 	'use strict';
@@ -41,13 +42,18 @@
 
 	/* Rows ---------------------------------------------------------------- */
 
-	function addRow() {
+	function createRow() {
 		var html = template.innerHTML.replace( /__i__/g, 'n' + ( counter++ ) );
 		var tbody = document.createElement( 'tbody' );
 		tbody.innerHTML = html.trim();
 		var row = tbody.firstElementChild;
 		rows.appendChild( row );
 		initColors( row );
+		return row;
+	}
+
+	function addRow() {
+		var row = createRow();
 		var first = row.querySelector( 'input' );
 		if ( first ) {
 			first.focus();
@@ -204,6 +210,190 @@
 		}
 	}
 
+	/* Chart type --------------------------------------------------------- */
+
+	function fieldName( key ) {
+		return config.field + '[' + key + ']';
+	}
+
+	// Column headings, field labels and visible settings follow the chart type.
+	function applyType( announce ) {
+		var select = document.getElementById( 'qec-type' );
+		var type = select ? select.value : 'bars';
+		var labels = ( config.types || {} )[ type ];
+		builder.setAttribute( 'data-qec-type', type );
+
+		if ( labels ) {
+			var help = document.getElementById( 'qec-type-help' );
+			if ( help ) {
+				help.textContent = labels.help;
+			}
+			[ [ 'value', labels.value ], [ 'second', labels.second ] ].forEach( function ( pair ) {
+				builder.querySelectorAll( 'th.qec-col-' + pair[ 0 ] ).forEach( function ( cell ) {
+					cell.textContent = pair[ 1 ];
+				} );
+				var cells = Array.prototype.slice.call( builder.querySelectorAll( 'td.qec-col-' + pair[ 0 ] ) );
+				if ( template ) {
+					cells = cells.concat( Array.prototype.slice.call( template.content.querySelectorAll( 'td.qec-col-' + pair[ 0 ] ) ) );
+				}
+				cells.forEach( function ( cell ) {
+					cell.setAttribute( 'data-label', pair[ 1 ] );
+					var input = cell.querySelector( 'input' );
+					if ( input ) {
+						input.setAttribute( 'aria-label', pair[ 1 ] );
+					}
+				} );
+			} );
+		}
+
+		builder.querySelectorAll( '[data-qec-types]' ).forEach( function ( group ) {
+			group.hidden = -1 === group.getAttribute( 'data-qec-types' ).split( ' ' ).indexOf( type );
+		} );
+
+		if ( announce ) {
+			speak( i18n.typeChanged );
+		}
+	}
+
+	/* Spreadsheet / CSV paste ----------------------------------------------- */
+
+	function parseNumber( text ) {
+		var clean = String( text || '' ).replace( /[\s\u00a0\u202f]/g, '' );
+		if ( -1 !== clean.indexOf( ',' ) && -1 === clean.indexOf( '.' ) ) {
+			clean = clean.replace( ',', '.' );
+		} else {
+			clean = clean.replace( /,/g, '' );
+		}
+		return '' !== clean && isFinite( clean ) ? clean : '';
+	}
+
+	function splitLine( line, delimiter ) {
+		var cells = [];
+		var cell = '';
+		var quoted = false;
+		for ( var i = 0; i < line.length; i++ ) {
+			var ch = line[ i ];
+			if ( '"' === ch ) {
+				if ( quoted && '"' === line[ i + 1 ] ) {
+					cell += '"';
+					i++;
+				} else {
+					quoted = ! quoted;
+				}
+			} else if ( ch === delimiter && ! quoted ) {
+				cells.push( cell.trim() );
+				cell = '';
+			} else {
+				cell += ch;
+			}
+		}
+		cells.push( cell.trim() );
+		return cells;
+	}
+
+	function parseTable( text ) {
+		var lines = text.split( /\r\n|\n|\r/ ).filter( function ( line ) {
+			return '' !== line.trim();
+		} );
+		var delimiter = -1 !== text.indexOf( '\t' ) ? '\t' : ( -1 !== text.indexOf( ';' ) ? ';' : ',' );
+		var table = lines.map( function ( line ) {
+			return splitLine( line, delimiter );
+		} );
+		// A header row has no number in its value column.
+		if ( table.length && '' === parseNumber( table[ 0 ][ 1 ] ) ) {
+			table.shift();
+		}
+		return table;
+	}
+
+	function onImport() {
+		var area = document.getElementById( 'qec-import-text' );
+		var table = parseTable( area ? area.value : '' );
+		if ( ! table.length ) {
+			speak( i18n.importEmpty );
+			return;
+		}
+
+		while ( rows.firstElementChild ) {
+			rows.firstElementChild.remove();
+		}
+		table.forEach( function ( cells ) {
+			var row = createRow();
+			var values = { label: cells[ 0 ] || '', value: parseNumber( cells[ 1 ] ), max: parseNumber( cells[ 2 ] ), text: cells[ 3 ] || '' };
+			Object.keys( values ).forEach( function ( key ) {
+				var input = row.querySelector( '[name$="[' + key + ']"]' );
+				if ( input ) {
+					input.value = values[ key ];
+				}
+			} );
+		} );
+		area.value = '';
+		speak( ( i18n.imported || '%d' ).replace( '%d', table.length ) );
+		schedulePreview();
+	}
+
+	/* Style copy ------------------------------------------------------------ */
+
+	function fillStyleSources() {
+		var select = document.getElementById( 'qec-style-source' );
+		if ( ! select ) {
+			return;
+		}
+		var styles = config.styles || [];
+		if ( ! styles.length ) {
+			select.closest( '.qec-style-copy' ).hidden = true;
+			return;
+		}
+		styles.forEach( function ( chart ) {
+			var option = document.createElement( 'option' );
+			option.value = String( chart.id );
+			option.textContent = chart.title;
+			select.appendChild( option );
+		} );
+	}
+
+	function onStyleCopy() {
+		var select = document.getElementById( 'qec-style-source' );
+		var source = ( config.styles || [] ).filter( function ( chart ) {
+			return select && String( chart.id ) === select.value;
+		} )[ 0 ];
+		if ( ! source ) {
+			return;
+		}
+
+		Object.keys( source.style ).forEach( function ( key ) {
+			var value = source.style[ key ];
+			var field = builder.querySelector( '[name="' + fieldName( key ) + '"]' );
+			if ( ! field ) {
+				return;
+			}
+			if ( 'checkbox' === field.type ) {
+				field.checked = !! value;
+			} else if ( field.classList.contains( 'qec-color' ) ) {
+				var color = value || field.getAttribute( 'data-default-color' ) || '';
+				if ( color ) {
+					$( field ).wpColorPicker( 'color', color );
+				} else {
+					field.value = '';
+				}
+			} else {
+				field.value = ( 0 === value && ( 'duration' === key || 'stagger' === key ) ) ? '' : value;
+			}
+		} );
+		speak( i18n.styleCopied );
+		schedulePreview();
+	}
+
+	/* Export ------------------------------------------------------------------ */
+
+	function onExport( event ) {
+		var button = event.target.closest( '[data-qec-admin-export]' );
+		var chart = preview.querySelector( '.qec-chart' );
+		if ( button && chart && window.qaiyoEasyChartsExport ) {
+			window.qaiyoEasyChartsExport( chart, button.getAttribute( 'data-qec-admin-export' ) ).catch( function () {} );
+		}
+	}
+
 	/* Wire up ------------------------------------------------------------- */
 
 	initColors( builder );
@@ -213,6 +403,14 @@
 	builder.addEventListener( 'change', schedulePreview );
 	builder.addEventListener( 'click', onDevice );
 	builder.addEventListener( 'click', onPlay );
+	builder.addEventListener( 'click', onExport );
+	builder.querySelector( '.qec-import-apply' ).addEventListener( 'click', onImport );
+	builder.querySelector( '.qec-style-apply' ).addEventListener( 'click', onStyleCopy );
+	document.getElementById( 'qec-type' ).addEventListener( 'change', function () {
+		applyType( true );
+	} );
+	fillStyleSources();
+	applyType( false );
 	document.addEventListener( 'click', onCopy );
 
 	var titleField = document.getElementById( 'title' );

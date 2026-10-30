@@ -29,6 +29,14 @@
 	--qec-stagger: 140ms;
 	--qec-ease: cubic-bezier(0.22, 1, 0.36, 1);
 	--qec-dim-opacity: 0.35;
+
+	/* Palette of the 100% stacked bar, after the primary and secondary colours. */
+	--qec-c3: #6c5ce7;
+	--qec-c4: #f4a259;
+	--qec-c5: #8d8aa3;
+	--qec-c6: #e76f8a;
+	--qec-ring-size: 160px;
+	--qec-pattern: rgba(255, 255, 255, 0.6);
 }
 
 .qec-chart {
@@ -201,7 +209,7 @@
 /* Hover: dim the other rows ---------------------------------------------- */
 
 @media (hover: hover) {
-	.qec-chart.qec-hover-focus .qec-grid:has(.qec-row:hover) .qec-row:not(:hover) {
+	.qec-chart.qec-hover-focus :has(> .qec-mark:hover) > .qec-mark:not(:hover) {
 		opacity: var(--qec-dim-opacity);
 	}
 }
@@ -510,6 +518,437 @@
 	}
 }
 
+/* Legend (comparison, 100% stacked) -------------------------------------- */
+
+.qec-chart .qec-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 20px;
+	margin: 0 0 16px;
+	color: var(--qec-label-color);
+	font-size: 0.9375em;
+	line-height: 1.4;
+}
+
+.qec-chart .qec-legend-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.qec-chart .qec-swatch {
+	flex: none;
+	width: 0.875em;
+	height: 0.875em;
+	border-radius: min(var(--qec-bar-radius), 3px);
+	background: var(--qec-c, var(--qec-primary));
+}
+
+.qec-chart .qec-swatch--b {
+	background: var(--qec-secondary);
+}
+
+/* Comparison: two series per row, one above the other --------------------- */
+
+.qec-type-compare .qec-track {
+	height: calc(var(--qec-bar-size, 28px) * 1.4);
+	background: transparent;
+	border-radius: 0;
+}
+
+.qec-type-compare .qec-seg {
+	height: calc(50% - 2px);
+	background: var(--qec-track);
+	border-radius: var(--qec-bar-radius);
+}
+
+.qec-type-compare .qec-seg--a {
+	background: var(--qec-primary);
+}
+
+.qec-type-compare .qec-seg--b {
+	top: auto;
+	background: var(--qec-secondary);
+}
+
+.qec-chart .qec-value--pair {
+	display: flex;
+	flex-direction: column;
+	font-size: 0.9375em;
+	line-height: 1.25;
+}
+
+.qec-chart .qec-value--pair .qec-count + .qec-count {
+	opacity: 0.7;
+	font-weight: 600;
+}
+
+/* Timeline: bars from start to finish, milestones as diamonds ------------- */
+
+.qec-type-timeline .qec-seg--primary {
+	border-radius: var(--qec-bar-radius);
+}
+
+.qec-type-timeline .qec-track {
+	overflow: visible;
+}
+
+.qec-chart .qec-milestone {
+	left: var(--qec-pos);
+	top: 50%;
+	bottom: auto;
+	width: calc(var(--qec-bar-size, 28px) * 0.7);
+	height: calc(var(--qec-bar-size, 28px) * 0.7);
+	background: var(--qec-secondary);
+	transform: translate(-50%, -50%) rotate(45deg);
+	transform-origin: center;
+}
+
+/* Bullet: measure over qualitative bands, target as a line ---------------- */
+
+.qec-type-bullet .qec-band {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--qec-start);
+	width: var(--qec-size);
+	background: color-mix(in srgb, var(--qec-axis-color) calc(var(--qec-band) * 12%), var(--qec-track));
+}
+
+.qec-type-bullet .qec-seg--measure {
+	top: 30%;
+	bottom: 30%;
+}
+
+.qec-chart .qec-target {
+	position: absolute;
+	top: 10%;
+	bottom: 10%;
+	left: var(--qec-pos);
+	width: 3px;
+	background: var(--qec-secondary);
+	transform: translateX(-50%);
+}
+
+.qec-type-bullet .qec-target {
+	background: var(--qec-value-color);
+}
+
+/* KPI rings ---------------------------------------------------------------- */
+
+.qec-chart .qec-rings {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--qec-column-gap) calc(var(--qec-column-gap) * 1.5);
+}
+
+.qec-chart .qec-ring {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	width: min(var(--qec-ring-size), 100%);
+	text-align: center;
+	transition: opacity 0.25s ease;
+}
+
+.qec-chart .qec-ring-figure {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 100%;
+	aspect-ratio: 1;
+}
+
+.qec-chart .qec-ring-svg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+	transform: rotate(-90deg);
+}
+
+.qec-chart .qec-ring-svg circle {
+	fill: none;
+	stroke-width: 3.4;
+}
+
+.qec-chart .qec-ring-track {
+	stroke: var(--qec-track);
+}
+
+.qec-chart .qec-ring-bar {
+	stroke: var(--qec-primary);
+	stroke-linecap: round;
+	stroke-dasharray: var(--qec-p) 100;
+}
+
+.qec-chart .qec-ring .qec-value {
+	position: relative;
+	padding: 0 12%;
+	font-size: calc(var(--qec-ring-size) * 0.16);
+	line-height: 1.1;
+	white-space: normal;
+}
+
+.qec-chart .qec-ring .qec-label {
+	padding: 0;
+}
+
+/* 100% stacked bar ----------------------------------------------------------- */
+
+.qec-chart .qec-stack-track {
+	position: relative;
+	display: block;
+	height: calc(var(--qec-bar-size, 28px) * 1.4);
+	margin: 0 0 20px;
+	overflow: hidden;
+	background: var(--qec-track);
+	border-radius: var(--qec-bar-radius);
+}
+
+.qec-chart .qec-stack-seg,
+.qec-chart .qec-legend--stack .qec-swatch {
+	background: var(--qec-c);
+}
+
+.qec-chart .qec-stack-seg + .qec-stack-seg {
+	box-shadow: inset 2px 0 0 var(--qec-track);
+}
+
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 1) { --qec-c: var(--qec-primary); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 2) { --qec-c: var(--qec-secondary); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 3) { --qec-c: var(--qec-c3); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 4) { --qec-c: var(--qec-c4); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 5) { --qec-c: var(--qec-c5); }
+.qec-chart :is(.qec-stack-seg, .qec-legend--stack > .qec-mark):nth-child(6n + 6) { --qec-c: var(--qec-c6); }
+
+.qec-chart .qec-legend--stack {
+	margin: 0;
+	gap: 10px 28px;
+}
+
+.qec-chart .qec-legend--stack .qec-label {
+	padding: 0;
+	font-size: 1em;
+}
+
+.qec-chart .qec-legend--stack .qec-value {
+	padding: 0;
+	font-size: 1em;
+}
+
+.qec-chart .qec-share {
+	color: var(--qec-axis-color);
+	font-weight: 500;
+}
+
+/* Rating distribution ------------------------------------------------------- */
+
+.qec-chart .qec-rating {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: 16px 40px;
+	align-items: center;
+}
+
+.qec-chart .qec-rating-summary {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	text-align: center;
+}
+
+.qec-chart .qec-rating-average {
+	color: var(--qec-value-color);
+	font-size: 3em;
+	font-weight: 700;
+	line-height: 1;
+	font-variant-numeric: tabular-nums;
+}
+
+.qec-chart .qec-stars {
+	position: relative;
+	display: inline-block;
+	line-height: 0;
+	white-space: nowrap;
+}
+
+.qec-chart .qec-stars svg {
+	width: 1.25em;
+	height: 1.25em;
+}
+
+.qec-chart .qec-stars-base svg {
+	fill: var(--qec-track);
+}
+
+.qec-chart .qec-stars-fill {
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: var(--qec-fill);
+	overflow: hidden;
+}
+
+.qec-chart .qec-stars-fill svg {
+	fill: var(--qec-secondary);
+}
+
+.qec-chart .qec-rating-total {
+	color: var(--qec-axis-color);
+	font-size: 0.875em;
+}
+
+.qec-chart .qec-rating .qec-grid {
+	row-gap: calc(var(--qec-row-gap) * 0.6);
+}
+
+.qec-chart .qec-rating .qec-label {
+	padding-right: 16px;
+	font-size: 0.9375em;
+}
+
+.qec-chart .qec-rating .qec-track {
+	height: calc(var(--qec-bar-size, 28px) * 0.45);
+	border-radius: max(var(--qec-bar-radius), 999px);
+}
+
+.qec-chart .qec-rating .qec-value {
+	min-width: 3.5em;
+	font-size: 0.9375em;
+	font-weight: 600;
+	text-align: right;
+}
+
+@container qec-chart (max-width: 420px) {
+	.qec-chart .qec-rating {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+/* Patterns: textures besides colour, for colour-blind readers --------------- */
+
+.qec-patterns :is(.qec-seg--secondary, .qec-swatch--b),
+.qec-patterns .qec-milestone {
+	background-image: repeating-linear-gradient(45deg, var(--qec-pattern) 0 2px, transparent 2px 7px);
+}
+
+.qec-patterns :is(.qec-stack-seg, .qec-legend--stack > .qec-mark .qec-swatch) {
+	background-size: 8px 8px;
+}
+
+.qec-patterns .qec-stack-seg:nth-child(6n + 2),
+.qec-patterns .qec-legend--stack > .qec-mark:nth-child(6n + 2) .qec-swatch {
+	background-image: repeating-linear-gradient(45deg, var(--qec-pattern) 0 2px, transparent 2px 7px);
+	background-size: auto;
+}
+
+.qec-patterns .qec-stack-seg:nth-child(6n + 3),
+.qec-patterns .qec-legend--stack > .qec-mark:nth-child(6n + 3) .qec-swatch {
+	background-image: radial-gradient(var(--qec-pattern) 1.5px, transparent 1.6px);
+}
+
+.qec-patterns .qec-stack-seg:nth-child(6n + 4),
+.qec-patterns .qec-legend--stack > .qec-mark:nth-child(6n + 4) .qec-swatch {
+	background-image: repeating-linear-gradient(0deg, var(--qec-pattern) 0 2px, transparent 2px 6px);
+	background-size: auto;
+}
+
+.qec-patterns .qec-stack-seg:nth-child(6n + 5),
+.qec-patterns .qec-legend--stack > .qec-mark:nth-child(6n + 5) .qec-swatch {
+	background-image: repeating-linear-gradient(-45deg, var(--qec-pattern) 0 2px, transparent 2px 7px);
+	background-size: auto;
+}
+
+.qec-patterns .qec-stack-seg:nth-child(6n + 6),
+.qec-patterns .qec-legend--stack > .qec-mark:nth-child(6n + 6) .qec-swatch {
+	background-image: repeating-linear-gradient(90deg, var(--qec-pattern) 0 2px, transparent 2px 6px);
+	background-size: auto;
+}
+
+/* Tooltips: on hover and keyboard focus; Escape hides them (chart.js) ------- */
+
+.qec-tooltips .qec-mark {
+	position: relative;
+	outline: none;
+}
+
+.qec-tooltips .qec-mark:focus-visible {
+	border-radius: 4px;
+	box-shadow: 0 0 0 2px var(--qec-track), 0 0 0 4px var(--qec-primary);
+}
+
+.qec-chart .qec-tip {
+	position: absolute;
+	bottom: calc(100% + 6px);
+	left: 50%;
+	z-index: 5;
+	width: max-content;
+	max-width: min(320px, 90vw);
+	padding: 6px 10px;
+	color: #fff;
+	background: var(--qec-primary);
+	border-radius: 6px;
+	box-shadow: 0 6px 20px rgba(15, 12, 36, 0.18);
+	font-size: 0.8125em;
+	font-weight: 500;
+	line-height: 1.4;
+	text-align: left;
+	white-space: normal;
+	pointer-events: none;
+	opacity: 0;
+	visibility: hidden;
+	transform: translate(-50%, 4px);
+	transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+
+.qec-tooltips .qec-mark:is(:hover, :focus-visible):not(.qec-tip-off) > .qec-tip {
+	opacity: 1;
+	visibility: visible;
+	transform: translate(-50%, 0);
+}
+
+/* Export ---------------------------------------------------------------------- */
+
+.qec-chart .qec-export {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 12px;
+}
+
+.qec-chart .qec-export-btn {
+	padding: 4px 12px;
+	color: var(--qec-label-color);
+	background: transparent;
+	border: 1px solid var(--qec-track);
+	border-radius: 999px;
+	font: inherit;
+	font-size: 0.8125em;
+	font-weight: 600;
+	line-height: 1.6;
+	cursor: pointer;
+}
+
+.qec-chart .qec-export-btn:hover,
+.qec-chart .qec-export-btn:focus-visible {
+	border-color: var(--qec-primary);
+}
+
+html:not(.qec-js) .qec-chart .qec-export,
+.qec-exporting .qec-export,
+.qec-exporting .qec-tip {
+	display: none;
+}
+
+.qec-chart.qec-exporting,
+.qec-chart.qec-exporting * {
+	transition: none !important;
+}
+
 /* Lazy loading ---------------------------------------------------------------
  * The drawn chart waits in a <template> until it scrolls near the viewport;
  * the placeholder keeps roughly its height so nothing jumps. Without JS the
@@ -534,6 +973,18 @@
 	.qec-bars.qec-layout-auto:not(.qec-orient-vertical) .qec-lazy-placeholder {
 		min-height: calc(var(--qec-rows, 3) * (var(--qec-bar-size, 28px) + var(--qec-row-gap) + var(--qec-stack-gap) + 1.4em) + 2.5em);
 	}
+}
+
+.qec-type-ring .qec-lazy-placeholder {
+	min-height: calc(var(--qec-ring-size) + 3em);
+}
+
+.qec-type-stacked .qec-lazy-placeholder {
+	min-height: calc(var(--qec-bar-size, 28px) * 1.4 + 20px + 3em);
+}
+
+.qec-type-rating .qec-lazy-placeholder {
+	min-height: calc(var(--qec-rows, 5) * (var(--qec-bar-size, 28px) * 0.45 + var(--qec-row-gap) * 0.6 + 0.8em));
 }
 
 html:not(.qec-js) .qec-chart .qec-lazy-placeholder {
@@ -574,8 +1025,23 @@ html:not(.qec-js) .qec-chart .qec-lazy-placeholder {
 	opacity: 0;
 }
 
+/* Rings fill up (grow) or fade in. */
+.qec-chart.qec-anim-grow.qec-armed:not(.qec-in-view) .qec-ring-bar {
+	stroke-dasharray: 0 100;
+	stroke-opacity: 0;
+}
+
+.qec-chart.qec-anim-fade.qec-armed:not(.qec-in-view) .qec-ring-bar {
+	opacity: 0;
+}
+
+.qec-chart.qec-in-view .qec-ring-bar {
+	transition: stroke-dasharray var(--qec-duration) var(--qec-ease), stroke-opacity 0.2s ease, opacity var(--qec-duration) ease;
+	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger));
+}
+
 /* Rise: whole rows / columns float up into place. */
-.qec-chart.qec-anim-rise.qec-armed:not(.qec-in-view) .qec-row {
+.qec-chart.qec-anim-rise.qec-armed:not(.qec-in-view) .qec-mark {
 	opacity: 0;
 	transform: translateY(18px);
 }
@@ -591,6 +1057,15 @@ html:not(.qec-js) .qec-chart .qec-lazy-placeholder {
 	opacity: 0;
 }
 
+.qec-chart.qec-anim-grow.qec-armed:not(.qec-in-view) .qec-milestone {
+	transform: translate(-50%, -50%) rotate(45deg) scale(0);
+}
+
+.qec-chart.qec-in-view :is(.qec-stack-seg, .qec-milestone) {
+	transition: transform calc(var(--qec-duration) * 0.7) var(--qec-ease), opacity var(--qec-duration) ease;
+	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger));
+}
+
 .qec-chart.qec-in-view .qec-seg--primary {
 	transition: transform var(--qec-duration) var(--qec-ease), opacity var(--qec-duration) ease;
 	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger));
@@ -601,7 +1076,7 @@ html:not(.qec-js) .qec-chart .qec-lazy-placeholder {
 	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger) + var(--qec-duration) * 0.55);
 }
 
-.qec-chart.qec-anim-rise.qec-in-view .qec-row {
+.qec-chart.qec-anim-rise.qec-in-view .qec-mark {
 	transition: opacity calc(var(--qec-duration) * 0.6) ease, transform var(--qec-duration) var(--qec-ease);
 	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger));
 }
@@ -626,7 +1101,9 @@ html:not(.qec-js) .qec-chart .qec-lazy-placeholder {
 	.qec-chart .qec-value,
 	.qec-chart .qec-label,
 	.qec-chart .qec-tick,
-	.qec-chart .qec-row {
+	.qec-chart .qec-mark,
+	.qec-chart .qec-ring-bar,
+	.qec-chart .qec-tip {
 		transition: none !important;
 	}
 }
@@ -646,7 +1123,19 @@ html:not(.qec-js) .qec-chart .qec-lazy-placeholder {
 		background: CanvasText;
 	}
 
-	.qec-chart .qec-seg--secondary {
+	.qec-chart .qec-seg--secondary,
+	.qec-chart .qec-milestone,
+	.qec-chart .qec-target {
 		background: Highlight;
+	}
+
+	.qec-chart .qec-ring-bar {
+		stroke: CanvasText;
+	}
+
+	.qec-chart .qec-tip {
+		color: CanvasText;
+		background: Canvas;
+		border: 1px solid CanvasText;
 	}
 }

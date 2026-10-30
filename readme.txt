@@ -14,7 +14,15 @@ Simple, beautiful, animated and accessible bar and column charts. Shortcode, Gut
 
 Qaiyo Easy Charts makes clean, modern charts that look designed, not generated. Build a chart in the admin with a live preview, then place it anywhere.
 
-The first chart type is a **bar / column chart with ranges**: every bar has a solid value and an optional highlighted range on top — ideal for "up to 5 days", "10–15 days", price ranges or delivery times.
+Seven chart types, all from the same simple rows:
+
+* **Bars with ranges** — horizontal bars or vertical columns, every bar with a solid value and an optional highlighted range ("up to 5 days", "10–15 days").
+* **Comparison bars** — two series per row, e.g. your price vs. the market average.
+* **KPI rings** — progress rings with the value in the middle.
+* **Timeline** — bars from start to finish, milestones as diamonds.
+* **Bullet chart** — value against a target over qualitative bands.
+* **100% stacked bar** — how a whole splits into parts.
+* **Rating distribution** — average, stars and the share of every rating level.
 
 **Key features:**
 
@@ -26,6 +34,11 @@ The first chart type is a **bar / column chart with ranges**: every bar has a so
 * **Responsive by the chart's own width** — container queries, so charts adapt in columns and sidebars too. Colliding axis labels are thinned out automatically.
 * **Animated, switchable per chart** — grow, fade or rise effects, smooth / even / springy motion, custom duration and delay between bars, values counting up, optional replay on every scroll. Respects reduced-motion preferences; works without JavaScript.
 * **Lazy loading** — charts are drawn only when they scroll near; the accessible data table stays in the HTML for search engines and screen readers.
+* **Tooltips on hover and keyboard focus**, dismissible with Escape.
+* **Patterns besides colours** for colour-blind readers.
+* **Paste from Excel, Google Sheets or CSV** into the builder or the block.
+* **Copy the style of another chart** in one click.
+* **PNG and SVG export** from the builder and, optionally, from the page.
 * **Accessible** — a figure with an accessible name and a visually hidden data table for screen readers, forced-colours support, WCAG 2.2 AA admin screens.
 * **SEO and AI friendly** — real HTML text and a semantic data table instead of an image; WordPress Abilities API support so AI agents can list, read and create charts.
 * **Every chart styled on its own** — colours, font and sizes are set per chart, block or builder element, starting from a clean default palette.
@@ -75,4 +88,4 @@ Charts are kept unless you switch on "Delete all charts and settings when the pl
 == Changelog ==
 
 = 1.0.0 =
-* First release: bar / column chart with ranges, chart builder, shortcode, Gutenberg block, Elementor widget, Bricks element, Abilities API, 10 translations.
+* First release: seven chart types (bars with ranges, comparison bars, KPI rings, timeline, bullet chart, 100% stacked bar, rating distribution), tooltips, patterns, spreadsheet paste, style copy, PNG / SVG export, switchable animations, lazy loading, chart builder, shortcode, Gutenberg block, Elementor widget, Bricks element, Abilities API, 10 translations.

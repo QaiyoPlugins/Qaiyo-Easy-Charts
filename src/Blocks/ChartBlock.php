@@ -24,6 +24,7 @@ final class ChartBlock {
 
 	/** Block attribute => configuration key (inline source). */
 	const ATTRIBUTE_MAP = array(
+		'chartType'    => 'type',
 		'orientation'  => 'orientation',
 		'layout'       => 'layout',
 		'title'        => 'title',
@@ -44,6 +45,12 @@ final class ChartBlock {
 		'replay'       => 'replay',
 		'lazy'         => 'lazy',
 		'hoverFocus'   => 'hover_focus',
+		'seriesA'      => 'series_a',
+		'seriesB'      => 'series_b',
+		'bands'        => 'bands',
+		'patterns'     => 'patterns',
+		'tooltips'     => 'tooltips',
+		'export'       => 'export',
 	);
 
 	/** Style attributes, applied on top of saved charts too. */
@@ -107,6 +114,7 @@ final class ChartBlock {
 				array(
 					'charts'    => $charts,
 					'defaults'  => ChartConfig::DEFAULT_STYLE,
+					'types'     => ChartConfig::type_labels(),
 					'manageUrl' => admin_url( PostType::MENU_SLUG ),
 					'i18n'      => self::strings(),
 				)
@@ -129,16 +137,10 @@ final class ChartBlock {
 			'selectChart'   => __( '— Select a chart —', 'qaiyo-easy-charts' ),
 			'manage'        => __( 'Manage charts', 'qaiyo-easy-charts' ),
 			'noChart'       => __( 'Select a saved chart in the block settings.', 'qaiyo-easy-charts' ),
-			'bars'          => __( 'Bars', 'qaiyo-easy-charts' ),
-			'bar'           => __( 'Bar', 'qaiyo-easy-charts' ),
 			'label'         => __( 'Label', 'qaiyo-easy-charts' ),
 			'value'         => __( 'Value', 'qaiyo-easy-charts' ),
 			'rangeEnd'      => __( 'Range end', 'qaiyo-easy-charts' ),
 			'valueText'     => __( 'Value text', 'qaiyo-easy-charts' ),
-			'addBar'        => __( 'Add bar', 'qaiyo-easy-charts' ),
-			'removeBar'     => __( 'Remove bar', 'qaiyo-easy-charts' ),
-			'moveUp'        => __( 'Move bar up', 'qaiyo-easy-charts' ),
-			'moveDown'      => __( 'Move bar down', 'qaiyo-easy-charts' ),
 			'layoutPanel'   => __( 'Layout', 'qaiyo-easy-charts' ),
 			'orientation'   => __( 'Orientation', 'qaiyo-easy-charts' ),
 			'default'       => __( 'Default (from settings)', 'qaiyo-easy-charts' ),
@@ -191,6 +193,23 @@ final class ChartBlock {
 			'countUp'       => __( 'Count the values up', 'qaiyo-easy-charts' ),
 			'replay'        => __( 'Replay every time the chart scrolls into view', 'qaiyo-easy-charts' ),
 			'lazy'          => __( 'Lazy loading: draw the chart when it scrolls near', 'qaiyo-easy-charts' ),
+			'chartType'     => __( 'Chart type', 'qaiyo-easy-charts' ),
+			'data'          => __( 'Data', 'qaiyo-easy-charts' ),
+			'row'           => __( 'Row', 'qaiyo-easy-charts' ),
+			'addRow'        => __( 'Add row', 'qaiyo-easy-charts' ),
+			'removeRow'     => __( 'Remove row', 'qaiyo-easy-charts' ),
+			'moveRowUp'     => __( 'Move row up', 'qaiyo-easy-charts' ),
+			'moveRowDown'   => __( 'Move row down', 'qaiyo-easy-charts' ),
+			'paste'         => __( 'Paste from a spreadsheet or CSV', 'qaiyo-easy-charts' ),
+			'pasteHelp'     => __( 'One row per line: label, value, second value, value text — separated by tabs, semicolons or commas. A header row is skipped.', 'qaiyo-easy-charts' ),
+			'replaceRows'   => __( 'Replace the rows', 'qaiyo-easy-charts' ),
+			'seriesA'       => __( 'Name of the first series', 'qaiyo-easy-charts' ),
+			'seriesB'       => __( 'Name of the second series', 'qaiyo-easy-charts' ),
+			'bands'         => __( 'Bands', 'qaiyo-easy-charts' ),
+			'bandsHelp'     => __( 'Upper limits of the shaded ranges, separated by commas, e.g. 50, 75, 100.', 'qaiyo-easy-charts' ),
+			'tooltips'      => __( 'Tooltips on hover and keyboard focus', 'qaiyo-easy-charts' ),
+			'patterns'      => __( 'Patterns besides colours (colour-blind friendly)', 'qaiyo-easy-charts' ),
+			'export'        => __( 'Download buttons (PNG, SVG) under the chart', 'qaiyo-easy-charts' ),
 		);
 	}
 

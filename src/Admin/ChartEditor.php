@@ -153,7 +153,7 @@ final class ChartEditor {
 	 * @return array<mixed>
 	 */
 	public static function from_form( array $raw ): array {
-		foreach ( array( 'show_caption', 'show_axis', 'show_values', 'animate', 'replay', 'count_up', 'lazy', 'hover_focus', 'data_table' ) as $flag ) {
+		foreach ( array( 'show_caption', 'show_axis', 'show_values', 'animate', 'replay', 'count_up', 'lazy', 'hover_focus', 'data_table', 'patterns', 'tooltips', 'export' ) as $flag ) {
 			$raw[ $flag ] = ! empty( $raw[ $flag ] );
 		}
 		$raw['items'] = array_values( Cast::arr( $raw['items'] ?? array() ) );
@@ -206,6 +206,30 @@ final class ChartEditor {
 	}
 
 	/**
+	 * Styles of the other saved charts, for "Copy the style of another chart".
+	 *
+	 * @param int $current_id The chart being edited.
+	 * @return list<array{id: int, title: string, style: array<string, mixed>}>
+	 */
+	private static function other_styles( int $current_id ): array {
+		$styles = array();
+		foreach ( Repository::list( 100 ) as $chart ) {
+			if ( $chart['id'] === $current_id ) {
+				continue;
+			}
+			$config = Repository::find( $chart['id'], false );
+			if ( null !== $config ) {
+				$styles[] = array(
+					'id'    => $chart['id'],
+					'title' => $chart['title'],
+					'style' => ChartConfig::style_of( $config ),
+				);
+			}
+		}
+		return $styles;
+	}
+
+	/**
 	 * Enqueue the assets.
 	 *
 	 * @param mixed $hook_suffix Current admin page.
@@ -241,13 +265,20 @@ final class ChartEditor {
 					'nonce'   => wp_create_nonce( Schema::NONCE_PREVIEW ),
 					'postId'  => $post instanceof \WP_Post ? $post->ID : 0,
 					'field'   => self::FIELD,
+					'types'   => ChartConfig::type_labels(),
+					'styles'  => self::other_styles( $post instanceof \WP_Post ? $post->ID : 0 ),
 					'i18n'    => array(
+						/* translators: %d: number of imported rows. */
+						'imported'    => __( 'Rows imported: %d.', 'qaiyo-easy-charts' ),
+						'importEmpty' => __( 'No rows found. Paste one row per line: label, value, second value, value text.', 'qaiyo-easy-charts' ),
+						'styleCopied' => __( 'Style copied. Save the chart to keep it.', 'qaiyo-easy-charts' ),
 						'rowAdded'    => __( 'Bar added.', 'qaiyo-easy-charts' ),
 						'rowRemoved'  => __( 'Bar removed.', 'qaiyo-easy-charts' ),
 						'rowMoved'    => __( 'Bar moved.', 'qaiyo-easy-charts' ),
 						'copied'      => __( 'Copied to the clipboard.', 'qaiyo-easy-charts' ),
 						'previewFail' => __( 'The preview could not be refreshed.', 'qaiyo-easy-charts' ),
 						'noAnimation' => __( 'Animation is switched off for this chart.', 'qaiyo-easy-charts' ),
+						'typeChanged' => __( 'Chart type changed. The row fields follow the new type.', 'qaiyo-easy-charts' ),
 					),
 				)
 			) . ';',

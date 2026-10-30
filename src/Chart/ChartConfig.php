@@ -22,9 +22,23 @@ defined( 'ABSPATH' ) || exit;
  * Defaults, validation and parsing of chart configurations.
  *
  * @phpstan-type QecItem array{label: string, value: float, max: float|string, text: string, color: string, range_color: string}
- * @phpstan-type QecConfig array{orientation: string, items: list<QecItem>, title: string, description: string, show_caption: bool, scale_min: float, scale_max: float|string, step: float|string, unit: string, unit_position: string, show_axis: bool, show_values: bool, separator: string, prefix: string, suffix: string, layout: string, animate: bool, animation: string, duration: int, stagger: int, easing: string, replay: bool, count_up: bool, lazy: bool, hover_focus: bool, data_table: bool, bar_color: string, range_color: string, track_color: string, label_color: string, value_color: string, axis_color: string, font_family: string, bar_size: string, chart_height: string, radius: string}
+ * @phpstan-type QecTable array{head: list<string>, rows: list<non-empty-list<string>>, note: string}
+ * @phpstan-type QecConfig array{type: string, orientation: string, items: list<QecItem>, title: string, description: string, show_caption: bool, scale_min: float, scale_max: float|string, step: float|string, unit: string, unit_position: string, show_axis: bool, show_values: bool, separator: string, prefix: string, suffix: string, layout: string, animate: bool, animation: string, duration: int, stagger: int, easing: string, replay: bool, count_up: bool, lazy: bool, hover_focus: bool, data_table: bool, bar_color: string, range_color: string, track_color: string, label_color: string, value_color: string, axis_color: string, font_family: string, bar_size: string, chart_height: string, radius: string, series_a: string, series_b: string, bands: list<float>, patterns: bool, tooltips: bool, export: bool}
  */
 final class ChartConfig {
+
+	/**
+	 * Chart types. Every type reads the same rows (label, value, second value,
+	 * text, colours); the second value means: bars — range end, compare — the
+	 * second series, ring — the goal, timeline — the finish, bullet — the target.
+	 */
+	const TYPES = array( 'bars', 'compare', 'ring', 'timeline', 'bullet', 'stacked', 'rating' );
+
+	/** Types drawn as rows on a shared value axis. */
+	const ROW_TYPES = array( 'bars', 'compare', 'timeline', 'bullet' );
+
+	/** At most this many qualitative bands in a bullet chart. */
+	const MAX_BANDS = 4;
 
 	const ORIENTATIONS   = array( 'horizontal', 'vertical', 'auto' );
 	const LAYOUTS        = array( 'auto', 'inline', 'stacked' );
@@ -67,6 +81,74 @@ final class ChartConfig {
 		'radius'       => '--qec-bar-radius',
 	);
 
+	/** Keys that make up a chart's look, copied by "Copy the style of another chart". */
+	const STYLE_KEYS = array( 'bar_color', 'range_color', 'track_color', 'label_color', 'value_color', 'axis_color', 'font_family', 'bar_size', 'chart_height', 'radius', 'patterns', 'animate', 'animation', 'easing', 'duration', 'stagger', 'count_up' );
+
+	/**
+	 * Names and field labels of the chart types, shared by every editor.
+	 *
+	 * 'second' is the label of the second value; empty when the type has none.
+	 *
+	 * @return array<string, array{name: string, value: string, second: string, help: string}>
+	 */
+	public static function type_labels(): array {
+		return array(
+			'bars'     => array(
+				'name'   => __( 'Bars with ranges', 'qaiyo-easy-charts' ),
+				'value'  => __( 'Value', 'qaiyo-easy-charts' ),
+				'second' => __( 'Range end', 'qaiyo-easy-charts' ),
+				'help'   => __( 'Value is where the solid bar ends. Range end is optional: it adds a highlighted range after the value (e.g. 10–15). Value text replaces the automatic text, e.g. "up to 5".', 'qaiyo-easy-charts' ),
+			),
+			'compare'  => array(
+				'name'   => __( 'Comparison bars', 'qaiyo-easy-charts' ),
+				'value'  => __( 'First series', 'qaiyo-easy-charts' ),
+				'second' => __( 'Second series', 'qaiyo-easy-charts' ),
+				'help'   => __( 'Each row compares two values, e.g. your price and the market average. Name the two series under Values.', 'qaiyo-easy-charts' ),
+			),
+			'ring'     => array(
+				'name'   => __( 'KPI rings', 'qaiyo-easy-charts' ),
+				'value'  => __( 'Value', 'qaiyo-easy-charts' ),
+				'second' => __( 'Goal', 'qaiyo-easy-charts' ),
+				'help'   => __( 'Each row is a ring filled to value / goal. Without a goal the scale maximum or 100 is used, so percentages need no goal.', 'qaiyo-easy-charts' ),
+			),
+			'timeline' => array(
+				'name'   => __( 'Timeline', 'qaiyo-easy-charts' ),
+				'value'  => __( 'Start', 'qaiyo-easy-charts' ),
+				'second' => __( 'Finish', 'qaiyo-easy-charts' ),
+				'help'   => __( 'Each row is a bar from start to finish on the axis, e.g. in weeks. Leave the finish empty for a milestone.', 'qaiyo-easy-charts' ),
+			),
+			'bullet'   => array(
+				'name'   => __( 'Bullet chart', 'qaiyo-easy-charts' ),
+				'value'  => __( 'Value', 'qaiyo-easy-charts' ),
+				'second' => __( 'Target', 'qaiyo-easy-charts' ),
+				'help'   => __( 'The bar shows the value, the line the target. Bands (under Values) shade qualitative ranges, e.g. 50, 75, 100.', 'qaiyo-easy-charts' ),
+			),
+			'stacked'  => array(
+				'name'   => __( '100% stacked bar', 'qaiyo-easy-charts' ),
+				'value'  => __( 'Value', 'qaiyo-easy-charts' ),
+				'second' => '',
+				'help'   => __( 'One bar split into parts; the shares are calculated from the values.', 'qaiyo-easy-charts' ),
+			),
+			'rating'   => array(
+				'name'   => __( 'Rating distribution', 'qaiyo-easy-charts' ),
+				'value'  => __( 'Count', 'qaiyo-easy-charts' ),
+				'second' => '',
+				'help'   => __( 'One row per rating level: the label is the level (5, 4, 3…), the value the number of ratings. The average is calculated.', 'qaiyo-easy-charts' ),
+			),
+		);
+	}
+
+	/**
+	 * The style part of a configuration (see STYLE_KEYS).
+	 *
+	 * @param array $config Sanitized configuration.
+	 * @phpstan-param QecConfig $config
+	 * @return array<string, mixed>
+	 */
+	public static function style_of( array $config ): array {
+		return array_intersect_key( $config, array_flip( self::STYLE_KEYS ) );
+	}
+
 	/**
 	 * Defaults, seeded from the global settings.
 	 *
@@ -76,6 +158,7 @@ final class ChartConfig {
 		$settings = Settings::get();
 
 		$defaults = array(
+			'type'          => 'bars',
 			'orientation'   => 'horizontal',
 			'items'         => array(),
 			'title'         => '',
@@ -112,6 +195,12 @@ final class ChartConfig {
 			'bar_size'      => '',
 			'chart_height'  => '',
 			'radius'        => '',
+			'series_a'      => '',
+			'series_b'      => '',
+			'bands'         => array(),
+			'patterns'      => false,
+			'tooltips'      => false,
+			'export'        => false,
 		);
 
 		/**
@@ -183,9 +272,13 @@ final class ChartConfig {
 		$defaults = self::defaults();
 		$raw      = array_merge( $defaults, $raw );
 
+		$type = Cast::choice( $raw['type'], self::TYPES, 'bars' );
+
 		$config = array(
-			'orientation'   => Cast::choice( $raw['orientation'], self::ORIENTATIONS, 'horizontal' ),
-			'items'         => self::sanitize_items( Cast::arr( $raw['items'] ) ),
+			'type'          => $type,
+			// Only bars can stand up as columns; every other type has one fixed layout.
+			'orientation'   => 'bars' === $type ? Cast::choice( $raw['orientation'], self::ORIENTATIONS, 'horizontal' ) : 'horizontal',
+			'items'         => self::sanitize_items( Cast::arr( $raw['items'] ), $type ),
 			'title'         => self::text( $raw['title'], 200 ),
 			'description'   => self::text( $raw['description'], 500 ),
 			'show_caption'  => Cast::bool( $raw['show_caption'] ),
@@ -220,6 +313,12 @@ final class ChartConfig {
 			'bar_size'      => Css::length( $raw['bar_size'] ),
 			'chart_height'  => Css::length( $raw['chart_height'] ),
 			'radius'        => Css::length( $raw['radius'] ),
+			'series_a'      => self::text( $raw['series_a'], 60 ),
+			'series_b'      => self::text( $raw['series_b'], 60 ),
+			'bands'         => self::bands( $raw['bands'] ),
+			'patterns'      => Cast::bool( $raw['patterns'] ),
+			'tooltips'      => Cast::bool( $raw['tooltips'] ),
+			'export'        => Cast::bool( $raw['export'] ),
 		);
 
 		return $config;
@@ -229,9 +328,13 @@ final class ChartConfig {
 	 * Sanitize items.
 	 *
 	 * @param array<mixed> $items Raw rows.
+	 * @param string       $type  Chart type: decides whether the second value must exceed the first.
 	 * @return list<QecItem>
 	 */
-	public static function sanitize_items( array $items ): array {
+	public static function sanitize_items( array $items, string $type = 'bars' ): array {
+		// A range end and a finish must lie after the start; a second series or a target may be anything.
+		$ordered = in_array( $type, array( 'bars', 'timeline' ), true );
+
 		$clean = array();
 		foreach ( $items as $item ) {
 			if ( count( $clean ) >= self::MAX_ITEMS ) {
@@ -249,7 +352,7 @@ final class ChartConfig {
 			$clean[] = array(
 				'label'       => $label,
 				'value'       => null === $value ? 0.0 : $value,
-				'max'         => ( null !== $max && null !== $value && $max > $value ) ? $max : '',
+				'max'         => ( null !== $max && ( ! $ordered || ( null !== $value && $max > $value ) ) ) ? $max : '',
 				'text'        => self::text( $item['text'] ?? '', 80 ),
 				'color'       => Css::color( $item['color'] ?? '' ),
 				'range_color' => Css::color( $item['range_color'] ?? '' ),
@@ -308,6 +411,31 @@ final class ChartConfig {
 	private static function number_or_empty( $value ) {
 		$number = Cast::number( $value );
 		return null === $number ? '' : $number;
+	}
+
+	/**
+	 * Bullet chart bands: ascending thresholds from "60, 80", "60;80" or an array.
+	 *
+	 * @param mixed $value Any value.
+	 * @return list<float>
+	 */
+	private static function bands( $value ): array {
+		if ( is_string( $value ) ) {
+			// Thresholds are separated by commas, semicolons or spaces; decimals use a dot.
+			$parts = preg_split( '/[\s,;|]+/', trim( $value ), -1, PREG_SPLIT_NO_EMPTY );
+			$value = false === $parts ? array() : $parts;
+		}
+
+		$bands = array();
+		foreach ( Cast::arr( $value ) as $band ) {
+			$number = Cast::number( $band );
+			if ( null !== $number ) {
+				$bands[] = $number;
+			}
+		}
+		$bands = array_values( array_unique( $bands, SORT_REGULAR ) );
+		sort( $bands );
+		return array_slice( $bands, 0, self::MAX_BANDS );
 	}
 
 	/**

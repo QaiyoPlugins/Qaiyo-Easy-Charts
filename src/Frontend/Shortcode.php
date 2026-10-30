@@ -27,6 +27,7 @@ final class Shortcode {
 
 	/** Shortcode attribute => configuration key. */
 	const ATTRIBUTE_MAP = array(
+		'type'          => 'type',
 		'orientation'   => 'orientation',
 		'title'         => 'title',
 		'description'   => 'description',
@@ -62,6 +63,12 @@ final class Shortcode {
 		'bar_size'      => 'bar_size',
 		'height'        => 'chart_height',
 		'radius'        => 'radius',
+		'series_a'      => 'series_a',
+		'series_b'      => 'series_b',
+		'bands'         => 'bands',
+		'patterns'      => 'patterns',
+		'tooltips'      => 'tooltips',
+		'export'        => 'export',
 	);
 
 	/**

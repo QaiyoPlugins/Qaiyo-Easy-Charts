@@ -6,11 +6,13 @@
 	"title": "Qaiyo Easy Chart",
 	"category": "widgets",
 	"icon": "chart-bar",
-	"description": "Animated, accessible bar or column chart with optional ranges.",
+	"description": "Animated, accessible charts: bars with ranges, comparison bars, KPI rings, timelines, bullet charts, 100% stacked bars and rating distributions.",
 	"keywords": [
 		"chart",
 		"bar",
-		"column",
+		"ring",
+		"timeline",
+		"rating",
 		"graph",
 		"qaiyo"
 	],
@@ -27,6 +29,20 @@
 		"chartId": {
 			"type": "integer",
 			"default": 0
+		},
+		"chartType": {
+			"type": "string",
+			"enum": [
+				"",
+				"bars",
+				"compare",
+				"ring",
+				"timeline",
+				"bullet",
+				"stacked",
+				"rating"
+			],
+			"default": ""
 		},
 		"items": {
 			"type": "array",
@@ -209,6 +225,30 @@
 		"hoverFocus": {
 			"type": "boolean",
 			"default": true
+		},
+		"seriesA": {
+			"type": "string",
+			"default": ""
+		},
+		"seriesB": {
+			"type": "string",
+			"default": ""
+		},
+		"bands": {
+			"type": "string",
+			"default": ""
+		},
+		"patterns": {
+			"type": "boolean",
+			"default": false
+		},
+		"tooltips": {
+			"type": "boolean",
+			"default": false
+		},
+		"export": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

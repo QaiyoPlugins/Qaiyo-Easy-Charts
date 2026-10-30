@@ -3,7 +3,8 @@
  *
  * Charts render fully in HTML/CSS. This script only adds what needs a browser:
  * lazy mounting near the viewport, the entrance animation (optionally replayed),
- * counting values up, and thinning out colliding axis ticks. Without it, charts
+ * counting values up, thinning out colliding axis ticks, dismissing tooltips
+ * with Escape and the PNG / SVG export. Without it, charts
  * are shown static (lazy charts through their <noscript> copy).
  */
 ( function () {
@@ -95,7 +96,7 @@
 		var duration = cssTime( chart, '--qec-duration', 1100 );
 		var stagger = cssTime( chart, '--qec-stagger', 140 );
 
-		chart.querySelectorAll( '.qec-value' ).forEach( function ( el, index ) {
+		chart.querySelectorAll( '.qec-count' ).forEach( function ( el, index ) {
 			var original = el.getAttribute( 'data-qec-text' );
 			if ( null === original ) {
 				original = el.textContent;
@@ -110,8 +111,8 @@
 				return parseInt( token.replace( /\D/g, '' ), 10 );
 			} );
 
-			var row = el.closest( '.qec-row' );
-			var position = row ? parseInt( row.style.getPropertyValue( '--qec-i' ) || index, 10 ) : index;
+			var mark = el.closest( '.qec-mark' );
+			var position = mark ? parseInt( mark.style.getPropertyValue( '--qec-i' ) || index, 10 ) : 0;
 			var delay = position * stagger + duration * 0.6;
 			var length = duration * 0.8;
 			var start = null;
@@ -144,7 +145,7 @@
 	}
 
 	function resetCount( chart ) {
-		chart.querySelectorAll( '.qec-value[data-qec-text]' ).forEach( function ( el ) {
+		chart.querySelectorAll( '.qec-count[data-qec-text]' ).forEach( function ( el ) {
 			window.cancelAnimationFrame( el.qecFrame );
 			el.textContent = el.getAttribute( 'data-qec-text' );
 		} );
@@ -205,6 +206,266 @@
 		void chart.offsetWidth;
 		observer.observe( chart );
 	}
+
+	/* Tooltips ---------------------------------------------------------------
+	 * Shown by CSS on hover and keyboard focus. Escape hides the open one
+	 * (WCAG 1.4.13, dismissible) until the pointer or focus leaves the mark. */
+
+	document.addEventListener( 'keydown', function ( event ) {
+		if ( 'Escape' !== event.key ) {
+			return;
+		}
+		document.querySelectorAll( '.qec-tooltips .qec-mark:hover, .qec-tooltips .qec-mark:focus-visible' ).forEach( function ( mark ) {
+			mark.classList.add( 'qec-tip-off' );
+		} );
+	} );
+
+	function restoreTip( event ) {
+		var mark = event.target && event.target.closest ? event.target.closest( '.qec-mark.qec-tip-off' ) : null;
+		if ( mark && ! mark.contains( event.relatedTarget ) ) {
+			mark.classList.remove( 'qec-tip-off' );
+		}
+	}
+
+	document.addEventListener( 'mouseout', restoreTip );
+	document.addEventListener( 'focusout', restoreTip );
+
+	/* Export -----------------------------------------------------------------
+	 * The chart is HTML/CSS, so it is exported as an SVG that wraps a copy of it
+	 * (<foreignObject>) together with the chart stylesheet, the fonts it uses
+	 * (embedded, so the file looks the same anywhere) and the typography and
+	 * colours that builders set from outside; the PNG is drawn from that SVG at
+	 * twice the size. Charts are exported in their final, fully drawn state. */
+
+	var SVG_NS = 'http://www.w3.org/2000/svg';
+	var COPIED = [ 'font-family', 'font-size', 'font-weight', 'font-style', 'line-height', 'letter-spacing', 'text-transform', 'color' ];
+
+	// Typography and colours, which page builders may set on any part of the chart.
+	function copyTypography( source, target ) {
+		var computed = window.getComputedStyle( source );
+		COPIED.forEach( function ( name ) {
+			target.style.setProperty( name, computed.getPropertyValue( name ) );
+		} );
+		for ( var c = 0; c < source.children.length && c < target.children.length; c++ ) {
+			copyTypography( source.children[ c ], target.children[ c ] );
+		}
+	}
+
+	// Custom properties (colours, sizes) set on the chart root by builders or themes.
+	function copyVariables( source, target ) {
+		var computed = window.getComputedStyle( source );
+		for ( var i = 0; i < computed.length; i++ ) {
+			if ( 0 === computed[ i ].indexOf( '--qec-' ) ) {
+				target.style.setProperty( computed[ i ], computed.getPropertyValue( computed[ i ] ) );
+			}
+		}
+	}
+
+	function rulesOf( sheet ) {
+		try {
+			return Array.prototype.slice.call( sheet.cssRules || [] );
+		} catch ( error ) {
+			return []; // Cross-origin stylesheet.
+		}
+	}
+
+	function chartCss() {
+		var css = '';
+		Array.prototype.forEach.call( document.styleSheets, function ( sheet ) {
+			if ( sheet.href && /qaiyo-easy-charts\/assets\/css\/chart\.css/.test( sheet.href ) ) {
+				css += rulesOf( sheet ).map( function ( rule ) {
+					return rule.cssText;
+				} ).join( '\n' );
+			}
+		} );
+		return css;
+	}
+
+	function toDataUrl( url ) {
+		return window.fetch( url, { mode: 'cors' } )
+			.then( function ( response ) {
+				return response.ok ? response.blob() : Promise.reject();
+			} )
+			.then( function ( blob ) {
+				return new Promise( function ( resolve ) {
+					var reader = new FileReader();
+					reader.onloadend = function () {
+						resolve( reader.result );
+					};
+					reader.readAsDataURL( blob );
+				} );
+			} );
+	}
+
+	// @font-face rules of the families the chart uses, with the files inlined.
+	function fontCss( chart ) {
+		var families = {};
+		[ chart ].concat( Array.prototype.slice.call( chart.querySelectorAll( '*' ) ) ).forEach( function ( node ) {
+			window.getComputedStyle( node ).fontFamily.split( ',' ).forEach( function ( family ) {
+				families[ family.trim().replace( /^["']|["']$/g, '' ).toLowerCase() ] = true;
+			} );
+		} );
+
+		var jobs = [];
+		Array.prototype.forEach.call( document.styleSheets, function ( sheet ) {
+			rulesOf( sheet ).forEach( function ( rule ) {
+				if ( ! window.CSSFontFaceRule || ! ( rule instanceof window.CSSFontFaceRule ) ) {
+					return;
+				}
+				var family = rule.style.getPropertyValue( 'font-family' ).trim().replace( /^["']|["']$/g, '' ).toLowerCase();
+				var src = rule.style.getPropertyValue( 'src' );
+				var match = src.match( /url\(\s*["']?([^"')]+)["']?\s*\)/ );
+				if ( ! families[ family ] || ! match ) {
+					return;
+				}
+				var base = rule.parentStyleSheet && rule.parentStyleSheet.href ? rule.parentStyleSheet.href : document.baseURI;
+				jobs.push(
+					toDataUrl( new URL( match[ 1 ], base ).href )
+						.then( function ( data ) {
+							return rule.cssText.replace( /src\s*:[^;]+;/, 'src: url("' + data + '");' );
+						} )
+						.catch( function () {
+							return '';
+						} )
+				);
+			} );
+		} );
+
+		return Promise.all( jobs ).then( function ( rules ) {
+			return rules.join( '\n' );
+		} );
+	}
+
+	function fileName( chart ) {
+		var title = chart.querySelector( '.qec-title' );
+		var name = ( title ? title.textContent : chart.getAttribute( 'aria-label' ) ) || '';
+		return name.toLowerCase().replace( /[^\p{L}\p{N}]+/gu, '-' ).replace( /^-+|-+$/g, '' ) || 'chart';
+	}
+
+	function toSvg( chart ) {
+		mount( chart );
+		var armed = chart.classList.contains( 'qec-armed' );
+		// Final state at once: no start state, no running transition, final numbers.
+		chart.classList.add( 'qec-exporting' );
+		chart.classList.remove( 'qec-armed' );
+		resetCount( chart );
+
+		var rect = chart.getBoundingClientRect();
+		var width = Math.ceil( rect.width );
+		var height = Math.ceil( rect.height );
+		var copy = chart.cloneNode( true );
+		copyTypography( chart, copy );
+		copyVariables( chart, copy );
+
+		chart.classList.remove( 'qec-exporting' );
+		if ( armed ) {
+			chart.classList.add( 'qec-armed' );
+		}
+
+		// Parts that only make sense on the page.
+		copy.querySelectorAll( '.qec-data-table, .qec-export, .qec-tip, .qec-sr-only, template, noscript' ).forEach( function ( node ) {
+			node.remove();
+		} );
+		copy.classList.remove( 'qec-armed', 'qec-exporting' );
+		copy.style.setProperty( 'width', width + 'px' );
+		copy.style.setProperty( 'margin', '0' );
+
+		return fontCss( chart ).then( function ( fonts ) {
+			var wrapper = document.createElement( 'div' );
+			wrapper.setAttribute( 'xmlns', 'http://www.w3.org/1999/xhtml' );
+			var style = document.createElement( 'style' );
+			style.textContent = fonts + '\n' + chartCss();
+			wrapper.appendChild( style );
+			wrapper.appendChild( copy );
+
+			var svg = document.createElementNS( SVG_NS, 'svg' );
+			svg.setAttribute( 'xmlns', SVG_NS );
+			svg.setAttribute( 'width', width );
+			svg.setAttribute( 'height', height );
+			svg.setAttribute( 'viewBox', '0 0 ' + width + ' ' + height );
+			var object = document.createElementNS( SVG_NS, 'foreignObject' );
+			object.setAttribute( 'width', '100%' );
+			object.setAttribute( 'height', '100%' );
+			object.appendChild( wrapper );
+			svg.appendChild( object );
+
+			return {
+				markup: new XMLSerializer().serializeToString( svg ),
+				width: width,
+				height: height,
+			};
+		} );
+	}
+
+	function download( name, blob ) {
+		var url = URL.createObjectURL( blob );
+		var link = document.createElement( 'a' );
+		link.href = url;
+		link.download = name;
+		document.body.appendChild( link );
+		link.click();
+		link.remove();
+		window.setTimeout( function () {
+			URL.revokeObjectURL( url );
+		}, 1000 );
+	}
+
+	function background( chart ) {
+		for ( var node = chart; node && 1 === node.nodeType; node = node.parentElement ) {
+			var color = window.getComputedStyle( node ).backgroundColor;
+			if ( color && ! /^(transparent|rgba\(.*,\s*0\))$/.test( color ) ) {
+				return color;
+			}
+		}
+		return '#ffffff';
+	}
+
+	function exportChart( chart, format ) {
+		var name = fileName( chart );
+
+		return toSvg( chart ).then( function ( svg ) {
+			var svgBlob = new Blob( [ svg.markup ], { type: 'image/svg+xml;charset=utf-8' } );
+			if ( 'svg' === format ) {
+				download( name + '.svg', svgBlob );
+				return;
+			}
+
+			return new Promise( function ( resolve, reject ) {
+				var image = new Image();
+				image.onload = function () {
+					var scale = 2;
+					var canvas = document.createElement( 'canvas' );
+					canvas.width = svg.width * scale;
+					canvas.height = svg.height * scale;
+					var context = canvas.getContext( '2d' );
+					context.fillStyle = background( chart );
+					context.fillRect( 0, 0, canvas.width, canvas.height );
+					context.scale( scale, scale );
+					context.drawImage( image, 0, 0 );
+					try {
+						canvas.toBlob( function ( png ) {
+							download( name + '.png', png );
+							resolve();
+						}, 'image/png' );
+					} catch ( error ) {
+						// Browsers that taint canvases drawn from SVG: fall back to the SVG file.
+						download( name + '.svg', svgBlob );
+						reject( error );
+					}
+				};
+				image.onerror = reject;
+				image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent( svg.markup );
+			} );
+		} );
+	}
+
+	document.addEventListener( 'click', function ( event ) {
+		var button = event.target && event.target.closest ? event.target.closest( '[data-qec-export]' ) : null;
+		var chart = button ? button.closest( SELECTOR ) : null;
+		if ( chart ) {
+			exportChart( chart, button.getAttribute( 'data-qec-export' ) ).catch( function () {} );
+		}
+	} );
 
 	/* Lazy loading ---------------------------------------------------------- */
 
@@ -282,6 +543,9 @@
 	window.qaiyoEasyChartsInit = function () {
 		init( document );
 	};
+
+	// Public: export a chart element as 'png' or 'svg' (the chart builder uses it).
+	window.qaiyoEasyChartsExport = exportChart;
 
 	if ( 'loading' === document.readyState ) {
 		document.addEventListener( 'DOMContentLoaded', function () {

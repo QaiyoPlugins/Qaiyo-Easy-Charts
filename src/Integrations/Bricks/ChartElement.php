@@ -96,7 +96,7 @@ class ChartElement extends \Bricks\Element {
 	 */
 	public function set_control_groups() {
 		$groups = array(
-			'data'   => esc_html__( 'Bars', 'qaiyo-easy-charts' ),
+			'data'   => esc_html__( 'Data', 'qaiyo-easy-charts' ),
 			'layout' => esc_html__( 'Layout', 'qaiyo-easy-charts' ),
 			'scale'  => esc_html__( 'Scale & axis', 'qaiyo-easy-charts' ),
 			'values' => esc_html__( 'Values & behaviour', 'qaiyo-easy-charts' ),
@@ -146,6 +146,20 @@ class ChartElement extends \Bricks\Element {
 			'required'    => array( 'source', '=', 'saved' ),
 		);
 
+		$types = array();
+		foreach ( ChartConfig::type_labels() as $type => $labels ) {
+			$types[ $type ] = $labels['name'];
+		}
+		$this->controls['chart_type'] = array(
+			'tab'         => 'content',
+			'group'       => 'data',
+			'label'       => esc_html__( 'Chart type', 'qaiyo-easy-charts' ),
+			'type'        => 'select',
+			'options'     => $types,
+			'placeholder' => $types['bars'],
+			'required'    => $inline,
+		);
+
 		$this->controls['items'] = array(
 			'tab'           => 'content',
 			'group'         => 'data',
@@ -162,9 +176,9 @@ class ChartElement extends \Bricks\Element {
 					'type'  => 'number',
 				),
 				'max'         => array(
-					'label'       => esc_html__( 'Range end', 'qaiyo-easy-charts' ),
+					'label'       => esc_html__( 'Second value', 'qaiyo-easy-charts' ),
 					'type'        => 'number',
-					'description' => esc_html__( 'Optional. Draws a highlighted range from Value to this number.', 'qaiyo-easy-charts' ),
+					'description' => esc_html__( 'Optional. Bars: range end. Comparison: second series. Ring: goal. Timeline: finish. Bullet: target.', 'qaiyo-easy-charts' ),
 				),
 				'text'        => array(
 					'label'       => esc_html__( 'Value text', 'qaiyo-easy-charts' ),
@@ -195,7 +209,7 @@ class ChartElement extends \Bricks\Element {
 				'auto'       => esc_html__( 'Columns, bars on narrow screens', 'qaiyo-easy-charts' ),
 			),
 			'placeholder' => esc_html__( 'Horizontal bars', 'qaiyo-easy-charts' ),
-			'required'    => $inline,
+			'required'    => array( array( 'source', '!=', 'saved' ), array( 'chart_type', '=', array( '', 'bars' ) ) ),
 		);
 		$this->controls['layout']       = array(
 			'tab'         => 'content',
@@ -361,6 +375,49 @@ class ChartElement extends \Bricks\Element {
 			'type'     => 'checkbox',
 			'required' => array( array( 'source', '!=', 'saved' ), array( 'disable_animation', '!=', true ) ),
 		);
+		$this->controls['series_a']            = array(
+			'tab'      => 'content',
+			'group'    => 'values',
+			'label'    => esc_html__( 'Name of the first series', 'qaiyo-easy-charts' ),
+			'type'     => 'text',
+			'required' => array( array( 'source', '!=', 'saved' ), array( 'chart_type', '=', 'compare' ) ),
+		);
+		$this->controls['series_b']            = array(
+			'tab'      => 'content',
+			'group'    => 'values',
+			'label'    => esc_html__( 'Name of the second series', 'qaiyo-easy-charts' ),
+			'type'     => 'text',
+			'required' => array( array( 'source', '!=', 'saved' ), array( 'chart_type', '=', 'compare' ) ),
+		);
+		$this->controls['bands']               = array(
+			'tab'         => 'content',
+			'group'       => 'values',
+			'label'       => esc_html__( 'Bands', 'qaiyo-easy-charts' ),
+			'type'        => 'text',
+			'description' => esc_html__( 'Upper limits of the shaded ranges, separated by commas, e.g. 50, 75, 100.', 'qaiyo-easy-charts' ),
+			'required'    => array( array( 'source', '!=', 'saved' ), array( 'chart_type', '=', 'bullet' ) ),
+		);
+		$this->controls['tooltips']            = array(
+			'tab'      => 'content',
+			'group'    => 'values',
+			'label'    => esc_html__( 'Tooltips on hover and keyboard focus', 'qaiyo-easy-charts' ),
+			'type'     => 'checkbox',
+			'required' => $inline,
+		);
+		$this->controls['patterns']            = array(
+			'tab'      => 'content',
+			'group'    => 'values',
+			'label'    => esc_html__( 'Patterns besides colours (colour-blind friendly)', 'qaiyo-easy-charts' ),
+			'type'     => 'checkbox',
+			'required' => $inline,
+		);
+		$this->controls['export']              = array(
+			'tab'      => 'content',
+			'group'    => 'values',
+			'label'    => esc_html__( 'Download buttons (PNG, SVG) under the chart', 'qaiyo-easy-charts' ),
+			'type'     => 'checkbox',
+			'required' => $inline,
+		);
 		$this->controls['disable_lazy']        = array(
 			'tab'      => 'content',
 			'group'    => 'values',
@@ -508,7 +565,14 @@ class ChartElement extends \Bricks\Element {
 
 		return ChartConfig::sanitize(
 			array(
+				'type'          => ! empty( $s['chart_type'] ) ? $s['chart_type'] : 'bars',
 				'items'         => Cast::arr( $s['items'] ?? array() ),
+				'series_a'      => $s['series_a'] ?? '',
+				'series_b'      => $s['series_b'] ?? '',
+				'bands'         => $s['bands'] ?? '',
+				'tooltips'      => ! empty( $s['tooltips'] ),
+				'patterns'      => ! empty( $s['patterns'] ),
+				'export'        => ! empty( $s['export'] ),
 				'orientation'   => ! empty( $s['orientation'] ) ? $s['orientation'] : 'horizontal',
 				'layout'        => ! empty( $s['layout'] ) ? $s['layout'] : 'auto',
 				'title'         => $s['title'] ?? '',

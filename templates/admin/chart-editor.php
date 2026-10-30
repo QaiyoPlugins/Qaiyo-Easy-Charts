@@ -4,7 +4,7 @@
  *
  * @package qaiyo-easy-charts
  *
- * @var array{items: list<array{label: string, value: float, max: float|string, text: string, color: string, range_color: string}>}&array<string, mixed> $qaiyo_ec_config  Current configuration.
+ * @var array{type: string, items: list<array{label: string, value: float, max: float|string, text: string, color: string, range_color: string}>}&array<string, mixed> $qaiyo_ec_config  Current configuration.
  * @var string $qaiyo_ec_field   Form field name.
  * @var string $qaiyo_ec_preview Rendered preview (escaped by the renderer).
  */
@@ -34,18 +34,22 @@ $qaiyo_ec_name = static function ( string $key ) use ( $qaiyo_ec_field ): string
  * @param string       $index Row key in the form.
  * @param array<mixed> $item  Bar.
  */
-$qaiyo_ec_row = static function ( string $index, array $item ) use ( $qaiyo_ec_field, $qaiyo_ec_num ): void {
-	$base = $qaiyo_ec_field . '[items][' . $index . ']';
+$qaiyo_ec_types  = ChartConfig::type_labels();
+$qaiyo_ec_labels = $qaiyo_ec_types[ $qaiyo_ec_config['type'] ] ?? $qaiyo_ec_types['bars'];
+
+$qaiyo_ec_row = static function ( string $index, array $item ) use ( $qaiyo_ec_field, $qaiyo_ec_num, $qaiyo_ec_labels ): void {
+	$base   = $qaiyo_ec_field . '[items][' . $index . ']';
+	$labels = $qaiyo_ec_labels;
 	?>
 	<tr class="qec-row-edit">
 		<td data-label="<?php esc_attr_e( 'Label', 'qaiyo-easy-charts' ); ?>">
 			<input type="text" class="widefat" name="<?php echo esc_attr( $base . '[label]' ); ?>" value="<?php echo esc_attr( Cast::string( $item['label'] ) ); ?>" aria-label="<?php esc_attr_e( 'Label', 'qaiyo-easy-charts' ); ?>" />
 		</td>
-		<td data-label="<?php esc_attr_e( 'Value', 'qaiyo-easy-charts' ); ?>">
-			<input type="number" step="any" class="small-text" name="<?php echo esc_attr( $base . '[value]' ); ?>" value="<?php echo esc_attr( $qaiyo_ec_num( $item['value'] ) ); ?>" aria-label="<?php esc_attr_e( 'Value', 'qaiyo-easy-charts' ); ?>" />
+		<td class="qec-col-value" data-label="<?php echo esc_attr( $labels['value'] ); ?>">
+			<input type="number" step="any" class="small-text" name="<?php echo esc_attr( $base . '[value]' ); ?>" value="<?php echo esc_attr( $qaiyo_ec_num( $item['value'] ) ); ?>" aria-label="<?php echo esc_attr( $labels['value'] ); ?>" />
 		</td>
-		<td data-label="<?php esc_attr_e( 'Range end', 'qaiyo-easy-charts' ); ?>">
-			<input type="number" step="any" class="small-text" name="<?php echo esc_attr( $base . '[max]' ); ?>" value="<?php echo esc_attr( $qaiyo_ec_num( $item['max'] ) ); ?>" aria-label="<?php esc_attr_e( 'Range end', 'qaiyo-easy-charts' ); ?>" />
+		<td class="qec-col-second" data-label="<?php echo esc_attr( $labels['second'] ); ?>">
+			<input type="number" step="any" class="small-text" name="<?php echo esc_attr( $base . '[max]' ); ?>" value="<?php echo esc_attr( $qaiyo_ec_num( $item['max'] ) ); ?>" aria-label="<?php echo esc_attr( $labels['second'] ); ?>" />
 		</td>
 		<td data-label="<?php esc_attr_e( 'Value text', 'qaiyo-easy-charts' ); ?>">
 			<input type="text" class="widefat" name="<?php echo esc_attr( $base . '[text]' ); ?>" value="<?php echo esc_attr( Cast::string( $item['text'] ) ); ?>" placeholder="<?php esc_attr_e( 'Automatic', 'qaiyo-easy-charts' ); ?>" aria-label="<?php esc_attr_e( 'Value text', 'qaiyo-easy-charts' ); ?>" />
@@ -53,7 +57,7 @@ $qaiyo_ec_row = static function ( string $index, array $item ) use ( $qaiyo_ec_f
 		<td data-label="<?php esc_attr_e( 'Bar color', 'qaiyo-easy-charts' ); ?>">
 			<input type="text" class="qec-color" name="<?php echo esc_attr( $base . '[color]' ); ?>" value="<?php echo esc_attr( Cast::string( $item['color'] ) ); ?>" aria-label="<?php esc_attr_e( 'Bar color', 'qaiyo-easy-charts' ); ?>" />
 		</td>
-		<td data-label="<?php esc_attr_e( 'Range color', 'qaiyo-easy-charts' ); ?>">
+		<td class="qec-col-range" data-label="<?php esc_attr_e( 'Range color', 'qaiyo-easy-charts' ); ?>">
 			<input type="text" class="qec-color" name="<?php echo esc_attr( $base . '[range_color]' ); ?>" value="<?php echo esc_attr( Cast::string( $item['range_color'] ) ); ?>" aria-label="<?php esc_attr_e( 'Range color', 'qaiyo-easy-charts' ); ?>" />
 		</td>
 		<td class="qec-row-actions">
@@ -81,7 +85,11 @@ $qaiyo_ec_select = static function ( string $key, string $label, array $options 
 
 $qaiyo_ec_input = static function ( string $key, string $label, string $type = 'text', string $help = '', string $placeholder = '' ) use ( $qaiyo_ec_config, $qaiyo_ec_name, $qaiyo_ec_num ): void {
 	$id    = 'qec-' . str_replace( '_', '-', $key );
-	$value = 'number' === $type ? $qaiyo_ec_num( $qaiyo_ec_config[ $key ] ?? '' ) : Cast::string( $qaiyo_ec_config[ $key ] ?? '' );
+	$raw   = $qaiyo_ec_config[ $key ] ?? '';
+	$value = 'number' === $type ? $qaiyo_ec_num( $raw ) : Cast::string( $raw );
+	if ( is_array( $raw ) ) {
+		$value = implode( ', ', array_map( $qaiyo_ec_num, $raw ) ); // Lists such as the bullet bands.
+	}
 	if ( '0' === $value && in_array( $key, array( 'duration', 'stagger' ), true ) ) {
 		$value = ''; // 0 = the default timing, shown as the placeholder.
 	}
@@ -125,7 +133,7 @@ $qaiyo_ec_check = static function ( string $key, string $label ) use ( $qaiyo_ec
 
 wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 ?>
-<div class="qec-builder">
+<div class="qec-builder" data-qec-type="<?php echo esc_attr( $qaiyo_ec_config['type'] ); ?>">
 
 	<section class="qec-panel qec-panel--preview" aria-labelledby="qec-preview-heading">
 		<div class="qec-panel-head">
@@ -133,6 +141,10 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 				<span class="qec-panel-icon" aria-hidden="true"><span class="dashicons dashicons-visibility"></span></span>
 				<?php esc_html_e( 'Live preview', 'qaiyo-easy-charts' ); ?>
 			</h2>
+			<div class="qec-export-admin" role="group" aria-label="<?php esc_attr_e( 'Download the chart', 'qaiyo-easy-charts' ); ?>">
+				<button type="button" class="button" data-qec-admin-export="png"><span class="dashicons dashicons-download" aria-hidden="true"></span> PNG</button>
+				<button type="button" class="button" data-qec-admin-export="svg"><span class="dashicons dashicons-download" aria-hidden="true"></span> SVG</button>
+			</div>
 			<button type="button" class="button qec-play"><span class="dashicons dashicons-controls-play" aria-hidden="true"></span> <?php esc_html_e( 'Play animation', 'qaiyo-easy-charts' ); ?></button>
 			<div class="qec-device" role="group" aria-label="<?php esc_attr_e( 'Preview width', 'qaiyo-easy-charts' ); ?>">
 				<button type="button" class="button qec-device-button" data-qec-device="desktop" aria-pressed="true"><span class="dashicons dashicons-desktop" aria-hidden="true"></span> <?php esc_html_e( 'Desktop', 'qaiyo-easy-charts' ); ?></button>
@@ -149,19 +161,27 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 	<section class="qec-panel" aria-labelledby="qec-bars-heading">
 		<h2 id="qec-bars-heading" class="qec-panel-title">
 			<span class="qec-panel-icon" aria-hidden="true"><span class="dashicons dashicons-chart-bar"></span></span>
-			<?php esc_html_e( 'Bars', 'qaiyo-easy-charts' ); ?>
+			<?php esc_html_e( 'Chart type & data', 'qaiyo-easy-charts' ); ?>
 		</h2>
-		<p class="qec-panel-desc"><?php esc_html_e( 'Value is where the solid bar ends. Range end is optional: it adds a highlighted range after the value (e.g. 10–15). Value text replaces the automatic text, e.g. "up to 5".', 'qaiyo-easy-charts' ); ?></p>
+		<div class="qec-field qec-type-field">
+			<label for="qec-type"><?php esc_html_e( 'Chart type', 'qaiyo-easy-charts' ); ?></label>
+			<select id="qec-type" name="<?php echo esc_attr( $qaiyo_ec_name( 'type' ) ); ?>" aria-describedby="qec-type-help">
+				<?php foreach ( $qaiyo_ec_types as $qaiyo_ec_type => $qaiyo_ec_type_labels ) : ?>
+					<option value="<?php echo esc_attr( $qaiyo_ec_type ); ?>" <?php selected( $qaiyo_ec_config['type'], $qaiyo_ec_type ); ?>><?php echo esc_html( $qaiyo_ec_type_labels['name'] ); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</div>
+		<p class="qec-panel-desc" id="qec-type-help"><?php echo esc_html( $qaiyo_ec_labels['help'] ); ?></p>
 
 		<table class="qec-rows-table">
 			<thead>
 				<tr>
 					<th scope="col"><?php esc_html_e( 'Label', 'qaiyo-easy-charts' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Value', 'qaiyo-easy-charts' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Range end', 'qaiyo-easy-charts' ); ?></th>
+					<th scope="col" class="qec-col-value"><?php echo esc_html( $qaiyo_ec_labels['value'] ); ?></th>
+					<th scope="col" class="qec-col-second"><?php echo esc_html( $qaiyo_ec_labels['second'] ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Value text', 'qaiyo-easy-charts' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Bar color', 'qaiyo-easy-charts' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Range color', 'qaiyo-easy-charts' ); ?></th>
+					<th scope="col" class="qec-col-range"><?php esc_html_e( 'Range color', 'qaiyo-easy-charts' ); ?></th>
 					<th scope="col"><span class="screen-reader-text"><?php esc_html_e( 'Actions', 'qaiyo-easy-charts' ); ?></span></th>
 				</tr>
 			</thead>
@@ -189,8 +209,14 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 			?>
 		</template>
 		<p>
-			<button type="button" class="button button-primary qec-add-row"><span class="dashicons dashicons-plus-alt2" aria-hidden="true"></span> <?php esc_html_e( 'Add bar', 'qaiyo-easy-charts' ); ?></button>
+			<button type="button" class="button button-primary qec-add-row"><span class="dashicons dashicons-plus-alt2" aria-hidden="true"></span> <?php esc_html_e( 'Add row', 'qaiyo-easy-charts' ); ?></button>
 		</p>
+		<details class="qec-import">
+			<summary><?php esc_html_e( 'Paste from a spreadsheet or CSV', 'qaiyo-easy-charts' ); ?></summary>
+			<label for="qec-import-text"><?php esc_html_e( 'One row per line: label, value, second value, value text — separated by tabs (copied from Excel or Google Sheets), semicolons or commas. A header row is skipped.', 'qaiyo-easy-charts' ); ?></label>
+			<textarea id="qec-import-text" class="large-text code" rows="6"></textarea>
+			<p><button type="button" class="button qec-import-apply"><?php esc_html_e( 'Replace the rows', 'qaiyo-easy-charts' ); ?></button></p>
+		</details>
 	</section>
 
 	<section class="qec-panel" aria-labelledby="qec-settings-heading">
@@ -203,6 +229,7 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 			<fieldset class="qec-fieldset">
 				<legend><?php esc_html_e( 'Layout', 'qaiyo-easy-charts' ); ?></legend>
 				<?php
+				echo '<div data-qec-types="bars">';
 				$qaiyo_ec_select(
 					'orientation',
 					__( 'Orientation', 'qaiyo-easy-charts' ),
@@ -212,6 +239,7 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 						'auto'       => __( 'Columns, bars on narrow screens', 'qaiyo-easy-charts' ),
 					)
 				);
+				echo '</div><div data-qec-types="bars compare timeline bullet">';
 				$qaiyo_ec_select(
 					'layout',
 					__( 'Labels of horizontal bars', 'qaiyo-easy-charts' ),
@@ -221,6 +249,7 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 						'stacked' => __( 'Always above the bar', 'qaiyo-easy-charts' ),
 					)
 				);
+				echo '</div>';
 				$qaiyo_ec_input( 'title', __( 'Title', 'qaiyo-easy-charts' ), 'text', __( 'Defaults to the chart name. Used as the accessible name of the chart.', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_input( 'description', __( 'Description', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_check( 'show_caption', __( 'Show title and description above the chart', 'qaiyo-easy-charts' ) );
@@ -254,6 +283,12 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 				$qaiyo_ec_input( 'separator', __( 'Range separator', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_input( 'prefix', __( 'Prefix', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_input( 'suffix', __( 'Suffix', 'qaiyo-easy-charts' ) );
+				echo '<div data-qec-types="compare">';
+				$qaiyo_ec_input( 'series_a', __( 'Name of the first series', 'qaiyo-easy-charts' ), 'text', '', __( 'e.g. Us', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_input( 'series_b', __( 'Name of the second series', 'qaiyo-easy-charts' ), 'text', '', __( 'e.g. Market average', 'qaiyo-easy-charts' ) );
+				echo '</div><div data-qec-types="bullet">';
+				$qaiyo_ec_input( 'bands', __( 'Bands', 'qaiyo-easy-charts' ), 'text', __( 'Upper limits of the shaded ranges, separated by commas, e.g. 50, 75, 100.', 'qaiyo-easy-charts' ) );
+				echo '</div>';
 				?>
 			</fieldset>
 
@@ -268,6 +303,14 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 				$qaiyo_ec_color( 'value_color', __( 'Value color', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_color( 'axis_color', __( 'Axis color', 'qaiyo-easy-charts' ) );
 				?>
+				<div class="qec-field qec-style-copy">
+					<label for="qec-style-source"><?php esc_html_e( 'Copy the style of another chart', 'qaiyo-easy-charts' ); ?></label>
+					<select id="qec-style-source" aria-describedby="qec-style-source-help">
+						<option value=""><?php esc_html_e( '— Choose a chart —', 'qaiyo-easy-charts' ); ?></option>
+					</select>
+					<button type="button" class="button qec-style-apply"><?php esc_html_e( 'Copy style', 'qaiyo-easy-charts' ); ?></button>
+					<p class="description" id="qec-style-source-help"><?php esc_html_e( 'Colours, font, sizes, patterns and animation; the data stays.', 'qaiyo-easy-charts' ); ?></p>
+				</div>
 			</fieldset>
 
 			<fieldset class="qec-fieldset">
@@ -286,6 +329,9 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 				$qaiyo_ec_check( 'hover_focus', __( 'Highlight the hovered bar', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_check( 'data_table', __( 'Add an accessible data table (screen readers, SEO, AI)', 'qaiyo-easy-charts' ) );
 				$qaiyo_ec_check( 'lazy', __( 'Lazy loading: draw the chart when it scrolls near', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'tooltips', __( 'Tooltips on hover and keyboard focus', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'patterns', __( 'Patterns besides colours (colour-blind friendly)', 'qaiyo-easy-charts' ) );
+				$qaiyo_ec_check( 'export', __( 'Download buttons (PNG, SVG) under the chart', 'qaiyo-easy-charts' ) );
 				?>
 			</fieldset>
 

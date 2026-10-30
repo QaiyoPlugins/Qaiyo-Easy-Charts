@@ -109,7 +109,7 @@ class ChartWidget extends Widget_Base {
 	 */
 	private function content_controls(): void {
 		/* Data ------------------------------------------------------------ */
-		$this->start_controls_section( 'section_data', array( 'label' => esc_html__( 'Bars', 'qaiyo-easy-charts' ) ) );
+		$this->start_controls_section( 'section_data', array( 'label' => esc_html__( 'Data', 'qaiyo-easy-charts' ) ) );
 
 		$this->add_control(
 			'source',
@@ -140,6 +140,21 @@ class ChartWidget extends Widget_Base {
 			)
 		);
 
+		$types = array();
+		foreach ( ChartConfig::type_labels() as $type => $labels ) {
+			$types[ $type ] = $labels['name'];
+		}
+		$this->add_control(
+			'chart_type',
+			array(
+				'label'     => esc_html__( 'Chart type', 'qaiyo-easy-charts' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'bars',
+				'options'   => $types,
+				'condition' => array( 'source' => 'inline' ),
+			)
+		);
+
 		$repeater = new Repeater();
 		$repeater->add_control(
 			'label',
@@ -161,8 +176,8 @@ class ChartWidget extends Widget_Base {
 		$repeater->add_control(
 			'max',
 			array(
-				'label'       => esc_html__( 'Range end', 'qaiyo-easy-charts' ),
-				'description' => esc_html__( 'Optional. Draws a highlighted range from Value to this number.', 'qaiyo-easy-charts' ),
+				'label'       => esc_html__( 'Second value', 'qaiyo-easy-charts' ),
+				'description' => esc_html__( 'Optional. Bars: range end. Comparison: second series. Ring: goal. Timeline: finish. Bullet: target.', 'qaiyo-easy-charts' ),
 				'type'        => Controls_Manager::NUMBER,
 				'dynamic'     => array( 'active' => true ),
 			)
@@ -195,7 +210,7 @@ class ChartWidget extends Widget_Base {
 		$this->add_control(
 			'items',
 			array(
-				'label'       => esc_html__( 'Bars', 'qaiyo-easy-charts' ),
+				'label'       => esc_html__( 'Rows', 'qaiyo-easy-charts' ),
 				'type'        => Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'default'     => ChartConfig::demo_items(),
@@ -218,14 +233,15 @@ class ChartWidget extends Widget_Base {
 		$this->add_control(
 			'orientation',
 			array(
-				'label'   => esc_html__( 'Orientation', 'qaiyo-easy-charts' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'horizontal',
-				'options' => array(
+				'label'     => esc_html__( 'Orientation', 'qaiyo-easy-charts' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'horizontal',
+				'options'   => array(
 					'horizontal' => esc_html__( 'Horizontal bars', 'qaiyo-easy-charts' ),
 					'vertical'   => esc_html__( 'Vertical columns', 'qaiyo-easy-charts' ),
 					'auto'       => esc_html__( 'Columns, bars on narrow screens', 'qaiyo-easy-charts' ),
 				),
+				'condition' => array( 'chart_type' => 'bars' ),
 			)
 		);
 
@@ -240,7 +256,10 @@ class ChartWidget extends Widget_Base {
 					'inline'  => esc_html__( 'Always in one row', 'qaiyo-easy-charts' ),
 					'stacked' => esc_html__( 'Always above the bar', 'qaiyo-easy-charts' ),
 				),
-				'condition' => array( 'orientation!' => 'vertical' ),
+				'condition' => array(
+					'orientation!' => 'vertical',
+					'chart_type'   => ChartConfig::ROW_TYPES,
+				),
 			)
 		);
 
@@ -384,6 +403,31 @@ class ChartWidget extends Widget_Base {
 			)
 		);
 		$this->add_control(
+			'series_a',
+			array(
+				'label'     => esc_html__( 'Name of the first series', 'qaiyo-easy-charts' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array( 'chart_type' => 'compare' ),
+			)
+		);
+		$this->add_control(
+			'series_b',
+			array(
+				'label'     => esc_html__( 'Name of the second series', 'qaiyo-easy-charts' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array( 'chart_type' => 'compare' ),
+			)
+		);
+		$this->add_control(
+			'bands',
+			array(
+				'label'       => esc_html__( 'Bands', 'qaiyo-easy-charts' ),
+				'description' => esc_html__( 'Upper limits of the shaded ranges, separated by commas, e.g. 50, 75, 100.', 'qaiyo-easy-charts' ),
+				'type'        => Controls_Manager::TEXT,
+				'condition'   => array( 'chart_type' => 'bullet' ),
+			)
+		);
+		$this->add_control(
 			'animate',
 			array(
 				'label'        => esc_html__( 'Animate when scrolled into view', 'qaiyo-easy-charts' ),
@@ -448,6 +492,30 @@ class ChartWidget extends Widget_Base {
 				'default'      => 'yes',
 				'return_value' => 'yes',
 				'separator'    => 'before',
+			)
+		);
+		$this->add_control(
+			'tooltips',
+			array(
+				'label'        => esc_html__( 'Tooltips on hover and keyboard focus', 'qaiyo-easy-charts' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+			)
+		);
+		$this->add_control(
+			'patterns',
+			array(
+				'label'        => esc_html__( 'Patterns besides colours (colour-blind friendly)', 'qaiyo-easy-charts' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+			)
+		);
+		$this->add_control(
+			'export',
+			array(
+				'label'        => esc_html__( 'Download buttons (PNG, SVG) under the chart', 'qaiyo-easy-charts' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
 			)
 		);
 		$this->add_control(
@@ -689,8 +757,15 @@ class ChartWidget extends Widget_Base {
 
 		return ChartConfig::sanitize(
 			array(
+				'type'          => $s['chart_type'] ?? 'bars',
 				'items'         => Cast::arr( $s['items'] ?? array() ),
 				'orientation'   => $s['orientation'] ?? 'horizontal',
+				'series_a'      => $s['series_a'] ?? '',
+				'series_b'      => $s['series_b'] ?? '',
+				'bands'         => $s['bands'] ?? '',
+				'tooltips'      => $yes( $s['tooltips'] ?? '' ),
+				'patterns'      => $yes( $s['patterns'] ?? '' ),
+				'export'        => $yes( $s['export'] ?? '' ),
 				'layout'        => $s['layout'] ?? 'auto',
 				'title'         => $s['title'] ?? '',
 				'description'   => $s['description'] ?? '',
