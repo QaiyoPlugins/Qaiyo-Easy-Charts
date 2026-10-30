@@ -8,6 +8,7 @@
 namespace Qaiyo\EasyCharts\Blocks;
 
 use Qaiyo\EasyCharts\Admin\PostType;
+use Qaiyo\EasyCharts\Admin\TypeThumbnails;
 use Qaiyo\EasyCharts\Chart\ChartConfig;
 use Qaiyo\EasyCharts\Chart\Renderer;
 use Qaiyo\EasyCharts\Chart\Repository;
@@ -107,6 +108,8 @@ final class ChartBlock {
 	 * Chart list and UI strings for the editor (only when the editor loads).
 	 */
 	public function editor_data(): void {
+		wp_enqueue_style( Schema::HANDLE_TYPE_PICKER, QAIYO_EC_PLUGIN_URL . 'assets/css/type-picker.css', array(), Assets::version( 'assets/css/type-picker.css' ) );
+
 		$charts = array_map(
 			static fn( array $chart ): array => array(
 				'value' => $chart['id'],
@@ -122,6 +125,7 @@ final class ChartBlock {
 					'charts'    => $charts,
 					'defaults'  => ChartConfig::DEFAULT_STYLE + ChartConfig::DEFAULT_DARK_STYLE,
 					'types'     => ChartConfig::type_labels(),
+					'thumbs'    => array_map( static fn( array $type ): string => $type['svg'], TypeThumbnails::all() ),
 					'manageUrl' => admin_url( PostType::MENU_SLUG ),
 					'i18n'      => self::strings(),
 				)

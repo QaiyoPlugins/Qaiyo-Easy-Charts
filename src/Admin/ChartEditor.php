@@ -272,6 +272,7 @@ final class ChartEditor {
 
 		Assets::enqueue();
 		wp_enqueue_style( 'wp-color-picker' );
+		wp_enqueue_style( Schema::HANDLE_TYPE_PICKER, QAIYO_EC_PLUGIN_URL . 'assets/css/type-picker.css', array(), Assets::version( 'assets/css/type-picker.css' ) );
 		wp_enqueue_script(
 			Schema::HANDLE_EDITOR,
 			QAIYO_EC_PLUGIN_URL . 'assets/js/chart-editor.js',

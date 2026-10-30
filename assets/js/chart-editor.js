@@ -220,8 +220,8 @@
 
 	// Column headings, field labels and visible settings follow the chart type.
 	function applyType( announce ) {
-		var select = document.getElementById( 'qec-type' );
-		var type = select ? select.value : 'bars';
+		var checked = builder.querySelector( '.qec-type-radio:checked' );
+		var type = checked ? checked.value : 'bars';
 		var labels = ( config.types || {} )[ type ];
 		builder.setAttribute( 'data-qec-type', type );
 
@@ -494,7 +494,7 @@
 	builder.addEventListener( 'click', onExport );
 	builder.querySelector( '.qec-import-apply' ).addEventListener( 'click', onImport );
 	builder.querySelector( '.qec-style-apply' ).addEventListener( 'click', onStyleCopy );
-	document.getElementById( 'qec-type' ).addEventListener( 'change', function () {
+	builder.querySelector( '.qec-type-picker' ).addEventListener( 'change', function () {
 		applyType( true );
 	} );
 	fillStyleSources();

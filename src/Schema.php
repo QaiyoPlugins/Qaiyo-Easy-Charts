@@ -45,6 +45,7 @@ final class Schema {
 	const HANDLE_EDITOR       = 'qaiyo-ec-chart-editor';
 	const HANDLE_BLOCK        = 'qaiyo-ec-block-editor';
 	const HANDLE_MORE_PLUGINS = 'qaiyo-ec-more-plugins';
+	const HANDLE_TYPE_PICKER  = 'qaiyo-ec-type-picker';
 
 	/** Admin-ajax action for the live preview in the chart editor. */
 	const AJAX_PREVIEW = 'qaiyo_ec_preview';

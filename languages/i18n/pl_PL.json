@@ -265,7 +265,6 @@
 "Optional. Bars: range end. Comparison: second series. Ring: goal. Timeline: finish. Bullet: target.": "Opcjonalnie. Słupki: koniec zakresu. Porównanie: druga seria. Pierścień: cel. Oś czasu: koniec. Pociskowy: wartość docelowa.",
 "Rows": "Wiersze",
 "Download the chart": "Pobierz wykres",
-"Chart type & data": "Typ wykresu i dane",
 "One row per line: label, value, second value, value text — separated by tabs (copied from Excel or Google Sheets), semicolons or commas. A header row is skipped.": "Jeden wiersz na linię: etykieta, wartość, druga wartość, tekst wartości — rozdzielone tabulatorami (skopiowane z Excela lub Arkuszy Google), średnikami lub przecinkami. Wiersz nagłówka jest pomijany.",
 "e.g. Us": "np. My",
 "e.g. Market average": "np. Średnia rynkowa",

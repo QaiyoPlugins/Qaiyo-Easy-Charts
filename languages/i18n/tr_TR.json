@@ -265,7 +265,6 @@
 "Optional. Bars: range end. Comparison: second series. Ring: goal. Timeline: finish. Bullet: target.": "İsteğe bağlı. Çubuklar: aralık sonu. Karşılaştırma: ikinci seri. Halka: hedef. Zaman çizelgesi: bitiş. Bullet: hedef değer.",
 "Rows": "Satırlar",
 "Download the chart": "Grafiği indir",
-"Chart type & data": "Grafik türü ve veriler",
 "One row per line: label, value, second value, value text — separated by tabs (copied from Excel or Google Sheets), semicolons or commas. A header row is skipped.": "Her satıra: etiket, değer, ikinci değer, değer metni — sekme (Excel veya Google E-Tablolar'dan kopyalanmış), noktalı virgül veya virgülle ayrılmış. Başlık satırı atlanır.",
 "e.g. Us": "ör. Biz",
 "e.g. Market average": "ör. Piyasa ortalaması",

@@ -77,6 +77,38 @@
 		);
 	}
 
+	// Visual chart type picker: native radios (arrow keys work) shown as cards with a mock-up.
+	function TypePicker( props ) {
+		var types = data.types || {};
+		var thumbs = data.thumbs || {};
+		return el(
+			'fieldset',
+			{ className: 'qec-type-picker' },
+			el( 'legend', { className: 'qec-type-legend' }, text( 'chartType' ) ),
+			el(
+				'div',
+				{ className: 'qec-type-grid qec-type-grid--compact' },
+				Object.keys( types ).map( function ( key ) {
+					return el(
+						'label',
+						{ key: key, className: 'qec-type-card' },
+						el( 'input', {
+							type: 'radio',
+							className: 'qec-type-radio',
+							name: 'qec-type-' + props.id,
+							value: key,
+							checked: props.value === key,
+							onChange: function () { props.onChange( key ); }
+						} ),
+						el( wp.element.RawHTML, null, thumbs[ key ] || '' ),
+						el( 'span', { className: 'qec-type-name' }, types[ key ].name )
+					);
+				} )
+			),
+			el( 'p', { className: 'components-base-control__help' }, props.help )
+		);
+	}
+
 	function BarsPanel( props ) {
 		var items = props.items || [];
 		var labels = typeLabels( props.type );
@@ -117,15 +149,7 @@
 		return el(
 			components.PanelBody,
 			{ title: text( 'data' ), initialOpen: true },
-			el( components.SelectControl, {
-				label: text( 'chartType' ),
-				help: labels.help,
-				value: props.type,
-				options: Object.keys( data.types || {} ).map( function ( key ) {
-					return { value: key, label: data.types[ key ].name };
-				} ),
-				onChange: props.onType
-			} ),
+			el( TypePicker, { id: props.clientId, value: props.type, help: labels.help, onChange: props.onType } ),
 			items.map( function ( item, index ) {
 				return el(
 					'div',
@@ -203,6 +227,7 @@
 			panels.push(
 				el( BarsPanel, {
 					key: 'bars',
+					clientId: props.clientId,
 					type: type,
 					items: a.items,
 					onType: function ( v ) { set( { chartType: v } ); },

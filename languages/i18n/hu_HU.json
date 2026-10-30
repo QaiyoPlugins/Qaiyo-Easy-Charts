@@ -265,7 +265,6 @@
 "Optional. Bars: range end. Comparison: second series. Ring: goal. Timeline: finish. Bullet: target.": "Opcionális. Sávok: tartomány vége. Összehasonlítás: második sorozat. Gyűrű: cél. Idővonal: vége. Bullet: célérték.",
 "Rows": "Sorok",
 "Download the chart": "A chart letöltése",
-"Chart type & data": "Chart típusa és adatai",
 "One row per line: label, value, second value, value text — separated by tabs (copied from Excel or Google Sheets), semicolons or commas. A header row is skipped.": "Soronként: címke, érték, második érték, értékszöveg — tabulátorral (Excelből vagy Google Táblázatokból másolva), pontosvesszővel vagy vesszővel elválasztva. A fejléc sort kihagyjuk.",
 "e.g. Us": "pl. Mi",
 "e.g. Market average": "pl. Piaci átlag",

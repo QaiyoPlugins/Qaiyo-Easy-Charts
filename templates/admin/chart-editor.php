@@ -9,6 +9,7 @@
  * @var string $qaiyo_ec_preview Rendered preview (escaped by the renderer).
  */
 
+use Qaiyo\EasyCharts\Admin\TypeThumbnails;
 use Qaiyo\EasyCharts\Chart\ChartConfig;
 use Qaiyo\EasyCharts\Schema;
 use Qaiyo\EasyCharts\Support\Cast;
@@ -135,6 +136,26 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 ?>
 <div class="qec-builder" data-qec-type="<?php echo esc_attr( $qaiyo_ec_config['type'] ); ?>">
 
+	<section class="qec-panel qec-panel--types" aria-labelledby="qec-type-heading">
+		<h2 id="qec-type-heading" class="qec-panel-title">
+			<span class="qec-panel-icon" aria-hidden="true"><span class="dashicons dashicons-screenoptions"></span></span>
+			<?php esc_html_e( 'Chart type', 'qaiyo-easy-charts' ); ?>
+		</h2>
+		<fieldset class="qec-type-picker" aria-describedby="qec-type-help">
+			<legend class="screen-reader-text"><?php esc_html_e( 'Chart type', 'qaiyo-easy-charts' ); ?></legend>
+			<div class="qec-type-grid">
+				<?php foreach ( $qaiyo_ec_types as $qaiyo_ec_type => $qaiyo_ec_type_labels ) : ?>
+					<label class="qec-type-card">
+						<input type="radio" class="qec-type-radio" name="<?php echo esc_attr( $qaiyo_ec_name( 'type' ) ); ?>" value="<?php echo esc_attr( $qaiyo_ec_type ); ?>" <?php checked( $qaiyo_ec_config['type'], $qaiyo_ec_type ); ?> />
+						<?php echo wp_kses( TypeThumbnails::svg( $qaiyo_ec_type ), TypeThumbnails::allowed_html() ); ?>
+						<span class="qec-type-name"><?php echo esc_html( $qaiyo_ec_type_labels['name'] ); ?></span>
+					</label>
+				<?php endforeach; ?>
+			</div>
+		</fieldset>
+		<p class="qec-panel-desc" id="qec-type-help"><?php echo esc_html( $qaiyo_ec_labels['help'] ); ?></p>
+	</section>
+
 	<section class="qec-panel qec-panel--preview" aria-labelledby="qec-preview-heading">
 		<div class="qec-panel-head">
 			<h2 id="qec-preview-heading" class="qec-panel-title">
@@ -165,17 +186,8 @@ wp_nonce_field( Schema::NONCE_EDITOR, 'qaiyo_ec_editor_nonce' );
 	<section class="qec-panel" aria-labelledby="qec-bars-heading">
 		<h2 id="qec-bars-heading" class="qec-panel-title">
 			<span class="qec-panel-icon" aria-hidden="true"><span class="dashicons dashicons-chart-bar"></span></span>
-			<?php esc_html_e( 'Chart type & data', 'qaiyo-easy-charts' ); ?>
+			<?php esc_html_e( 'Data', 'qaiyo-easy-charts' ); ?>
 		</h2>
-		<div class="qec-field qec-type-field">
-			<label for="qec-type"><?php esc_html_e( 'Chart type', 'qaiyo-easy-charts' ); ?></label>
-			<select id="qec-type" name="<?php echo esc_attr( $qaiyo_ec_name( 'type' ) ); ?>" aria-describedby="qec-type-help">
-				<?php foreach ( $qaiyo_ec_types as $qaiyo_ec_type => $qaiyo_ec_type_labels ) : ?>
-					<option value="<?php echo esc_attr( $qaiyo_ec_type ); ?>" <?php selected( $qaiyo_ec_config['type'], $qaiyo_ec_type ); ?>><?php echo esc_html( $qaiyo_ec_type_labels['name'] ); ?></option>
-				<?php endforeach; ?>
-			</select>
-		</div>
-		<p class="qec-panel-desc" id="qec-type-help"><?php echo esc_html( $qaiyo_ec_labels['help'] ); ?></p>
 
 		<table class="qec-rows-table">
 			<thead>

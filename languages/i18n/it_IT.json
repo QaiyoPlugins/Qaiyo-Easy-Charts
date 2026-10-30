@@ -265,7 +265,6 @@
 "Optional. Bars: range end. Comparison: second series. Ring: goal. Timeline: finish. Bullet: target.": "Facoltativo. Barre: fine intervallo. Confronto: seconda serie. Anello: obiettivo. Timeline: fine. Bullet: target.",
 "Rows": "Righe",
 "Download the chart": "Scarica il grafico",
-"Chart type & data": "Tipo di grafico e dati",
 "One row per line: label, value, second value, value text — separated by tabs (copied from Excel or Google Sheets), semicolons or commas. A header row is skipped.": "Una riga per riga: etichetta, valore, secondo valore, testo del valore — separati da tabulazioni (copiati da Excel o Fogli Google), punti e virgola o virgole. Una riga di intestazione viene saltata.",
 "e.g. Us": "ad es. Noi",
 "e.g. Market average": "ad es. Media di mercato",

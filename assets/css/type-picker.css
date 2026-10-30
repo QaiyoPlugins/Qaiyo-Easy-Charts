@@ -1,0 +1,133 @@
+/**
+ * Qaiyo Easy Charts — visual chart type picker (chart builder and block editor).
+ */
+
+/* Visual chart type picker -------------------------------------------------
+ * Native radio buttons (keyboard: Tab into the group, arrow keys to choose),
+ * visually replaced by cards with a mock-up of each type. */
+
+.qec-type-picker {
+	margin: 0 0 8px;
+	padding: 0;
+	border: 0;
+}
+
+.qec-type-legend {
+	margin-bottom: 10px;
+	padding: 0;
+	font-weight: 600;
+}
+
+.qec-type-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+	gap: 10px;
+}
+
+.qec-type-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 10px 10px;
+	background: #fff;
+	border: 1px solid var(--qec-a-border, #dcdcde);
+	border-radius: 10px;
+	cursor: pointer;
+	text-align: center;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.qec-type-card:hover {
+	border-color: var(--qec-a-accent, #6c5ce7);
+}
+
+/* The radio stays in the accessibility tree and keyboard order. */
+.qec-type-radio {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: 0;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.qec-type-card:has(.qec-type-radio:checked) {
+	background: var(--qec-a-accent-light, rgba(108, 92, 231, 0.08));
+	border-color: var(--qec-a-accent, #6c5ce7);
+	box-shadow: inset 0 0 0 1px var(--qec-a-accent, #6c5ce7);
+}
+
+.qec-type-card:has(.qec-type-radio:focus-visible) {
+	outline: 2px solid var(--qec-a-accent-text, #5847d4);
+	outline-offset: 2px;
+}
+
+.qec-type-card:has(.qec-type-radio:checked)::after {
+	content: "";
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: var(--qec-a-accent, #6c5ce7) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.2l2.6 2.6L12 5.4' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat;
+}
+
+.qec-type-thumb {
+	display: block;
+	width: 100%;
+	max-width: 120px;
+	height: auto;
+}
+
+.qec-type-name {
+	color: var(--qec-a-text, #1d2327);
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.qec-type-card:has(.qec-type-radio:checked) .qec-type-name {
+	color: var(--qec-a-accent-text, #5847d4);
+}
+
+/* Thumbnail colours */
+.qec-type-thumb .qec-ti-a { fill: #0f0c24; }
+.qec-type-thumb .qec-ti-b { fill: #5fc9b6; }
+.qec-type-thumb .qec-ti-c { fill: #6c5ce7; }
+.qec-type-thumb .qec-ti-d { fill: #b45309; }
+.qec-type-thumb .qec-ti-t { fill: #ecebf1; }
+.qec-type-thumb .qec-ti-t2 { fill: #d6d4e0; }
+.qec-type-thumb .qec-ti-t3 { fill: #c9c7d6; }
+.qec-type-thumb .qec-ti-ring,
+.qec-type-thumb .qec-ti-ring-t { fill: none; stroke-width: 7; }
+.qec-type-thumb .qec-ti-ring { stroke: #0f0c24; stroke-linecap: round; }
+.qec-type-thumb .qec-ti-ring-b { stroke: #5fc9b6; }
+.qec-type-thumb .qec-ti-ring-t { stroke: #ecebf1; }
+
+@media (forced-colors: active) {
+	.qec-type-card:has(.qec-type-radio:checked) {
+		border: 3px solid Highlight;
+	}
+
+	.qec-type-thumb * {
+		forced-color-adjust: none;
+	}
+}
+
+/* Narrow sidebar (block editor): two columns, smaller cards. */
+.qec-type-grid--compact {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px;
+}
+
+.qec-type-grid--compact .qec-type-card {
+	padding: 8px 6px;
+	gap: 4px;
+}
+
+.qec-type-grid--compact .qec-type-name {
+	font-size: 12px;
+}

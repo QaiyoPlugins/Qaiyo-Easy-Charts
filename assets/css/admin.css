@@ -528,10 +528,7 @@ body.qec-admin-screen #wpbody-content {
 	display: none;
 }
 
-.qec-type-field select {
-	min-width: 16em;
-	font-weight: 600;
-}
+
 
 .qec-export-admin {
 	display: inline-flex;
@@ -694,4 +691,12 @@ body.qec-admin-screen #wpbody-content {
 
 .qec-scheme-preview + .qec-export-admin {
 	margin-left: 0;
+}
+
+.qec-panel--types .qec-type-picker {
+	margin-top: 14px;
+}
+
+.qec-panel--types .qec-panel-desc {
+	margin: 12px 0 0;
 }

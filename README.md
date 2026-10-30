@@ -54,7 +54,7 @@ Every type uses the same rows (label, value, second value, value text, colours),
 
 ## Features
 
-- **Admin chart builder** — rows with label, value, range end, custom value text and per-bar colours; reorder with buttons (keyboard friendly); live preview with desktop / mobile toggle; copyable shortcode.
+- **Admin chart builder** — a visual chart type picker (cards with a mock-up of every type, keyboard operable), rows with label, value, second value, custom value text and per-row colours; reorder with buttons (keyboard friendly); live preview with desktop / mobile and light / dark toggles; copyable shortcode. The block editor has the same visual picker.
 - **Every way to place a chart**
   - Shortcode: `[qaiyo_chart id="12"]` or fully inline: `[qaiyo_chart data="Landing page;5;;up to 5|Business site;10;15" unit="days" orientation="vertical"]`
   - Gutenberg block **Qaiyo Easy Chart** — saved chart or bars entered in the block, colour panel, block typography (font family, size), spacing, wide / full alignment.

@@ -265,7 +265,6 @@
 "Optional. Bars: range end. Comparison: second series. Ring: goal. Timeline: finish. Bullet: target.": "Optional. Balken: Bereichsende. Vergleich: zweite Reihe. Ring: Ziel. Zeitleiste: Ende. Bullet: Zielwert.",
 "Rows": "Zeilen",
 "Download the chart": "Diagramm herunterladen",
-"Chart type & data": "Diagrammtyp & Daten",
 "One row per line: label, value, second value, value text — separated by tabs (copied from Excel or Google Sheets), semicolons or commas. A header row is skipped.": "Eine Zeile pro Zeile: Beschriftung, Wert, zweiter Wert, Werttext — getrennt durch Tabs (aus Excel oder Google Tabellen kopiert), Semikolons oder Kommas. Eine Kopfzeile wird übersprungen.",
 "e.g. Us": "z. B. Wir",
 "e.g. Market average": "z. B. Marktdurchschnitt",

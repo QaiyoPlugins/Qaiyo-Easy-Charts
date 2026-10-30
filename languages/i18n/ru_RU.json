@@ -265,7 +265,6 @@
 "Optional. Bars: range end. Comparison: second series. Ring: goal. Timeline: finish. Bullet: target.": "Необязательно. Столбцы: конец диапазона. Сравнение: второй ряд. Кольцо: цель. Шкала: окончание. Bullet: целевое значение.",
 "Rows": "Строки",
 "Download the chart": "Скачать диаграмму",
-"Chart type & data": "Тип диаграммы и данные",
 "One row per line: label, value, second value, value text — separated by tabs (copied from Excel or Google Sheets), semicolons or commas. A header row is skipped.": "По одной строке: подпись, значение, второе значение, текст значения — через табуляцию (копирование из Excel или Google Таблиц), точку с запятой или запятую. Строка заголовка пропускается.",
 "e.g. Us": "например, Мы",
 "e.g. Market average": "например, Средняя по рынку",
