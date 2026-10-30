@@ -1,0 +1,310 @@
+/**
+ * Qaiyo Easy Charts
+ *
+ * All visual settings are CSS custom properties on the chart root, so builder
+ * controls (Elementor, Bricks) only ever need to set variables.
+ */
+
+/* ------------------------------------------------------------------------
+ * Range Bars
+ * --------------------------------------------------------------------- */
+
+/* Defaults use :where() (zero specificity) so builder-generated styles always win,
+   regardless of stylesheet order. */
+:where(.qec-range-bars) {
+	--qec-primary: #0f0c24;
+	--qec-secondary: #95e6d8;
+	--qec-track: #ecebf1;
+	--qec-label-color: #0f0c24;
+	--qec-value-color: #0f0c24;
+	--qec-axis-color: #6b6880;
+
+	--qec-bar-height: 28px;
+	--qec-bar-radius: 0px;
+	--qec-row-gap: 16px;
+	--qec-label-width: fit-content(40%);
+	--qec-label-gap: 40px;
+	--qec-value-gap: 16px;
+	--qec-axis-gap: 20px;
+	--qec-stack-gap: 8px;
+
+	--qec-duration: 1100ms;
+	--qec-stagger: 140ms;
+	--qec-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--qec-dim-opacity: 0.35;
+}
+
+.qec-range-bars {
+	container: qec-range-bars / inline-size;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.qec-range-bars *,
+.qec-range-bars *::before,
+.qec-range-bars *::after {
+	box-sizing: border-box;
+}
+
+.qec-range-bars .qec-grid {
+	display: grid;
+	grid-template-columns: var(--qec-label-width) minmax(0, 1fr) auto;
+	row-gap: var(--qec-row-gap);
+	align-items: center;
+}
+
+.qec-range-bars .qec-row,
+.qec-range-bars .qec-axis-row {
+	display: grid;
+	grid-column: 1 / -1;
+	grid-template-columns: subgrid;
+	align-items: center;
+}
+
+/* Browsers without subgrid: keep columns aligned with a fixed label column. */
+@supports not (grid-template-columns: subgrid) {
+	.qec-range-bars .qec-row,
+	.qec-range-bars .qec-axis-row {
+		grid-template-columns: minmax(0, 30%) minmax(0, 1fr) 6em;
+	}
+}
+
+.qec-range-bars .qec-row {
+	transition: opacity 0.25s ease;
+}
+
+/* Label ----------------------------------------------------------------- */
+
+.qec-range-bars .qec-label {
+	padding-right: var(--qec-label-gap);
+	color: var(--qec-label-color);
+	font-size: 1.0625em;
+	font-weight: 500;
+	line-height: 1.3;
+	overflow-wrap: anywhere;
+}
+
+/* Bar ------------------------------------------------------------------- */
+
+.qec-range-bars .qec-track {
+	position: relative;
+	display: block;
+	height: var(--qec-bar-height);
+	overflow: hidden;
+	background: var(--qec-track);
+	border-radius: var(--qec-bar-radius);
+}
+
+.qec-range-bars .qec-seg {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	transform-origin: left center;
+}
+
+.qec-range-bars .qec-seg--primary {
+	background: var(--qec-primary);
+}
+
+.qec-range-bars .qec-seg--secondary {
+	background: var(--qec-secondary);
+}
+
+/* Value ----------------------------------------------------------------- */
+
+.qec-range-bars .qec-value {
+	padding-left: var(--qec-value-gap);
+	color: var(--qec-value-color);
+	font-size: 1.0625em;
+	font-weight: 700;
+	line-height: 1.3;
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+.qec-range-bars .qec-sr-only {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Axis ------------------------------------------------------------------ */
+
+.qec-range-bars .qec-axis-row {
+	margin-top: calc(var(--qec-axis-gap) - var(--qec-row-gap));
+}
+
+.qec-range-bars .qec-axis {
+	position: relative;
+	grid-column: 2;
+	height: 1.5em;
+	color: var(--qec-axis-color);
+	font-size: 0.875em;
+	line-height: 1.5;
+}
+
+.qec-range-bars .qec-tick {
+	position: absolute;
+	top: 0;
+	left: var(--qec-pos);
+	transform: translateX(-50%);
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+.qec-range-bars .qec-tick:first-child {
+	transform: none;
+}
+
+.qec-range-bars .qec-tick:last-child {
+	transform: translateX(-100%);
+}
+
+/* Hover focus: dim the other rows -------------------------------------- */
+
+@media (hover: hover) {
+	.qec-range-bars.qec-hover-focus .qec-grid:has(.qec-row:hover) .qec-row:not(:hover) {
+		opacity: var(--qec-dim-opacity);
+	}
+}
+
+/* Stacked layout: label + value on top, full-width bar below ------------ */
+
+.qec-range-bars.qec-layout-stacked .qec-grid {
+	grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.qec-range-bars.qec-layout-stacked .qec-row {
+	row-gap: var(--qec-stack-gap);
+}
+
+.qec-range-bars.qec-layout-stacked .qec-label {
+	grid-column: 1;
+	grid-row: 1;
+	padding-right: var(--qec-value-gap);
+}
+
+.qec-range-bars.qec-layout-stacked .qec-value {
+	grid-column: 2;
+	grid-row: 1;
+	padding-left: 0;
+	text-align: right;
+}
+
+.qec-range-bars.qec-layout-stacked .qec-track {
+	grid-column: 1 / -1;
+	grid-row: 2;
+}
+
+.qec-range-bars.qec-layout-stacked .qec-axis-spacer {
+	display: none;
+}
+
+.qec-range-bars.qec-layout-stacked .qec-axis {
+	grid-column: 1 / -1;
+}
+
+/* Same as above, applied automatically when the chart itself is narrow
+   (container query, so it works in columns and sidebars too, not only on phones). */
+@container qec-range-bars (max-width: 560px) {
+	.qec-layout-auto .qec-grid {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	.qec-layout-auto .qec-row {
+		row-gap: var(--qec-stack-gap);
+	}
+
+	.qec-layout-auto .qec-label {
+		grid-column: 1;
+		grid-row: 1;
+		padding-right: var(--qec-value-gap);
+	}
+
+	.qec-layout-auto .qec-value {
+		grid-column: 2;
+		grid-row: 1;
+		padding-left: 0;
+		text-align: right;
+	}
+
+	.qec-layout-auto .qec-track {
+		grid-column: 1 / -1;
+		grid-row: 2;
+	}
+
+	.qec-layout-auto .qec-axis-spacer {
+		display: none;
+	}
+
+	.qec-layout-auto .qec-axis {
+		grid-column: 1 / -1;
+	}
+}
+
+/* Very narrow: show every other intermediate tick so labels never collide. */
+@container qec-range-bars (max-width: 480px) {
+	.qec-range-bars .qec-tick:nth-child(even):not(:first-child):not(:last-child) {
+		display: none;
+	}
+}
+
+/* Entrance animation ---------------------------------------------------
+ * JS adds .qec-armed (collapsed, no transition) and later .qec-in-view
+ * (transition to final state). Without JS the chart is simply static. */
+
+.qec-range-bars.qec-armed:not(.qec-in-view) .qec-seg {
+	transform: scaleX(0);
+}
+
+.qec-range-bars.qec-armed:not(.qec-in-view) .qec-value {
+	opacity: 0;
+	transform: translateX(-8px);
+}
+
+.qec-range-bars.qec-armed:not(.qec-in-view) .qec-label,
+.qec-range-bars.qec-armed:not(.qec-in-view) .qec-tick {
+	opacity: 0;
+}
+
+.qec-range-bars.qec-in-view .qec-seg--primary {
+	transition: transform var(--qec-duration) var(--qec-ease);
+	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger));
+}
+
+.qec-range-bars.qec-in-view .qec-seg--secondary {
+	transition: transform calc(var(--qec-duration) * 0.8) var(--qec-ease);
+	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger) + var(--qec-duration) * 0.55);
+}
+
+.qec-range-bars.qec-in-view .qec-label {
+	transition: opacity 0.5s ease;
+	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger));
+}
+
+.qec-range-bars.qec-in-view .qec-value {
+	transition: opacity 0.5s ease, transform 0.6s var(--qec-ease);
+	transition-delay: calc(var(--qec-i, 0) * var(--qec-stagger) + var(--qec-duration) * 0.6);
+}
+
+.qec-range-bars.qec-in-view .qec-tick {
+	transition: opacity 0.6s ease;
+	transition-delay: calc(var(--qec-duration) * 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.qec-range-bars .qec-seg,
+	.qec-range-bars .qec-value,
+	.qec-range-bars .qec-label,
+	.qec-range-bars .qec-tick,
+	.qec-range-bars .qec-row {
+		transition: none !important;
+	}
+}
